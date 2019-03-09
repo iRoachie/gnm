@@ -1,6 +1,10 @@
 {
   "name": "gnm",
   "private": true,
+  "scripts": {
+    "start:website": "NODE_ENV=development && yarn workspace @gnm/website develop",
+    "build:website": "yarn workspace @gnm/website build"
+  },
   "workspaces": [
     "packages/*"
   ]

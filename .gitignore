@@ -57,6 +57,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+.env.development
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -78,7 +79,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
-
 
 # mac
 .DS_Store
