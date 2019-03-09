@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "prisma": "prisma",
     "dev": "nodemon -e js,graphql,prisma src/index.js"
   },
   "dependencies": {

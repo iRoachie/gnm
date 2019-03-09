@@ -1,4 +1,4 @@
-# import * from "./generated/prisma.graphql"
+# import * from "@gnm/core/generated/prisma.graphql"
 
 type ReturnedUser implements Node {
   id: ID!
