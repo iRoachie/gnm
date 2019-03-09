@@ -1,0 +1,311 @@
+# import * from "./generated/prisma.graphql"
+
+type ReturnedUser implements Node {
+  id: ID!
+  name: String!
+  email: String!
+  role: ReturnedUserRole!
+  contactSites: [ContactSite]!
+}
+
+type LoggedInUser implements Node {
+  id: ID!
+  name: String!
+  email: String!
+  role: ReturnedUserRole!
+  contactSites: [ContactSite]!
+  jwt: String!
+}
+
+type ReturnedUserRole implements Node {
+  id: ID!
+  title: String!
+  permissions: [String!]!
+}
+
+input ReturnedUserWhereInput {
+  """
+  Logical AND on all given filters.
+  """
+  AND: [ReturnedUserWhereInput!]
+
+  """
+  Logical OR on all given filters.
+  """
+  OR: [ReturnedUserWhereInput!]
+
+  """
+  Logical NOT on all given filters combined by AND.
+  """
+  NOT: [ReturnedUserWhereInput!]
+  id: ID
+
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+
+  """
+  All values less than the given value.
+  """
+  id_lt: ID
+
+  """
+  All values less than or equal the given value.
+  """
+  id_lte: ID
+
+  """
+  All values greater than the given value.
+  """
+  id_gt: ID
+
+  """
+  All values greater than or equal the given value.
+  """
+  id_gte: ID
+
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+
+  """
+  All values not ending with the given string.
+  """
+  id_not_ends_with: ID
+  name: String
+
+  """
+  All values that are not equal to given value.
+  """
+  name_not: String
+
+  """
+  All values that are contained in given list.
+  """
+  name_in: [String!]
+
+  """
+  All values that are not contained in given list.
+  """
+  name_not_in: [String!]
+
+  """
+  All values less than the given value.
+  """
+  name_lt: String
+
+  """
+  All values less than or equal the given value.
+  """
+  name_lte: String
+
+  """
+  All values greater than the given value.
+  """
+  name_gt: String
+
+  """
+  All values greater than or equal the given value.
+  """
+  name_gte: String
+
+  """
+  All values containing the given string.
+  """
+  name_contains: String
+
+  """
+  All values not containing the given string.
+  """
+  name_not_contains: String
+
+  """
+  All values starting with the given string.
+  """
+  name_starts_with: String
+
+  """
+  All values not starting with the given string.
+  """
+  name_not_starts_with: String
+
+  """
+  All values ending with the given string.
+  """
+  name_ends_with: String
+
+  """
+  All values not ending with the given string.
+  """
+  name_not_ends_with: String
+  email: String
+
+  """
+  All values that are not equal to given value.
+  """
+  email_not: String
+
+  """
+  All values that are contained in given list.
+  """
+  email_in: [String!]
+
+  """
+  All values that are not contained in given list.
+  """
+  email_not_in: [String!]
+
+  """
+  All values less than the given value.
+  """
+  email_lt: String
+
+  """
+  All values less than or equal the given value.
+  """
+  email_lte: String
+
+  """
+  All values greater than the given value.
+  """
+  email_gt: String
+
+  """
+  All values greater than or equal the given value.
+  """
+  email_gte: String
+
+  """
+  All values containing the given string.
+  """
+  email_contains: String
+
+  """
+  All values not containing the given string.
+  """
+  email_not_contains: String
+
+  """
+  All values starting with the given string.
+  """
+  email_starts_with: String
+
+  """
+  All values not starting with the given string.
+  """
+  email_not_starts_with: String
+
+  """
+  All values ending with the given string.
+  """
+  email_ends_with: String
+
+  """
+  All values not ending with the given string.
+  """
+  email_not_ends_with: String
+
+  role: UserRoleWhereInput
+  contactSites_every: ContactSiteWhereInput
+  contactSites_some: ContactSiteWhereInput
+  contactSites_none: ContactSiteWhereInput
+}
+
+enum ReturnedUserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type Mutation {
+  signup(data: UserCreateInput): ReturnedUser!
+  login(email: String!, password: String!): LoggedInUser!
+  updateUser(
+    data: UserUpdateInput!
+    where: UserWhereUniqueInput!
+  ): ReturnedUser!
+  registerPerson(data: PersonCreateInput!): Person!
+  assignWorker(
+    person: PersonWhereUniqueInput!
+    worker: UserWhereUniqueInput!
+  ): Person!
+  updatePerson(
+    data: PersonUpdateInput!
+    where: PersonWhereUniqueInput!
+  ): Person!
+}
+
+type Query {
+  userRoles: [ReturnedUserRole!]!
+  users(
+    where: ReturnedUserWhereInput
+    orderBy: ReturnedUserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ReturnedUser]!
+  user(where: UserWhereUniqueInput!): ReturnedUser
+  contactSites(where: ContactSiteWhereInput): [ContactSite!]!
+  permissions: [Permission!]!
+  statuses: [PersonStatus]!
+  attendance(
+    where: AttendanceWhereInput
+    orderBy: AttendanceOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Attendance]!
+  persons(
+    where: PersonWhereInput
+    orderBy: PersonOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Person]!
+  person(where: PersonWhereUniqueInput): Person
+}

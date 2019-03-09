@@ -1,0 +1,62 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  role: UserRole!
+  contactSites: [ContactSite]!
+}
+
+type UserRole {
+  title: String! @unique
+  permissions: [Permission!]!
+}
+
+type Permission {
+  id: ID! @unique
+  title: String!
+}
+
+type PersonStatus {
+  title: String! @unique
+  description: String
+}
+
+enum Sex {
+  M
+  F
+}
+
+enum Country {
+  Barbados
+  Dominica
+}
+
+type ContactSite {
+  id: ID! @unique
+  name: String!
+  country: Country!
+}
+
+type Person {
+  id: ID! @unique
+  name: String!
+  email: String
+  password: String
+  telephone: String
+  status: PersonStatus!
+  address: String
+  sex: Sex!
+  religion: String
+  age: Int
+  assignee: User
+  contactSite: ContactSite!
+  notes: String
+  websiteUser: Boolean
+}
+
+type Attendance {
+  date: DateTime!
+  event: String
+  person: Person!
+}

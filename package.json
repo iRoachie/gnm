@@ -1,0 +1,7 @@
+{
+  "name": "gnm",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

@@ -1,0 +1,1312 @@
+type AggregateAttendance {
+  count: Int!
+}
+
+type AggregateContactSite {
+  count: Int!
+}
+
+type AggregatePermission {
+  count: Int!
+}
+
+type AggregatePerson {
+  count: Int!
+}
+
+type AggregatePersonStatus {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type AggregateUserRole {
+  count: Int!
+}
+
+type Attendance {
+  date: DateTime!
+  event: String
+  person: Person!
+}
+
+type AttendanceConnection {
+  pageInfo: PageInfo!
+  edges: [AttendanceEdge]!
+  aggregate: AggregateAttendance!
+}
+
+input AttendanceCreateInput {
+  date: DateTime!
+  event: String
+  person: PersonCreateOneInput!
+}
+
+type AttendanceEdge {
+  node: Attendance!
+  cursor: String!
+}
+
+enum AttendanceOrderByInput {
+  date_ASC
+  date_DESC
+  event_ASC
+  event_DESC
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AttendancePreviousValues {
+  date: DateTime!
+  event: String
+}
+
+type AttendanceSubscriptionPayload {
+  mutation: MutationType!
+  node: Attendance
+  updatedFields: [String!]
+  previousValues: AttendancePreviousValues
+}
+
+input AttendanceSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AttendanceWhereInput
+  AND: [AttendanceSubscriptionWhereInput!]
+  OR: [AttendanceSubscriptionWhereInput!]
+  NOT: [AttendanceSubscriptionWhereInput!]
+}
+
+input AttendanceUpdateManyMutationInput {
+  date: DateTime
+  event: String
+}
+
+input AttendanceWhereInput {
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  event: String
+  event_not: String
+  event_in: [String!]
+  event_not_in: [String!]
+  event_lt: String
+  event_lte: String
+  event_gt: String
+  event_gte: String
+  event_contains: String
+  event_not_contains: String
+  event_starts_with: String
+  event_not_starts_with: String
+  event_ends_with: String
+  event_not_ends_with: String
+  person: PersonWhereInput
+  AND: [AttendanceWhereInput!]
+  OR: [AttendanceWhereInput!]
+  NOT: [AttendanceWhereInput!]
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type ContactSite {
+  id: ID!
+  name: String!
+  country: Country!
+}
+
+type ContactSiteConnection {
+  pageInfo: PageInfo!
+  edges: [ContactSiteEdge]!
+  aggregate: AggregateContactSite!
+}
+
+input ContactSiteCreateInput {
+  name: String!
+  country: Country!
+}
+
+input ContactSiteCreateManyInput {
+  create: [ContactSiteCreateInput!]
+  connect: [ContactSiteWhereUniqueInput!]
+}
+
+input ContactSiteCreateOneInput {
+  create: ContactSiteCreateInput
+  connect: ContactSiteWhereUniqueInput
+}
+
+type ContactSiteEdge {
+  node: ContactSite!
+  cursor: String!
+}
+
+enum ContactSiteOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  country_ASC
+  country_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContactSitePreviousValues {
+  id: ID!
+  name: String!
+  country: Country!
+}
+
+input ContactSiteScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  country: Country
+  country_not: Country
+  country_in: [Country!]
+  country_not_in: [Country!]
+  AND: [ContactSiteScalarWhereInput!]
+  OR: [ContactSiteScalarWhereInput!]
+  NOT: [ContactSiteScalarWhereInput!]
+}
+
+type ContactSiteSubscriptionPayload {
+  mutation: MutationType!
+  node: ContactSite
+  updatedFields: [String!]
+  previousValues: ContactSitePreviousValues
+}
+
+input ContactSiteSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContactSiteWhereInput
+  AND: [ContactSiteSubscriptionWhereInput!]
+  OR: [ContactSiteSubscriptionWhereInput!]
+  NOT: [ContactSiteSubscriptionWhereInput!]
+}
+
+input ContactSiteUpdateDataInput {
+  name: String
+  country: Country
+}
+
+input ContactSiteUpdateInput {
+  name: String
+  country: Country
+}
+
+input ContactSiteUpdateManyDataInput {
+  name: String
+  country: Country
+}
+
+input ContactSiteUpdateManyInput {
+  create: [ContactSiteCreateInput!]
+  update: [ContactSiteUpdateWithWhereUniqueNestedInput!]
+  upsert: [ContactSiteUpsertWithWhereUniqueNestedInput!]
+  delete: [ContactSiteWhereUniqueInput!]
+  connect: [ContactSiteWhereUniqueInput!]
+  set: [ContactSiteWhereUniqueInput!]
+  disconnect: [ContactSiteWhereUniqueInput!]
+  deleteMany: [ContactSiteScalarWhereInput!]
+  updateMany: [ContactSiteUpdateManyWithWhereNestedInput!]
+}
+
+input ContactSiteUpdateManyMutationInput {
+  name: String
+  country: Country
+}
+
+input ContactSiteUpdateManyWithWhereNestedInput {
+  where: ContactSiteScalarWhereInput!
+  data: ContactSiteUpdateManyDataInput!
+}
+
+input ContactSiteUpdateOneRequiredInput {
+  create: ContactSiteCreateInput
+  update: ContactSiteUpdateDataInput
+  upsert: ContactSiteUpsertNestedInput
+  connect: ContactSiteWhereUniqueInput
+}
+
+input ContactSiteUpdateWithWhereUniqueNestedInput {
+  where: ContactSiteWhereUniqueInput!
+  data: ContactSiteUpdateDataInput!
+}
+
+input ContactSiteUpsertNestedInput {
+  update: ContactSiteUpdateDataInput!
+  create: ContactSiteCreateInput!
+}
+
+input ContactSiteUpsertWithWhereUniqueNestedInput {
+  where: ContactSiteWhereUniqueInput!
+  update: ContactSiteUpdateDataInput!
+  create: ContactSiteCreateInput!
+}
+
+input ContactSiteWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  country: Country
+  country_not: Country
+  country_in: [Country!]
+  country_not_in: [Country!]
+  AND: [ContactSiteWhereInput!]
+  OR: [ContactSiteWhereInput!]
+  NOT: [ContactSiteWhereInput!]
+}
+
+input ContactSiteWhereUniqueInput {
+  id: ID
+}
+
+enum Country {
+  Barbados
+  Dominica
+}
+
+scalar DateTime
+
+scalar Long
+
+type Mutation {
+  createAttendance(data: AttendanceCreateInput!): Attendance!
+  updateManyAttendances(data: AttendanceUpdateManyMutationInput!, where: AttendanceWhereInput): BatchPayload!
+  deleteManyAttendances(where: AttendanceWhereInput): BatchPayload!
+  createContactSite(data: ContactSiteCreateInput!): ContactSite!
+  updateContactSite(data: ContactSiteUpdateInput!, where: ContactSiteWhereUniqueInput!): ContactSite
+  updateManyContactSites(data: ContactSiteUpdateManyMutationInput!, where: ContactSiteWhereInput): BatchPayload!
+  upsertContactSite(where: ContactSiteWhereUniqueInput!, create: ContactSiteCreateInput!, update: ContactSiteUpdateInput!): ContactSite!
+  deleteContactSite(where: ContactSiteWhereUniqueInput!): ContactSite
+  deleteManyContactSites(where: ContactSiteWhereInput): BatchPayload!
+  createPermission(data: PermissionCreateInput!): Permission!
+  updatePermission(data: PermissionUpdateInput!, where: PermissionWhereUniqueInput!): Permission
+  updateManyPermissions(data: PermissionUpdateManyMutationInput!, where: PermissionWhereInput): BatchPayload!
+  upsertPermission(where: PermissionWhereUniqueInput!, create: PermissionCreateInput!, update: PermissionUpdateInput!): Permission!
+  deletePermission(where: PermissionWhereUniqueInput!): Permission
+  deleteManyPermissions(where: PermissionWhereInput): BatchPayload!
+  createPerson(data: PersonCreateInput!): Person!
+  updatePerson(data: PersonUpdateInput!, where: PersonWhereUniqueInput!): Person
+  updateManyPersons(data: PersonUpdateManyMutationInput!, where: PersonWhereInput): BatchPayload!
+  upsertPerson(where: PersonWhereUniqueInput!, create: PersonCreateInput!, update: PersonUpdateInput!): Person!
+  deletePerson(where: PersonWhereUniqueInput!): Person
+  deleteManyPersons(where: PersonWhereInput): BatchPayload!
+  createPersonStatus(data: PersonStatusCreateInput!): PersonStatus!
+  updatePersonStatus(data: PersonStatusUpdateInput!, where: PersonStatusWhereUniqueInput!): PersonStatus
+  updateManyPersonStatuses(data: PersonStatusUpdateManyMutationInput!, where: PersonStatusWhereInput): BatchPayload!
+  upsertPersonStatus(where: PersonStatusWhereUniqueInput!, create: PersonStatusCreateInput!, update: PersonStatusUpdateInput!): PersonStatus!
+  deletePersonStatus(where: PersonStatusWhereUniqueInput!): PersonStatus
+  deleteManyPersonStatuses(where: PersonStatusWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createUserRole(data: UserRoleCreateInput!): UserRole!
+  updateUserRole(data: UserRoleUpdateInput!, where: UserRoleWhereUniqueInput!): UserRole
+  updateManyUserRoles(data: UserRoleUpdateManyMutationInput!, where: UserRoleWhereInput): BatchPayload!
+  upsertUserRole(where: UserRoleWhereUniqueInput!, create: UserRoleCreateInput!, update: UserRoleUpdateInput!): UserRole!
+  deleteUserRole(where: UserRoleWhereUniqueInput!): UserRole
+  deleteManyUserRoles(where: UserRoleWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Permission {
+  id: ID!
+  title: String!
+}
+
+type PermissionConnection {
+  pageInfo: PageInfo!
+  edges: [PermissionEdge]!
+  aggregate: AggregatePermission!
+}
+
+input PermissionCreateInput {
+  title: String!
+}
+
+input PermissionCreateManyInput {
+  create: [PermissionCreateInput!]
+  connect: [PermissionWhereUniqueInput!]
+}
+
+type PermissionEdge {
+  node: Permission!
+  cursor: String!
+}
+
+enum PermissionOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type PermissionPreviousValues {
+  id: ID!
+  title: String!
+}
+
+input PermissionScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  AND: [PermissionScalarWhereInput!]
+  OR: [PermissionScalarWhereInput!]
+  NOT: [PermissionScalarWhereInput!]
+}
+
+type PermissionSubscriptionPayload {
+  mutation: MutationType!
+  node: Permission
+  updatedFields: [String!]
+  previousValues: PermissionPreviousValues
+}
+
+input PermissionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PermissionWhereInput
+  AND: [PermissionSubscriptionWhereInput!]
+  OR: [PermissionSubscriptionWhereInput!]
+  NOT: [PermissionSubscriptionWhereInput!]
+}
+
+input PermissionUpdateDataInput {
+  title: String
+}
+
+input PermissionUpdateInput {
+  title: String
+}
+
+input PermissionUpdateManyDataInput {
+  title: String
+}
+
+input PermissionUpdateManyInput {
+  create: [PermissionCreateInput!]
+  update: [PermissionUpdateWithWhereUniqueNestedInput!]
+  upsert: [PermissionUpsertWithWhereUniqueNestedInput!]
+  delete: [PermissionWhereUniqueInput!]
+  connect: [PermissionWhereUniqueInput!]
+  set: [PermissionWhereUniqueInput!]
+  disconnect: [PermissionWhereUniqueInput!]
+  deleteMany: [PermissionScalarWhereInput!]
+  updateMany: [PermissionUpdateManyWithWhereNestedInput!]
+}
+
+input PermissionUpdateManyMutationInput {
+  title: String
+}
+
+input PermissionUpdateManyWithWhereNestedInput {
+  where: PermissionScalarWhereInput!
+  data: PermissionUpdateManyDataInput!
+}
+
+input PermissionUpdateWithWhereUniqueNestedInput {
+  where: PermissionWhereUniqueInput!
+  data: PermissionUpdateDataInput!
+}
+
+input PermissionUpsertWithWhereUniqueNestedInput {
+  where: PermissionWhereUniqueInput!
+  update: PermissionUpdateDataInput!
+  create: PermissionCreateInput!
+}
+
+input PermissionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  AND: [PermissionWhereInput!]
+  OR: [PermissionWhereInput!]
+  NOT: [PermissionWhereInput!]
+}
+
+input PermissionWhereUniqueInput {
+  id: ID
+}
+
+type Person {
+  id: ID!
+  name: String!
+  email: String
+  password: String
+  telephone: String
+  status: PersonStatus!
+  address: String
+  sex: Sex!
+  religion: String
+  age: Int
+  assignee: User
+  contactSite: ContactSite!
+  notes: String
+  websiteUser: Boolean
+}
+
+type PersonConnection {
+  pageInfo: PageInfo!
+  edges: [PersonEdge]!
+  aggregate: AggregatePerson!
+}
+
+input PersonCreateInput {
+  name: String!
+  email: String
+  password: String
+  telephone: String
+  status: PersonStatusCreateOneInput!
+  address: String
+  sex: Sex!
+  religion: String
+  age: Int
+  assignee: UserCreateOneInput
+  contactSite: ContactSiteCreateOneInput!
+  notes: String
+  websiteUser: Boolean
+}
+
+input PersonCreateOneInput {
+  create: PersonCreateInput
+  connect: PersonWhereUniqueInput
+}
+
+type PersonEdge {
+  node: Person!
+  cursor: String!
+}
+
+enum PersonOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  telephone_ASC
+  telephone_DESC
+  address_ASC
+  address_DESC
+  sex_ASC
+  sex_DESC
+  religion_ASC
+  religion_DESC
+  age_ASC
+  age_DESC
+  notes_ASC
+  notes_DESC
+  websiteUser_ASC
+  websiteUser_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type PersonPreviousValues {
+  id: ID!
+  name: String!
+  email: String
+  password: String
+  telephone: String
+  address: String
+  sex: Sex!
+  religion: String
+  age: Int
+  notes: String
+  websiteUser: Boolean
+}
+
+type PersonStatus {
+  title: String!
+  description: String
+}
+
+type PersonStatusConnection {
+  pageInfo: PageInfo!
+  edges: [PersonStatusEdge]!
+  aggregate: AggregatePersonStatus!
+}
+
+input PersonStatusCreateInput {
+  title: String!
+  description: String
+}
+
+input PersonStatusCreateOneInput {
+  create: PersonStatusCreateInput
+  connect: PersonStatusWhereUniqueInput
+}
+
+type PersonStatusEdge {
+  node: PersonStatus!
+  cursor: String!
+}
+
+enum PersonStatusOrderByInput {
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type PersonStatusPreviousValues {
+  title: String!
+  description: String
+}
+
+type PersonStatusSubscriptionPayload {
+  mutation: MutationType!
+  node: PersonStatus
+  updatedFields: [String!]
+  previousValues: PersonStatusPreviousValues
+}
+
+input PersonStatusSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PersonStatusWhereInput
+  AND: [PersonStatusSubscriptionWhereInput!]
+  OR: [PersonStatusSubscriptionWhereInput!]
+  NOT: [PersonStatusSubscriptionWhereInput!]
+}
+
+input PersonStatusUpdateDataInput {
+  title: String
+  description: String
+}
+
+input PersonStatusUpdateInput {
+  title: String
+  description: String
+}
+
+input PersonStatusUpdateManyMutationInput {
+  title: String
+  description: String
+}
+
+input PersonStatusUpdateOneRequiredInput {
+  create: PersonStatusCreateInput
+  update: PersonStatusUpdateDataInput
+  upsert: PersonStatusUpsertNestedInput
+  connect: PersonStatusWhereUniqueInput
+}
+
+input PersonStatusUpsertNestedInput {
+  update: PersonStatusUpdateDataInput!
+  create: PersonStatusCreateInput!
+}
+
+input PersonStatusWhereInput {
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [PersonStatusWhereInput!]
+  OR: [PersonStatusWhereInput!]
+  NOT: [PersonStatusWhereInput!]
+}
+
+input PersonStatusWhereUniqueInput {
+  title: String
+}
+
+type PersonSubscriptionPayload {
+  mutation: MutationType!
+  node: Person
+  updatedFields: [String!]
+  previousValues: PersonPreviousValues
+}
+
+input PersonSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PersonWhereInput
+  AND: [PersonSubscriptionWhereInput!]
+  OR: [PersonSubscriptionWhereInput!]
+  NOT: [PersonSubscriptionWhereInput!]
+}
+
+input PersonUpdateInput {
+  name: String
+  email: String
+  password: String
+  telephone: String
+  status: PersonStatusUpdateOneRequiredInput
+  address: String
+  sex: Sex
+  religion: String
+  age: Int
+  assignee: UserUpdateOneInput
+  contactSite: ContactSiteUpdateOneRequiredInput
+  notes: String
+  websiteUser: Boolean
+}
+
+input PersonUpdateManyMutationInput {
+  name: String
+  email: String
+  password: String
+  telephone: String
+  address: String
+  sex: Sex
+  religion: String
+  age: Int
+  notes: String
+  websiteUser: Boolean
+}
+
+input PersonWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  telephone: String
+  telephone_not: String
+  telephone_in: [String!]
+  telephone_not_in: [String!]
+  telephone_lt: String
+  telephone_lte: String
+  telephone_gt: String
+  telephone_gte: String
+  telephone_contains: String
+  telephone_not_contains: String
+  telephone_starts_with: String
+  telephone_not_starts_with: String
+  telephone_ends_with: String
+  telephone_not_ends_with: String
+  status: PersonStatusWhereInput
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  sex: Sex
+  sex_not: Sex
+  sex_in: [Sex!]
+  sex_not_in: [Sex!]
+  religion: String
+  religion_not: String
+  religion_in: [String!]
+  religion_not_in: [String!]
+  religion_lt: String
+  religion_lte: String
+  religion_gt: String
+  religion_gte: String
+  religion_contains: String
+  religion_not_contains: String
+  religion_starts_with: String
+  religion_not_starts_with: String
+  religion_ends_with: String
+  religion_not_ends_with: String
+  age: Int
+  age_not: Int
+  age_in: [Int!]
+  age_not_in: [Int!]
+  age_lt: Int
+  age_lte: Int
+  age_gt: Int
+  age_gte: Int
+  assignee: UserWhereInput
+  contactSite: ContactSiteWhereInput
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  websiteUser: Boolean
+  websiteUser_not: Boolean
+  AND: [PersonWhereInput!]
+  OR: [PersonWhereInput!]
+  NOT: [PersonWhereInput!]
+}
+
+input PersonWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  attendances(where: AttendanceWhereInput, orderBy: AttendanceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Attendance]!
+  attendancesConnection(where: AttendanceWhereInput, orderBy: AttendanceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AttendanceConnection!
+  contactSite(where: ContactSiteWhereUniqueInput!): ContactSite
+  contactSites(where: ContactSiteWhereInput, orderBy: ContactSiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactSite]!
+  contactSitesConnection(where: ContactSiteWhereInput, orderBy: ContactSiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContactSiteConnection!
+  permission(where: PermissionWhereUniqueInput!): Permission
+  permissions(where: PermissionWhereInput, orderBy: PermissionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Permission]!
+  permissionsConnection(where: PermissionWhereInput, orderBy: PermissionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PermissionConnection!
+  person(where: PersonWhereUniqueInput!): Person
+  persons(where: PersonWhereInput, orderBy: PersonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Person]!
+  personsConnection(where: PersonWhereInput, orderBy: PersonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PersonConnection!
+  personStatus(where: PersonStatusWhereUniqueInput!): PersonStatus
+  personStatuses(where: PersonStatusWhereInput, orderBy: PersonStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PersonStatus]!
+  personStatusesConnection(where: PersonStatusWhereInput, orderBy: PersonStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PersonStatusConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  userRole(where: UserRoleWhereUniqueInput!): UserRole
+  userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole]!
+  userRolesConnection(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserRoleConnection!
+  node(id: ID!): Node
+}
+
+enum Sex {
+  M
+  F
+}
+
+type Subscription {
+  attendance(where: AttendanceSubscriptionWhereInput): AttendanceSubscriptionPayload
+  contactSite(where: ContactSiteSubscriptionWhereInput): ContactSiteSubscriptionPayload
+  permission(where: PermissionSubscriptionWhereInput): PermissionSubscriptionPayload
+  person(where: PersonSubscriptionWhereInput): PersonSubscriptionPayload
+  personStatus(where: PersonStatusSubscriptionWhereInput): PersonStatusSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  userRole(where: UserRoleSubscriptionWhereInput): UserRoleSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  role: UserRole!
+  contactSites(where: ContactSiteWhereInput, orderBy: ContactSiteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactSite!]
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  name: String!
+  email: String!
+  password: String!
+  role: UserRoleCreateOneInput!
+  contactSites: ContactSiteCreateManyInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+}
+
+type UserRole {
+  title: String!
+  permissions(where: PermissionWhereInput, orderBy: PermissionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Permission!]
+}
+
+type UserRoleConnection {
+  pageInfo: PageInfo!
+  edges: [UserRoleEdge]!
+  aggregate: AggregateUserRole!
+}
+
+input UserRoleCreateInput {
+  title: String!
+  permissions: PermissionCreateManyInput
+}
+
+input UserRoleCreateOneInput {
+  create: UserRoleCreateInput
+  connect: UserRoleWhereUniqueInput
+}
+
+type UserRoleEdge {
+  node: UserRole!
+  cursor: String!
+}
+
+enum UserRoleOrderByInput {
+  title_ASC
+  title_DESC
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserRolePreviousValues {
+  title: String!
+}
+
+type UserRoleSubscriptionPayload {
+  mutation: MutationType!
+  node: UserRole
+  updatedFields: [String!]
+  previousValues: UserRolePreviousValues
+}
+
+input UserRoleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserRoleWhereInput
+  AND: [UserRoleSubscriptionWhereInput!]
+  OR: [UserRoleSubscriptionWhereInput!]
+  NOT: [UserRoleSubscriptionWhereInput!]
+}
+
+input UserRoleUpdateDataInput {
+  title: String
+  permissions: PermissionUpdateManyInput
+}
+
+input UserRoleUpdateInput {
+  title: String
+  permissions: PermissionUpdateManyInput
+}
+
+input UserRoleUpdateManyMutationInput {
+  title: String
+}
+
+input UserRoleUpdateOneRequiredInput {
+  create: UserRoleCreateInput
+  update: UserRoleUpdateDataInput
+  upsert: UserRoleUpsertNestedInput
+  connect: UserRoleWhereUniqueInput
+}
+
+input UserRoleUpsertNestedInput {
+  update: UserRoleUpdateDataInput!
+  create: UserRoleCreateInput!
+}
+
+input UserRoleWhereInput {
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  permissions_every: PermissionWhereInput
+  permissions_some: PermissionWhereInput
+  permissions_none: PermissionWhereInput
+  AND: [UserRoleWhereInput!]
+  OR: [UserRoleWhereInput!]
+  NOT: [UserRoleWhereInput!]
+}
+
+input UserRoleWhereUniqueInput {
+  title: String
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateDataInput {
+  name: String
+  email: String
+  password: String
+  role: UserRoleUpdateOneRequiredInput
+  contactSites: ContactSiteUpdateManyInput
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+  password: String
+  role: UserRoleUpdateOneRequiredInput
+  contactSites: ContactSiteUpdateManyInput
+}
+
+input UserUpdateManyMutationInput {
+  name: String
+  email: String
+  password: String
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  role: UserRoleWhereInput
+  contactSites_every: ContactSiteWhereInput
+  contactSites_some: ContactSiteWhereInput
+  contactSites_none: ContactSiteWhereInput
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}
