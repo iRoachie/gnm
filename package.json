@@ -2,9 +2,9 @@
   "name": "gnm",
   "private": true,
   "scripts": {
-    "start:website": "NODE_ENV=development && yarn workspace @gnm/website develop",
-    "build:website": "yarn workspace @gnm/website build",
-    "dev:server": "yarn workspace @gnm/server dev",
+    "website:start": "NODE_ENV=development && yarn workspace @gnm/website develop",
+    "website:build": "yarn workspace @gnm/website build",
+    "server:dev": "yarn workspace @gnm/server dev",
     "prisma": "yarn workspace @gnm/server prisma"
   },
   "workspaces": [
