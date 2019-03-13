@@ -698,7 +698,7 @@
     "@babel/plugin-transform-react-jsx-self" "^7.0.0"
     "@babel/plugin-transform-react-jsx-source" "^7.0.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2":
   version "7.3.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.3.4.tgz#73d12ba819e365fcf7fd152aed56d6df97d21c83"
   integrity sha512-IvfvnMdSaLBateu0jfsYIpZTxAc2cKEXEMiezGGN75QcBcecDUKd3PgLAncT0oOgxKy8dd8hrJKj9MfzgfZd6g==
@@ -5002,14 +5002,6 @@ gather-stream@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gather-stream/-/gather-stream-1.0.0.tgz#b33994af457a8115700d410f317733cbe7a0904b"
   integrity sha1-szmUr0V6gRVwDUEPMXczy+egkEs=
-
-gatsby-background-image@^0.2.4:
-  version "0.2.43"
-  resolved "https://registry.yarnpkg.com/gatsby-background-image/-/gatsby-background-image-0.2.43.tgz#9ca42633f7bb397cc886f0533fcab2a89a5c9c92"
-  integrity sha512-WbBJL0N1eZSKtTsB/kP2AcebRFfbkqQGzuty/FuCZ2wLJhBmkMzJjAiejKDHMhDdwdLigyIjFd5fQb5KQtQmIg==
-  dependencies:
-    "@babel/runtime" "^7.3.4"
-    prop-types "^15.7.2"
 
 gatsby-cli@^2.4.14:
   version "2.4.14"

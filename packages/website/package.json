@@ -8,7 +8,6 @@
     "@contentful/rich-text-html-renderer": "^13.0.0",
     "dotenv": "^6.2.0",
     "gatsby": "^2.1.18",
-    "gatsby-background-image": "^0.2.4",
     "gatsby-image": "^2.0.30",
     "gatsby-plugin-manifest": "^2.0.19",
     "gatsby-plugin-offline": "^2.0.24",

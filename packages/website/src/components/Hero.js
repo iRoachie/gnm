@@ -1,23 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import BackgroundImage from 'gatsby-background-image';
+import Img from 'gatsby-image';
 
 import { Container } from './styles';
 
 const Hero = ({ data }) => (
-  <Content fluid={data.thumbnail.fluid} backgroundColor="#040e18">
+  <Content>
     <Backdrop />
-    <Container className="relative">
-      <div class="py-20">
-        <h2 className="font-light">{data.label}</h2>
-        <Title>{data.title}</Title>
-      </div>
-    </Container>
+
+    <Background fluid={data.thumbnail.fluid} />
+
+    <Wrapper>
+      <Container className="relative ml-0 md:ml-auto">
+        <div className="py-20">
+          <h2 className="font-light">{data.label}</h2>
+          <Title>{data.title}</Title>
+        </div>
+      </Container>
+    </Wrapper>
   </Content>
 );
 
+const Wrapper = styled.div.attrs({
+  className: 'flex items-end absolute pin w-full h-full z-30',
+})``;
+
 const Backdrop = styled.div.attrs({
-  className: 'absolute w-full h-full',
+  className: 'absolute w-full h-full z-20',
 })`
   background-color: #000;
   opacity: 0.2;
@@ -25,10 +34,17 @@ const Backdrop = styled.div.attrs({
   pointer-events: none;
 `;
 
-const Content = styled(BackgroundImage).attrs({
-  className: 'flex items-end text-white',
+const Background = styled(Img).attrs({
+  className: 'absolute z-10 pin',
 })`
-  height: 60vh;
+  height: 100%;
+  width: 100%;
+`;
+
+const Content = styled.div.attrs({
+  className: 'text-white relative',
+})`
+  height: 65vh;
 
   &:hover {
     ${Backdrop} {
