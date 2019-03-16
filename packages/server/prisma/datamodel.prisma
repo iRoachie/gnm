@@ -45,6 +45,13 @@ type ContactSite {
   country: Country!
 }
 
+type Note {
+  id: ID! @unique
+  date: DateTime!
+  user: User!
+  message: String!
+}
+
 type Person {
   id: ID! @unique
   name: String!
@@ -58,7 +65,7 @@ type Person {
   age: Int
   assignee: User
   contactSite: ContactSite!
-  notes: String
+  notes: [Note!]!
   websiteUser: Boolean
   maritalStatus: MaritalStatus
   invitation: Boolean @default(value: "false")
