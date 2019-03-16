@@ -29,6 +29,10 @@ var models = [
     embedded: false
   },
   {
+    name: "MaritalStatus",
+    embedded: false
+  },
+  {
     name: "ContactSite",
     embedded: false
   },

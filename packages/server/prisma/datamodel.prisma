@@ -32,6 +32,13 @@ enum Country {
   Dominica
 }
 
+enum MaritalStatus {
+  Single
+  Married
+  Divorced
+  Widowed
+}
+
 type ContactSite {
   id: ID! @unique
   name: String!
@@ -53,6 +60,7 @@ type Person {
   contactSite: ContactSite!
   notes: String
   websiteUser: Boolean
+  maritalStatus: MaritalStatus
   invitation: Boolean @default(value: "false")
   letter: Boolean @default(value: "false")
   handbill: Boolean @default(value: "false")

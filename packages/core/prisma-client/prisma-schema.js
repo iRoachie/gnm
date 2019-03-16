@@ -346,6 +346,13 @@ scalar DateTime
 
 scalar Long
 
+enum MaritalStatus {
+  Single
+  Married
+  Divorced
+  Widowed
+}
+
 type Mutation {
   createAttendance(data: AttendanceCreateInput!): Attendance!
   updateManyAttendances(data: AttendanceUpdateManyMutationInput!, where: AttendanceWhereInput): BatchPayload!
@@ -595,6 +602,7 @@ type Person {
   contactSite: ContactSite!
   notes: String
   websiteUser: Boolean
+  maritalStatus: MaritalStatus
   invitation: Boolean
   letter: Boolean
   handbill: Boolean
@@ -623,6 +631,7 @@ input PersonCreateInput {
   contactSite: ContactSiteCreateOneInput!
   notes: String
   websiteUser: Boolean
+  maritalStatus: MaritalStatus
   invitation: Boolean
   letter: Boolean
   handbill: Boolean
@@ -664,6 +673,8 @@ enum PersonOrderByInput {
   notes_DESC
   websiteUser_ASC
   websiteUser_DESC
+  maritalStatus_ASC
+  maritalStatus_DESC
   invitation_ASC
   invitation_DESC
   letter_ASC
@@ -694,6 +705,7 @@ type PersonPreviousValues {
   age: Int
   notes: String
   websiteUser: Boolean
+  maritalStatus: MaritalStatus
   invitation: Boolean
   letter: Boolean
   handbill: Boolean
@@ -861,6 +873,7 @@ input PersonUpdateInput {
   contactSite: ContactSiteUpdateOneRequiredInput
   notes: String
   websiteUser: Boolean
+  maritalStatus: MaritalStatus
   invitation: Boolean
   letter: Boolean
   handbill: Boolean
@@ -880,6 +893,7 @@ input PersonUpdateManyMutationInput {
   age: Int
   notes: String
   websiteUser: Boolean
+  maritalStatus: MaritalStatus
   invitation: Boolean
   letter: Boolean
   handbill: Boolean
@@ -1018,6 +1032,10 @@ input PersonWhereInput {
   notes_not_ends_with: String
   websiteUser: Boolean
   websiteUser_not: Boolean
+  maritalStatus: MaritalStatus
+  maritalStatus_not: MaritalStatus
+  maritalStatus_in: [MaritalStatus!]
+  maritalStatus_not_in: [MaritalStatus!]
   invitation: Boolean
   invitation_not: Boolean
   letter: Boolean

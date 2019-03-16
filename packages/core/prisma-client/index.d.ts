@@ -367,9 +367,51 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type Sex = "M" | "F";
+export type PersonOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "telephone_ASC"
+  | "telephone_DESC"
+  | "address_ASC"
+  | "address_DESC"
+  | "sex_ASC"
+  | "sex_DESC"
+  | "religion_ASC"
+  | "religion_DESC"
+  | "age_ASC"
+  | "age_DESC"
+  | "notes_ASC"
+  | "notes_DESC"
+  | "websiteUser_ASC"
+  | "websiteUser_DESC"
+  | "maritalStatus_ASC"
+  | "maritalStatus_DESC"
+  | "invitation_ASC"
+  | "invitation_DESC"
+  | "letter_ASC"
+  | "letter_DESC"
+  | "handbill_ASC"
+  | "handbill_DESC"
+  | "guestTag_ASC"
+  | "guestTag_DESC"
+  | "transport_ASC"
+  | "transport_DESC"
+  | "openingNight_ASC"
+  | "openingNight_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type Country = "Barbados" | "Dominica";
+
+export type MaritalStatus = "Single" | "Married" | "Divorced" | "Widowed";
 
 export type AttendanceOrderByInput =
   | "date_ASC"
@@ -405,47 +447,9 @@ export type ContactSiteOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type PersonOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "password_ASC"
-  | "password_DESC"
-  | "telephone_ASC"
-  | "telephone_DESC"
-  | "address_ASC"
-  | "address_DESC"
-  | "sex_ASC"
-  | "sex_DESC"
-  | "religion_ASC"
-  | "religion_DESC"
-  | "age_ASC"
-  | "age_DESC"
-  | "notes_ASC"
-  | "notes_DESC"
-  | "websiteUser_ASC"
-  | "websiteUser_DESC"
-  | "invitation_ASC"
-  | "invitation_DESC"
-  | "letter_ASC"
-  | "letter_DESC"
-  | "handbill_ASC"
-  | "handbill_DESC"
-  | "guestTag_ASC"
-  | "guestTag_DESC"
-  | "transport_ASC"
-  | "transport_DESC"
-  | "openingNight_ASC"
-  | "openingNight_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+
+export type Sex = "M" | "F";
 
 export type PersonStatusOrderByInput =
   | "title_ASC"
@@ -517,59 +521,16 @@ export interface AttendanceWhereInput {
   NOT?: AttendanceWhereInput[] | AttendanceWhereInput;
 }
 
-export interface PermissionUpdateManyDataInput {
-  title?: String;
-}
-
-export interface UserUpdateDataInput {
-  name?: String;
-  email?: String;
-  password?: String;
-  role?: UserRoleUpdateOneRequiredInput;
-  contactSites?: ContactSiteUpdateManyInput;
-}
-
 export interface PermissionUpdateManyWithWhereNestedInput {
   where: PermissionScalarWhereInput;
   data: PermissionUpdateManyDataInput;
 }
 
-export interface ContactSiteWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  country?: Country;
-  country_not?: Country;
-  country_in?: Country[] | Country;
-  country_not_in?: Country[] | Country;
-  AND?: ContactSiteWhereInput[] | ContactSiteWhereInput;
-  OR?: ContactSiteWhereInput[] | ContactSiteWhereInput;
-  NOT?: ContactSiteWhereInput[] | ContactSiteWhereInput;
+export interface UserRoleUpdateOneRequiredInput {
+  create?: UserRoleCreateInput;
+  update?: UserRoleUpdateDataInput;
+  upsert?: UserRoleUpsertNestedInput;
+  connect?: UserRoleWhereUniqueInput;
 }
 
 export interface PermissionScalarWhereInput {
@@ -768,6 +729,10 @@ export interface PersonWhereInput {
   notes_not_ends_with?: String;
   websiteUser?: Boolean;
   websiteUser_not?: Boolean;
+  maritalStatus?: MaritalStatus;
+  maritalStatus_not?: MaritalStatus;
+  maritalStatus_in?: MaritalStatus[] | MaritalStatus;
+  maritalStatus_not_in?: MaritalStatus[] | MaritalStatus;
   invitation?: Boolean;
   invitation_not?: Boolean;
   letter?: Boolean;
@@ -838,17 +803,16 @@ export interface UserRoleUpdateInput {
   permissions?: PermissionUpdateManyInput;
 }
 
-export interface UserUpdateInput {
+export type ContactSiteWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateDataInput {
   name?: String;
   email?: String;
   password?: String;
   role?: UserRoleUpdateOneRequiredInput;
   contactSites?: ContactSiteUpdateManyInput;
-}
-
-export interface PersonStatusUpdateManyMutationInput {
-  title?: String;
-  description?: String;
 }
 
 export interface AttendanceCreateInput {
@@ -857,23 +821,12 @@ export interface AttendanceCreateInput {
   person: PersonCreateOneInput;
 }
 
-export interface PersonUpdateManyMutationInput {
+export interface UserUpdateInput {
   name?: String;
   email?: String;
   password?: String;
-  telephone?: String;
-  address?: String;
-  sex?: Sex;
-  religion?: String;
-  age?: Int;
-  notes?: String;
-  websiteUser?: Boolean;
-  invitation?: Boolean;
-  letter?: Boolean;
-  handbill?: Boolean;
-  guestTag?: Boolean;
-  transport?: Boolean;
-  openingNight?: Boolean;
+  role?: UserRoleUpdateOneRequiredInput;
+  contactSites?: ContactSiteUpdateManyInput;
 }
 
 export interface PersonCreateOneInput {
@@ -881,9 +834,9 @@ export interface PersonCreateOneInput {
   connect?: PersonWhereUniqueInput;
 }
 
-export interface ContactSiteUpsertNestedInput {
-  update: ContactSiteUpdateDataInput;
-  create: ContactSiteCreateInput;
+export interface PersonStatusUpdateInput {
+  title?: String;
+  description?: String;
 }
 
 export interface PersonCreateInput {
@@ -900,6 +853,7 @@ export interface PersonCreateInput {
   contactSite: ContactSiteCreateOneInput;
   notes?: String;
   websiteUser?: Boolean;
+  maritalStatus?: MaritalStatus;
   invitation?: Boolean;
   letter?: Boolean;
   handbill?: Boolean;
@@ -908,19 +862,20 @@ export interface PersonCreateInput {
   openingNight?: Boolean;
 }
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
-}
+export type PermissionWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
 export interface PersonStatusCreateOneInput {
   create?: PersonStatusCreateInput;
   connect?: PersonStatusWhereUniqueInput;
 }
 
-export interface ContactSiteUpdateManyDataInput {
-  name?: String;
-  country?: Country;
+export interface ContactSiteUpdateOneRequiredInput {
+  create?: ContactSiteCreateInput;
+  update?: ContactSiteUpdateDataInput;
+  upsert?: ContactSiteUpsertNestedInput;
+  connect?: ContactSiteWhereUniqueInput;
 }
 
 export interface PersonStatusCreateInput {
@@ -928,7 +883,178 @@ export interface PersonStatusCreateInput {
   description?: String;
 }
 
-export interface ContactSiteScalarWhereInput {
+export type PersonWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserCreateOneInput {
+  create?: UserCreateInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ContactSiteUpdateManyWithWhereNestedInput {
+  where: ContactSiteScalarWhereInput;
+  data: ContactSiteUpdateManyDataInput;
+}
+
+export interface UserCreateInput {
+  name: String;
+  email: String;
+  password: String;
+  role: UserRoleCreateOneInput;
+  contactSites?: ContactSiteCreateManyInput;
+}
+
+export interface ContactSiteUpsertWithWhereUniqueNestedInput {
+  where: ContactSiteWhereUniqueInput;
+  update: ContactSiteUpdateDataInput;
+  create: ContactSiteCreateInput;
+}
+
+export interface UserRoleCreateOneInput {
+  create?: UserRoleCreateInput;
+  connect?: UserRoleWhereUniqueInput;
+}
+
+export interface PersonStatusWhereInput {
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  AND?: PersonStatusWhereInput[] | PersonStatusWhereInput;
+  OR?: PersonStatusWhereInput[] | PersonStatusWhereInput;
+  NOT?: PersonStatusWhereInput[] | PersonStatusWhereInput;
+}
+
+export interface UserRoleCreateInput {
+  title: String;
+  permissions?: PermissionCreateManyInput;
+}
+
+export interface ContactSiteUpdateWithWhereUniqueNestedInput {
+  where: ContactSiteWhereUniqueInput;
+  data: ContactSiteUpdateDataInput;
+}
+
+export interface PermissionUpdateManyInput {
+  create?: PermissionCreateInput[] | PermissionCreateInput;
+  update?:
+    | PermissionUpdateWithWhereUniqueNestedInput[]
+    | PermissionUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | PermissionUpsertWithWhereUniqueNestedInput[]
+    | PermissionUpsertWithWhereUniqueNestedInput;
+  delete?: PermissionWhereUniqueInput[] | PermissionWhereUniqueInput;
+  connect?: PermissionWhereUniqueInput[] | PermissionWhereUniqueInput;
+  set?: PermissionWhereUniqueInput[] | PermissionWhereUniqueInput;
+  disconnect?: PermissionWhereUniqueInput[] | PermissionWhereUniqueInput;
+  deleteMany?: PermissionScalarWhereInput[] | PermissionScalarWhereInput;
+  updateMany?:
+    | PermissionUpdateManyWithWhereNestedInput[]
+    | PermissionUpdateManyWithWhereNestedInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  email?: String;
+}>;
+
+export interface PermissionCreateInput {
+  title: String;
+}
+
+export interface PermissionUpdateManyDataInput {
+  title?: String;
+}
+
+export interface ContactSiteCreateManyInput {
+  create?: ContactSiteCreateInput[] | ContactSiteCreateInput;
+  connect?: ContactSiteWhereUniqueInput[] | ContactSiteWhereUniqueInput;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface ContactSiteCreateInput {
+  name: String;
+  country: Country;
+}
+
+export interface UserRoleWhereInput {
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  permissions_every?: PermissionWhereInput;
+  permissions_some?: PermissionWhereInput;
+  permissions_none?: PermissionWhereInput;
+  AND?: UserRoleWhereInput[] | UserRoleWhereInput;
+  OR?: UserRoleWhereInput[] | UserRoleWhereInput;
+  NOT?: UserRoleWhereInput[] | UserRoleWhereInput;
+}
+
+export interface ContactSiteCreateOneInput {
+  create?: ContactSiteCreateInput;
+  connect?: ContactSiteWhereUniqueInput;
+}
+
+export interface UserRoleUpdateManyMutationInput {
+  title?: String;
+}
+
+export interface AttendanceUpdateManyMutationInput {
+  date?: DateTimeInput;
+  event?: String;
+}
+
+export interface PersonStatusUpdateManyMutationInput {
+  title?: String;
+  description?: String;
+}
+
+export interface ContactSiteWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -961,36 +1087,38 @@ export interface ContactSiteScalarWhereInput {
   country_not?: Country;
   country_in?: Country[] | Country;
   country_not_in?: Country[] | Country;
-  AND?: ContactSiteScalarWhereInput[] | ContactSiteScalarWhereInput;
-  OR?: ContactSiteScalarWhereInput[] | ContactSiteScalarWhereInput;
-  NOT?: ContactSiteScalarWhereInput[] | ContactSiteScalarWhereInput;
+  AND?: ContactSiteWhereInput[] | ContactSiteWhereInput;
+  OR?: ContactSiteWhereInput[] | ContactSiteWhereInput;
+  NOT?: ContactSiteWhereInput[] | ContactSiteWhereInput;
 }
 
-export interface UserCreateOneInput {
-  create?: UserCreateInput;
-  connect?: UserWhereUniqueInput;
+export interface ContactSiteUpsertNestedInput {
+  update: ContactSiteUpdateDataInput;
+  create: ContactSiteCreateInput;
+}
+
+export interface UserRoleUpdateDataInput {
+  title?: String;
+  permissions?: PermissionUpdateManyInput;
+}
+
+export interface ContactSiteUpdateManyDataInput {
+  name?: String;
+  country?: Country;
+}
+
+export interface ContactSiteUpdateInput {
+  name?: String;
+  country?: Country;
 }
 
 export type PersonStatusWhereUniqueInput = AtLeastOne<{
   title: String;
 }>;
 
-export interface UserCreateInput {
-  name: String;
-  email: String;
-  password: String;
-  role: UserRoleCreateOneInput;
-  contactSites?: ContactSiteCreateManyInput;
-}
-
-export interface ContactSiteUpdateDataInput {
+export interface ContactSiteUpdateManyMutationInput {
   name?: String;
   country?: Country;
-}
-
-export interface UserRoleCreateOneInput {
-  create?: UserRoleCreateInput;
-  connect?: UserRoleWhereUniqueInput;
 }
 
 export interface ContactSiteUpdateManyInput {
@@ -1011,134 +1139,8 @@ export interface ContactSiteUpdateManyInput {
     | ContactSiteUpdateManyWithWhereNestedInput;
 }
 
-export interface UserRoleCreateInput {
-  title: String;
-  permissions?: PermissionCreateManyInput;
-}
-
-export interface UserRoleUpsertNestedInput {
-  update: UserRoleUpdateDataInput;
-  create: UserRoleCreateInput;
-}
-
-export interface PermissionUpdateManyInput {
-  create?: PermissionCreateInput[] | PermissionCreateInput;
-  update?:
-    | PermissionUpdateWithWhereUniqueNestedInput[]
-    | PermissionUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | PermissionUpsertWithWhereUniqueNestedInput[]
-    | PermissionUpsertWithWhereUniqueNestedInput;
-  delete?: PermissionWhereUniqueInput[] | PermissionWhereUniqueInput;
-  connect?: PermissionWhereUniqueInput[] | PermissionWhereUniqueInput;
-  set?: PermissionWhereUniqueInput[] | PermissionWhereUniqueInput;
-  disconnect?: PermissionWhereUniqueInput[] | PermissionWhereUniqueInput;
-  deleteMany?: PermissionScalarWhereInput[] | PermissionScalarWhereInput;
-  updateMany?:
-    | PermissionUpdateManyWithWhereNestedInput[]
-    | PermissionUpdateManyWithWhereNestedInput;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-}
-
-export interface PermissionCreateInput {
-  title: String;
-}
-
-export interface UserRoleWhereInput {
+export interface PermissionUpdateInput {
   title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  permissions_every?: PermissionWhereInput;
-  permissions_some?: PermissionWhereInput;
-  permissions_none?: PermissionWhereInput;
-  AND?: UserRoleWhereInput[] | UserRoleWhereInput;
-  OR?: UserRoleWhereInput[] | UserRoleWhereInput;
-  NOT?: UserRoleWhereInput[] | UserRoleWhereInput;
-}
-
-export interface ContactSiteCreateManyInput {
-  create?: ContactSiteCreateInput[] | ContactSiteCreateInput;
-  connect?: ContactSiteWhereUniqueInput[] | ContactSiteWhereUniqueInput;
-}
-
-export interface UserRoleUpdateManyMutationInput {
-  title?: String;
-}
-
-export interface ContactSiteCreateInput {
-  name: String;
-  country: Country;
-}
-
-export type ContactSiteWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface ContactSiteCreateOneInput {
-  create?: ContactSiteCreateInput;
-  connect?: ContactSiteWhereUniqueInput;
-}
-
-export type PermissionWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface AttendanceUpdateManyMutationInput {
-  date?: DateTimeInput;
-  event?: String;
-}
-
-export type PersonWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface UserRoleUpdateDataInput {
-  title?: String;
-  permissions?: PermissionUpdateManyInput;
-}
-
-export interface ContactSiteUpsertWithWhereUniqueNestedInput {
-  where: ContactSiteWhereUniqueInput;
-  update: ContactSiteUpdateDataInput;
-  create: ContactSiteCreateInput;
-}
-
-export interface UserRoleUpdateOneRequiredInput {
-  create?: UserRoleCreateInput;
-  update?: UserRoleUpdateDataInput;
-  upsert?: UserRoleUpsertNestedInput;
-  connect?: UserRoleWhereUniqueInput;
-}
-
-export interface ContactSiteUpdateWithWhereUniqueNestedInput {
-  where: ContactSiteWhereUniqueInput;
-  data: ContactSiteUpdateDataInput;
-}
-
-export interface ContactSiteUpdateInput {
-  name?: String;
-  country?: Country;
 }
 
 export interface PermissionWhereInput {
@@ -1175,9 +1177,8 @@ export interface PermissionWhereInput {
   NOT?: PermissionWhereInput[] | PermissionWhereInput;
 }
 
-export interface ContactSiteUpdateManyMutationInput {
-  name?: String;
-  country?: Country;
+export interface PermissionUpdateManyMutationInput {
+  title?: String;
 }
 
 export interface UserWhereInput {
@@ -1246,24 +1247,6 @@ export interface UserWhereInput {
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface PermissionUpdateInput {
-  title?: String;
-}
-
-export interface PersonStatusUpdateInput {
-  title?: String;
-  description?: String;
-}
-
-export interface PermissionUpdateManyMutationInput {
-  title?: String;
-}
-
-export interface ContactSiteUpdateManyWithWhereNestedInput {
-  where: ContactSiteScalarWhereInput;
-  data: ContactSiteUpdateManyDataInput;
-}
-
 export interface PersonUpdateInput {
   name?: String;
   email?: String;
@@ -1278,6 +1261,7 @@ export interface PersonUpdateInput {
   contactSite?: ContactSiteUpdateOneRequiredInput;
   notes?: String;
   websiteUser?: Boolean;
+  maritalStatus?: MaritalStatus;
   invitation?: Boolean;
   letter?: Boolean;
   handbill?: Boolean;
@@ -1286,10 +1270,63 @@ export interface PersonUpdateInput {
   openingNight?: Boolean;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
+export interface PersonUpdateManyMutationInput {
+  name?: String;
   email?: String;
-}>;
+  password?: String;
+  telephone?: String;
+  address?: String;
+  sex?: Sex;
+  religion?: String;
+  age?: Int;
+  notes?: String;
+  websiteUser?: Boolean;
+  maritalStatus?: MaritalStatus;
+  invitation?: Boolean;
+  letter?: Boolean;
+  handbill?: Boolean;
+  guestTag?: Boolean;
+  transport?: Boolean;
+  openingNight?: Boolean;
+}
+
+export interface ContactSiteScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  country?: Country;
+  country_not?: Country;
+  country_in?: Country[] | Country;
+  country_not_in?: Country[] | Country;
+  AND?: ContactSiteScalarWhereInput[] | ContactSiteScalarWhereInput;
+  OR?: ContactSiteScalarWhereInput[] | ContactSiteScalarWhereInput;
+  NOT?: ContactSiteScalarWhereInput[] | ContactSiteScalarWhereInput;
+}
 
 export interface UserUpdateOneInput {
   create?: UserCreateInput;
@@ -1317,6 +1354,22 @@ export interface PersonStatusUpdateOneRequiredInput {
   connect?: PersonStatusWhereUniqueInput;
 }
 
+export interface ContactSiteUpdateDataInput {
+  name?: String;
+  country?: Country;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  name?: String;
+  email?: String;
+  password?: String;
+}
+
 export interface PersonSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
@@ -1328,51 +1381,9 @@ export interface PersonSubscriptionWhereInput {
   NOT?: PersonSubscriptionWhereInput[] | PersonSubscriptionWhereInput;
 }
 
-export interface PersonStatusWhereInput {
-  title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  description?: String;
-  description_not?: String;
-  description_in?: String[] | String;
-  description_not_in?: String[] | String;
-  description_lt?: String;
-  description_lte?: String;
-  description_gt?: String;
-  description_gte?: String;
-  description_contains?: String;
-  description_not_contains?: String;
-  description_starts_with?: String;
-  description_not_starts_with?: String;
-  description_ends_with?: String;
-  description_not_ends_with?: String;
-  AND?: PersonStatusWhereInput[] | PersonStatusWhereInput;
-  OR?: PersonStatusWhereInput[] | PersonStatusWhereInput;
-  NOT?: PersonStatusWhereInput[] | PersonStatusWhereInput;
-}
-
-export interface ContactSiteUpdateOneRequiredInput {
-  create?: ContactSiteCreateInput;
-  update?: ContactSiteUpdateDataInput;
-  upsert?: ContactSiteUpsertNestedInput;
-  connect?: ContactSiteWhereUniqueInput;
-}
-
-export interface UserUpdateManyMutationInput {
-  name?: String;
-  email?: String;
-  password?: String;
+export interface UserRoleUpsertNestedInput {
+  update: UserRoleUpdateDataInput;
+  create: UserRoleCreateInput;
 }
 
 export interface NodeNode {
@@ -1393,25 +1404,6 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface AttendanceEdge {
-  node: Attendance;
-  cursor: String;
-}
-
-export interface AttendanceEdgePromise
-  extends Promise<AttendanceEdge>,
-    Fragmentable {
-  node: <T = AttendancePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface AttendanceEdgeSubscription
-  extends Promise<AsyncIterator<AttendanceEdge>>,
-    Fragmentable {
-  node: <T = AttendanceSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserRolePreviousValues {
@@ -1458,6 +1450,7 @@ export interface Person {
   age?: Int;
   notes?: String;
   websiteUser?: Boolean;
+  maritalStatus?: MaritalStatus;
   invitation?: Boolean;
   letter?: Boolean;
   handbill?: Boolean;
@@ -1481,6 +1474,7 @@ export interface PersonPromise extends Promise<Person>, Fragmentable {
   contactSite: <T = ContactSitePromise>() => T;
   notes: () => Promise<String>;
   websiteUser: () => Promise<Boolean>;
+  maritalStatus: () => Promise<MaritalStatus>;
   invitation: () => Promise<Boolean>;
   letter: () => Promise<Boolean>;
   handbill: () => Promise<Boolean>;
@@ -1506,12 +1500,55 @@ export interface PersonSubscription
   contactSite: <T = ContactSiteSubscription>() => T;
   notes: () => Promise<AsyncIterator<String>>;
   websiteUser: () => Promise<AsyncIterator<Boolean>>;
+  maritalStatus: () => Promise<AsyncIterator<MaritalStatus>>;
   invitation: () => Promise<AsyncIterator<Boolean>>;
   letter: () => Promise<AsyncIterator<Boolean>>;
   handbill: () => Promise<AsyncIterator<Boolean>>;
   guestTag: () => Promise<AsyncIterator<Boolean>>;
   transport: () => Promise<AsyncIterator<Boolean>>;
   openingNight: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface AttendanceEdge {
+  node: Attendance;
+  cursor: String;
+}
+
+export interface AttendanceEdgePromise
+  extends Promise<AttendanceEdge>,
+    Fragmentable {
+  node: <T = AttendancePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AttendanceEdgeSubscription
+  extends Promise<AsyncIterator<AttendanceEdge>>,
+    Fragmentable {
+  node: <T = AttendanceSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserPreviousValues {
@@ -1539,64 +1576,23 @@ export interface UserPreviousValuesSubscription
   password: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface UserRoleEdge {
+  node: UserRole;
+  cursor: String;
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface UserRoleEdgePromise
+  extends Promise<UserRoleEdge>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  node: <T = UserRolePromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface AggregateUserRole {
-  count: Int;
-}
-
-export interface AggregateUserRolePromise
-  extends Promise<AggregateUserRole>,
+export interface UserRoleEdgeSubscription
+  extends Promise<AsyncIterator<UserRoleEdge>>,
     Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserRoleSubscription
-  extends Promise<AsyncIterator<AggregateUserRole>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface UserRoleConnection {
-  pageInfo: PageInfo;
-  edges: UserRoleEdge[];
-}
-
-export interface UserRoleConnectionPromise
-  extends Promise<UserRoleConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserRoleEdge>>() => T;
-  aggregate: <T = AggregateUserRolePromise>() => T;
-}
-
-export interface UserRoleConnectionSubscription
-  extends Promise<AsyncIterator<UserRoleConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserRoleEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserRoleSubscription>() => T;
+  node: <T = UserRoleSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AttendanceConnection {
@@ -1620,21 +1616,20 @@ export interface AttendanceConnectionSubscription
   aggregate: <T = AggregateAttendanceSubscription>() => T;
 }
 
-export interface UserEdge {
-  node: User;
-  cursor: String;
+export interface AggregateUser {
+  count: Int;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface ContactSite {
@@ -1657,29 +1652,25 @@ export interface ContactSiteSubscription
   country: () => Promise<AsyncIterator<Country>>;
 }
 
-export interface UserRoleSubscriptionPayload {
-  mutation: MutationType;
-  node: UserRole;
-  updatedFields: String[];
-  previousValues: UserRolePreviousValues;
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
 }
 
-export interface UserRoleSubscriptionPayloadPromise
-  extends Promise<UserRoleSubscriptionPayload>,
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserRolePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserRolePreviousValuesPromise>() => T;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
 }
 
-export interface UserRoleSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserRoleSubscriptionPayload>>,
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserRoleSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserRolePreviousValuesSubscription>() => T;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface UserSubscriptionPayload {
@@ -1707,23 +1698,20 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface PersonStatusEdge {
-  node: PersonStatus;
-  cursor: String;
+export interface AggregatePersonStatus {
+  count: Int;
 }
 
-export interface PersonStatusEdgePromise
-  extends Promise<PersonStatusEdge>,
+export interface AggregatePersonStatusPromise
+  extends Promise<AggregatePersonStatus>,
     Fragmentable {
-  node: <T = PersonStatusPromise>() => T;
-  cursor: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
-export interface PersonStatusEdgeSubscription
-  extends Promise<AsyncIterator<PersonStatusEdge>>,
+export interface AggregatePersonStatusSubscription
+  extends Promise<AsyncIterator<AggregatePersonStatus>>,
     Fragmentable {
-  node: <T = PersonStatusSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface AttendanceSubscriptionPayload {
@@ -1751,20 +1739,25 @@ export interface AttendanceSubscriptionPayloadSubscription
   previousValues: <T = AttendancePreviousValuesSubscription>() => T;
 }
 
-export interface AggregatePerson {
-  count: Int;
+export interface PersonStatusConnection {
+  pageInfo: PageInfo;
+  edges: PersonStatusEdge[];
 }
 
-export interface AggregatePersonPromise
-  extends Promise<AggregatePerson>,
+export interface PersonStatusConnectionPromise
+  extends Promise<PersonStatusConnection>,
     Fragmentable {
-  count: () => Promise<Int>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PersonStatusEdge>>() => T;
+  aggregate: <T = AggregatePersonStatusPromise>() => T;
 }
 
-export interface AggregatePersonSubscription
-  extends Promise<AsyncIterator<AggregatePerson>>,
+export interface PersonStatusConnectionSubscription
+  extends Promise<AsyncIterator<PersonStatusConnection>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PersonStatusEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePersonStatusSubscription>() => T;
 }
 
 export interface AttendancePreviousValues {
@@ -1786,25 +1779,21 @@ export interface AttendancePreviousValuesSubscription
   event: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PersonConnection {
-  pageInfo: PageInfo;
-  edges: PersonEdge[];
+export interface PersonEdge {
+  node: Person;
+  cursor: String;
 }
 
-export interface PersonConnectionPromise
-  extends Promise<PersonConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PersonEdge>>() => T;
-  aggregate: <T = AggregatePersonPromise>() => T;
+export interface PersonEdgePromise extends Promise<PersonEdge>, Fragmentable {
+  node: <T = PersonPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface PersonConnectionSubscription
-  extends Promise<AsyncIterator<PersonConnection>>,
+export interface PersonEdgeSubscription
+  extends Promise<AsyncIterator<PersonEdge>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PersonEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePersonSubscription>() => T;
+  node: <T = PersonSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Permission {
@@ -1824,20 +1813,23 @@ export interface PermissionSubscription
   title: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregatePermission {
-  count: Int;
+export interface Attendance {
+  date: DateTimeOutput;
+  event?: String;
 }
 
-export interface AggregatePermissionPromise
-  extends Promise<AggregatePermission>,
-    Fragmentable {
-  count: () => Promise<Int>;
+export interface AttendancePromise extends Promise<Attendance>, Fragmentable {
+  date: () => Promise<DateTimeOutput>;
+  event: () => Promise<String>;
+  person: <T = PersonPromise>() => T;
 }
 
-export interface AggregatePermissionSubscription
-  extends Promise<AsyncIterator<AggregatePermission>>,
+export interface AttendanceSubscription
+  extends Promise<AsyncIterator<Attendance>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  event: () => Promise<AsyncIterator<String>>;
+  person: <T = PersonSubscription>() => T;
 }
 
 export interface ContactSiteSubscriptionPayload {
@@ -1865,25 +1857,23 @@ export interface ContactSiteSubscriptionPayloadSubscription
   previousValues: <T = ContactSitePreviousValuesSubscription>() => T;
 }
 
-export interface PermissionConnection {
-  pageInfo: PageInfo;
-  edges: PermissionEdge[];
+export interface PermissionEdge {
+  node: Permission;
+  cursor: String;
 }
 
-export interface PermissionConnectionPromise
-  extends Promise<PermissionConnection>,
+export interface PermissionEdgePromise
+  extends Promise<PermissionEdge>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PermissionEdge>>() => T;
-  aggregate: <T = AggregatePermissionPromise>() => T;
+  node: <T = PermissionPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface PermissionConnectionSubscription
-  extends Promise<AsyncIterator<PermissionConnection>>,
+export interface PermissionEdgeSubscription
+  extends Promise<AsyncIterator<PermissionEdge>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PermissionEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePermissionSubscription>() => T;
+  node: <T = PermissionSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ContactSitePreviousValues {
@@ -1908,23 +1898,20 @@ export interface ContactSitePreviousValuesSubscription
   country: () => Promise<AsyncIterator<Country>>;
 }
 
-export interface ContactSiteEdge {
-  node: ContactSite;
-  cursor: String;
+export interface AggregateContactSite {
+  count: Int;
 }
 
-export interface ContactSiteEdgePromise
-  extends Promise<ContactSiteEdge>,
+export interface AggregateContactSitePromise
+  extends Promise<AggregateContactSite>,
     Fragmentable {
-  node: <T = ContactSitePromise>() => T;
-  cursor: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
-export interface ContactSiteEdgeSubscription
-  extends Promise<AsyncIterator<ContactSiteEdge>>,
+export interface AggregateContactSiteSubscription
+  extends Promise<AsyncIterator<AggregateContactSite>>,
     Fragmentable {
-  node: <T = ContactSiteSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface UserRole {
@@ -1963,23 +1950,25 @@ export interface UserRoleSubscription
   ) => T;
 }
 
-export interface UserRoleEdge {
-  node: UserRole;
-  cursor: String;
+export interface ContactSiteConnection {
+  pageInfo: PageInfo;
+  edges: ContactSiteEdge[];
 }
 
-export interface UserRoleEdgePromise
-  extends Promise<UserRoleEdge>,
+export interface ContactSiteConnectionPromise
+  extends Promise<ContactSiteConnection>,
     Fragmentable {
-  node: <T = UserRolePromise>() => T;
-  cursor: () => Promise<String>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ContactSiteEdge>>() => T;
+  aggregate: <T = AggregateContactSitePromise>() => T;
 }
 
-export interface UserRoleEdgeSubscription
-  extends Promise<AsyncIterator<UserRoleEdge>>,
+export interface ContactSiteConnectionSubscription
+  extends Promise<AsyncIterator<ContactSiteConnection>>,
     Fragmentable {
-  node: <T = UserRoleSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ContactSiteEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateContactSiteSubscription>() => T;
 }
 
 export interface PermissionSubscriptionPayload {
@@ -2007,25 +1996,25 @@ export interface PermissionSubscriptionPayloadSubscription
   previousValues: <T = PermissionPreviousValuesSubscription>() => T;
 }
 
-export interface UserConnection {
+export interface UserRoleConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: UserRoleEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface UserRoleConnectionPromise
+  extends Promise<UserRoleConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<UserRoleEdge>>() => T;
+  aggregate: <T = AggregateUserRolePromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface UserRoleConnectionSubscription
+  extends Promise<AsyncIterator<UserRoleConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserRoleEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserRoleSubscription>() => T;
 }
 
 export interface PermissionPreviousValues {
@@ -2047,25 +2036,29 @@ export interface PermissionPreviousValuesSubscription
   title: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PersonStatusConnection {
-  pageInfo: PageInfo;
-  edges: PersonStatusEdge[];
+export interface UserRoleSubscriptionPayload {
+  mutation: MutationType;
+  node: UserRole;
+  updatedFields: String[];
+  previousValues: UserRolePreviousValues;
 }
 
-export interface PersonStatusConnectionPromise
-  extends Promise<PersonStatusConnection>,
+export interface UserRoleSubscriptionPayloadPromise
+  extends Promise<UserRoleSubscriptionPayload>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PersonStatusEdge>>() => T;
-  aggregate: <T = AggregatePersonStatusPromise>() => T;
+  mutation: () => Promise<MutationType>;
+  node: <T = UserRolePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserRolePreviousValuesPromise>() => T;
 }
 
-export interface PersonStatusConnectionSubscription
-  extends Promise<AsyncIterator<PersonStatusConnection>>,
+export interface UserRoleSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserRoleSubscriptionPayload>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PersonStatusEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePersonStatusSubscription>() => T;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserRoleSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserRolePreviousValuesSubscription>() => T;
 }
 
 export interface User {
@@ -2115,23 +2108,20 @@ export interface UserSubscription
   ) => T;
 }
 
-export interface Attendance {
-  date: DateTimeOutput;
-  event?: String;
+export interface AggregatePerson {
+  count: Int;
 }
 
-export interface AttendancePromise extends Promise<Attendance>, Fragmentable {
-  date: () => Promise<DateTimeOutput>;
-  event: () => Promise<String>;
-  person: <T = PersonPromise>() => T;
-}
-
-export interface AttendanceSubscription
-  extends Promise<AsyncIterator<Attendance>>,
+export interface AggregatePersonPromise
+  extends Promise<AggregatePerson>,
     Fragmentable {
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
-  event: () => Promise<AsyncIterator<String>>;
-  person: <T = PersonSubscription>() => T;
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePersonSubscription
+  extends Promise<AsyncIterator<AggregatePerson>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface PersonSubscriptionPayload {
@@ -2159,36 +2149,39 @@ export interface PersonSubscriptionPayloadSubscription
   previousValues: <T = PersonPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateContactSite {
+export interface AggregatePermission {
   count: Int;
 }
 
-export interface AggregateContactSitePromise
-  extends Promise<AggregateContactSite>,
+export interface AggregatePermissionPromise
+  extends Promise<AggregatePermission>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateContactSiteSubscription
-  extends Promise<AsyncIterator<AggregateContactSite>>,
+export interface AggregatePermissionSubscription
+  extends Promise<AsyncIterator<AggregatePermission>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface AggregateUser {
-  count: Int;
+export interface ContactSiteEdge {
+  node: ContactSite;
+  cursor: String;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface ContactSiteEdgePromise
+  extends Promise<ContactSiteEdge>,
     Fragmentable {
-  count: () => Promise<Int>;
+  node: <T = ContactSitePromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface ContactSiteEdgeSubscription
+  extends Promise<AsyncIterator<ContactSiteEdge>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  node: <T = ContactSiteSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PersonStatusPreviousValues {
@@ -2266,6 +2259,7 @@ export interface PersonPreviousValues {
   age?: Int;
   notes?: String;
   websiteUser?: Boolean;
+  maritalStatus?: MaritalStatus;
   invitation?: Boolean;
   letter?: Boolean;
   handbill?: Boolean;
@@ -2288,6 +2282,7 @@ export interface PersonPreviousValuesPromise
   age: () => Promise<Int>;
   notes: () => Promise<String>;
   websiteUser: () => Promise<Boolean>;
+  maritalStatus: () => Promise<MaritalStatus>;
   invitation: () => Promise<Boolean>;
   letter: () => Promise<Boolean>;
   handbill: () => Promise<Boolean>;
@@ -2310,6 +2305,7 @@ export interface PersonPreviousValuesSubscription
   age: () => Promise<AsyncIterator<Int>>;
   notes: () => Promise<AsyncIterator<String>>;
   websiteUser: () => Promise<AsyncIterator<Boolean>>;
+  maritalStatus: () => Promise<AsyncIterator<MaritalStatus>>;
   invitation: () => Promise<AsyncIterator<Boolean>>;
   letter: () => Promise<AsyncIterator<Boolean>>;
   handbill: () => Promise<AsyncIterator<Boolean>>;
@@ -2318,90 +2314,106 @@ export interface PersonPreviousValuesSubscription
   openingNight: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface AggregatePersonStatus {
+export interface AggregateUserRole {
   count: Int;
 }
 
-export interface AggregatePersonStatusPromise
-  extends Promise<AggregatePersonStatus>,
+export interface AggregateUserRolePromise
+  extends Promise<AggregateUserRole>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregatePersonStatusSubscription
-  extends Promise<AsyncIterator<AggregatePersonStatus>>,
+export interface AggregateUserRoleSubscription
+  extends Promise<AsyncIterator<AggregateUserRole>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface ContactSiteConnection {
+export interface PermissionConnection {
   pageInfo: PageInfo;
-  edges: ContactSiteEdge[];
+  edges: PermissionEdge[];
 }
 
-export interface ContactSiteConnectionPromise
-  extends Promise<ContactSiteConnection>,
+export interface PermissionConnectionPromise
+  extends Promise<PermissionConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ContactSiteEdge>>() => T;
-  aggregate: <T = AggregateContactSitePromise>() => T;
+  edges: <T = FragmentableArray<PermissionEdge>>() => T;
+  aggregate: <T = AggregatePermissionPromise>() => T;
 }
 
-export interface ContactSiteConnectionSubscription
-  extends Promise<AsyncIterator<ContactSiteConnection>>,
+export interface PermissionConnectionSubscription
+  extends Promise<AsyncIterator<PermissionConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ContactSiteEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateContactSiteSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PermissionEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePermissionSubscription>() => T;
 }
 
-export interface PermissionEdge {
-  node: Permission;
+export interface PersonConnection {
+  pageInfo: PageInfo;
+  edges: PersonEdge[];
+}
+
+export interface PersonConnectionPromise
+  extends Promise<PersonConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PersonEdge>>() => T;
+  aggregate: <T = AggregatePersonPromise>() => T;
+}
+
+export interface PersonConnectionSubscription
+  extends Promise<AsyncIterator<PersonConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PersonEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePersonSubscription>() => T;
+}
+
+export interface PersonStatusEdge {
+  node: PersonStatus;
   cursor: String;
 }
 
-export interface PermissionEdgePromise
-  extends Promise<PermissionEdge>,
+export interface PersonStatusEdgePromise
+  extends Promise<PersonStatusEdge>,
     Fragmentable {
-  node: <T = PermissionPromise>() => T;
+  node: <T = PersonStatusPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface PermissionEdgeSubscription
-  extends Promise<AsyncIterator<PermissionEdge>>,
+export interface PersonStatusEdgeSubscription
+  extends Promise<AsyncIterator<PersonStatusEdge>>,
     Fragmentable {
-  node: <T = PermissionSubscription>() => T;
+  node: <T = PersonStatusSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PersonEdge {
-  node: Person;
+export interface UserEdge {
+  node: User;
   cursor: String;
 }
 
-export interface PersonEdgePromise extends Promise<PersonEdge>, Fragmentable {
-  node: <T = PersonPromise>() => T;
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface PersonEdgeSubscription
-  extends Promise<AsyncIterator<PersonEdge>>,
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
     Fragmentable {
-  node: <T = PersonSubscription>() => T;
+  node: <T = UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 export type Long = string;
-
-/*
-DateTime scalar input type, allowing Date
-*/
-export type DateTimeInput = Date | string;
-
-/*
-DateTime scalar output type, which is always a string
-*/
-export type DateTimeOutput = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -2415,9 +2427,14 @@ The `Int` scalar type represents non-fractional signed whole numeric values. Int
 export type Int = number;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+DateTime scalar input type, allowing Date
 */
-export type Boolean = boolean;
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -2451,6 +2468,10 @@ export const models: Model[] = [
   },
   {
     name: "Country",
+    embedded: false
+  },
+  {
+    name: "MaritalStatus",
     embedded: false
   },
   {
