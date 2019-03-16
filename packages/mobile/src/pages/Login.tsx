@@ -1,19 +1,54 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, Keyboard, Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Button, Input, ThemeProvider, Image } from 'react-native-elements';
+import { Button, Input, ThemeProvider } from 'react-native-elements';
+import validator from 'validator';
 
+import { Loading } from '../components';
 import { Theme } from '../util';
 
 const Login = () => {
   const [email, updateEmail] = useState('');
   const [password, updatePassword] = useState('');
+  const [loading, updateLoading] = useState(false);
 
   const emailRef = React.createRef<Input>();
   const passwordRef = React.createRef<Input>();
 
-  const submit = () => {
+  const submit = async () => {
+    emailRef.current!.blur();
+    passwordRef.current!.blur();
     Keyboard.dismiss();
+
+    try {
+      await validate();
+      updateLoading(true);
+    } catch (e) {}
+  };
+
+  const validate = () => {
+    return new Promise((resolve, reject) => {
+      if (validator.isEmpty(email) && validator.isEmpty(password)) {
+        reject({
+          emailError: 'Enter your email',
+          passwordError: 'Enter your password',
+        });
+      }
+
+      if (validator.isEmpty(email)) {
+        reject({ emailError: 'Enter your email' });
+      }
+
+      if (!validator.isEmail(email)) {
+        reject({ emailError: 'Enter a valid email' });
+      }
+
+      if (validator.isEmpty(password)) {
+        reject({ passwordError: 'Enter your password' });
+      }
+
+      resolve();
+    });
   };
 
   return (
@@ -22,16 +57,18 @@ const Login = () => {
         Input: {
           containerStyle: {
             marginBottom: 16,
+            paddingHorizontal: 0,
           },
         },
       }}
     >
       <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+        <Loading visible={loading} />
+
         <View style={{ width: '80%', alignItems: 'center' }}>
           <Image
             source={require('../assets/logo.png')}
             style={styles.logo}
-            containerStyle={{ marginBottom: 60 }}
             resizeMode="contain"
           />
 
@@ -82,6 +119,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 150,
     height: 150,
+    marginBottom: 60,
   },
   signText: {
     color: Theme.primary,
