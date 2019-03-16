@@ -53,6 +53,12 @@ type Person {
   contactSite: ContactSite!
   notes: String
   websiteUser: Boolean
+  invitation: Boolean @default(value: "false")
+  letter: Boolean @default(value: "false")
+  handbill: Boolean @default(value: "false")
+  guestTag: Boolean @default(value: "false")
+  transport: Boolean @default(value: "false")
+  openingNight: Boolean @default(value: "false")
 }
 
 type Attendance {

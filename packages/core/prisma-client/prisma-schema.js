@@ -595,6 +595,12 @@ type Person {
   contactSite: ContactSite!
   notes: String
   websiteUser: Boolean
+  invitation: Boolean
+  letter: Boolean
+  handbill: Boolean
+  guestTag: Boolean
+  transport: Boolean
+  openingNight: Boolean
 }
 
 type PersonConnection {
@@ -617,6 +623,12 @@ input PersonCreateInput {
   contactSite: ContactSiteCreateOneInput!
   notes: String
   websiteUser: Boolean
+  invitation: Boolean
+  letter: Boolean
+  handbill: Boolean
+  guestTag: Boolean
+  transport: Boolean
+  openingNight: Boolean
 }
 
 input PersonCreateOneInput {
@@ -652,6 +664,18 @@ enum PersonOrderByInput {
   notes_DESC
   websiteUser_ASC
   websiteUser_DESC
+  invitation_ASC
+  invitation_DESC
+  letter_ASC
+  letter_DESC
+  handbill_ASC
+  handbill_DESC
+  guestTag_ASC
+  guestTag_DESC
+  transport_ASC
+  transport_DESC
+  openingNight_ASC
+  openingNight_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -670,6 +694,12 @@ type PersonPreviousValues {
   age: Int
   notes: String
   websiteUser: Boolean
+  invitation: Boolean
+  letter: Boolean
+  handbill: Boolean
+  guestTag: Boolean
+  transport: Boolean
+  openingNight: Boolean
 }
 
 type PersonStatus {
@@ -831,6 +861,12 @@ input PersonUpdateInput {
   contactSite: ContactSiteUpdateOneRequiredInput
   notes: String
   websiteUser: Boolean
+  invitation: Boolean
+  letter: Boolean
+  handbill: Boolean
+  guestTag: Boolean
+  transport: Boolean
+  openingNight: Boolean
 }
 
 input PersonUpdateManyMutationInput {
@@ -844,6 +880,12 @@ input PersonUpdateManyMutationInput {
   age: Int
   notes: String
   websiteUser: Boolean
+  invitation: Boolean
+  letter: Boolean
+  handbill: Boolean
+  guestTag: Boolean
+  transport: Boolean
+  openingNight: Boolean
 }
 
 input PersonWhereInput {
@@ -976,6 +1018,18 @@ input PersonWhereInput {
   notes_not_ends_with: String
   websiteUser: Boolean
   websiteUser_not: Boolean
+  invitation: Boolean
+  invitation_not: Boolean
+  letter: Boolean
+  letter_not: Boolean
+  handbill: Boolean
+  handbill_not: Boolean
+  guestTag: Boolean
+  guestTag_not: Boolean
+  transport: Boolean
+  transport_not: Boolean
+  openingNight: Boolean
+  openingNight_not: Boolean
   AND: [PersonWhereInput!]
   OR: [PersonWhereInput!]
   NOT: [PersonWhereInput!]

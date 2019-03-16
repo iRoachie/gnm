@@ -428,6 +428,18 @@ export type PersonOrderByInput =
   | "notes_DESC"
   | "websiteUser_ASC"
   | "websiteUser_DESC"
+  | "invitation_ASC"
+  | "invitation_DESC"
+  | "letter_ASC"
+  | "letter_DESC"
+  | "handbill_ASC"
+  | "handbill_DESC"
+  | "guestTag_ASC"
+  | "guestTag_DESC"
+  | "transport_ASC"
+  | "transport_DESC"
+  | "openingNight_ASC"
+  | "openingNight_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -756,6 +768,18 @@ export interface PersonWhereInput {
   notes_not_ends_with?: String;
   websiteUser?: Boolean;
   websiteUser_not?: Boolean;
+  invitation?: Boolean;
+  invitation_not?: Boolean;
+  letter?: Boolean;
+  letter_not?: Boolean;
+  handbill?: Boolean;
+  handbill_not?: Boolean;
+  guestTag?: Boolean;
+  guestTag_not?: Boolean;
+  transport?: Boolean;
+  transport_not?: Boolean;
+  openingNight?: Boolean;
+  openingNight_not?: Boolean;
   AND?: PersonWhereInput[] | PersonWhereInput;
   OR?: PersonWhereInput[] | PersonWhereInput;
   NOT?: PersonWhereInput[] | PersonWhereInput;
@@ -844,6 +868,12 @@ export interface PersonUpdateManyMutationInput {
   age?: Int;
   notes?: String;
   websiteUser?: Boolean;
+  invitation?: Boolean;
+  letter?: Boolean;
+  handbill?: Boolean;
+  guestTag?: Boolean;
+  transport?: Boolean;
+  openingNight?: Boolean;
 }
 
 export interface PersonCreateOneInput {
@@ -870,6 +900,12 @@ export interface PersonCreateInput {
   contactSite: ContactSiteCreateOneInput;
   notes?: String;
   websiteUser?: Boolean;
+  invitation?: Boolean;
+  letter?: Boolean;
+  handbill?: Boolean;
+  guestTag?: Boolean;
+  transport?: Boolean;
+  openingNight?: Boolean;
 }
 
 export interface UserUpsertNestedInput {
@@ -1242,6 +1278,12 @@ export interface PersonUpdateInput {
   contactSite?: ContactSiteUpdateOneRequiredInput;
   notes?: String;
   websiteUser?: Boolean;
+  invitation?: Boolean;
+  letter?: Boolean;
+  handbill?: Boolean;
+  guestTag?: Boolean;
+  transport?: Boolean;
+  openingNight?: Boolean;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -1416,6 +1458,12 @@ export interface Person {
   age?: Int;
   notes?: String;
   websiteUser?: Boolean;
+  invitation?: Boolean;
+  letter?: Boolean;
+  handbill?: Boolean;
+  guestTag?: Boolean;
+  transport?: Boolean;
+  openingNight?: Boolean;
 }
 
 export interface PersonPromise extends Promise<Person>, Fragmentable {
@@ -1433,6 +1481,12 @@ export interface PersonPromise extends Promise<Person>, Fragmentable {
   contactSite: <T = ContactSitePromise>() => T;
   notes: () => Promise<String>;
   websiteUser: () => Promise<Boolean>;
+  invitation: () => Promise<Boolean>;
+  letter: () => Promise<Boolean>;
+  handbill: () => Promise<Boolean>;
+  guestTag: () => Promise<Boolean>;
+  transport: () => Promise<Boolean>;
+  openingNight: () => Promise<Boolean>;
 }
 
 export interface PersonSubscription
@@ -1452,6 +1506,12 @@ export interface PersonSubscription
   contactSite: <T = ContactSiteSubscription>() => T;
   notes: () => Promise<AsyncIterator<String>>;
   websiteUser: () => Promise<AsyncIterator<Boolean>>;
+  invitation: () => Promise<AsyncIterator<Boolean>>;
+  letter: () => Promise<AsyncIterator<Boolean>>;
+  handbill: () => Promise<AsyncIterator<Boolean>>;
+  guestTag: () => Promise<AsyncIterator<Boolean>>;
+  transport: () => Promise<AsyncIterator<Boolean>>;
+  openingNight: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface UserPreviousValues {
@@ -2206,6 +2266,12 @@ export interface PersonPreviousValues {
   age?: Int;
   notes?: String;
   websiteUser?: Boolean;
+  invitation?: Boolean;
+  letter?: Boolean;
+  handbill?: Boolean;
+  guestTag?: Boolean;
+  transport?: Boolean;
+  openingNight?: Boolean;
 }
 
 export interface PersonPreviousValuesPromise
@@ -2222,6 +2288,12 @@ export interface PersonPreviousValuesPromise
   age: () => Promise<Int>;
   notes: () => Promise<String>;
   websiteUser: () => Promise<Boolean>;
+  invitation: () => Promise<Boolean>;
+  letter: () => Promise<Boolean>;
+  handbill: () => Promise<Boolean>;
+  guestTag: () => Promise<Boolean>;
+  transport: () => Promise<Boolean>;
+  openingNight: () => Promise<Boolean>;
 }
 
 export interface PersonPreviousValuesSubscription
@@ -2238,6 +2310,12 @@ export interface PersonPreviousValuesSubscription
   age: () => Promise<AsyncIterator<Int>>;
   notes: () => Promise<AsyncIterator<String>>;
   websiteUser: () => Promise<AsyncIterator<Boolean>>;
+  invitation: () => Promise<AsyncIterator<Boolean>>;
+  letter: () => Promise<AsyncIterator<Boolean>>;
+  handbill: () => Promise<AsyncIterator<Boolean>>;
+  guestTag: () => Promise<AsyncIterator<Boolean>>;
+  transport: () => Promise<AsyncIterator<Boolean>>;
+  openingNight: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface AggregatePersonStatus {
