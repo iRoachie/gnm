@@ -404,6 +404,8 @@ export type PersonOrderByInput =
   | "transport_DESC"
   | "openingNight_ASC"
   | "openingNight_DESC"
+  | "dob_ASC"
+  | "dob_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -745,6 +747,14 @@ export interface PersonWhereInput {
   transport_not?: Boolean;
   openingNight?: Boolean;
   openingNight_not?: Boolean;
+  dob?: DateTimeInput;
+  dob_not?: DateTimeInput;
+  dob_in?: DateTimeInput[] | DateTimeInput;
+  dob_not_in?: DateTimeInput[] | DateTimeInput;
+  dob_lt?: DateTimeInput;
+  dob_lte?: DateTimeInput;
+  dob_gt?: DateTimeInput;
+  dob_gte?: DateTimeInput;
   AND?: PersonWhereInput[] | PersonWhereInput;
   OR?: PersonWhereInput[] | PersonWhereInput;
   NOT?: PersonWhereInput[] | PersonWhereInput;
@@ -860,6 +870,7 @@ export interface PersonCreateInput {
   guestTag?: Boolean;
   transport?: Boolean;
   openingNight?: Boolean;
+  dob?: DateTimeInput;
 }
 
 export type PermissionWhereUniqueInput = AtLeastOne<{
@@ -1268,6 +1279,7 @@ export interface PersonUpdateInput {
   guestTag?: Boolean;
   transport?: Boolean;
   openingNight?: Boolean;
+  dob?: DateTimeInput;
 }
 
 export interface PersonUpdateManyMutationInput {
@@ -1288,6 +1300,7 @@ export interface PersonUpdateManyMutationInput {
   guestTag?: Boolean;
   transport?: Boolean;
   openingNight?: Boolean;
+  dob?: DateTimeInput;
 }
 
 export interface ContactSiteScalarWhereInput {
@@ -1457,6 +1470,7 @@ export interface Person {
   guestTag?: Boolean;
   transport?: Boolean;
   openingNight?: Boolean;
+  dob?: DateTimeOutput;
 }
 
 export interface PersonPromise extends Promise<Person>, Fragmentable {
@@ -1481,6 +1495,7 @@ export interface PersonPromise extends Promise<Person>, Fragmentable {
   guestTag: () => Promise<Boolean>;
   transport: () => Promise<Boolean>;
   openingNight: () => Promise<Boolean>;
+  dob: () => Promise<DateTimeOutput>;
 }
 
 export interface PersonSubscription
@@ -1507,6 +1522,7 @@ export interface PersonSubscription
   guestTag: () => Promise<AsyncIterator<Boolean>>;
   transport: () => Promise<AsyncIterator<Boolean>>;
   openingNight: () => Promise<AsyncIterator<Boolean>>;
+  dob: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface AttendanceEdge {
@@ -2266,6 +2282,7 @@ export interface PersonPreviousValues {
   guestTag?: Boolean;
   transport?: Boolean;
   openingNight?: Boolean;
+  dob?: DateTimeOutput;
 }
 
 export interface PersonPreviousValuesPromise
@@ -2289,6 +2306,7 @@ export interface PersonPreviousValuesPromise
   guestTag: () => Promise<Boolean>;
   transport: () => Promise<Boolean>;
   openingNight: () => Promise<Boolean>;
+  dob: () => Promise<DateTimeOutput>;
 }
 
 export interface PersonPreviousValuesSubscription
@@ -2312,6 +2330,7 @@ export interface PersonPreviousValuesSubscription
   guestTag: () => Promise<AsyncIterator<Boolean>>;
   transport: () => Promise<AsyncIterator<Boolean>>;
   openingNight: () => Promise<AsyncIterator<Boolean>>;
+  dob: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface AggregateUserRole {

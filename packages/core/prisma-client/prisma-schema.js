@@ -609,6 +609,7 @@ type Person {
   guestTag: Boolean
   transport: Boolean
   openingNight: Boolean
+  dob: DateTime
 }
 
 type PersonConnection {
@@ -638,6 +639,7 @@ input PersonCreateInput {
   guestTag: Boolean
   transport: Boolean
   openingNight: Boolean
+  dob: DateTime
 }
 
 input PersonCreateOneInput {
@@ -687,6 +689,8 @@ enum PersonOrderByInput {
   transport_DESC
   openingNight_ASC
   openingNight_DESC
+  dob_ASC
+  dob_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -712,6 +716,7 @@ type PersonPreviousValues {
   guestTag: Boolean
   transport: Boolean
   openingNight: Boolean
+  dob: DateTime
 }
 
 type PersonStatus {
@@ -880,6 +885,7 @@ input PersonUpdateInput {
   guestTag: Boolean
   transport: Boolean
   openingNight: Boolean
+  dob: DateTime
 }
 
 input PersonUpdateManyMutationInput {
@@ -900,6 +906,7 @@ input PersonUpdateManyMutationInput {
   guestTag: Boolean
   transport: Boolean
   openingNight: Boolean
+  dob: DateTime
 }
 
 input PersonWhereInput {
@@ -1048,6 +1055,14 @@ input PersonWhereInput {
   transport_not: Boolean
   openingNight: Boolean
   openingNight_not: Boolean
+  dob: DateTime
+  dob_not: DateTime
+  dob_in: [DateTime!]
+  dob_not_in: [DateTime!]
+  dob_lt: DateTime
+  dob_lte: DateTime
+  dob_gt: DateTime
+  dob_gte: DateTime
   AND: [PersonWhereInput!]
   OR: [PersonWhereInput!]
   NOT: [PersonWhereInput!]

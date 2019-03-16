@@ -67,6 +67,7 @@ type Person {
   guestTag: Boolean @default(value: "false")
   transport: Boolean @default(value: "false")
   openingNight: Boolean @default(value: "false")
+  dob: DateTime
 }
 
 type Attendance {
