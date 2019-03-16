@@ -8,6 +8,8 @@
     "prisma": "yarn workspace @gnm/server prisma"
   },
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/server",
+    "packages/website"
   ]
 }
