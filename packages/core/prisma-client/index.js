@@ -41,6 +41,10 @@ var models = [
     embedded: false
   },
   {
+    name: "Team",
+    embedded: false
+  },
+  {
     name: "Person",
     embedded: false
   },

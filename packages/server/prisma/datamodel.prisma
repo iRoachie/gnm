@@ -52,6 +52,11 @@ type Note {
   message: String!
 }
 
+type Team {
+  id: ID! @unique
+  leader: String!
+}
+
 type Person {
   id: ID! @unique
   name: String!
@@ -75,6 +80,8 @@ type Person {
   transport: Boolean @default(value: "false")
   openingNight: Boolean @default(value: "false")
   dob: DateTime
+  team: Team
+  teamCode: String
 }
 
 type Attendance {
