@@ -132,6 +132,7 @@ const NewContact = () => {
                 marginBottom: 15,
               }}
               multiline
+              textAlignVertical="top"
             />
           </View>
         </KeyboardAwareScrollView>
