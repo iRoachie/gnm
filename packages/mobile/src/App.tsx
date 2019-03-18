@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   createSwitchNavigator,
   createStackNavigator,
@@ -6,6 +7,7 @@ import {
 
 import { Login, NewContact, AuthLoading } from './pages';
 import { Theme } from './util';
+import { StatusBar } from 'react-native';
 
 const AppStack = createStackNavigator({
   NewContact: {
@@ -29,7 +31,7 @@ const AuthStack = createStackNavigator(
   }
 );
 
-export default createAppContainer(
+const Root = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading,
@@ -40,4 +42,11 @@ export default createAppContainer(
       initialRouteName: 'AuthLoading',
     }
   )
+);
+
+export default () => (
+  <React.Fragment>
+    <StatusBar backgroundColor={Theme.primary} />
+    <Root />
+  </React.Fragment>
 );
