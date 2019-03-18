@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Keyboard, Image } from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, Input, ThemeProvider } from 'react-native-elements';
 import validator from 'validator';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { Loading } from '../components';
 import { Theme } from '../util';
 
-const Login = () => {
+const Login: React.StatelessComponent<NavigationScreenProps> = props => {
   const [email, updateEmail] = useState('');
   const [password, updatePassword] = useState('');
   const [loading, updateLoading] = useState(false);
@@ -23,6 +25,11 @@ const Login = () => {
     try {
       await validate();
       updateLoading(true);
+      await AsyncStorage.setItem('userState', 'test');
+
+      setTimeout(() => {
+        props.navigation.navigate('App');
+      }, 1000);
     } catch (e) {}
   };
 
@@ -96,6 +103,7 @@ const Login = () => {
 
           <Button
             title="Sign in"
+            disabled={loading}
             buttonStyle={{
               backgroundColor: Theme.primary,
               borderRadius: 0,

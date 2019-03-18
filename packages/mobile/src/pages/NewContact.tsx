@@ -22,6 +22,9 @@ const NewContact = () => {
   return (
     <ThemeProvider
       theme={{
+        colors: {
+          primary: Theme.primary,
+        },
         Input: {
           containerStyle: {
             paddingHorizontal: 0,
@@ -57,6 +60,7 @@ const NewContact = () => {
       <View style={{ flex: 1, backgroundColor: Theme.background }}>
         <KeyboardAwareScrollView
           contentContainerStyle={styles.container}
+          style={{ borderRadius: 2 }}
           bounces={false}
         >
           <View style={styles.wrapper}>
@@ -65,6 +69,9 @@ const NewContact = () => {
               value={name}
               onChangeText={setname}
               leftIcon={undefined}
+              inputStyle={{
+                fontSize: 20,
+              }}
             />
 
             <Label>Sex</Label>
@@ -135,18 +142,22 @@ const NewContact = () => {
 };
 
 const Label: React.SFC<TextProps> = props => (
-  <Text {...props} style={{ marginBottom: 16, fontSize: 17 }} />
+  <Text
+    {...props}
+    style={{ marginBottom: 10, fontSize: 15, color: 'rgba(0,0,0,.54)' }}
+  />
 );
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 10,
     paddingBottom: 16,
+    borderRadius: 2,
   },
   wrapper: {
     backgroundColor: '#fff',
     flex: 1,
-    paddingTop: 32,
+    paddingTop: 16,
     paddingHorizontal: 16,
   },
 });

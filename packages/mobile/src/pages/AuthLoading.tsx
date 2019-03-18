@@ -11,6 +11,7 @@ const AuthLoading: React.StatelessComponent<NavigationScreenProps> = ({
   }, []);
 
   const getAuth = async () => {
+    // await AsyncStorage.clear();
     const userState = await AsyncStorage.getItem('userState');
     navigation.navigate(userState ? 'App' : 'Auth');
   };

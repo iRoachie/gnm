@@ -5,8 +5,23 @@ import {
 } from 'react-navigation';
 
 import { Login, NewContact, AuthLoading } from './pages';
+import { Theme } from './util';
 
-const AppStack = createStackNavigator({ NewContact });
+const AppStack = createStackNavigator({
+  NewContact: {
+    screen: NewContact,
+    navigationOptions: {
+      title: 'New Contact',
+      headerStyle: {
+        backgroundColor: Theme.background,
+        borderBottomColor: 'transparent',
+      },
+      headerTitleStyle: {
+        color: Theme.primary,
+      },
+    },
+  },
+});
 const AuthStack = createStackNavigator(
   { Login },
   {
