@@ -61,7 +61,6 @@ const NewContact = () => {
         <KeyboardAwareScrollView
           contentContainerStyle={styles.container}
           style={{ borderRadius: 2 }}
-          bounces={false}
         >
           <View style={styles.wrapper}>
             <Input
