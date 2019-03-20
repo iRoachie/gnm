@@ -4,8 +4,7 @@
   "scripts": {
     "website:start": "NODE_ENV=development && yarn workspace @gnm/website develop",
     "website:build": "yarn workspace @gnm/website build",
-    "server:dev": "yarn workspace @gnm/server dev",
-    "prisma": "yarn workspace @gnm/server prisma"
+    "server": "yarn workspace @gnm/server"
   },
   "workspaces": [
     "packages/core",

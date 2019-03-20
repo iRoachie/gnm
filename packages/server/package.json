@@ -5,7 +5,11 @@
   "license": "MIT",
   "scripts": {
     "prisma": "prisma",
-    "dev": "nodemon -e js,graphql,prisma src/index.js"
+    "dev": "nodemon -e js,graphql,prisma src/index.js",
+    "reset:dev": "prisma reset --env-file .env.dev",
+    "deploy:dev": "prisma deploy --env-file .env.dev",
+    "deploy:prod": "prisma deploy --env-file .env.prod",
+    "seed:dev": "prisma seed --env-file .env.dev"
   },
   "dependencies": {
     "@gnm/core": "1.0.0",
