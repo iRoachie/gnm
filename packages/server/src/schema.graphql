@@ -1,6 +1,6 @@
 # import * from "@gnm/core/generated/prisma.graphql"
 
-type ReturnedUser implements Node {
+type ReturnedUser {
   id: ID!
   name: String!
   email: String!
@@ -8,7 +8,7 @@ type ReturnedUser implements Node {
   contactSites: [ContactSite]!
 }
 
-type LoggedInUser implements Node {
+type LoggedInUser {
   id: ID!
   name: String!
   email: String!
@@ -17,8 +17,7 @@ type LoggedInUser implements Node {
   jwt: String!
 }
 
-type ReturnedUserRole implements Node {
-  id: ID!
+type ReturnedUserRole {
   title: String!
   permissions: [String!]!
 }
