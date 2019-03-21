@@ -3,7 +3,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { TabScene } from 'react-navigation';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import { Dashboard, Persons } from '../pages';
+import { Dashboard, Persons, Settings } from '../pages';
 import { Theme } from '../util';
 
 const Tabs = createMaterialBottomTabNavigator(
@@ -21,6 +21,14 @@ const Tabs = createMaterialBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor }: TabScene) => (
           <MaterialIcon name="face" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Settings: {
+      screen: Settings,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }: TabScene) => (
+          <MaterialIcon name="settings" size={24} color={tintColor} />
         ),
       },
     },
