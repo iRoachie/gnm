@@ -1,8 +1,8 @@
 import Login from './Login';
-import ContactSuccess from './ContactSuccess';
+import AddPersonSuccess from './AddPersonSuccess';
 import NewContact from './NewContact';
 import AuthLoading from './AuthLoading';
 import Dashboard from './Dashboard';
-import Contacts from './Contacts';
+import Persons from './Persons';
 
-export { Login, ContactSuccess, NewContact, AuthLoading, Dashboard, Contacts };
+export { Login, AddPersonSuccess, NewContact, AuthLoading, Dashboard, Persons };

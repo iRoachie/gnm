@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 
 import { Theme } from '../util';
 
-const ContactSuccess = () => (
+const AddPersonSuccess = () => (
   <View style={styles.container}>
     <View style={styles.content}>
       <Button
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ContactSuccess;
+export default AddPersonSuccess;
