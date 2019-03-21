@@ -77,7 +77,7 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
       }}
     >
       <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="dark-content" />
 
         <Loading visible={loading} />
 
