@@ -7,10 +7,14 @@ import {
   CheckBox,
   TextProps,
 } from 'react-native-elements';
+import { Appbar, DefaultTheme, List } from 'react-native-paper';
 
 import { Theme } from '../util';
+import { NavigationScreenProps } from 'react-navigation';
 
-const NewContact = () => {
+const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
+  navigation,
+}) => {
   const [name, setname] = useState('');
   const [sex, setSex] = useState('');
   const [email, setEmail] = useState('');
@@ -18,6 +22,11 @@ const NewContact = () => {
   const [address, setAddress] = useState('');
   const [age, setAge] = useState('');
   const [notes, setNotes] = useState('');
+
+  const saveContact = () => {
+    // Save Contact
+    // Show Done Screen
+  };
 
   return (
     <ThemeProvider
@@ -54,10 +63,24 @@ const NewContact = () => {
             paddingTop: 0,
             paddingLeft: 2,
           },
+          iconType: 'material',
+          checkedIcon: 'radio-button-checked',
+          uncheckedIcon: 'radio-button-unchecked',
         },
       }}
     >
       <View style={{ flex: 1, backgroundColor: Theme.background }}>
+        <Appbar.Header dark>
+          <Appbar.Action icon="close" onPress={() => navigation.goBack()} />
+
+          <Appbar.Content
+            title="New Contact"
+            titleStyle={{ fontFamily: DefaultTheme.fonts.medium, fontSize: 17 }}
+          />
+
+          <Appbar.Action icon="done" onPress={saveContact} />
+        </Appbar.Header>
+
         <KeyboardAwareScrollView
           contentContainerStyle={styles.container}
           style={{ borderRadius: 2 }}

@@ -1,44 +1,25 @@
 import React from 'react';
+import { View } from 'react-native';
 import {
   createSwitchNavigator,
-  createStackNavigator,
   createAppContainer,
+  createStackNavigator,
 } from 'react-navigation';
+import { StatusBar, Platform } from 'react-native';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
-import { Login, NewContact, AuthLoading, Dashboard } from './pages';
+import { Login, AuthLoading, NewContact } from './pages';
 import { Theme } from './util';
-import { StatusBar } from 'react-native';
+import Tabs from './containers/Tabs';
 
-const AppStack = createStackNavigator(
+const ModalStack = createStackNavigator(
   {
-    Dashboard: {
-      screen: Dashboard,
-      navigationOptions: {
-        title: 'Dashboard',
-      },
-    },
-    NewContact: {
-      screen: NewContact,
-      navigationOptions: {
-        title: 'New Contact',
-      },
-    },
+    AppStack: Tabs,
+    NewContact,
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Theme.background,
-        borderBottomColor: 'transparent',
-      },
-      headerTitleStyle: {
-        color: Theme.primary,
-      },
-    },
-  }
-);
-const AuthStack = createStackNavigator(
-  { Login },
-  {
+    mode: 'modal',
     headerMode: 'none',
   }
 );
@@ -47,8 +28,8 @@ const Root = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading,
-      App: AppStack,
-      Auth: AuthStack,
+      App: ModalStack,
+      Auth: Login,
     },
     {
       initialRouteName: 'AuthLoading',
@@ -56,9 +37,30 @@ const Root = createAppContainer(
   )
 );
 
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Theme.primary,
+    accent: Theme.primary,
+  },
+};
+
 export default () => (
   <React.Fragment>
-    <StatusBar backgroundColor={Theme.primary} />
-    <Root />
+    <StatusBar backgroundColor={Theme.darkPrimary} barStyle="light-content" />
+
+    {Platform.OS === 'ios' && (
+      <View
+        style={{
+          backgroundColor: Theme.darkPrimary,
+          height: getStatusBarHeight(),
+        }}
+      />
+    )}
+
+    <PaperProvider theme={theme}>
+      <Root />
+    </PaperProvider>
   </React.Fragment>
 );

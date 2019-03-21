@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Keyboard, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Keyboard,
+  Image,
+  StatusBar,
+} from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, Input, ThemeProvider } from 'react-native-elements';
@@ -70,6 +77,8 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
       }}
     >
       <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+        <StatusBar barStyle="light-content" />
+
         <Loading visible={loading} />
 
         <View style={{ width: '80%', alignItems: 'center' }}>
@@ -134,6 +143,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     marginBottom: 30,
+    fontFamily: 'System',
   },
 });
 
