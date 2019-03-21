@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-native-elements';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Theme } from '../util';
@@ -11,15 +11,19 @@ const AddPersonSuccess: React.StatelessComponent<NavigationScreenProps> = ({
   const goToContacts = () => {
     navigation.popToTop();
     navigation.navigate('Contacts');
+    StatusBar.setBarStyle('light-content');
   };
 
   const addAnother = () => {
     navigation.popToTop();
     navigation.navigate('NewContact');
+    StatusBar.setBarStyle('light-content');
   };
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" />
+
       <View style={styles.content}>
         <Button
           title="Submitted"
