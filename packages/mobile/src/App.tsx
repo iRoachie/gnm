@@ -1,12 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
 import {
   createSwitchNavigator,
   createAppContainer,
   createStackNavigator,
 } from 'react-navigation';
-import { StatusBar, Platform } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { StatusBar } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import { Login, AuthLoading, NewContact } from './pages';
@@ -49,16 +47,6 @@ const theme = {
 export default () => (
   <React.Fragment>
     <StatusBar backgroundColor={Theme.darkPrimary} barStyle="light-content" />
-
-    {Platform.OS === 'ios' && (
-      <View
-        style={{
-          backgroundColor: Theme.darkPrimary,
-          height: getStatusBarHeight(),
-        }}
-      />
-    )}
-
     <PaperProvider theme={theme}>
       <Root />
     </PaperProvider>
