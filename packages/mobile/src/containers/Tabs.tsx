@@ -16,7 +16,7 @@ const Tabs = createMaterialBottomTabNavigator(
         ),
       },
     },
-    Persons: {
+    Contacts: {
       screen: Persons,
       navigationOptions: {
         tabBarIcon: ({ tintColor }: TabScene) => (
