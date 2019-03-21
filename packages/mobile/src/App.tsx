@@ -7,7 +7,7 @@ import {
 import { StatusBar } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
-import { Login, AuthLoading, NewContact } from './pages';
+import { Login, AuthLoading, NewContact, AddPersonSuccess } from './pages';
 import { Theme } from './util';
 import Tabs from './containers/Tabs';
 
@@ -15,6 +15,7 @@ const ModalStack = createStackNavigator(
   {
     AppStack: Tabs,
     NewContact,
+    AddPersonSuccess,
   },
   {
     mode: 'modal',

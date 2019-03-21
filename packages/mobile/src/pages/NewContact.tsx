@@ -25,7 +25,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
 
   const saveContact = () => {
     // Save Contact
-    // Show Done Screen
+    navigation.navigate('AddPersonSuccess');
   };
 
   return (
