@@ -5,15 +5,27 @@ import {
   createAppContainer,
 } from 'react-navigation';
 
-import { Login, NewContact, AuthLoading } from './pages';
+import { Login, NewContact, AuthLoading, Dashboard } from './pages';
 import { Theme } from './util';
 import { StatusBar } from 'react-native';
 
-const AppStack = createStackNavigator({
-  NewContact: {
-    screen: NewContact,
-    navigationOptions: {
-      title: 'New Contact',
+const AppStack = createStackNavigator(
+  {
+    Dashboard: {
+      screen: Dashboard,
+      navigationOptions: {
+        title: 'Dashboard',
+      },
+    },
+    NewContact: {
+      screen: NewContact,
+      navigationOptions: {
+        title: 'New Contact',
+      },
+    },
+  },
+  {
+    defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: Theme.background,
         borderBottomColor: 'transparent',
@@ -22,8 +34,8 @@ const AppStack = createStackNavigator({
         color: Theme.primary,
       },
     },
-  },
-});
+  }
+);
 const AuthStack = createStackNavigator(
   { Login },
   {
