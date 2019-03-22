@@ -53,6 +53,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
         }}
         value={search}
         onChangeText={setSearch}
+        cancelButtonProps={{ color: Theme.primary }}
       />
 
       {fetching ? (
