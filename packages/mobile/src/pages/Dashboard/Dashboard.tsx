@@ -6,8 +6,8 @@ import {
   TouchableHighlight,
   ScrollView,
 } from 'react-native';
-import { Appbar, DefaultTheme } from 'react-native-paper';
 import { Divider } from 'react-native-elements';
+import { Appbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import thousands from 'thousands';
 import { NavigationScreenProps } from 'react-navigation';
@@ -24,11 +24,8 @@ const Dashboard: React.StatelessComponent<NavigationScreenProps> = ({
 
   return (
     <View style={{ flex: 1, backgroundColor: Theme.background }}>
-      <Appbar.Header dark>
-        <Appbar.Content
-          title="Breath of Life SDA"
-          titleStyle={{ fontFamily: DefaultTheme.fonts.medium, fontSize: 17 }}
-        />
+      <Appbar.Header {...Theme.Appbar.Header}>
+        <Appbar.Content title="Breath of Life SDA" {...Theme.Appbar.Content} />
       </Appbar.Header>
 
       <ScrollView>
@@ -70,7 +67,7 @@ const Dashboard: React.StatelessComponent<NavigationScreenProps> = ({
             </TouchableHighlight>
           </View>
 
-          <Divider style={{ marginVertical: 30 }} />
+          <Divider style={{ marginTop: 20, marginBottom: 15 }} />
 
           <View style={{ flexDirection: 'row' }}>
             <DashboardSquare
@@ -117,10 +114,13 @@ const styles = StyleSheet.create({
   totalContactsLabel: {
     fontSize: 45,
     color: '#fff',
-    marginTop: -12,
+    fontFamily: Theme.fonts.medium,
+    lineHeight: 50,
+    marginBottom: -7,
   },
   totalContactsCaption: {
     color: 'rgba(255,255,255,0.7)',
+    fontFamily: Theme.fonts.semibold,
   },
 });
 

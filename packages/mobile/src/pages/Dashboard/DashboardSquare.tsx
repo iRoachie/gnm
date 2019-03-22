@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Theme } from '../../util';
 
 interface DashboardSquareProps {
   backgroundColor?: string;
@@ -26,7 +27,8 @@ const DashboardSquare: React.StatelessComponent<DashboardSquareProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
     borderRadius: 4,
     marginVertical: 5,
     backgroundColor: '#fff',
@@ -34,9 +36,11 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 24,
     color: '#000',
+    fontFamily: Theme.fonts.medium,
   },
   caption: {
     color: 'rgba(0,0,0,0.7)',
+    fontFamily: Theme.fonts.regular,
   },
 });
 

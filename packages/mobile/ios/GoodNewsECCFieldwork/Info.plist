@@ -70,6 +70,9 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>AvenirNext-Medium.ttf</string>
+		<string>AvenirNext-Regular.ttf</string>
+		<string>AvenirNext-DemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

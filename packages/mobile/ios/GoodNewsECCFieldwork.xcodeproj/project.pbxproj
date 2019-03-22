@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -59,6 +58,9 @@
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		EF76AA55F4984E60993AE459 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC7F7CBD40F24981A6E42D88 /* MaterialCommunityIcons.ttf */; };
+		884FDBFE913D432492400626 /* AvenirNext-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46BB265EADD1476AAE71CE9E /* AvenirNext-Medium.ttf */; };
+		189EE19E373045EC8D86F62C /* AvenirNext-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42C1150D1DAF4D35B3D58BCC /* AvenirNext-Regular.ttf */; };
+		1125016C32CB43BF8152B338 /* AvenirNext-DemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0521A7632FA3427DB9639EA2 /* AvenirNext-DemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -416,6 +418,9 @@
 		F724AF10225D411DAEEF2C53 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		FBA563774E5E413EAA577DE9 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		FC7F7CBD40F24981A6E42D88 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		46BB265EADD1476AAE71CE9E /* AvenirNext-Medium.ttf */ = {isa = PBXFileReference; name = "AvenirNext-Medium.ttf"; path = "../src/assets/fonts/AvenirNext-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		42C1150D1DAF4D35B3D58BCC /* AvenirNext-Regular.ttf */ = {isa = PBXFileReference; name = "AvenirNext-Regular.ttf"; path = "../src/assets/fonts/AvenirNext-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0521A7632FA3427DB9639EA2 /* AvenirNext-DemiBold.ttf */ = {isa = PBXFileReference; name = "AvenirNext-DemiBold.ttf"; path = "../src/assets/fonts/AvenirNext-DemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -743,6 +748,9 @@
 				9B6174724685476592072DCA /* Octicons.ttf */,
 				F724AF10225D411DAEEF2C53 /* SimpleLineIcons.ttf */,
 				F2CDCAD375E648C88961E71D /* Zocial.ttf */,
+				46BB265EADD1476AAE71CE9E /* AvenirNext-Medium.ttf */,
+				42C1150D1DAF4D35B3D58BCC /* AvenirNext-Regular.ttf */,
+				0521A7632FA3427DB9639EA2 /* AvenirNext-DemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1252,6 +1260,9 @@
 				E9E51055A35A426F89A120DC /* Octicons.ttf in Resources */,
 				8D3E4C9606D64D03BD7E3E1F /* SimpleLineIcons.ttf in Resources */,
 				34BA4DD33D454F458E2D6EAD /* Zocial.ttf in Resources */,
+				884FDBFE913D432492400626 /* AvenirNext-Medium.ttf in Resources */,
+				189EE19E373045EC8D86F62C /* AvenirNext-Regular.ttf in Resources */,
+				1125016C32CB43BF8152B338 /* AvenirNext-DemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

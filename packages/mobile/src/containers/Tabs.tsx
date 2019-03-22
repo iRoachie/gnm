@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { TabScene } from 'react-navigation';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -35,10 +36,24 @@ const Tabs = createMaterialBottomTabNavigator(
   },
   {
     initialRouteName: 'Dashboard',
-    shifting: true,
     activeTintColor: Theme.primary,
     barStyle: {
       backgroundColor: '#F8F8F8',
+    },
+    // @ts-ignore
+    renderLabel: ({ color, route }) => {
+      return (
+        <Text
+          style={{
+            fontFamily: Theme.fonts.medium,
+            color,
+            textAlign: 'center',
+            fontSize: 12,
+          }}
+        >
+          {route.routeName}
+        </Text>
+      );
     },
   }
 );

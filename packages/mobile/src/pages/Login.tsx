@@ -6,6 +6,7 @@ import {
   Keyboard,
   Image,
   StatusBar,
+  Platform,
 } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -13,7 +14,6 @@ import { Button, Input, ThemeProvider } from 'react-native-elements';
 import validator from 'validator';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { Loading } from '../components';
 import { Theme } from '../util';
 
 const Login: React.StatelessComponent<NavigationScreenProps> = props => {
@@ -73,13 +73,19 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
             marginBottom: 16,
             paddingHorizontal: 0,
           },
+          inputStyle: {
+            fontFamily: Theme.fonts.medium,
+          },
         },
       }}
     >
       <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-        <StatusBar barStyle="dark-content" />
-
-        <Loading visible={loading} />
+        {Platform.OS === 'ios' && (
+          <StatusBar
+            barStyle="dark-content"
+            backgroundColor={Theme.darkPrimary}
+          />
+        )}
 
         <View style={{ width: '80%', alignItems: 'center' }}>
           <Image
@@ -98,6 +104,7 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
             onChangeText={updateEmail}
             keyboardType="email-address"
             onSubmitEditing={() => passwordRef.current!.focus()}
+            editable={!loading}
           />
 
           <Input
@@ -108,15 +115,19 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
             onChangeText={updatePassword}
             onSubmitEditing={submit}
             ref={passwordRef}
+            editable={!loading}
           />
 
           <Button
             title="Sign in"
+            loading={loading}
             disabled={loading}
             buttonStyle={{
               backgroundColor: Theme.primary,
               borderRadius: 0,
             }}
+            loadingProps={{ color: Theme.primary }}
+            titleStyle={{ fontFamily: Theme.fonts.semibold }}
             containerStyle={{ marginTop: 30, width: '100%' }}
             onPress={submit}
           />
@@ -143,7 +154,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     marginBottom: 30,
-    fontFamily: 'System',
+    fontFamily: Theme.fonts.medium,
   },
 });
 

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Platform, FlatList } from 'react-native';
-import {
-  Appbar,
-  DefaultTheme,
-  FAB,
-  List,
-  ActivityIndicator,
-} from 'react-native-paper';
+import { FAB, List, ActivityIndicator, Appbar } from 'react-native-paper';
 import { NavigationScreenProps } from 'react-navigation';
-
 import { SearchBar } from 'react-native-elements';
 
-const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
+import { Theme } from '../util';
+
+const Persons: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const [search, setSearch] = useState('');
@@ -43,12 +38,8 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
 
   return (
     <View style={{ flex: 1 }}>
-      <Appbar.Header dark>
-        <Appbar.Content
-          title="Contacts"
-          titleStyle={{ fontFamily: DefaultTheme.fonts.medium, fontSize: 17 }}
-        />
-
+      <Appbar.Header dark {...Theme.Appbar.Header}>
+        <Appbar.Content title="Contacts" {...Theme.Appbar.Content} />
         <Appbar.Action icon="filter-list" onPress={toggleFilter} />
       </Appbar.Header>
 
@@ -56,7 +47,9 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
         platform={Platform.OS === 'ios' ? 'ios' : 'android'}
         placeholder="Search Contacts"
         inputStyle={{
-          fontSize: Platform.OS === 'ios' ? 17 : 15,
+          fontSize: 17,
+          fontFamily: Theme.fonts.medium,
+          marginLeft: 10,
         }}
         value={search}
         onChangeText={setSearch}
@@ -71,6 +64,8 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
           renderItem={({ item }) => (
             <List.Item
               title={`${item.name.first} ${item.name.last}`}
+              titleStyle={{ fontFamily: Theme.fonts.medium }}
+              descriptionStyle={{ fontFamily: Theme.fonts.regular }}
               description={item.location.street}
               onPress={() => viewContact(item)}
             />
@@ -92,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Contacts;
+export default Persons;

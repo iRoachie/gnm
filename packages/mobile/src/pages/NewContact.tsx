@@ -52,6 +52,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
           },
           inputStyle: {
             fontSize: 15,
+            fontFamily: Theme.fonts.medium,
           },
           placeholderTextColor: 'rgba(0,0,0,.54)',
         },
@@ -63,6 +64,10 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
             paddingTop: 0,
             paddingLeft: 2,
           },
+          textStyle: {
+            fontFamily: Theme.fonts.medium,
+            fontWeight: '400',
+          },
           iconType: 'material',
           checkedIcon: 'radio-button-checked',
           uncheckedIcon: 'radio-button-unchecked',
@@ -70,13 +75,10 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
       }}
     >
       <View style={{ flex: 1, backgroundColor: Theme.background }}>
-        <Appbar.Header dark>
+        <Appbar.Header {...Theme.Appbar.Header}>
           <Appbar.Action icon="close" onPress={() => navigation.goBack()} />
 
-          <Appbar.Content
-            title="New Contact"
-            titleStyle={{ fontFamily: DefaultTheme.fonts.medium, fontSize: 17 }}
-          />
+          <Appbar.Content title="New Contact" {...Theme.Appbar.Content} />
 
           <Appbar.Action icon="done" onPress={saveContact} />
         </Appbar.Header>
@@ -167,14 +169,19 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
 const Label: React.SFC<TextProps> = props => (
   <Text
     {...props}
-    style={{ marginBottom: 10, fontSize: 15, color: 'rgba(0,0,0,.54)' }}
+    style={{
+      marginBottom: 10,
+      fontSize: 15,
+      color: 'rgba(0,0,0,.54)',
+      fontFamily: Theme.fonts.semibold,
+    }}
   />
 );
 
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-    paddingBottom: 16,
+    paddingVertical: 16,
     borderRadius: 2,
   },
   wrapper: {

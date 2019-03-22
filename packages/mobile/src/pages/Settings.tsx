@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Appbar, DefaultTheme, List } from 'react-native-paper';
+import { Appbar, List } from 'react-native-paper';
 import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Loading } from '../components';
+import { Theme } from '../util';
 
 const Settings: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
@@ -25,17 +26,19 @@ const Settings: React.StatelessComponent<NavigationScreenProps> = ({
     <View style={{ flex: 1 }}>
       <Loading visible={loading} />
 
-      <Appbar.Header dark>
-        <Appbar.Content
-          title="Settings"
-          titleStyle={{ fontFamily: DefaultTheme.fonts.medium, fontSize: 17 }}
-        />
+      <Appbar.Header {...Theme.Appbar.Header}>
+        <Appbar.Content title="Settings" {...Theme.Appbar.Content} />
       </Appbar.Header>
 
-      <List.Section title="Options">
+      <List.Section
+        title="Options"
+        theme={{ fonts: { medium: Theme.fonts.medium } }}
+      >
         <List.Item
           title="Sign out"
           description="Sign out of the app"
+          titleStyle={{ fontFamily: Theme.fonts.medium }}
+          descriptionStyle={{ fontFamily: Theme.fonts.regular }}
           left={props => <List.Icon {...props} icon="exit-to-app" />}
           onPress={signOut}
         />
