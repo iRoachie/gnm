@@ -51,6 +51,16 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
           fontFamily: Theme.fonts.medium,
           marginLeft: 10,
         }}
+        inputContainerStyle={Platform.select({
+          ios: {
+            backgroundColor: '#f6f6f6',
+          },
+        })}
+        containerStyle={Platform.select({
+          ios: {
+            backgroundColor: Theme.background,
+          },
+        })}
         value={search}
         onChangeText={setSearch}
         cancelButtonProps={{ color: Theme.primary }}
