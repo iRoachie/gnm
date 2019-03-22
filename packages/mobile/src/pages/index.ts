@@ -3,7 +3,7 @@ import AddPersonSuccess from './AddPersonSuccess';
 import NewContact from './NewContact';
 import AuthLoading from './AuthLoading';
 import Dashboard from './Dashboard';
-import Persons from './Persons';
+import Contacts from './Contacts';
 import Settings from './Settings';
 
 export {
@@ -12,6 +12,6 @@ export {
   NewContact,
   AuthLoading,
   Dashboard,
-  Persons,
+  Contacts,
   Settings,
 };

@@ -6,7 +6,7 @@ import { SearchBar } from 'react-native-elements';
 
 import { Theme } from '../util';
 
-const Persons: React.StatelessComponent<NavigationScreenProps> = ({
+const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const [search, setSearch] = useState('');
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Persons;
+export default Contacts;
