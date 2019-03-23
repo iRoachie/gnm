@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
+import { Button, ThemeProvider } from 'react-native-elements';
 import { View, StyleSheet, StatusBar } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 
@@ -21,35 +21,49 @@ const AddPersonSuccess: React.StatelessComponent<NavigationScreenProps> = ({
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
+    <ThemeProvider
+      theme={{
+        Button: {
+          titleStyle: {
+            fontFamily: Theme.fonts.medium,
+          },
+        },
+      }}
+    >
+      <View style={styles.container}>
+        <StatusBar barStyle="dark-content" />
 
-      <View style={styles.content}>
-        <Button
-          title="Submitted"
-          containerStyle={{ marginBottom: 15 }}
-          buttonStyle={{ backgroundColor: '#fff' }}
-          titleStyle={{ color: Theme.primary }}
-          icon={{ name: 'check-circle', color: Theme.primary }}
-          TouchableComponent={View}
-          raised
-        />
-        <Button
-          title="Add Another"
-          containerStyle={{ marginBottom: 15 }}
-          buttonStyle={{ backgroundColor: Theme.primary }}
-          icon={{ name: 'add-circle', color: '#fff' }}
-          onPress={addAnother}
-        />
-        <Button
-          title="View Contacts"
-          type="clear"
-          icon={{ name: 'person', color: Theme.primary, size: 24 }}
-          titleStyle={{ color: '#000' }}
-          onPress={goToContacts}
-        />
+        <View style={styles.content}>
+          <Button
+            title="Submitted"
+            containerStyle={{ marginBottom: 15 }}
+            buttonStyle={{ backgroundColor: '#fff' }}
+            titleStyle={{
+              color: Theme.primary,
+            }}
+            icon={{ name: 'check-circle', color: Theme.primary }}
+            TouchableComponent={View}
+            raised
+          />
+          <Button
+            title="Add Another"
+            containerStyle={{ marginBottom: 15 }}
+            buttonStyle={{
+              backgroundColor: Theme.primary,
+            }}
+            icon={{ name: 'add-circle', color: '#fff' }}
+            onPress={addAnother}
+          />
+          <Button
+            title="View Contacts"
+            type="clear"
+            icon={{ name: 'person', color: Theme.primary, size: 24 }}
+            titleStyle={{ color: '#000' }}
+            onPress={goToContacts}
+          />
+        </View>
       </View>
-    </View>
+    </ThemeProvider>
   );
 };
 
