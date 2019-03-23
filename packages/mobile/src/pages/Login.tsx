@@ -19,6 +19,8 @@ import { Theme } from '../util';
 const Login: React.StatelessComponent<NavigationScreenProps> = props => {
   const [email, updateEmail] = useState('');
   const [password, updatePassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [loading, updateLoading] = useState(false);
 
   const emailRef = React.createRef<Input>();
@@ -29,6 +31,9 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
     passwordRef.current!.blur();
     Keyboard.dismiss();
 
+    setEmailError('');
+    setPasswordError('');
+
     try {
       await validate();
       updateLoading(true);
@@ -37,7 +42,15 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
       setTimeout(() => {
         props.navigation.navigate('App');
       }, 1000);
-    } catch (e) {}
+    } catch (e) {
+      if (e.emailError) {
+        setEmailError(e.emailError);
+      }
+
+      if (e.passwordError) {
+        setPasswordError(e.passwordError);
+      }
+    }
   };
 
   const validate = () => {
@@ -105,6 +118,7 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
             keyboardType="email-address"
             onSubmitEditing={() => passwordRef.current!.focus()}
             editable={!loading}
+            errorMessage={emailError}
           />
 
           <Input
@@ -116,6 +130,7 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
             onSubmitEditing={submit}
             ref={passwordRef}
             editable={!loading}
+            errorMessage={passwordError}
           />
 
           <Button
