@@ -1,5 +1,5 @@
 import Login from './Login';
-import AddPersonSuccess from './AddPersonSuccess';
+import AddContactSuccess from './AddContactSuccess';
 import NewContact from './NewContact';
 import AuthLoading from './AuthLoading';
 import Dashboard from './Dashboard';
@@ -8,7 +8,7 @@ import Settings from './Settings';
 
 export {
   Login,
-  AddPersonSuccess,
+  AddContactSuccess,
   NewContact,
   AuthLoading,
   Dashboard,

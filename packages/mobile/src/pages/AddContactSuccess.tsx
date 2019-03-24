@@ -5,7 +5,7 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { Theme } from '../util';
 
-const AddPersonSuccess: React.StatelessComponent<NavigationScreenProps> = ({
+const AddContactSuccess: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const goToContacts = () => {
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddPersonSuccess;
+export default AddContactSuccess;
