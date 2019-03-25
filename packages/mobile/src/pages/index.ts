@@ -5,6 +5,7 @@ import AuthLoading from './AuthLoading';
 import Dashboard from './Dashboard';
 import Contacts from './Contacts';
 import Settings from './Settings';
+import ViewContact from './ViewContact';
 
 export {
   Login,
@@ -14,4 +15,5 @@ export {
   Dashboard,
   Contacts,
   Settings,
+  ViewContact,
 };

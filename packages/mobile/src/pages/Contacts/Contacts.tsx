@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Platform, FlatList } from 'react-native';
 import { FAB, List, ActivityIndicator, Appbar } from 'react-native-paper';
 import { NavigationScreenProps } from 'react-navigation';
 import { SearchBar } from 'react-native-elements';
 
-import { Theme } from '../util';
+import { Theme } from '../../util';
+import contacts from './mock';
 
 const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const [search, setSearch] = useState('');
-  const [contacts, setContacts] = useState<any[]>([]);
-  const [fetching, setFetching] = useState(true);
-
-  useEffect(() => {
-    const getContacts = async () => {
-      const response = await fetch('https://randomuser.me/api/?results=20');
-      const result = await response.json();
-      setContacts(result.results);
-      setFetching(false);
-    };
-
-    getContacts();
-  }, []);
+  const [fetching, setFetching] = useState(false);
 
   const goToNewContact = () => {
     navigation.navigate('NewContact');
@@ -33,7 +22,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
   };
 
   const viewContact = (contact: any) => {
-    //
+    navigation.push('ViewContact', { contact });
   };
 
   return (
