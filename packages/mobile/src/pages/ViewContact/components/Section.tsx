@@ -13,22 +13,31 @@ interface SectionProps extends ViewProperties {
   title?: string;
   hideDivider?: boolean;
   style?: StyleProp<ViewStyle>;
+  padded?: boolean;
+  children?: React.ReactChildren;
 }
 
-const Section: React.StatelessComponent<SectionProps> = props => (
+const Section: React.StatelessComponent<SectionProps> = ({
+  padded = true,
+  hideDivider,
+  children,
+  title,
+  style,
+}) => (
   <View
     style={[
       {
         paddingVertical: 24,
-        borderBottomWidth: props.hideDivider ? 0 : 1,
+        borderBottomWidth: hideDivider ? 0 : 1,
         borderBottomColor: '#DFDFE2',
+        paddingHorizontal: padded ? 16 : 0,
       },
-      props.style,
+      style,
     ]}
   >
-    {props.title && <Text style={styles.sectionTitle}>{props.title}</Text>}
+    {!!title && <Text style={styles.sectionTitle}>{title}</Text>}
 
-    {props.children}
+    {children}
   </View>
 );
 

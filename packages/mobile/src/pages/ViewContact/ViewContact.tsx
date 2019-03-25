@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  FlatList,
+  Linking,
+} from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import { Appbar, FAB } from 'react-native-paper';
 import { ListItem, ThemeProvider, CheckBox } from 'react-native-elements';
@@ -71,9 +78,11 @@ const ViewContact: React.StatelessComponent<NavigationScreenProps> = ({
       </View>
 
       <View style={{ backgroundColor: '#fff', flex: 1, zIndex: 1 }}>
-        <ScrollView contentContainerStyle={{ padding: 16, paddingTop: 0 }}>
-          <Section>
-            <View style={{ flexDirection: 'row' }}>
+        <ScrollView
+          contentContainerStyle={{ paddingBottom: 16, paddingTop: 0 }}
+        >
+          <Section padded={false}>
+            <View style={{ flexDirection: 'row', paddingLeft: 16 }}>
               <BlockValue label="Age" value="32" />
               <BlockValue label="Sex" value="Female" />
             </View>
@@ -81,6 +90,9 @@ const ViewContact: React.StatelessComponent<NavigationScreenProps> = ({
             <ThemeProvider
               theme={{
                 ListItem: {
+                  containerStyle: {
+                    paddingHorizontal: 16,
+                  },
                   titleStyle: {
                     fontFamily: Theme.fonts.regular,
                     color: '#000',
@@ -94,16 +106,26 @@ const ViewContact: React.StatelessComponent<NavigationScreenProps> = ({
                 },
               }}
             >
-              <View
-                style={{ marginLeft: -15, marginTop: 16, marginBottom: -14 }}
-              >
+              <View style={{ marginTop: 16, marginBottom: -14 }}>
                 <ListItem
                   title="Lot 1, Story Gap, St. Michael"
                   subtitle="Address"
                 />
-                <ListItem title="444-4444" subtitle="Telephone" />
-                <ListItem title="222-4444" subtitle="Cell Phone" />
-                <ListItem title="eqegqq@saf.com" subtitle="Email" />
+                <ListItem
+                  title="444-4444"
+                  subtitle="Telephone"
+                  onPress={() => Linking.openURL(`tel:444-4444`)}
+                />
+                <ListItem
+                  title="222-4444"
+                  subtitle="Cell Phone"
+                  onPress={() => Linking.openURL(`tel:222-4444`)}
+                />
+                <ListItem
+                  title="eqegqq@saf.com"
+                  subtitle="Email"
+                  onPress={() => Linking.openURL(`mailto:eqegqq@saf.com`)}
+                />
               </View>
             </ThemeProvider>
           </Section>
