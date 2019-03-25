@@ -82,6 +82,13 @@ type Person {
   dob: DateTime
   team: Team
   teamCode: String
+  lesson1: Boolean @default(value: "false")
+  lesson2: Boolean @default(value: "false")
+  lesson3: Boolean @default(value: "false")
+  lesson4: Boolean @default(value: "false")
+  lesson5: Boolean @default(value: "false")
+  lesson6: Boolean @default(value: "false")
+  lesson7: Boolean @default(value: "false")
 }
 
 type Attendance {

@@ -492,6 +492,20 @@ export type PersonOrderByInput =
   | "dob_DESC"
   | "teamCode_ASC"
   | "teamCode_DESC"
+  | "lesson1_ASC"
+  | "lesson1_DESC"
+  | "lesson2_ASC"
+  | "lesson2_DESC"
+  | "lesson3_ASC"
+  | "lesson3_DESC"
+  | "lesson4_ASC"
+  | "lesson4_DESC"
+  | "lesson5_ASC"
+  | "lesson5_DESC"
+  | "lesson6_ASC"
+  | "lesson6_DESC"
+  | "lesson7_ASC"
+  | "lesson7_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -655,6 +669,13 @@ export interface PersonUpdateInput {
   dob?: DateTimeInput;
   team?: TeamUpdateOneInput;
   teamCode?: String;
+  lesson1?: Boolean;
+  lesson2?: Boolean;
+  lesson3?: Boolean;
+  lesson4?: Boolean;
+  lesson5?: Boolean;
+  lesson6?: Boolean;
+  lesson7?: Boolean;
 }
 
 export interface ContactSiteUpsertWithWhereUniqueNestedInput {
@@ -845,6 +866,20 @@ export interface PersonWhereInput {
   teamCode_not_starts_with?: String;
   teamCode_ends_with?: String;
   teamCode_not_ends_with?: String;
+  lesson1?: Boolean;
+  lesson1_not?: Boolean;
+  lesson2?: Boolean;
+  lesson2_not?: Boolean;
+  lesson3?: Boolean;
+  lesson3_not?: Boolean;
+  lesson4?: Boolean;
+  lesson4_not?: Boolean;
+  lesson5?: Boolean;
+  lesson5_not?: Boolean;
+  lesson6?: Boolean;
+  lesson6_not?: Boolean;
+  lesson7?: Boolean;
+  lesson7_not?: Boolean;
   AND?: PersonWhereInput[] | PersonWhereInput;
   OR?: PersonWhereInput[] | PersonWhereInput;
   NOT?: PersonWhereInput[] | PersonWhereInput;
@@ -968,6 +1003,13 @@ export interface PersonCreateInput {
   dob?: DateTimeInput;
   team?: TeamCreateOneInput;
   teamCode?: String;
+  lesson1?: Boolean;
+  lesson2?: Boolean;
+  lesson3?: Boolean;
+  lesson4?: Boolean;
+  lesson5?: Boolean;
+  lesson6?: Boolean;
+  lesson7?: Boolean;
 }
 
 export interface TeamUpdateInput {
@@ -1007,6 +1049,13 @@ export interface PersonUpdateManyMutationInput {
   openingNight?: Boolean;
   dob?: DateTimeInput;
   teamCode?: String;
+  lesson1?: Boolean;
+  lesson2?: Boolean;
+  lesson3?: Boolean;
+  lesson4?: Boolean;
+  lesson5?: Boolean;
+  lesson6?: Boolean;
+  lesson7?: Boolean;
 }
 
 export interface UserCreateOneInput {
@@ -1834,6 +1883,13 @@ export interface Person {
   openingNight?: Boolean;
   dob?: DateTimeOutput;
   teamCode?: String;
+  lesson1?: Boolean;
+  lesson2?: Boolean;
+  lesson3?: Boolean;
+  lesson4?: Boolean;
+  lesson5?: Boolean;
+  lesson6?: Boolean;
+  lesson7?: Boolean;
 }
 
 export interface PersonPromise extends Promise<Person>, Fragmentable {
@@ -1871,6 +1927,13 @@ export interface PersonPromise extends Promise<Person>, Fragmentable {
   dob: () => Promise<DateTimeOutput>;
   team: <T = TeamPromise>() => T;
   teamCode: () => Promise<String>;
+  lesson1: () => Promise<Boolean>;
+  lesson2: () => Promise<Boolean>;
+  lesson3: () => Promise<Boolean>;
+  lesson4: () => Promise<Boolean>;
+  lesson5: () => Promise<Boolean>;
+  lesson6: () => Promise<Boolean>;
+  lesson7: () => Promise<Boolean>;
 }
 
 export interface PersonSubscription
@@ -1910,6 +1973,13 @@ export interface PersonSubscription
   dob: () => Promise<AsyncIterator<DateTimeOutput>>;
   team: <T = TeamSubscription>() => T;
   teamCode: () => Promise<AsyncIterator<String>>;
+  lesson1: () => Promise<AsyncIterator<Boolean>>;
+  lesson2: () => Promise<AsyncIterator<Boolean>>;
+  lesson3: () => Promise<AsyncIterator<Boolean>>;
+  lesson4: () => Promise<AsyncIterator<Boolean>>;
+  lesson5: () => Promise<AsyncIterator<Boolean>>;
+  lesson6: () => Promise<AsyncIterator<Boolean>>;
+  lesson7: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface AggregateAttendance {
@@ -2712,6 +2782,13 @@ export interface PersonPreviousValues {
   openingNight?: Boolean;
   dob?: DateTimeOutput;
   teamCode?: String;
+  lesson1?: Boolean;
+  lesson2?: Boolean;
+  lesson3?: Boolean;
+  lesson4?: Boolean;
+  lesson5?: Boolean;
+  lesson6?: Boolean;
+  lesson7?: Boolean;
 }
 
 export interface PersonPreviousValuesPromise
@@ -2736,6 +2813,13 @@ export interface PersonPreviousValuesPromise
   openingNight: () => Promise<Boolean>;
   dob: () => Promise<DateTimeOutput>;
   teamCode: () => Promise<String>;
+  lesson1: () => Promise<Boolean>;
+  lesson2: () => Promise<Boolean>;
+  lesson3: () => Promise<Boolean>;
+  lesson4: () => Promise<Boolean>;
+  lesson5: () => Promise<Boolean>;
+  lesson6: () => Promise<Boolean>;
+  lesson7: () => Promise<Boolean>;
 }
 
 export interface PersonPreviousValuesSubscription
@@ -2760,6 +2844,13 @@ export interface PersonPreviousValuesSubscription
   openingNight: () => Promise<AsyncIterator<Boolean>>;
   dob: () => Promise<AsyncIterator<DateTimeOutput>>;
   teamCode: () => Promise<AsyncIterator<String>>;
+  lesson1: () => Promise<AsyncIterator<Boolean>>;
+  lesson2: () => Promise<AsyncIterator<Boolean>>;
+  lesson3: () => Promise<AsyncIterator<Boolean>>;
+  lesson4: () => Promise<AsyncIterator<Boolean>>;
+  lesson5: () => Promise<AsyncIterator<Boolean>>;
+  lesson6: () => Promise<AsyncIterator<Boolean>>;
+  lesson7: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface NoteEdge {

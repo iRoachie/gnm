@@ -832,6 +832,13 @@ type Person {
   dob: DateTime
   team: Team
   teamCode: String
+  lesson1: Boolean
+  lesson2: Boolean
+  lesson3: Boolean
+  lesson4: Boolean
+  lesson5: Boolean
+  lesson6: Boolean
+  lesson7: Boolean
 }
 
 type PersonConnection {
@@ -864,6 +871,13 @@ input PersonCreateInput {
   dob: DateTime
   team: TeamCreateOneInput
   teamCode: String
+  lesson1: Boolean
+  lesson2: Boolean
+  lesson3: Boolean
+  lesson4: Boolean
+  lesson5: Boolean
+  lesson6: Boolean
+  lesson7: Boolean
 }
 
 input PersonCreateOneInput {
@@ -915,6 +929,20 @@ enum PersonOrderByInput {
   dob_DESC
   teamCode_ASC
   teamCode_DESC
+  lesson1_ASC
+  lesson1_DESC
+  lesson2_ASC
+  lesson2_DESC
+  lesson3_ASC
+  lesson3_DESC
+  lesson4_ASC
+  lesson4_DESC
+  lesson5_ASC
+  lesson5_DESC
+  lesson6_ASC
+  lesson6_DESC
+  lesson7_ASC
+  lesson7_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -941,6 +969,13 @@ type PersonPreviousValues {
   openingNight: Boolean
   dob: DateTime
   teamCode: String
+  lesson1: Boolean
+  lesson2: Boolean
+  lesson3: Boolean
+  lesson4: Boolean
+  lesson5: Boolean
+  lesson6: Boolean
+  lesson7: Boolean
 }
 
 type PersonStatus {
@@ -1112,6 +1147,13 @@ input PersonUpdateInput {
   dob: DateTime
   team: TeamUpdateOneInput
   teamCode: String
+  lesson1: Boolean
+  lesson2: Boolean
+  lesson3: Boolean
+  lesson4: Boolean
+  lesson5: Boolean
+  lesson6: Boolean
+  lesson7: Boolean
 }
 
 input PersonUpdateManyMutationInput {
@@ -1133,6 +1175,13 @@ input PersonUpdateManyMutationInput {
   openingNight: Boolean
   dob: DateTime
   teamCode: String
+  lesson1: Boolean
+  lesson2: Boolean
+  lesson3: Boolean
+  lesson4: Boolean
+  lesson5: Boolean
+  lesson6: Boolean
+  lesson7: Boolean
 }
 
 input PersonWhereInput {
@@ -1293,6 +1342,20 @@ input PersonWhereInput {
   teamCode_not_starts_with: String
   teamCode_ends_with: String
   teamCode_not_ends_with: String
+  lesson1: Boolean
+  lesson1_not: Boolean
+  lesson2: Boolean
+  lesson2_not: Boolean
+  lesson3: Boolean
+  lesson3_not: Boolean
+  lesson4: Boolean
+  lesson4_not: Boolean
+  lesson5: Boolean
+  lesson5_not: Boolean
+  lesson6: Boolean
+  lesson6_not: Boolean
+  lesson7: Boolean
+  lesson7_not: Boolean
   AND: [PersonWhereInput!]
   OR: [PersonWhereInput!]
   NOT: [PersonWhereInput!]
