@@ -89,6 +89,12 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
           inputStyle: {
             fontFamily: Theme.fonts.medium,
           },
+          labelStyle: {
+            fontFamily: Theme.fonts.semibold,
+            color: 'rgba(0,0,0,.54)',
+            fontSize: 15,
+            fontWeight: Platform.OS === 'ios' ? '600' : '400',
+          },
         },
       }}
     >
@@ -110,7 +116,7 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
           <Text style={styles.signText}>Sign in</Text>
 
           <Input
-            placeholder="Church email address"
+            label="Church email address"
             ref={emailRef}
             returnKeyType="next"
             value={email}
@@ -122,7 +128,7 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
           />
 
           <Input
-            placeholder="Password"
+            label="Password"
             returnKeyType="done"
             secureTextEntry
             value={password}

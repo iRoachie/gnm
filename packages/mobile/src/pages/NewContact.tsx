@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   Input,
@@ -7,7 +7,7 @@ import {
   CheckBox,
   TextProps,
 } from 'react-native-elements';
-import { Appbar, DefaultTheme, List } from 'react-native-paper';
+import { Appbar } from 'react-native-paper';
 
 import { Theme } from '../util';
 import { NavigationScreenProps } from 'react-navigation';
@@ -42,9 +42,11 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
           inputContainerStyle: {
             borderBottomColor: '#eee',
           },
-          leftIcon: {
-            name: 'add-circle',
-            color: Theme.primary,
+          labelStyle: {
+            fontFamily: Theme.fonts.semibold,
+            color: 'rgba(0,0,0,.54)',
+            fontSize: 15,
+            fontWeight: Platform.OS === 'ios' ? '600' : '400',
           },
           leftIconContainerStyle: {
             marginLeft: 0,
@@ -54,7 +56,6 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
             fontSize: 15,
             fontFamily: Theme.fonts.medium,
           },
-          placeholderTextColor: 'rgba(0,0,0,.54)',
         },
         CheckBox: {
           containerStyle: {
@@ -89,7 +90,8 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
         >
           <View style={styles.wrapper}>
             <Input
-              placeholder="Name"
+              label="Name"
+              placeholder="Full name"
               value={name}
               onChangeText={setname}
               leftIcon={undefined}
@@ -114,26 +116,22 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
             </View>
 
             <Input
-              placeholder="Add email"
+              label="Email"
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
               clearButtonMode="while-editing"
             />
             <Input
-              placeholder="Add phone"
+              label="Phone"
               value={phone}
               onChangeText={setPhone}
               keyboardType="phone-pad"
             />
-            <Input
-              placeholder="Add addess"
-              value={address}
-              onChangeText={setAddress}
-            />
+            <Input label="Addess" value={address} onChangeText={setAddress} />
 
             <Input
-              placeholder="Add age"
+              label="Age"
               value={age}
               onChangeText={setAge}
               keyboardType="number-pad"
@@ -141,7 +139,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
             />
 
             <Input
-              placeholder="Notes"
+              label="Notes"
               value={notes}
               onChangeText={setNotes}
               leftIcon={undefined}
@@ -149,6 +147,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
                 backgroundColor: '#E5E6E5',
                 padding: 15,
                 paddingTop: 15,
+                marginTop: 15,
                 minHeight: 150,
                 borderWidth: 1,
                 borderColor: '#D7D9D8',
