@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -12,16 +12,35 @@ import { NavigationScreenProps } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, Input, ThemeProvider } from 'react-native-elements';
 import validator from 'validator';
-import AsyncStorage from '@react-native-community/async-storage';
+import { graphql, ChildDataProps } from 'react-apollo';
 
-import { Theme } from '../util';
+import { Theme, AuthContext } from '../util';
+import { loginMutation } from '../graphql';
 
-const Login: React.StatelessComponent<NavigationScreenProps> = props => {
+type Response = {
+  login: {
+    id: string;
+    name: string;
+    email: string;
+    jwt: string;
+  };
+};
+
+type Variables = {
+  email: string;
+  password: string;
+};
+
+type ChildProps = ChildDataProps<NavigationScreenProps, Response, Variables>;
+
+const Login: React.FunctionComponent<ChildProps> = props => {
   const [email, updateEmail] = useState('');
   const [password, updatePassword] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loading, updateLoading] = useState(false);
+  const { updateUser } = useContext(AuthContext);
 
   const emailRef = React.createRef<Input>();
   const passwordRef = React.createRef<Input>();
@@ -33,15 +52,12 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
 
     setEmailError('');
     setPasswordError('');
+    setErrorMessage('');
 
     try {
       await validate();
       updateLoading(true);
-      await AsyncStorage.setItem('userState', 'test');
-
-      setTimeout(() => {
-        props.navigation.navigate('App');
-      }, 1000);
+      await login();
     } catch (e) {
       if (e.emailError) {
         setEmailError(e.emailError);
@@ -49,6 +65,32 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
 
       if (e.passwordError) {
         setPasswordError(e.passwordError);
+      }
+    }
+  };
+
+  const login = async () => {
+    try {
+      const {
+        data: { login },
+      } = await props.mutate({
+        variables: {
+          email,
+          password,
+        },
+      });
+
+      await updateUser(login);
+
+      setTimeout(() => {
+        props.navigation.navigate('App');
+      }, 1000);
+    } catch (error) {
+      if (error.graphQLErrors) {
+        setTimeout(() => {
+          setErrorMessage(error.graphQLErrors[0].message);
+          updateLoading(false);
+        }, 1000);
       }
     }
   };
@@ -124,6 +166,7 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
             keyboardType="email-address"
             onSubmitEditing={() => passwordRef.current!.focus()}
             editable={!loading}
+            autoCapitalize="none"
             errorMessage={emailError}
           />
 
@@ -138,6 +181,8 @@ const Login: React.StatelessComponent<NavigationScreenProps> = props => {
             editable={!loading}
             errorMessage={passwordError}
           />
+
+          <Text style={styles.errorMessage}>{errorMessage}</Text>
 
           <Button
             title="Sign in"
@@ -177,6 +222,11 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontFamily: Theme.fonts.medium,
   },
+  errorMessage: {
+    color: 'red',
+  },
 });
 
-export default Login;
+export default graphql<{}, Response, Variables, ChildProps>(loginMutation)(
+  Login
+);

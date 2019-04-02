@@ -6,10 +6,12 @@ import {
 } from 'react-navigation';
 import { StatusBar } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { ApolloProvider } from 'react-apollo';
 
-import { Login, AuthLoading, NewContact, AddContactSuccess } from './pages';
-import { Theme } from './util';
+import { Login, NewContact, AddContactSuccess } from './pages';
 import Tabs from './containers/Tabs';
+import graphqlClient from './graphql';
+import { Theme, AuthProvider, AuthLoading } from './util';
 
 const ModalStack = createStackNavigator(
   {
@@ -46,10 +48,17 @@ const theme = {
 };
 
 export default () => (
-  <React.Fragment>
-    <StatusBar backgroundColor={Theme.darkPrimary} barStyle="light-content" />
-    <PaperProvider theme={theme}>
-      <Root />
-    </PaperProvider>
-  </React.Fragment>
+  <AuthProvider>
+    <ApolloProvider client={graphqlClient}>
+      <React.Fragment>
+        <StatusBar
+          backgroundColor={Theme.darkPrimary}
+          barStyle="light-content"
+        />
+        <PaperProvider theme={theme}>
+          <Root />
+        </PaperProvider>
+      </React.Fragment>
+    </ApolloProvider>
+  </AuthProvider>
 );

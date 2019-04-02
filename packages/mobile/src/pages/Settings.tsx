@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View } from 'react-native';
 import { Appbar, List } from 'react-native-paper';
-import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Loading } from '../components';
-import { Theme } from '../util';
+import { Theme, AuthContext } from '../util';
 
 const Settings: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const [loading, setLoading] = useState(false);
+  const { updateUser } = useContext(AuthContext);
 
   const signOut = async () => {
     setLoading(true);
-    await AsyncStorage.removeItem('userState');
+    await updateUser(null);
 
     setTimeout(() => {
       setLoading(false);
