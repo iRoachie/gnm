@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "prisma": "prisma",
-    "start:dev": "nodemon -e js,graphql,prisma src/index.js",
+    "start:dev": "nodemon -r dotenv/config -e js,graphql,prisma src/index.js dotenv_config_path=.env.dev",
     "start:prod": "node src/index.js",
     "reset:dev": "prisma reset --env-file .env.dev",
     "reset:prod": "prisma reset --env-file .env.prod",
