@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, ScrollView, ActivityIndicator } from 'react-native';
+import { View, ScrollView, ActivityIndicator, Text } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { Appbar } from 'react-native-paper';
 import thousands from 'thousands';
@@ -35,52 +35,60 @@ const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
 
   return (
     <View style={{ flex: 1, backgroundColor: Theme.background }}>
-      <Appbar.Header {...Theme.Appbar.Header}>
-        <Appbar.Content title={user} {...Theme.Appbar.Content} />
-      </Appbar.Header>
-
-      <Query query={dashboardQuery}>
-        {({ loading, error, data }) => {
-          if (loading) return <ActivityIndicator style={{ marginTop: 16 }} />;
-
-          if (error) return `Error!: ${error}`;
-
+      <Query query={dashboardQuery} notifyOnNetworkStatusChange>
+        {({ loading, error, data, refetch }) => {
           return (
-            <ScrollView>
-              <View style={{ padding: 16 }}>
-                <TotalBanner total={data.total.count} onPress={addContact} />
+            <React.Fragment>
+              <Appbar.Header {...Theme.Appbar.Header}>
+                <Appbar.Content title={user} {...Theme.Appbar.Content} />
+                <Appbar.Action icon="refresh" onPress={() => refetch()} />
+              </Appbar.Header>
 
-                <Divider style={{ marginTop: 20, marginBottom: 15 }} />
+              {loading ? (
+                <ActivityIndicator style={{ marginTop: 16 }} />
+              ) : error ? (
+                `Error!: ${error}`
+              ) : (
+                <ScrollView>
+                  <View style={{ padding: 16 }}>
+                    <TotalBanner
+                      total={data.total.count}
+                      onPress={addContact}
+                    />
 
-                <View style={{ flexDirection: 'row' }}>
-                  <DashboardSquare
-                    caption="Contacts"
-                    value={thousands(data.contacts.count)}
-                    backgroundColor="#3F51B5"
-                  />
-                  <View style={{ width: 10 }} />
-                  <DashboardSquare
-                    caption="Interests"
-                    value={thousands(data.interests.count)}
-                    backgroundColor="#E64A19"
-                  />
-                </View>
+                    <Divider style={{ marginTop: 20, marginBottom: 15 }} />
 
-                <View style={{ flexDirection: 'row' }}>
-                  <DashboardSquare
-                    caption="Prospects"
-                    value={thousands(data.prospects.count)}
-                    backgroundColor="#4CAF50"
-                  />
-                  <View style={{ width: 10 }} />
-                  <DashboardSquare
-                    caption="Members"
-                    value={thousands(data.members.count)}
-                    backgroundColor="#FFA000"
-                  />
-                </View>
-              </View>
-            </ScrollView>
+                    <View style={{ flexDirection: 'row' }}>
+                      <DashboardSquare
+                        caption="Contacts"
+                        value={thousands(data.contacts.count)}
+                        backgroundColor="#3F51B5"
+                      />
+                      <View style={{ width: 10 }} />
+                      <DashboardSquare
+                        caption="Interests"
+                        value={thousands(data.interests.count)}
+                        backgroundColor="#E64A19"
+                      />
+                    </View>
+
+                    <View style={{ flexDirection: 'row' }}>
+                      <DashboardSquare
+                        caption="Prospects"
+                        value={thousands(data.prospects.count)}
+                        backgroundColor="#4CAF50"
+                      />
+                      <View style={{ width: 10 }} />
+                      <DashboardSquare
+                        caption="Members"
+                        value={thousands(data.members.count)}
+                        backgroundColor="#FFA000"
+                      />
+                    </View>
+                  </View>
+                </ScrollView>
+              )}
+            </React.Fragment>
           );
         }}
       </Query>
