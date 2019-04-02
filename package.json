@@ -7,8 +7,8 @@
     "server": "yarn workspace @gnm/server"
   },
   "workspaces": [
-    "packages/core",
-    "packages/server",
-    "packages/website"
+    "core",
+    "server",
+    "website"
   ]
 }
