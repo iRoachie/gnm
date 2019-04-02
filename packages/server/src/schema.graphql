@@ -305,6 +305,12 @@ type Query {
     before: String
     first: Int
     last: Int
-  ): [Person]!
+  ): PersonsResponse!
+  personsCount(where: PersonWhereInput): Int
   person(where: PersonWhereUniqueInput): Person
+}
+
+type PersonsResponse {
+  count: Int
+  data: [Person]!
 }
