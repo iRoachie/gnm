@@ -86,12 +86,16 @@ const Login: React.FunctionComponent<ChildProps> = props => {
         props.navigation.navigate('App');
       }, 1000);
     } catch (error) {
-      if (error.graphQLErrors) {
-        setTimeout(() => {
-          setErrorMessage(error.graphQLErrors[0].message);
-          updateLoading(false);
-        }, 1000);
+      let message = `Couldn't sign in at this time. Try again later.`;
+
+      if (error.graphQLErrors.length > 0) {
+        message = error.graphQLErrors[0].message;
       }
+
+      setTimeout(() => {
+        setErrorMessage(message);
+        updateLoading(false);
+      }, 1000);
     }
   };
 
