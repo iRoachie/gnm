@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, ScrollView, ActivityIndicator, Text } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Divider } from 'react-native-elements';
-import { Appbar } from 'react-native-paper';
+import { ActivityIndicator, Appbar } from 'react-native-paper';
 import thousands from 'thousands';
 import { NavigationScreenProps } from 'react-navigation';
 import { Query } from 'react-apollo';
