@@ -20,4 +20,5 @@ const client = new ApolloClient({
 });
 
 export * from './mutations';
+export * from './queries';
 export default client;
