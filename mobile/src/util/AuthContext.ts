@@ -9,7 +9,7 @@ interface UserDetails {
 
 type Values = {
   getUser: () => Promise<UserDetails> | void;
-  updateUser: (details: UserDetails | null) => Promise<UserDetails> | void;
+  updateUser: (details: UserDetails | null) => void;
 };
 
 const AuthContext = React.createContext<Values>({
