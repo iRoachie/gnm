@@ -141,6 +141,9 @@ const Login: React.FunctionComponent<ChildProps> = props => {
             fontSize: 15,
             fontWeight: Platform.OS === 'ios' ? '600' : '400',
           },
+          errorStyle: {
+            fontFamily: Theme.fonts.medium,
+          },
         },
       }}
     >
@@ -228,6 +231,8 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     color: 'red',
+    fontFamily: Theme.fonts.medium,
+    fontSize: 16,
   },
 });
 
