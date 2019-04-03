@@ -3,7 +3,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { Platform } from 'react-native';
 
 const client = new ApolloClient({
-  uri: Platform.OS === 'ios' ? 'http://localhost:4000' : 'http://10.0.2.2:4000',
+  uri:
+    Platform.OS === 'ios' ? 'http://localhost:4000' : 'http://192.168.1.2:4000',
   request: async operation => {
     let state = await AsyncStorage.getItem('userState');
     const info = state ? JSON.parse(state) : null;
