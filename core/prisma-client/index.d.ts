@@ -464,6 +464,8 @@ export type PersonOrderByInput =
   | "password_DESC"
   | "telephone_ASC"
   | "telephone_DESC"
+  | "cellphone_ASC"
+  | "cellphone_DESC"
   | "address_ASC"
   | "address_DESC"
   | "sex_ASC"
@@ -650,6 +652,7 @@ export interface PersonUpdateInput {
   email?: String;
   password?: String;
   telephone?: String;
+  cellphone?: String;
   status?: PersonStatusUpdateOneRequiredInput;
   address?: String;
   sex?: Sex;
@@ -779,6 +782,20 @@ export interface PersonWhereInput {
   telephone_not_starts_with?: String;
   telephone_ends_with?: String;
   telephone_not_ends_with?: String;
+  cellphone?: String;
+  cellphone_not?: String;
+  cellphone_in?: String[] | String;
+  cellphone_not_in?: String[] | String;
+  cellphone_lt?: String;
+  cellphone_lte?: String;
+  cellphone_gt?: String;
+  cellphone_gte?: String;
+  cellphone_contains?: String;
+  cellphone_not_contains?: String;
+  cellphone_starts_with?: String;
+  cellphone_not_starts_with?: String;
+  cellphone_ends_with?: String;
+  cellphone_not_ends_with?: String;
   status?: PersonStatusWhereInput;
   address?: String;
   address_not?: String;
@@ -984,6 +1001,7 @@ export interface PersonCreateInput {
   email?: String;
   password?: String;
   telephone?: String;
+  cellphone?: String;
   status: PersonStatusCreateOneInput;
   address?: String;
   sex: Sex;
@@ -1035,6 +1053,7 @@ export interface PersonUpdateManyMutationInput {
   email?: String;
   password?: String;
   telephone?: String;
+  cellphone?: String;
   address?: String;
   sex?: Sex;
   religion?: String;
@@ -1869,6 +1888,7 @@ export interface Person {
   email?: String;
   password?: String;
   telephone?: String;
+  cellphone?: String;
   address?: String;
   sex: Sex;
   religion?: String;
@@ -1898,6 +1918,7 @@ export interface PersonPromise extends Promise<Person>, Fragmentable {
   email: () => Promise<String>;
   password: () => Promise<String>;
   telephone: () => Promise<String>;
+  cellphone: () => Promise<String>;
   status: <T = PersonStatusPromise>() => T;
   address: () => Promise<String>;
   sex: () => Promise<Sex>;
@@ -1944,6 +1965,7 @@ export interface PersonSubscription
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   telephone: () => Promise<AsyncIterator<String>>;
+  cellphone: () => Promise<AsyncIterator<String>>;
   status: <T = PersonStatusSubscription>() => T;
   address: () => Promise<AsyncIterator<String>>;
   sex: () => Promise<AsyncIterator<Sex>>;
@@ -2768,6 +2790,7 @@ export interface PersonPreviousValues {
   email?: String;
   password?: String;
   telephone?: String;
+  cellphone?: String;
   address?: String;
   sex: Sex;
   religion?: String;
@@ -2799,6 +2822,7 @@ export interface PersonPreviousValuesPromise
   email: () => Promise<String>;
   password: () => Promise<String>;
   telephone: () => Promise<String>;
+  cellphone: () => Promise<String>;
   address: () => Promise<String>;
   sex: () => Promise<Sex>;
   religion: () => Promise<String>;
@@ -2830,6 +2854,7 @@ export interface PersonPreviousValuesSubscription
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   telephone: () => Promise<AsyncIterator<String>>;
+  cellphone: () => Promise<AsyncIterator<String>>;
   address: () => Promise<AsyncIterator<String>>;
   sex: () => Promise<AsyncIterator<Sex>>;
   religion: () => Promise<AsyncIterator<String>>;

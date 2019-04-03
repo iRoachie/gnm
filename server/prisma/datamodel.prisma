@@ -63,6 +63,7 @@ type Person {
   email: String
   password: String
   telephone: String
+  cellphone: String
   status: PersonStatus!
   address: String
   sex: Sex!

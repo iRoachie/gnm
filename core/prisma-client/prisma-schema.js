@@ -818,6 +818,7 @@ type Person {
   email: String
   password: String
   telephone: String
+  cellphone: String
   status: PersonStatus!
   address: String
   sex: Sex!
@@ -857,6 +858,7 @@ input PersonCreateInput {
   email: String
   password: String
   telephone: String
+  cellphone: String
   status: PersonStatusCreateOneInput!
   address: String
   sex: Sex!
@@ -906,6 +908,8 @@ enum PersonOrderByInput {
   password_DESC
   telephone_ASC
   telephone_DESC
+  cellphone_ASC
+  cellphone_DESC
   address_ASC
   address_DESC
   sex_ASC
@@ -960,6 +964,7 @@ type PersonPreviousValues {
   email: String
   password: String
   telephone: String
+  cellphone: String
   address: String
   sex: Sex!
   religion: String
@@ -1133,6 +1138,7 @@ input PersonUpdateInput {
   email: String
   password: String
   telephone: String
+  cellphone: String
   status: PersonStatusUpdateOneRequiredInput
   address: String
   sex: Sex
@@ -1166,6 +1172,7 @@ input PersonUpdateManyMutationInput {
   email: String
   password: String
   telephone: String
+  cellphone: String
   address: String
   sex: Sex
   religion: String
@@ -1260,6 +1267,20 @@ input PersonWhereInput {
   telephone_not_starts_with: String
   telephone_ends_with: String
   telephone_not_ends_with: String
+  cellphone: String
+  cellphone_not: String
+  cellphone_in: [String!]
+  cellphone_not_in: [String!]
+  cellphone_lt: String
+  cellphone_lte: String
+  cellphone_gt: String
+  cellphone_gte: String
+  cellphone_contains: String
+  cellphone_not_contains: String
+  cellphone_starts_with: String
+  cellphone_not_starts_with: String
+  cellphone_ends_with: String
+  cellphone_not_ends_with: String
   status: PersonStatusWhereInput
   address: String
   address_not: String
