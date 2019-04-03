@@ -22,6 +22,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   const [address, setAddress] = useState('');
   const [age, setAge] = useState('');
   const [notes, setNotes] = useState('');
+  const [teamCode, setTeamCode] = useState('');
 
   const saveContact = () => {
     // Save Contact
@@ -114,6 +115,13 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
                 onPress={() => setSex('female')}
               />
             </View>
+
+            <Input
+              label="Team Code"
+              placeholder="Optional"
+              value={teamCode}
+              onChangeText={setTeamCode}
+            />
 
             <Input
               label="Email"
