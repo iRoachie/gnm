@@ -23,3 +23,15 @@ export const dashboardQuery = gql`
     }
   }
 `;
+
+export const contactsQuery = gql`
+  query ContactsQuery($search: String) {
+    persons(where: { name_contains: $search }) {
+      data {
+        id
+        name
+        address
+      }
+    }
+  }
+`;
