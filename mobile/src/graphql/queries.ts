@@ -35,3 +35,40 @@ export const contactsQuery = gql`
     }
   }
 `;
+
+export const viewContactQuery = gql`
+  query ViewContactQuery($id: ID!) {
+    person(where: { id: $id }) {
+      id
+      name
+      status {
+        title
+      }
+      age
+      sex
+      address
+      telephone
+      cellphone
+      email
+      lesson1
+      lesson2
+      lesson3
+      lesson4
+      lesson5
+      lesson6
+      lesson7
+      handbill
+      letter
+      invitation
+      guestTag
+      transport
+      notes {
+        message
+        date
+        user {
+          name
+        }
+      }
+    }
+  }
+`;

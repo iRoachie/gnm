@@ -3,8 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Theme } from '../../../util';
 
 interface BlockValueProps {
-  label: string;
-  value: string;
+  label: string | number;
+  value: string | number;
 }
 
 const BlockValue: React.StatelessComponent<BlockValueProps> = ({

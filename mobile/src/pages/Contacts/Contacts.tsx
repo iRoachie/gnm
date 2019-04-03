@@ -30,8 +30,8 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
     //
   };
 
-  const viewContact = (contact: any) => {
-    navigation.push('ViewContact', { contact });
+  const viewContact = (contact: Person) => {
+    navigation.push('ViewContact', { id: contact.id });
   };
 
   const updateSearch = (value: string) => {

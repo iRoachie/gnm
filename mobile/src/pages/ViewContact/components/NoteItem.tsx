@@ -2,21 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { Theme } from '../../../util';
+import { MergedNote } from '../../../types';
 
 interface NoteProps {
-  note: {
-    id: string;
-    comment: string;
-    name: string;
-    date: string;
-  };
+  note: MergedNote;
 }
 
 const NoteItem: React.StatelessComponent<NoteProps> = ({ note }) => (
   <View style={styles.container}>
-    <Text style={styles.comment}>{note.comment}</Text>
+    <Text style={styles.comment}>{note.message}</Text>
 
-    <Text style={styles.meta}>{`${note.name} • ${note.date}`}</Text>
+    <Text style={styles.meta}>{`${note.user.name} • ${note.date}`}</Text>
   </View>
 );
 
