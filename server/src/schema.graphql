@@ -256,7 +256,7 @@ enum ReturnedUserOrderByInput {
 }
 
 type Mutation {
-  signup(data: UserCreateInput): ReturnedUser!
+  registerUser(data: UserCreateInput): ReturnedUser!
   login(email: String!, password: String!): LoggedInUser!
   updateUser(
     data: UserUpdateInput!

@@ -2,7 +2,12 @@
 const validator = require('validator');
 const bcrypt = require('bcrypt');
 
-const { InvalidEmailError, DuplicateEmailError } = require('../../errors');
+const { validateJWT } = require('../../util');
+const {
+  InvalidEmailError,
+  DuplicateEmailError,
+  InsufficientPermissionsError,
+} = require('../../errors');
 
 /**
  *
@@ -11,8 +16,15 @@ const { InvalidEmailError, DuplicateEmailError } = require('../../errors');
  * @param {import("@gnm/core/prisma-client").UserCreateInput} args.data
  * @param {object} context
  * @param {import("@gnm/core/prisma-client").Prisma} context.prisma
+ * @param {string} [context.token]
  */
 const signup = async (parent, { data }, context) => {
+  const { permissions } = await validateJWT(context.token);
+
+  if (!permissions.includes('User:Create')) {
+    throw new InsufficientPermissionsError();
+  }
+
   if (!validator.isEmail(data.email)) {
     throw new InvalidEmailError();
   }
