@@ -14,10 +14,10 @@ interface SectionProps extends ViewProperties {
   hideDivider?: boolean;
   style?: StyleProp<ViewStyle>;
   padded?: boolean;
-  children?: React.ReactChildren;
+  children?: React.ReactNode;
 }
 
-const Section: React.StatelessComponent<SectionProps> = ({
+const Section: React.FunctionComponent<SectionProps> = ({
   padded = true,
   hideDivider,
   children,

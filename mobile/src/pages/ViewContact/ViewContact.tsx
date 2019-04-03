@@ -18,7 +18,7 @@ import BlockValue from './components/BlockValue';
 
 import { comments } from './mock';
 
-const ViewContact: React.StatelessComponent<NavigationScreenProps> = ({
+const ViewContact: React.FunctionComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const editContact = () => {
@@ -151,6 +151,58 @@ const ViewContact: React.StatelessComponent<NavigationScreenProps> = ({
                 <CheckBox checked={false} title="6" />
                 <CheckBox checked={false} title="7" />
               </View>
+            </ThemeProvider>
+          </Section>
+
+          <Section title="Received">
+            <ThemeProvider
+              theme={{
+                CheckBox: {
+                  containerStyle: {
+                    marginLeft: 0,
+                  },
+                  Component: View,
+                  checkedColor: Theme.primary,
+                },
+              }}
+            >
+              <View style={{ flexDirection: 'row' }}>
+                <CheckBox
+                  checked
+                  title="Handbill"
+                  containerStyle={{ flex: 1 }}
+                />
+                <CheckBox checked title="Letter" containerStyle={{ flex: 1 }} />
+              </View>
+
+              <View style={{ flexDirection: 'row' }}>
+                <CheckBox
+                  checked
+                  title="Invitation"
+                  containerStyle={{ flex: 1 }}
+                />
+                <CheckBox
+                  checked={false}
+                  title="Guest Tag"
+                  containerStyle={{ flex: 1 }}
+                />
+              </View>
+            </ThemeProvider>
+          </Section>
+
+          <Section title="Require Transportation">
+            <ThemeProvider
+              theme={{
+                CheckBox: {
+                  containerStyle: {
+                    marginLeft: 0,
+                  },
+                  Component: View,
+                  checkedColor: Theme.primary,
+                },
+              }}
+            >
+              <CheckBox checked title="Yes" containerStyle={{ flex: 1 }} />
             </ThemeProvider>
           </Section>
 
