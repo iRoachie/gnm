@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.2.1",
@@ -13,7 +14,7 @@
     "lodash.debounce": "^4.0.8",
     "react": "16.8.3",
     "react-apollo": "^2.5.3",
-    "react-native": "0.59.1",
+    "react-native": "0.59.2",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "~1.0.14",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
@@ -25,8 +26,9 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/runtime": "^7.3.4",
+    "@babel/core": "^7.4.0",
+    "@babel/runtime": "^7.4.2",
+    "@react-native-community/eslint-config": "^0.0.3",
     "@types/jest": "^24.0.11",
     "@types/lodash.debounce": "^4.0.6",
     "@types/react": "^16.8.8",
@@ -37,6 +39,7 @@
     "@types/react-test-renderer": "^16.8.1",
     "@types/validator": "^10.9.0",
     "babel-jest": "^24.5.0",
+    "eslint": "^5.15.3",
     "jest": "^24.5.0",
     "metro-react-native-babel-preset": "^0.53.1",
     "react-test-renderer": "16.8.3",
