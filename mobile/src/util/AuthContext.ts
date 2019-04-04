@@ -5,6 +5,10 @@ interface UserDetails {
   name: string;
   email: string;
   jwt: string;
+  contactSites: Array<{
+    id: string;
+    country: string;
+  }>;
 }
 
 type Values = {

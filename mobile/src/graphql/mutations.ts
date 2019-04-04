@@ -7,6 +7,10 @@ export const loginMutation = gql`
       name
       email
       jwt
+      contactSites {
+        id
+        country
+      }
     }
   }
 `;
