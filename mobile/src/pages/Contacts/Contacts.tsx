@@ -36,7 +36,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
 
   const updateSearch = (value: string) => {
     setSearch(value);
-    searchDb(value);
+    searchDb(value.toLowerCase().trim());
   };
 
   return (
