@@ -26,10 +26,6 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
     navigation.navigate('NewContact');
   };
 
-  const toggleFilter = () => {
-    //
-  };
-
   const viewContact = (contact: Person) => {
     navigation.push('ViewContact', { id: contact.id });
   };
@@ -43,7 +39,6 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
     <View style={{ flex: 1 }}>
       <Appbar.Header dark {...Theme.Appbar.Header}>
         <Appbar.Content title="Contacts" {...Theme.Appbar.Content} />
-        <Appbar.Action icon="filter-list" onPress={toggleFilter} />
       </Appbar.Header>
 
       <SearchBar
