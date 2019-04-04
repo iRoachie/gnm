@@ -32,6 +32,8 @@ const registerPerson = async (parent, { data }, context) => {
     data.password = await bcrypt.hash(data.password, 10);
   }
 
+  data.name_search = data.name.toLowerCase();
+
   return context.prisma.createPerson(data);
 };
 

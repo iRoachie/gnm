@@ -60,6 +60,7 @@ type Team {
 type Person {
   id: ID! @unique
   name: String!
+  name_search: String
   email: String
   password: String
   telephone: String

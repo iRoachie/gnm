@@ -17,6 +17,10 @@ const updatePerson = async (parent, args, context) => {
 
   const { permissions, user } = await validateJWT(context.token);
 
+  if (data.name) {
+    data.name_search = data.name.toLowerCase();
+  }
+
   if (permissions.includes('Person:Update')) {
     return context.prisma.updatePerson(args);
   }

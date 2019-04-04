@@ -815,6 +815,7 @@ input PermissionWhereUniqueInput {
 type Person {
   id: ID!
   name: String!
+  name_search: String
   email: String
   password: String
   telephone: String
@@ -855,6 +856,7 @@ type PersonConnection {
 
 input PersonCreateInput {
   name: String!
+  name_search: String
   email: String
   password: String
   telephone: String
@@ -902,6 +904,8 @@ enum PersonOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  name_search_ASC
+  name_search_DESC
   email_ASC
   email_DESC
   password_ASC
@@ -961,6 +965,7 @@ enum PersonOrderByInput {
 type PersonPreviousValues {
   id: ID!
   name: String!
+  name_search: String
   email: String
   password: String
   telephone: String
@@ -1135,6 +1140,7 @@ input PersonSubscriptionWhereInput {
 
 input PersonUpdateInput {
   name: String
+  name_search: String
   email: String
   password: String
   telephone: String
@@ -1169,6 +1175,7 @@ input PersonUpdateInput {
 
 input PersonUpdateManyMutationInput {
   name: String
+  name_search: String
   email: String
   password: String
   telephone: String
@@ -1225,6 +1232,20 @@ input PersonWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  name_search: String
+  name_search_not: String
+  name_search_in: [String!]
+  name_search_not_in: [String!]
+  name_search_lt: String
+  name_search_lte: String
+  name_search_gt: String
+  name_search_gte: String
+  name_search_contains: String
+  name_search_not_contains: String
+  name_search_starts_with: String
+  name_search_not_starts_with: String
+  name_search_ends_with: String
+  name_search_not_ends_with: String
   email: String
   email_not: String
   email_in: [String!]

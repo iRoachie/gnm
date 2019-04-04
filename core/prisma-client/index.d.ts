@@ -458,6 +458,8 @@ export type PersonOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "name_search_ASC"
+  | "name_search_DESC"
   | "email_ASC"
   | "email_DESC"
   | "password_ASC"
@@ -649,6 +651,7 @@ export interface AttendanceWhereInput {
 
 export interface PersonUpdateInput {
   name?: String;
+  name_search?: String;
   email?: String;
   password?: String;
   telephone?: String;
@@ -740,6 +743,20 @@ export interface PersonWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  name_search?: String;
+  name_search_not?: String;
+  name_search_in?: String[] | String;
+  name_search_not_in?: String[] | String;
+  name_search_lt?: String;
+  name_search_lte?: String;
+  name_search_gt?: String;
+  name_search_gte?: String;
+  name_search_contains?: String;
+  name_search_not_contains?: String;
+  name_search_starts_with?: String;
+  name_search_not_starts_with?: String;
+  name_search_ends_with?: String;
+  name_search_not_ends_with?: String;
   email?: String;
   email_not?: String;
   email_in?: String[] | String;
@@ -998,6 +1015,7 @@ export type ContactSiteWhereUniqueInput = AtLeastOne<{
 
 export interface PersonCreateInput {
   name: String;
+  name_search?: String;
   email?: String;
   password?: String;
   telephone?: String;
@@ -1050,6 +1068,7 @@ export interface PersonStatusCreateInput {
 
 export interface PersonUpdateManyMutationInput {
   name?: String;
+  name_search?: String;
   email?: String;
   password?: String;
   telephone?: String;
@@ -1885,6 +1904,7 @@ export interface ContactSiteConnectionSubscription
 export interface Person {
   id: ID_Output;
   name: String;
+  name_search?: String;
   email?: String;
   password?: String;
   telephone?: String;
@@ -1915,6 +1935,7 @@ export interface Person {
 export interface PersonPromise extends Promise<Person>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  name_search: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
   telephone: () => Promise<String>;
@@ -1962,6 +1983,7 @@ export interface PersonSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  name_search: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   telephone: () => Promise<AsyncIterator<String>>;
@@ -2787,6 +2809,7 @@ export interface AggregatePermissionSubscription
 export interface PersonPreviousValues {
   id: ID_Output;
   name: String;
+  name_search?: String;
   email?: String;
   password?: String;
   telephone?: String;
@@ -2819,6 +2842,7 @@ export interface PersonPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  name_search: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
   telephone: () => Promise<String>;
@@ -2851,6 +2875,7 @@ export interface PersonPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  name_search: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   telephone: () => Promise<AsyncIterator<String>>;
