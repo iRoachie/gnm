@@ -1,23 +1,17 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  FlatList,
-  Linking,
-} from 'react-native';
+import { View, Text, ScrollView, FlatList, Linking } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
-import { Appbar, FAB, ActivityIndicator } from 'react-native-paper';
+import { Appbar, ActivityIndicator } from 'react-native-paper';
 import { ListItem, ThemeProvider, CheckBox } from 'react-native-elements';
+import { Query } from 'react-apollo';
 
 import { Person, PersonStatus } from '../../../../core/prisma-client/index';
-import { Theme } from '../../util';
 import NoteItem from './components/NoteItem';
 import Section from './components/Section';
 import BlockValue from './components/BlockValue';
+import Header from './components/Header';
 
-import { Query } from 'react-apollo';
+import { Theme } from '../../util';
 import { viewContactQuery } from '../../graphql';
 import { MergedNote } from '../../types';
 
@@ -61,50 +55,12 @@ const ViewContact: React.FunctionComponent<
 
           return (
             <React.Fragment>
-              <View
-                style={{
-                  backgroundColor: Theme.primary,
-                  paddingLeft: 16,
-                  paddingTop: 8,
-                  paddingBottom: 16,
-                  paddingRight: 16,
-                  zIndex: 2,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#fff',
-                    fontFamily: Theme.fonts.semibold,
-                    fontSize: 30,
-                    marginBottom: -4,
-                  }}
-                >
-                  {person.name}
-                </Text>
-
-                <Text
-                  style={{
-                    color: '#fff',
-                    fontFamily: Theme.fonts.regular,
-                    fontSize: 20,
-                  }}
-                >
-                  {person.status.title}
-                </Text>
-
-                <FAB
-                  color={Theme.primary}
-                  theme={{
-                    colors: {
-                      accent: '#fff',
-                    },
-                  }}
-                  small
-                  style={styles.fab}
-                  icon="edit"
-                  onPress={editContact}
-                />
-              </View>
+              <Header
+                name={person.name}
+                status={person.status.title!}
+                onEdit={editContact}
+                teamCode={person.teamCode}
+              />
 
               <View style={{ backgroundColor: '#fff', flex: 1, zIndex: 1 }}>
                 <ScrollView
@@ -286,14 +242,5 @@ const ViewContact: React.FunctionComponent<
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    right: 16,
-    bottom: -16,
-    zIndex: 2,
-  },
-});
 
 export default ViewContact;

@@ -62,6 +62,7 @@ export const viewContactQuery = gql`
       invitation
       guestTag
       transport
+      teamCode
       notes {
         message
         date
