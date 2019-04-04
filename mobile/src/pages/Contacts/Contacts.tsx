@@ -51,7 +51,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
         }}
         inputContainerStyle={Platform.select({
           ios: {
-            backgroundColor: '#f6f6f6',
+            backgroundColor: '#fff',
           },
         })}
         containerStyle={Platform.select({
