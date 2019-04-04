@@ -5,15 +5,19 @@ import { Appbar, ActivityIndicator } from 'react-native-paper';
 import { ListItem, ThemeProvider, CheckBox } from 'react-native-elements';
 import { Query } from 'react-apollo';
 
-import { Person, PersonStatus } from '../../../../core/prisma-client/index';
+import {
+  Person,
+  PersonStatus,
+  ContactSite,
+} from '../../../../core/prisma-client/index';
 import NoteItem from './components/NoteItem';
 import Section from './components/Section';
 import BlockValue from './components/BlockValue';
 import Header from './components/Header';
 
 import { Theme } from '../../util';
-import { viewContactQuery } from '../../graphql';
 import { MergedNote } from '../../types';
+import gql from 'graphql-tag';
 
 interface ScreenParams {
   id: string;
@@ -22,7 +26,50 @@ interface ScreenParams {
 interface MergedPerson extends Person {
   notes: MergedNote[];
   status: Partial<PersonStatus>;
+  contactSite: Partial<ContactSite>;
 }
+
+const ViewContactQuery = gql`
+  query ViewContactQuery($id: ID!) {
+    person(where: { id: $id }) {
+      id
+      name
+      status {
+        title
+      }
+      contactSite {
+        name
+        country
+      }
+      age
+      sex
+      address
+      telephone
+      cellphone
+      email
+      lesson1
+      lesson2
+      lesson3
+      lesson4
+      lesson5
+      lesson6
+      lesson7
+      handbill
+      letter
+      invitation
+      guestTag
+      transport
+      teamCode
+      notes {
+        message
+        date
+        user {
+          name
+        }
+      }
+    }
+  }
+`;
 
 const ViewContact: React.FunctionComponent<
   NavigationScreenProps<ScreenParams>
@@ -39,7 +86,7 @@ const ViewContact: React.FunctionComponent<
       </Appbar.Header>
 
       <Query<{ person: MergedPerson }>
-        query={viewContactQuery}
+        query={ViewContactQuery}
         variables={{ id: navigation.getParam('id') }}
       >
         {({ loading, error, data, refetch }) => {
@@ -97,6 +144,13 @@ const ViewContact: React.FunctionComponent<
                       }}
                     >
                       <View style={{ marginTop: 16, marginBottom: -14 }}>
+                        <ListItem
+                          title={`${person.contactSite.name} - ${
+                            person.contactSite.country
+                          }`}
+                          subtitle="Contact Site"
+                        />
+
                         {!!person.address && (
                           <ListItem title={person.address} subtitle="Address" />
                         )}
