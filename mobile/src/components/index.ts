@@ -1,3 +1,5 @@
 import Loading from './Loading';
+import Picker from './Picker';
+import Touchable from './Touchable';
 
-export { Loading };
+export { Loading, Picker, Touchable };

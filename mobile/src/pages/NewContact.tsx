@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, StyleSheet, Text, Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
@@ -9,8 +9,10 @@ import {
 } from 'react-native-elements';
 import { Appbar } from 'react-native-paper';
 
-import { Theme } from '../util';
+import { Picker } from '../components';
+import { Theme, AuthContext } from '../util';
 import { NavigationScreenProps } from 'react-navigation';
+import { ContactSite } from '../../../core/prisma-client';
 
 const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
@@ -23,6 +25,27 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   const [age, setAge] = useState('');
   const [notes, setNotes] = useState('');
   const [teamCode, setTeamCode] = useState('');
+  const [sites, setSites] = useState<ContactSite[]>([]);
+  const [contactSite, setContactSite] = useState<ContactSite | null>(null);
+
+  const { getSites, getUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchSites = async () => {
+      const sites = await getSites();
+      const user = await getUser();
+
+      if (sites && user) {
+        setSites(
+          sites
+            .filter(a => a.country === user.contactSites[0].country)
+            .sort((a, b) => (a.name < b.name ? -1 : 1))
+        );
+      }
+    };
+
+    fetchSites();
+  }, []);
 
   const saveContact = () => {
     // Save Contact
@@ -118,9 +141,19 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
 
             <Input
               label="Team Code"
-              placeholder="Optional"
               value={teamCode}
               onChangeText={setTeamCode}
+            />
+
+            <Picker<ContactSite>
+              label="Contact Site"
+              message="Contact Site"
+              displayKey="id"
+              displayValue="name"
+              values={sites}
+              value={contactSite}
+              onPress={a => setContactSite(a)}
+              containerStyle={{ marginBottom: 30 }}
             />
 
             <Input
