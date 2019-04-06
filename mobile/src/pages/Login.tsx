@@ -150,7 +150,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
               width: Dimensions.get('window').width / 2,
               height: Dimensions.get('window').height,
             }}
-            source={require('../assets/blue-g-bg.png')}
+            source={require('../assets/blue-g-bg.jpg')}
             resizeMode="cover"
           />
         )}
