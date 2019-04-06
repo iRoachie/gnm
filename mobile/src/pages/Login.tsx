@@ -223,10 +223,11 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
+    flexGrow: 1,
+    paddingVertical: 30,
   },
   logo: {
     width: 150,
