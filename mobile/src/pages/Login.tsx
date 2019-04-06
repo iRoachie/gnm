@@ -12,10 +12,10 @@ import { NavigationScreenProps } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, Input, ThemeProvider } from 'react-native-elements';
 import validator from 'validator';
-import { graphql, ChildDataProps } from 'react-apollo';
 
 import { Theme, AuthContext } from '../util';
-import { loginMutation } from '../graphql';
+import client, { loginMutation } from '../graphql';
+import { ContactSite } from '../../../core/prisma-client';
 
 type Response = {
   login: {
@@ -23,17 +23,11 @@ type Response = {
     name: string;
     email: string;
     jwt: string;
+    contactSites: ContactSite[];
   };
 };
 
-type Variables = {
-  email: string;
-  password: string;
-};
-
-type ChildProps = ChildDataProps<NavigationScreenProps, Response, Variables>;
-
-const Login: React.FunctionComponent<ChildProps> = props => {
+const Login: React.FunctionComponent<NavigationScreenProps> = props => {
   const [email, updateEmail] = useState('');
   const [password, updatePassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -71,16 +65,15 @@ const Login: React.FunctionComponent<ChildProps> = props => {
 
   const login = async () => {
     try {
-      const {
-        data: { login },
-      } = await props.mutate({
+      const { data } = await client.mutate<Response>({
+        mutation: loginMutation,
         variables: {
           email,
           password,
         },
       });
 
-      await updateUser(login);
+      await updateUser(data!.login);
 
       setTimeout(() => {
         props.navigation.navigate('App');
@@ -134,6 +127,7 @@ const Login: React.FunctionComponent<ChildProps> = props => {
           },
           inputStyle: {
             fontFamily: Theme.fonts.medium,
+            fontSize: 15,
           },
           labelStyle: {
             fontFamily: Theme.fonts.semibold,
@@ -143,6 +137,7 @@ const Login: React.FunctionComponent<ChildProps> = props => {
           },
           errorStyle: {
             fontFamily: Theme.fonts.medium,
+            marginLeft: 0,
           },
         },
       }}
@@ -236,6 +231,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default graphql<{}, Response, Variables, ChildProps>(loginMutation)(
-  Login
-);
+export default Login;
