@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
+import { Dimensions, View, LayoutChangeEvent } from 'react-native';
+import gql from 'graphql-tag';
 
 import client from '../graphql';
 import StateContext from './StateContext';
 import { ContactSite, PersonCreateInput } from '../../../core/prisma-client';
-import gql from 'graphql-tag';
 
 const sitesQuery = gql`
   {
@@ -20,6 +21,9 @@ const sitesQuery = gql`
 const StateProvider: React.FunctionComponent = ({ children }) => {
   const [connected, setConnected] = useState(true);
   const [offlineChanged, setOfflineChanged] = useState(0);
+  const [deviceWidth, setDeviceWidth] = useState(
+    Dimensions.get('window').width
+  );
 
   useEffect(() => {
     NetInfo.isConnected.addEventListener(
@@ -28,6 +32,10 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
     );
     fetchSites();
   }, []);
+
+  const updateDeviceWidth = (e: LayoutChangeEvent) => {
+    setDeviceWidth(e.nativeEvent.layout.width);
+  };
 
   const fetchSites = async () => {
     try {
@@ -82,6 +90,7 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
   return (
     <StateContext.Provider
       value={{
+        isTablet: deviceWidth > 1000,
         connected,
         getUser,
         updateUser,
@@ -92,7 +101,9 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
         removeOfflineContacts,
       }}
     >
-      {children}
+      <View style={{ flex: 1 }} onLayout={updateDeviceWidth}>
+        {children}
+      </View>
     </StateContext.Provider>
   );
 };

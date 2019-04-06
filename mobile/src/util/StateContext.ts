@@ -3,6 +3,7 @@ import { ContactSite, PersonCreateInput } from '../../../core/prisma-client';
 import { UserDetails } from '../types';
 
 type Values = {
+  isTablet: boolean;
   connected: boolean;
   offlineChanged: number;
   addOfflineContact: (details: PersonCreateInput) => void;
@@ -14,6 +15,7 @@ type Values = {
 };
 
 const StateContext = React.createContext<Values>({
+  isTablet: false,
   connected: true,
   offlineChanged: 0,
   addOfflineContact: () => {},
