@@ -117,6 +117,34 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
       )}
 
       {connected && (
+        <SearchBar
+          platform={Platform.OS === 'ios' ? 'ios' : 'android'}
+          placeholder="Search Contacts"
+          inputStyle={{
+            fontSize: 17,
+            fontFamily: Theme.fonts.medium,
+            marginLeft: 10,
+          }}
+          inputContainerStyle={Platform.select({
+            ios: {
+              backgroundColor: '#fff',
+            },
+          })}
+          containerStyle={Platform.select({
+            ios: {
+              backgroundColor: Theme.background,
+            },
+          })}
+          value={search}
+          onChangeText={updateSearch}
+          cancelButtonProps={{
+            color: Theme.primary,
+            buttonTextStyle: { fontFamily: Theme.fonts.medium },
+          }}
+        />
+      )}
+
+      {connected && (
         <Query
           query={contactsQuery}
           notifyOnNetworkStatusChange
@@ -126,59 +154,32 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
             return loading ? (
               <ActivityIndicator style={{ marginTop: 16 }} />
             ) : error ? null : (
-              <>
-                <SearchBar
-                  platform={Platform.OS === 'ios' ? 'ios' : 'android'}
-                  placeholder="Search Contacts"
-                  inputStyle={{
-                    fontSize: 17,
-                    fontFamily: Theme.fonts.medium,
-                    marginLeft: 10,
-                  }}
-                  inputContainerStyle={Platform.select({
-                    ios: {
-                      backgroundColor: '#fff',
-                    },
-                  })}
-                  containerStyle={Platform.select({
-                    ios: {
-                      backgroundColor: Theme.background,
-                    },
-                  })}
-                  value={search}
-                  onChangeText={updateSearch}
-                  cancelButtonProps={{
-                    color: Theme.primary,
-                    buttonTextStyle: { fontFamily: Theme.fonts.medium },
-                  }}
-                />
-                <FlatList<Person>
-                  data={data.persons.data}
-                  keyExtractor={item => item.id}
-                  keyboardShouldPersistTaps="always"
-                  renderItem={({ item }) => (
-                    <List.Item
-                      title={item.name}
-                      titleStyle={{ fontFamily: Theme.fonts.medium }}
-                      descriptionStyle={{ fontFamily: Theme.fonts.regular }}
-                      description={item.address}
-                      onPress={() => viewContact(item)}
-                    />
-                  )}
-                  ListEmptyComponent={
-                    <Text
-                      style={{
-                        textAlign: 'center',
-                        marginTop: 16,
-                        fontSize: 16,
-                        fontFamily: Theme.fonts.regular,
-                      }}
-                    >
-                      No Contacts
-                    </Text>
-                  }
-                />
-              </>
+              <FlatList<Person>
+                data={data.persons.data}
+                keyExtractor={item => item.id}
+                keyboardShouldPersistTaps="always"
+                renderItem={({ item }) => (
+                  <List.Item
+                    title={item.name}
+                    titleStyle={{ fontFamily: Theme.fonts.medium }}
+                    descriptionStyle={{ fontFamily: Theme.fonts.regular }}
+                    description={item.address}
+                    onPress={() => viewContact(item)}
+                  />
+                )}
+                ListEmptyComponent={
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      marginTop: 16,
+                      fontSize: 16,
+                      fontFamily: Theme.fonts.regular,
+                    }}
+                  >
+                    No Contacts
+                  </Text>
+                }
+              />
             );
           }}
         </Query>
