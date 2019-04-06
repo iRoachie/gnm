@@ -73,6 +73,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
         variables={{ search: dbSearch }}
       >
         {({ loading, error, data, refetch }) => {
+          console.log(data)
           return loading ? (
             <ActivityIndicator style={{ marginTop: 16 }} />
           ) : error ? (
@@ -81,6 +82,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
             <FlatList<Person>
               data={data.persons.data}
               keyExtractor={item => item.id}
+              keyboardShouldPersistTaps="always"
               renderItem={({ item }) => (
                 <List.Item
                   title={item.name}

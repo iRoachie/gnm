@@ -1,16 +1,6 @@
 import React from 'react';
 import { ContactSite } from '../../../core/prisma-client';
-
-interface UserDetails {
-  id: string;
-  name: string;
-  email: string;
-  jwt: string;
-  contactSites: Array<{
-    id: string;
-    country: string;
-  }>;
-}
+import { UserDetails } from '../types';
 
 type Values = {
   getSites: () => Promise<Array<ContactSite>> | void;

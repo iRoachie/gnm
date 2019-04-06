@@ -8,25 +8,40 @@ import {
   TextProps,
 } from 'react-native-elements';
 import { Appbar } from 'react-native-paper';
-
-import { Picker } from '../components';
-import { Theme, AuthContext } from '../util';
+import validator from 'validator';
+import gql from 'graphql-tag';
 import { NavigationScreenProps } from 'react-navigation';
-import { ContactSite } from '../../../core/prisma-client';
+
+import { Picker, Loading } from '../components';
+import { Theme, AuthContext } from '../util';
+import {
+  ContactSite,
+  PersonCreateInput,
+  Sex,
+} from '../../../core/prisma-client';
+import { UserDetails } from '../types';
+import client from '../graphql';
 
 const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
-  const [name, setname] = useState('');
-  const [sex, setSex] = useState('');
+  const [userInfo, setUserInfo] = useState<UserDetails | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [sex, setSex] = useState<Sex | null>(null);
+  const [sexError, setSexError] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [cellphone, setCellphone] = useState('');
   const [address, setAddress] = useState('');
   const [age, setAge] = useState('');
   const [notes, setNotes] = useState('');
   const [teamCode, setTeamCode] = useState('');
   const [sites, setSites] = useState<ContactSite[]>([]);
   const [contactSite, setContactSite] = useState<ContactSite | null>(null);
+  const [contactSiteError, setContactSiteError] = useState('');
 
   const { getSites, getUser } = useContext(AuthContext);
 
@@ -41,15 +56,113 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
             .filter(a => a.country === user.contactSites[0].country)
             .sort((a, b) => (a.name < b.name ? -1 : 1))
         );
+        setUserInfo(user!);
       }
     };
 
     fetchSites();
   }, []);
 
-  const saveContact = () => {
-    // Save Contact
-    navigation.navigate('AddContactSuccess');
+  const submit = async () => {
+    setNameError('');
+    setSexError('');
+    setContactSiteError('');
+    setEmailError('');
+
+    try {
+      await validate();
+      setLoading(true);
+      saveContact();
+    } catch (err) {}
+  };
+
+  const validate = () => {
+    return new Promise((resolve, reject) => {
+      let errors = false;
+
+      if (validator.isEmpty(name)) {
+        setNameError('Enter contact name');
+        errors = true;
+      }
+
+      if (sex === null) {
+        setSexError('Choose contact sex');
+        errors = true;
+      }
+
+      if (contactSite === null) {
+        setContactSiteError('Select a contact site');
+        errors = true;
+      }
+
+      if (!validator.isEmpty(email) && !validator.isEmail(email)) {
+        setEmailError('Enter valid email address');
+        errors = true;
+      }
+
+      if (errors) {
+        reject();
+      } else {
+        resolve();
+      }
+    });
+  };
+
+  const saveContact = async () => {
+    const data: PersonCreateInput = {
+      name,
+      status: {
+        connect: { title: 'Contact' },
+      },
+      sex: sex!,
+      contactSite: {
+        connect: {
+          id: contactSite!.id,
+        },
+      },
+      ...(teamCode && { teamCode }),
+      ...(email && { email }),
+      ...(telephone && { telephone }),
+      ...(cellphone && { cellphone }),
+      ...(address && { address }),
+      ...(age && { age: parseInt(age) }),
+      ...(notes && {
+        notes: {
+          create: {
+            date: new Date(),
+            message: notes,
+            user: {
+              connect: {
+                id: userInfo!.id,
+              },
+            },
+          },
+        },
+      }),
+    };
+
+    const mutation = gql`
+      mutation($data: PersonCreateInput!) {
+        registerPerson(data: $data) {
+          id
+        }
+      }
+    `;
+
+    try {
+      await client.mutate({
+        mutation,
+        variables: { data },
+        refetchQueries: ['DashboardQuery', 'ContactsQuery'],
+      });
+      setLoading(false);
+
+      setTimeout(() => {
+        navigation.navigate('AddContactSuccess');
+      }, 500);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -71,6 +184,10 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
             color: 'rgba(0,0,0,.54)',
             fontSize: 15,
             fontWeight: Platform.OS === 'ios' ? '600' : '400',
+          },
+          errorStyle: {
+            marginLeft: 0,
+            fontFamily: Theme.fonts.medium,
           },
           leftIconContainerStyle: {
             marginLeft: 0,
@@ -100,13 +217,14 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
         },
       }}
     >
+      <Loading visible={loading} />
       <View style={{ flex: 1, backgroundColor: Theme.background }}>
         <Appbar.Header {...Theme.Appbar.Header}>
           <Appbar.Action icon="close" onPress={() => navigation.goBack()} />
 
           <Appbar.Content title="New Contact" {...Theme.Appbar.Content} />
 
-          <Appbar.Action icon="done" onPress={saveContact} />
+          <Appbar.Action icon="done" onPress={submit} />
         </Appbar.Header>
 
         <KeyboardAwareScrollView
@@ -118,25 +236,26 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
               label="Name"
               placeholder="Full name"
               value={name}
-              onChangeText={setname}
+              onChangeText={setName}
               leftIcon={undefined}
               inputStyle={{
                 fontSize: 20,
               }}
+              errorMessage={nameError}
             />
 
-            <Label>Sex</Label>
+            <Label error={sexError}>Sex</Label>
 
             <View style={{ flexDirection: 'row', marginBottom: 16 }}>
               <CheckBox
                 title="Male"
-                checked={sex === 'male'}
-                onPress={() => setSex('male')}
+                checked={sex === 'M'}
+                onPress={() => setSex('M')}
               />
               <CheckBox
                 title="Female"
-                checked={sex === 'female'}
-                onPress={() => setSex('female')}
+                checked={sex === 'F'}
+                onPress={() => setSex('F')}
               />
             </View>
 
@@ -155,21 +274,33 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
               value={contactSite}
               onPress={a => setContactSite(a)}
               containerStyle={{ marginBottom: 30 }}
+              error={contactSiteError}
             />
 
             <Input
               label="Email"
               value={email}
               onChangeText={setEmail}
+              autoCapitalize="none"
               keyboardType="email-address"
               clearButtonMode="while-editing"
+              errorMessage={emailError}
             />
+
             <Input
               label="Phone"
-              value={phone}
-              onChangeText={setPhone}
+              value={telephone}
+              onChangeText={setTelephone}
               keyboardType="phone-pad"
             />
+
+            <Input
+              label="Cell"
+              value={cellphone}
+              onChangeText={setCellphone}
+              keyboardType="phone-pad"
+            />
+
             <Input label="Addess" value={address} onChangeText={setAddress} />
 
             <Input
@@ -188,7 +319,6 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
               inputStyle={{
                 backgroundColor: '#E5E6E5',
                 padding: 15,
-                paddingTop: 15,
                 marginTop: 15,
                 minHeight: 150,
                 borderWidth: 1,
@@ -207,16 +337,34 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   );
 };
 
-const Label: React.SFC<TextProps> = props => (
+const Label: React.SFC<TextProps & { error?: string }> = ({
+  children,
+  error,
+  ...rest
+}) => (
   <Text
-    {...props}
+    {...rest}
     style={{
       marginBottom: 10,
       fontSize: 15,
       color: 'rgba(0,0,0,.54)',
       fontFamily: Theme.fonts.semibold,
     }}
-  />
+  >
+    {children}
+
+    {!!error ? (
+      <Text
+        style={{
+          color: Theme.error,
+          fontSize: 12,
+          fontFamily: Theme.fonts.medium,
+        }}
+      >{`  ${error}`}</Text>
+    ) : (
+      ''
+    )}
+  </Text>
 );
 
 const styles = StyleSheet.create({

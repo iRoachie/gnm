@@ -11,7 +11,7 @@ const Theme = {
   primary: '#394680',
   darkPrimary: '#303b6c',
   background: '#E5E5E5',
-  error: '#D23D27',
+  error: '#ff190c',
   fonts,
   Appbar: {
     Header: {

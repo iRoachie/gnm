@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const dashboardQuery = gql`
-  {
+  query DashboardQuery {
     total: persons {
       count
     }

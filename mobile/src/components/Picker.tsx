@@ -73,20 +73,21 @@ class Picker<T> extends React.Component<Props<T>, State> {
           <Text
             style={[
               styles.titleStyle,
-              { marginLeft: 0 },
-              !!error && { color: Theme.error },
               {
+                marginLeft: 0,
                 fontSize: 15,
               },
             ]}
           >
-            {error || label}
+            {label}
           </Text>
 
           <Touchable
             style={[
               {
                 flex: 1,
+                borderBottomWidth: 1,
+                borderBottomColor: 'rgba(0,0,0,.05)',
               },
               buttonStyle,
             ]}
@@ -113,6 +114,19 @@ class Picker<T> extends React.Component<Props<T>, State> {
               {showDropdown && <Icon type="ionicon" name="md-arrow-dropdown" />}
             </View>
           </Touchable>
+
+          {!!error && (
+            <Text
+              style={{
+                color: Theme.error,
+                fontFamily: Theme.fonts.medium,
+                marginTop: 5,
+                fontSize: 12,
+              }}
+            >
+              {error}
+            </Text>
+          )}
         </View>
 
         <Modal
@@ -166,8 +180,6 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 4,
     marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0,0,0,.05)',
   },
   message: {
     paddingHorizontal: 16,
