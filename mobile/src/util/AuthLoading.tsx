@@ -2,12 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
 
 import Loading from '../components/Loading';
-import AuthContext from './AuthContext';
+import StateContext from './StateContext';
 
 const AuthLoading: React.FunctionComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
-  const { getUser } = useContext(AuthContext);
+  const { getUser } = useContext(StateContext);
 
   useEffect(() => {
     getAuth();

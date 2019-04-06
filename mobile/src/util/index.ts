@@ -1,6 +1,6 @@
 import Theme from './Theme';
-import AuthContext from './AuthContext';
+import StateContext from './StateContext';
 import AuthLoading from './AuthLoading';
-import AuthProvider from './AuthProvider';
+import StateProvider from './StateProvider';
 
-export { Theme, AuthContext, AuthLoading, AuthProvider };
+export { Theme, StateContext, AuthLoading, StateProvider };

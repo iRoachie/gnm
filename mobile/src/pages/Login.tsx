@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Button, Input, ThemeProvider } from 'react-native-elements';
 import validator from 'validator';
 
-import { Theme, AuthContext } from '../util';
+import { Theme, StateContext } from '../util';
 import client, { loginMutation } from '../graphql';
 import { ContactSite } from '../../../core/prisma-client';
 
@@ -34,7 +34,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
   const [errorMessage, setErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loading, updateLoading] = useState(false);
-  const { updateUser } = useContext(AuthContext);
+  const { updateUser } = useContext(StateContext);
 
   const emailRef = React.createRef<Input>();
   const passwordRef = React.createRef<Input>();

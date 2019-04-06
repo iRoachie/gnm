@@ -9,11 +9,11 @@ type Values = {
   updateUser: (details: UserDetails | null) => void;
 };
 
-const AuthContext = React.createContext<Values>({
+const StateContext = React.createContext<Values>({
   connected: true,
   getSites: () => {},
   getUser: () => {},
   updateUser: () => {},
 });
 
-export default AuthContext;
+export default StateContext;

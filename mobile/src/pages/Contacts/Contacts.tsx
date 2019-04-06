@@ -6,7 +6,7 @@ import { SearchBar } from 'react-native-elements';
 import debounce from 'lodash.debounce';
 
 import { Person } from '../../../../core/prisma-client/index';
-import { Theme, AuthContext } from '../../util';
+import { Theme, StateContext } from '../../util';
 import { Query } from 'react-apollo';
 import { contactsQuery } from '../../graphql';
 import { OfflineBanner } from '../../components';
@@ -16,7 +16,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
 }) => {
   const [search, setSearch] = useState('');
   const [dbSearch, setdbSearch] = useState('');
-  const { connected } = useContext(AuthContext);
+  const { connected } = useContext(StateContext);
 
   let searchDb = (value: string) => {
     setdbSearch(value);

@@ -11,7 +11,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Login, NewContact, AddContactSuccess } from './pages';
 import Tabs from './containers/Tabs';
 import graphqlClient from './graphql';
-import { Theme, AuthProvider, AuthLoading } from './util';
+import { Theme, StateProvider, AuthLoading } from './util';
 
 const ModalStack = createStackNavigator(
   {
@@ -48,7 +48,7 @@ const theme = {
 };
 
 export default () => (
-  <AuthProvider>
+  <StateProvider>
     <ApolloProvider client={graphqlClient}>
       <React.Fragment>
         <StatusBar
@@ -60,5 +60,5 @@ export default () => (
         </PaperProvider>
       </React.Fragment>
     </ApolloProvider>
-  </AuthProvider>
+  </StateProvider>
 );

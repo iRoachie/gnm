@@ -6,7 +6,7 @@ import thousands from 'thousands';
 import { NavigationScreenProps } from 'react-navigation';
 import { Query } from 'react-apollo';
 
-import { Theme, AuthContext } from '../../util';
+import { Theme, StateContext } from '../../util';
 import { dashboardQuery } from '../../graphql';
 
 import TotalBanner from './TotalBanner';
@@ -17,7 +17,7 @@ const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const [user, setUser] = useState('...');
-  const { getUser, connected } = useContext(AuthContext);
+  const { getUser, connected } = useContext(StateContext);
 
   useEffect(() => {
     getUserInfo();

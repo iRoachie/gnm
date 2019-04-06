@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 
 import client from '../graphql';
-import AuthContext from './AuthContext';
+import StateContext from './StateContext';
 import { ContactSite } from '../../../core/prisma-client';
 import gql from 'graphql-tag';
 
@@ -17,7 +17,7 @@ const sitesQuery = gql`
   }
 `;
 
-const AuthProvider: React.FunctionComponent = ({ children }) => {
+const StateProvider: React.FunctionComponent = ({ children }) => {
   const [connected, setConnected] = useState(true);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider
+    <StateContext.Provider
       value={{
         connected,
         getUser,
@@ -71,8 +71,8 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </StateContext.Provider>
   );
 };
 
-export default AuthProvider;
+export default StateProvider;

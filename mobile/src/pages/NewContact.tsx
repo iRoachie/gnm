@@ -13,7 +13,7 @@ import gql from 'graphql-tag';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Picker, Loading } from '../components';
-import { Theme, AuthContext } from '../util';
+import { Theme, StateContext } from '../util';
 import {
   ContactSite,
   PersonCreateInput,
@@ -43,7 +43,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   const [contactSite, setContactSite] = useState<ContactSite | null>(null);
   const [contactSiteError, setContactSiteError] = useState('');
 
-  const { getSites, getUser } = useContext(AuthContext);
+  const { getSites, getUser } = useContext(StateContext);
 
   useEffect(() => {
     const fetchSites = async () => {

@@ -4,13 +4,13 @@ import { Appbar, List } from 'react-native-paper';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Loading } from '../components';
-import { Theme, AuthContext } from '../util';
+import { Theme, StateContext } from '../util';
 
 const Settings: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const [loading, setLoading] = useState(false);
-  const { updateUser } = useContext(AuthContext);
+  const { updateUser } = useContext(StateContext);
 
   const signOut = async () => {
     setLoading(true);
