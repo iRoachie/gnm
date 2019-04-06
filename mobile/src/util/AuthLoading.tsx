@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
 
-import { Loading } from '../components';
+import Loading from '../components/Loading';
 import AuthContext from './AuthContext';
 
 const AuthLoading: React.FunctionComponent<NavigationScreenProps> = ({
