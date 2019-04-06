@@ -189,10 +189,6 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
             marginLeft: 0,
             fontFamily: Theme.fonts.medium,
           },
-          leftIconContainerStyle: {
-            marginLeft: 0,
-            marginRight: 15,
-          },
           inputStyle: {
             fontSize: 15,
             fontFamily: Theme.fonts.medium,
@@ -237,7 +233,6 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
               placeholder="Full name"
               value={name}
               onChangeText={setName}
-              leftIcon={undefined}
               inputStyle={{
                 fontSize: 20,
               }}
@@ -301,7 +296,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
               keyboardType="phone-pad"
             />
 
-            <Input label="Addess" value={address} onChangeText={setAddress} />
+            <Input label="Address" value={address} onChangeText={setAddress} />
 
             <Input
               label="Age"
@@ -315,7 +310,6 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
               label="Notes"
               value={notes}
               onChangeText={setNotes}
-              leftIcon={undefined}
               inputStyle={{
                 backgroundColor: '#E5E6E5',
                 padding: 15,

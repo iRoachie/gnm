@@ -170,6 +170,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
             editable={!loading}
             autoCapitalize="none"
             errorMessage={emailError}
+            textContentType="emailAddress"
           />
 
           <Input
@@ -182,6 +183,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
             ref={passwordRef}
             editable={!loading}
             errorMessage={passwordError}
+            textContentType="password"
           />
 
           <Text style={styles.errorMessage}>{errorMessage}</Text>
