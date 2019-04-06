@@ -82,23 +82,15 @@ class Picker<T> extends React.Component<Props<T>, State> {
             {label}
           </Text>
 
-          <Touchable
-            style={[
-              {
-                flex: 1,
-                borderBottomWidth: 1,
-                borderBottomColor: 'rgba(0,0,0,.05)',
-              },
-              buttonStyle,
-            ]}
-            onPress={this.togglePicker}
-          >
+          <Touchable style={buttonStyle} onPress={this.togglePicker}>
             <View
               style={{
                 minHeight: 40,
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                borderBottomWidth: 1,
+                borderBottomColor: 'rgba(0,0,0,.05)',
               }}
             >
               <Text
