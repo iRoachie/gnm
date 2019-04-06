@@ -5,9 +5,13 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { Theme } from '../util';
 
-const AddContactSuccess: React.StatelessComponent<NavigationScreenProps> = ({
-  navigation,
-}) => {
+interface ScreenParams {
+  offline?: boolean;
+}
+
+const AddContactSuccess: React.StatelessComponent<
+  NavigationScreenProps<ScreenParams>
+> = ({ navigation }) => {
   const goToContacts = () => {
     navigation.popToTop();
     navigation.navigate('Contacts');
@@ -19,6 +23,8 @@ const AddContactSuccess: React.StatelessComponent<NavigationScreenProps> = ({
     navigation.navigate('NewContact');
     StatusBar.setBarStyle('light-content');
   };
+
+  const offline = navigation.getParam('offline');
 
   return (
     <ThemeProvider
@@ -35,7 +41,7 @@ const AddContactSuccess: React.StatelessComponent<NavigationScreenProps> = ({
 
         <View style={styles.content}>
           <Button
-            title="Submitted"
+            title={offline ? 'Saved Locally' : 'Submitted'}
             containerStyle={{ marginBottom: 15 }}
             buttonStyle={{ backgroundColor: '#fff' }}
             titleStyle={{

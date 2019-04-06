@@ -4,7 +4,7 @@ import NetInfo from '@react-native-community/netinfo';
 
 import client from '../graphql';
 import StateContext from './StateContext';
-import { ContactSite } from '../../../core/prisma-client';
+import { ContactSite, PersonCreateInput } from '../../../core/prisma-client';
 import gql from 'graphql-tag';
 
 const sitesQuery = gql`
@@ -61,6 +61,17 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
     await AsyncStorage.setItem('sites', JSON.stringify(sites));
   };
 
+  const getOfflineContacts = async () => {
+    const contacts = await AsyncStorage.getItem('offlineContacts');
+    return contacts ? JSON.parse(contacts) : [];
+  };
+
+  const addOfflineContact = async (details: PersonCreateInput) => {
+    const contacts = await getOfflineContacts();
+    contacts.push(details);
+    await AsyncStorage.setItem('offlineContacts', JSON.stringify(contacts));
+  };
+
   return (
     <StateContext.Provider
       value={{
@@ -68,6 +79,8 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
         getUser,
         updateUser,
         getSites,
+        addOfflineContact,
+        getOfflineContacts,
       }}
     >
       {children}

@@ -9,7 +9,6 @@ import {
 } from 'react-native-elements';
 import { Appbar } from 'react-native-paper';
 import validator from 'validator';
-import gql from 'graphql-tag';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Picker, Loading } from '../components';
@@ -20,7 +19,7 @@ import {
   Sex,
 } from '../../../core/prisma-client';
 import { UserDetails } from '../types';
-import client from '../graphql';
+import client, { newContactMutation } from '../graphql';
 
 const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
@@ -43,7 +42,9 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   const [contactSite, setContactSite] = useState<ContactSite | null>(null);
   const [contactSiteError, setContactSiteError] = useState('');
 
-  const { getSites, getUser } = useContext(StateContext);
+  const { getSites, getUser, connected, addOfflineContact } = useContext(
+    StateContext
+  );
 
   useEffect(() => {
     const fetchSites = async () => {
@@ -141,27 +142,28 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
       }),
     };
 
-    const mutation = gql`
-      mutation($data: PersonCreateInput!) {
-        registerPerson(data: $data) {
-          id
-        }
-      }
-    `;
-
-    try {
-      await client.mutate({
-        mutation,
-        variables: { data },
-        refetchQueries: ['DashboardQuery', 'ContactsQuery'],
-      });
+    if (!connected) {
+      await addOfflineContact(data);
       setLoading(false);
 
       setTimeout(() => {
-        navigation.navigate('AddContactSuccess');
+        navigation.navigate('AddContactSuccess', { offline: true });
       }, 500);
-    } catch (error) {
-      console.log(error);
+    } else {
+      try {
+        await client.mutate({
+          mutation: newContactMutation,
+          variables: { data },
+          refetchQueries: ['DashboardQuery', 'ContactsQuery'],
+        });
+        setLoading(false);
+
+        setTimeout(() => {
+          navigation.navigate('AddContactSuccess');
+        }, 500);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

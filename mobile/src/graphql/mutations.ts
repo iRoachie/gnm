@@ -14,3 +14,11 @@ export const loginMutation = gql`
     }
   }
 `;
+
+export const newContactMutation = gql`
+  mutation NewContactMutation($data: PersonCreateInput!) {
+    registerPerson(data: $data) {
+      id
+    }
+  }
+`;
