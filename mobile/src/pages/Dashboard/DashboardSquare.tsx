@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   caption: {
     color: 'rgba(0,0,0,0.7)',
-    fontFamily: Theme.fonts.regular,
+    fontFamily: Theme.fonts.medium,
   },
 });
 

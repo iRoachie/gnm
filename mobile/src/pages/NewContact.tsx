@@ -91,7 +91,8 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
           },
           textStyle: {
             fontFamily: Theme.fonts.medium,
-            fontWeight: '400',
+            fontWeight: Platform.OS === 'ios' ? '600' : '400',
+            fontSize: 15,
           },
           iconType: 'material',
           checkedIcon: 'radio-button-checked',
