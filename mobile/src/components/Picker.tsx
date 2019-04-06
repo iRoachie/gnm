@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   },
   itemStyle: {
     fontFamily:
-      Platform.OS === 'ios' ? Theme.fonts.regular : Theme.fonts.semibold,
+      Platform.OS === 'ios' ? Theme.fonts.regular : Theme.fonts.medium,
     color: 'rgba(0,0,0,.87)',
     fontSize: 16,
   },
