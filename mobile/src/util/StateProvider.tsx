@@ -19,6 +19,7 @@ const sitesQuery = gql`
 
 const StateProvider: React.FunctionComponent = ({ children }) => {
   const [connected, setConnected] = useState(true);
+  const [offlineChanged, setOfflineChanged] = useState(0);
 
   useEffect(() => {
     NetInfo.isConnected.addEventListener(
@@ -69,7 +70,13 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
   const addOfflineContact = async (details: PersonCreateInput) => {
     const contacts = await getOfflineContacts();
     contacts.push(details);
+    setOfflineChanged(offlineChanged + 1);
     await AsyncStorage.setItem('offlineContacts', JSON.stringify(contacts));
+  };
+
+  const removeOfflineContacts = async () => {
+    await AsyncStorage.removeItem('offlineContacts');
+    setOfflineChanged(offlineChanged + 1);
   };
 
   return (
@@ -79,8 +86,10 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
         getUser,
         updateUser,
         getSites,
+        offlineChanged,
         addOfflineContact,
         getOfflineContacts,
+        removeOfflineContacts,
       }}
     >
       {children}

@@ -6,10 +6,7 @@ import { SearchBar, Divider } from 'react-native-elements';
 import debounce from 'lodash.debounce';
 import uuid from 'uuid/v1';
 
-import {
-  Person,
-  PersonCreateInput,
-} from '../../../../core/prisma-client/index';
+import { Person } from '../../../../core/prisma-client/index';
 import { Theme, StateContext } from '../../util';
 import { Query } from 'react-apollo';
 import { contactsQuery } from '../../graphql';
@@ -23,7 +20,9 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
   const [dbSearch, setdbSearch] = useState('');
   const [offlineContacts, setOfflineContacts] = useState<OfflinePerson[]>([]);
 
-  const { connected, getOfflineContacts } = useContext(StateContext);
+  const { connected, getOfflineContacts, offlineChanged } = useContext(
+    StateContext
+  );
 
   useEffect(() => {
     const fetchOffline = async () => {
@@ -40,7 +39,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
     };
 
     fetchOffline();
-  }, []);
+  }, [offlineChanged]);
 
   let searchDb = (value: string) => {
     setdbSearch(value);

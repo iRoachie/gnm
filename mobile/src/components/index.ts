@@ -2,5 +2,6 @@ import Loading from './Loading';
 import Picker from './Picker';
 import Touchable from './Touchable';
 import OfflineBanner from './OfflineBanner';
+import Syncing from './Syncing';
 
-export { Loading, Picker, Touchable, OfflineBanner };
+export { Loading, Picker, Touchable, OfflineBanner, Syncing };
