@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import NetInfo from '@react-native-community/netinfo';
 
 import client from '../graphql';
 import AuthContext from './AuthContext';
@@ -17,7 +18,13 @@ const sitesQuery = gql`
 `;
 
 const AuthProvider: React.FunctionComponent = ({ children }) => {
+  const [connected, setConnected] = useState(true);
+
   useEffect(() => {
+    NetInfo.isConnected.addEventListener(
+      'connectionChange',
+      handleConnectivityChange
+    );
     fetchSites();
   }, []);
 
@@ -28,6 +35,12 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleConnectivityChange = (
+    isConnected: React.SetStateAction<boolean>
+  ) => {
+    setConnected(isConnected);
   };
 
   const getUser = async () => {
@@ -48,13 +61,18 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
     await AsyncStorage.setItem('sites', JSON.stringify(sites));
   };
 
-  const state = {
-    getUser,
-    updateUser,
-    getSites,
-  };
-
-  return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{
+        connected,
+        getUser,
+        updateUser,
+        getSites,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

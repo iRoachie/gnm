@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { ActivityIndicator, Appbar } from 'react-native-paper';
 import thousands from 'thousands';
@@ -11,12 +11,13 @@ import { dashboardQuery } from '../../graphql';
 
 import TotalBanner from './TotalBanner';
 import DashboardSquare from './DashboardSquare';
+import { OfflineBanner } from '../../components';
 
 const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const [user, setUser] = useState('...');
-  const { getUser } = useContext(AuthContext);
+  const { getUser, connected } = useContext(AuthContext);
 
   useEffect(() => {
     getUserInfo();
@@ -41,15 +42,19 @@ const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
             <React.Fragment>
               <Appbar.Header {...Theme.Appbar.Header}>
                 <Appbar.Content title={user} {...Theme.Appbar.Content} />
-                <Appbar.Action icon="refresh" onPress={() => refetch()} />
+                {connected && (
+                  <Appbar.Action icon="refresh" onPress={() => refetch()} />
+                )}
               </Appbar.Header>
 
               {loading ? (
                 <ActivityIndicator style={{ marginTop: 16 }} />
               ) : error ? (
-                `Error!: ${error}`
+                !connected && <OfflineBanner />
               ) : (
                 <ScrollView>
+                  {!connected && <OfflineBanner />}
+
                   <View style={{ padding: 16 }}>
                     <TotalBanner
                       total={data.total.count}
