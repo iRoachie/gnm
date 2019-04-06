@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet, Platform, FlatList, Text } from 'react-native';
 import { FAB, List, ActivityIndicator, Appbar } from 'react-native-paper';
 import { NavigationScreenProps } from 'react-navigation';
@@ -6,15 +6,17 @@ import { SearchBar } from 'react-native-elements';
 import debounce from 'lodash.debounce';
 
 import { Person } from '../../../../core/prisma-client/index';
-import { Theme } from '../../util';
+import { Theme, AuthContext } from '../../util';
 import { Query } from 'react-apollo';
 import { contactsQuery } from '../../graphql';
+import { OfflineBanner } from '../../components';
 
 const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
   const [search, setSearch] = useState('');
   const [dbSearch, setdbSearch] = useState('');
+  const { connected } = useContext(AuthContext);
 
   let searchDb = (value: string) => {
     setdbSearch(value);
@@ -41,73 +43,75 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
         <Appbar.Content title="Contacts" {...Theme.Appbar.Content} />
       </Appbar.Header>
 
-      <SearchBar
-        platform={Platform.OS === 'ios' ? 'ios' : 'android'}
-        placeholder="Search Contacts"
-        inputStyle={{
-          fontSize: 17,
-          fontFamily: Theme.fonts.medium,
-          marginLeft: 10,
-        }}
-        inputContainerStyle={Platform.select({
-          ios: {
-            backgroundColor: '#fff',
-          },
-        })}
-        containerStyle={Platform.select({
-          ios: {
-            backgroundColor: Theme.background,
-          },
-        })}
-        value={search}
-        onChangeText={updateSearch}
-        cancelButtonProps={{
-          color: Theme.primary,
-          buttonTextStyle: { fontFamily: Theme.fonts.medium },
-        }}
-      />
+      {!connected && <OfflineBanner />}
 
-      <Query
-        query={contactsQuery}
-        notifyOnNetworkStatusChange
-        variables={{ search: dbSearch }}
-      >
-        {({ loading, error, data, refetch }) => {
-          console.log(data)
-          return loading ? (
-            <ActivityIndicator style={{ marginTop: 16 }} />
-          ) : error ? (
-            <Text>`Error!: ${error}`</Text>
-          ) : (
-            <FlatList<Person>
-              data={data.persons.data}
-              keyExtractor={item => item.id}
-              keyboardShouldPersistTaps="always"
-              renderItem={({ item }) => (
-                <List.Item
-                  title={item.name}
-                  titleStyle={{ fontFamily: Theme.fonts.medium }}
-                  descriptionStyle={{ fontFamily: Theme.fonts.regular }}
-                  description={item.address}
-                  onPress={() => viewContact(item)}
-                />
-              )}
-              ListEmptyComponent={
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    marginTop: 16,
-                    fontSize: 16,
-                    fontFamily: Theme.fonts.regular,
+      {connected && (
+        <Query
+          query={contactsQuery}
+          notifyOnNetworkStatusChange
+          variables={{ search: dbSearch }}
+        >
+          {({ loading, error, data, refetch }) => {
+            return loading ? (
+              <ActivityIndicator style={{ marginTop: 16 }} />
+            ) : error ? null : (
+              <>
+                <SearchBar
+                  platform={Platform.OS === 'ios' ? 'ios' : 'android'}
+                  placeholder="Search Contacts"
+                  inputStyle={{
+                    fontSize: 17,
+                    fontFamily: Theme.fonts.medium,
+                    marginLeft: 10,
                   }}
-                >
-                  No Contacts
-                </Text>
-              }
-            />
-          );
-        }}
-      </Query>
+                  inputContainerStyle={Platform.select({
+                    ios: {
+                      backgroundColor: '#fff',
+                    },
+                  })}
+                  containerStyle={Platform.select({
+                    ios: {
+                      backgroundColor: Theme.background,
+                    },
+                  })}
+                  value={search}
+                  onChangeText={updateSearch}
+                  cancelButtonProps={{
+                    color: Theme.primary,
+                    buttonTextStyle: { fontFamily: Theme.fonts.medium },
+                  }}
+                />
+                <FlatList<Person>
+                  data={data.persons.data}
+                  keyExtractor={item => item.id}
+                  keyboardShouldPersistTaps="always"
+                  renderItem={({ item }) => (
+                    <List.Item
+                      title={item.name}
+                      titleStyle={{ fontFamily: Theme.fonts.medium }}
+                      descriptionStyle={{ fontFamily: Theme.fonts.regular }}
+                      description={item.address}
+                      onPress={() => viewContact(item)}
+                    />
+                  )}
+                  ListEmptyComponent={
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        marginTop: 16,
+                        fontSize: 16,
+                        fontFamily: Theme.fonts.regular,
+                      }}
+                    >
+                      No Contacts
+                    </Text>
+                  }
+                />
+              </>
+            );
+          }}
+        </Query>
+      )}
 
       <FAB style={styles.fab} icon="add" onPress={goToNewContact} />
     </View>

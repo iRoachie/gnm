@@ -33,7 +33,8 @@ const OfflineBanner = () => (
         fontSize: 13,
       }}
     >
-      While offline, some of the functions of the app may be unavailable.
+      Some of the functions of the app may be unavailable. Contacts added while
+      offline will be synced once connection restores.
     </Text>
   </View>
 );
