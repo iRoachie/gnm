@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View, Image, Dimensions } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { TabScene } from 'react-navigation';
+import { TabScene, NavigationScreenProps } from 'react-navigation';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import { Dashboard, Contacts, Settings } from '../pages';
-import { Theme } from '../util';
+import { Theme, StateContext } from '../util';
 
 const Tabs = createMaterialBottomTabNavigator(
   {
@@ -58,4 +58,33 @@ const Tabs = createMaterialBottomTabNavigator(
   }
 );
 
-export default Tabs;
+class TabTabs extends React.Component<NavigationScreenProps> {
+  static router = Tabs.router;
+
+  render() {
+    return (
+      <StateContext.Consumer>
+        {({ isTablet }) => (
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            {isTablet && (
+              <Image
+                style={{
+                  flex: 1,
+                  height: Dimensions.get('window').height,
+                }}
+                source={require('../assets/blue-g-bg.jpg')}
+                resizeMode="cover"
+              />
+            )}
+
+            <View style={{ flex: 2 }}>
+              <Tabs navigation={this.props.navigation} />
+            </View>
+          </View>
+        )}
+      </StateContext.Consumer>
+    );
+  }
+}
+
+export default TabTabs;
