@@ -184,6 +184,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
               autoCapitalize="none"
               errorMessage={emailError}
               textContentType="emailAddress"
+              autoCorrect={false}
             />
 
             <Input

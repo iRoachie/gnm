@@ -282,6 +282,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
               keyboardType="email-address"
               clearButtonMode="while-editing"
               errorMessage={emailError}
+              autoCorrect={false}
             />
 
             <Input
