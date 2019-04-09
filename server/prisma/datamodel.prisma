@@ -73,24 +73,24 @@ type Person {
   assignee: User
   contactSite: ContactSite!
   notes: [Note!]!
-  websiteUser: Boolean
+  websiteUser: Boolean! @default(value: "false")
   maritalStatus: MaritalStatus
-  invitation: Boolean @default(value: "false")
-  letter: Boolean @default(value: "false")
-  handbill: Boolean @default(value: "false")
-  guestTag: Boolean @default(value: "false")
-  transport: Boolean @default(value: "false")
-  openingNight: Boolean @default(value: "false")
+  invitation: Boolean! @default(value: "false")
+  letter: Boolean! @default(value: "false")
+  handbill: Boolean! @default(value: "false")
+  guestTag: Boolean! @default(value: "false")
+  transport: Boolean! @default(value: "false")
+  openingNight: Boolean! @default(value: "false")
   dob: DateTime
   team: Team
   teamCode: String
-  lesson1: Boolean @default(value: "false")
-  lesson2: Boolean @default(value: "false")
-  lesson3: Boolean @default(value: "false")
-  lesson4: Boolean @default(value: "false")
-  lesson5: Boolean @default(value: "false")
-  lesson6: Boolean @default(value: "false")
-  lesson7: Boolean @default(value: "false")
+  lesson1: Boolean! @default(value: "false")
+  lesson2: Boolean! @default(value: "false")
+  lesson3: Boolean! @default(value: "false")
+  lesson4: Boolean! @default(value: "false")
+  lesson5: Boolean! @default(value: "false")
+  lesson6: Boolean! @default(value: "false")
+  lesson7: Boolean! @default(value: "false")
 }
 
 type Attendance {

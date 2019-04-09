@@ -1913,23 +1913,23 @@ export interface Person {
   sex: Sex;
   religion?: String;
   age?: Int;
-  websiteUser?: Boolean;
+  websiteUser: Boolean;
   maritalStatus?: MaritalStatus;
-  invitation?: Boolean;
-  letter?: Boolean;
-  handbill?: Boolean;
-  guestTag?: Boolean;
-  transport?: Boolean;
-  openingNight?: Boolean;
+  invitation: Boolean;
+  letter: Boolean;
+  handbill: Boolean;
+  guestTag: Boolean;
+  transport: Boolean;
+  openingNight: Boolean;
   dob?: DateTimeOutput;
   teamCode?: String;
-  lesson1?: Boolean;
-  lesson2?: Boolean;
-  lesson3?: Boolean;
-  lesson4?: Boolean;
-  lesson5?: Boolean;
-  lesson6?: Boolean;
-  lesson7?: Boolean;
+  lesson1: Boolean;
+  lesson2: Boolean;
+  lesson3: Boolean;
+  lesson4: Boolean;
+  lesson5: Boolean;
+  lesson6: Boolean;
+  lesson7: Boolean;
 }
 
 export interface PersonPromise extends Promise<Person>, Fragmentable {
@@ -2818,23 +2818,23 @@ export interface PersonPreviousValues {
   sex: Sex;
   religion?: String;
   age?: Int;
-  websiteUser?: Boolean;
+  websiteUser: Boolean;
   maritalStatus?: MaritalStatus;
-  invitation?: Boolean;
-  letter?: Boolean;
-  handbill?: Boolean;
-  guestTag?: Boolean;
-  transport?: Boolean;
-  openingNight?: Boolean;
+  invitation: Boolean;
+  letter: Boolean;
+  handbill: Boolean;
+  guestTag: Boolean;
+  transport: Boolean;
+  openingNight: Boolean;
   dob?: DateTimeOutput;
   teamCode?: String;
-  lesson1?: Boolean;
-  lesson2?: Boolean;
-  lesson3?: Boolean;
-  lesson4?: Boolean;
-  lesson5?: Boolean;
-  lesson6?: Boolean;
-  lesson7?: Boolean;
+  lesson1: Boolean;
+  lesson2: Boolean;
+  lesson3: Boolean;
+  lesson4: Boolean;
+  lesson5: Boolean;
+  lesson6: Boolean;
+  lesson7: Boolean;
 }
 
 export interface PersonPreviousValuesPromise

@@ -828,24 +828,24 @@ type Person {
   assignee: User
   contactSite: ContactSite!
   notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note!]
-  websiteUser: Boolean
+  websiteUser: Boolean!
   maritalStatus: MaritalStatus
-  invitation: Boolean
-  letter: Boolean
-  handbill: Boolean
-  guestTag: Boolean
-  transport: Boolean
-  openingNight: Boolean
+  invitation: Boolean!
+  letter: Boolean!
+  handbill: Boolean!
+  guestTag: Boolean!
+  transport: Boolean!
+  openingNight: Boolean!
   dob: DateTime
   team: Team
   teamCode: String
-  lesson1: Boolean
-  lesson2: Boolean
-  lesson3: Boolean
-  lesson4: Boolean
-  lesson5: Boolean
-  lesson6: Boolean
-  lesson7: Boolean
+  lesson1: Boolean!
+  lesson2: Boolean!
+  lesson3: Boolean!
+  lesson4: Boolean!
+  lesson5: Boolean!
+  lesson6: Boolean!
+  lesson7: Boolean!
 }
 
 type PersonConnection {
@@ -974,23 +974,23 @@ type PersonPreviousValues {
   sex: Sex!
   religion: String
   age: Int
-  websiteUser: Boolean
+  websiteUser: Boolean!
   maritalStatus: MaritalStatus
-  invitation: Boolean
-  letter: Boolean
-  handbill: Boolean
-  guestTag: Boolean
-  transport: Boolean
-  openingNight: Boolean
+  invitation: Boolean!
+  letter: Boolean!
+  handbill: Boolean!
+  guestTag: Boolean!
+  transport: Boolean!
+  openingNight: Boolean!
   dob: DateTime
   teamCode: String
-  lesson1: Boolean
-  lesson2: Boolean
-  lesson3: Boolean
-  lesson4: Boolean
-  lesson5: Boolean
-  lesson6: Boolean
-  lesson7: Boolean
+  lesson1: Boolean!
+  lesson2: Boolean!
+  lesson3: Boolean!
+  lesson4: Boolean!
+  lesson5: Boolean!
+  lesson6: Boolean!
+  lesson7: Boolean!
 }
 
 type PersonStatus {
