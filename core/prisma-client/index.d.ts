@@ -496,6 +496,8 @@ export type PersonOrderByInput =
   | "dob_DESC"
   | "teamCode_ASC"
   | "teamCode_DESC"
+  | "teamCode_search_ASC"
+  | "teamCode_search_DESC"
   | "lesson1_ASC"
   | "lesson1_DESC"
   | "lesson2_ASC"
@@ -675,6 +677,7 @@ export interface PersonUpdateInput {
   dob?: DateTimeInput;
   team?: TeamUpdateOneInput;
   teamCode?: String;
+  teamCode_search?: String;
   lesson1?: Boolean;
   lesson2?: Boolean;
   lesson3?: Boolean;
@@ -900,6 +903,20 @@ export interface PersonWhereInput {
   teamCode_not_starts_with?: String;
   teamCode_ends_with?: String;
   teamCode_not_ends_with?: String;
+  teamCode_search?: String;
+  teamCode_search_not?: String;
+  teamCode_search_in?: String[] | String;
+  teamCode_search_not_in?: String[] | String;
+  teamCode_search_lt?: String;
+  teamCode_search_lte?: String;
+  teamCode_search_gt?: String;
+  teamCode_search_gte?: String;
+  teamCode_search_contains?: String;
+  teamCode_search_not_contains?: String;
+  teamCode_search_starts_with?: String;
+  teamCode_search_not_starts_with?: String;
+  teamCode_search_ends_with?: String;
+  teamCode_search_not_ends_with?: String;
   lesson1?: Boolean;
   lesson1_not?: Boolean;
   lesson2?: Boolean;
@@ -1039,6 +1056,7 @@ export interface PersonCreateInput {
   dob?: DateTimeInput;
   team?: TeamCreateOneInput;
   teamCode?: String;
+  teamCode_search?: String;
   lesson1?: Boolean;
   lesson2?: Boolean;
   lesson3?: Boolean;
@@ -1087,6 +1105,7 @@ export interface PersonUpdateManyMutationInput {
   openingNight?: Boolean;
   dob?: DateTimeInput;
   teamCode?: String;
+  teamCode_search?: String;
   lesson1?: Boolean;
   lesson2?: Boolean;
   lesson3?: Boolean;
@@ -1129,6 +1148,8 @@ export interface UserRoleCreateOneInput {
 
 export type PersonWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  teamCode?: String;
+  teamCode_search?: String;
 }>;
 
 export interface UserRoleCreateInput {
@@ -1923,6 +1944,7 @@ export interface Person {
   openingNight: Boolean;
   dob?: DateTimeOutput;
   teamCode?: String;
+  teamCode_search?: String;
   lesson1: Boolean;
   lesson2: Boolean;
   lesson3: Boolean;
@@ -1969,6 +1991,7 @@ export interface PersonPromise extends Promise<Person>, Fragmentable {
   dob: () => Promise<DateTimeOutput>;
   team: <T = TeamPromise>() => T;
   teamCode: () => Promise<String>;
+  teamCode_search: () => Promise<String>;
   lesson1: () => Promise<Boolean>;
   lesson2: () => Promise<Boolean>;
   lesson3: () => Promise<Boolean>;
@@ -2017,6 +2040,7 @@ export interface PersonSubscription
   dob: () => Promise<AsyncIterator<DateTimeOutput>>;
   team: <T = TeamSubscription>() => T;
   teamCode: () => Promise<AsyncIterator<String>>;
+  teamCode_search: () => Promise<AsyncIterator<String>>;
   lesson1: () => Promise<AsyncIterator<Boolean>>;
   lesson2: () => Promise<AsyncIterator<Boolean>>;
   lesson3: () => Promise<AsyncIterator<Boolean>>;
@@ -2828,6 +2852,7 @@ export interface PersonPreviousValues {
   openingNight: Boolean;
   dob?: DateTimeOutput;
   teamCode?: String;
+  teamCode_search?: String;
   lesson1: Boolean;
   lesson2: Boolean;
   lesson3: Boolean;
@@ -2861,6 +2886,7 @@ export interface PersonPreviousValuesPromise
   openingNight: () => Promise<Boolean>;
   dob: () => Promise<DateTimeOutput>;
   teamCode: () => Promise<String>;
+  teamCode_search: () => Promise<String>;
   lesson1: () => Promise<Boolean>;
   lesson2: () => Promise<Boolean>;
   lesson3: () => Promise<Boolean>;
@@ -2894,6 +2920,7 @@ export interface PersonPreviousValuesSubscription
   openingNight: () => Promise<AsyncIterator<Boolean>>;
   dob: () => Promise<AsyncIterator<DateTimeOutput>>;
   teamCode: () => Promise<AsyncIterator<String>>;
+  teamCode_search: () => Promise<AsyncIterator<String>>;
   lesson1: () => Promise<AsyncIterator<Boolean>>;
   lesson2: () => Promise<AsyncIterator<Boolean>>;
   lesson3: () => Promise<AsyncIterator<Boolean>>;

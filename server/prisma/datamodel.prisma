@@ -83,7 +83,8 @@ type Person {
   openingNight: Boolean! @default(value: "false")
   dob: DateTime
   team: Team
-  teamCode: String
+  teamCode: String @unique
+  teamCode_search: String @unique
   lesson1: Boolean! @default(value: "false")
   lesson2: Boolean! @default(value: "false")
   lesson3: Boolean! @default(value: "false")

@@ -21,6 +21,10 @@ const updatePerson = async (parent, args, context) => {
     data.name_search = data.name.toLowerCase();
   }
 
+  if (data.teamCode) {
+    data.teamCode_search = data.teamCode.toLowerCase();
+  }
+
   if (permissions.includes('Person:Update')) {
     return context.prisma.updatePerson(args);
   }

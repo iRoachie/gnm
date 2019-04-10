@@ -839,6 +839,7 @@ type Person {
   dob: DateTime
   team: Team
   teamCode: String
+  teamCode_search: String
   lesson1: Boolean!
   lesson2: Boolean!
   lesson3: Boolean!
@@ -880,6 +881,7 @@ input PersonCreateInput {
   dob: DateTime
   team: TeamCreateOneInput
   teamCode: String
+  teamCode_search: String
   lesson1: Boolean
   lesson2: Boolean
   lesson3: Boolean
@@ -942,6 +944,8 @@ enum PersonOrderByInput {
   dob_DESC
   teamCode_ASC
   teamCode_DESC
+  teamCode_search_ASC
+  teamCode_search_DESC
   lesson1_ASC
   lesson1_DESC
   lesson2_ASC
@@ -984,6 +988,7 @@ type PersonPreviousValues {
   openingNight: Boolean!
   dob: DateTime
   teamCode: String
+  teamCode_search: String
   lesson1: Boolean!
   lesson2: Boolean!
   lesson3: Boolean!
@@ -1164,6 +1169,7 @@ input PersonUpdateInput {
   dob: DateTime
   team: TeamUpdateOneInput
   teamCode: String
+  teamCode_search: String
   lesson1: Boolean
   lesson2: Boolean
   lesson3: Boolean
@@ -1194,6 +1200,7 @@ input PersonUpdateManyMutationInput {
   openingNight: Boolean
   dob: DateTime
   teamCode: String
+  teamCode_search: String
   lesson1: Boolean
   lesson2: Boolean
   lesson3: Boolean
@@ -1389,6 +1396,20 @@ input PersonWhereInput {
   teamCode_not_starts_with: String
   teamCode_ends_with: String
   teamCode_not_ends_with: String
+  teamCode_search: String
+  teamCode_search_not: String
+  teamCode_search_in: [String!]
+  teamCode_search_not_in: [String!]
+  teamCode_search_lt: String
+  teamCode_search_lte: String
+  teamCode_search_gt: String
+  teamCode_search_gte: String
+  teamCode_search_contains: String
+  teamCode_search_not_contains: String
+  teamCode_search_starts_with: String
+  teamCode_search_not_starts_with: String
+  teamCode_search_ends_with: String
+  teamCode_search_not_ends_with: String
   lesson1: Boolean
   lesson1_not: Boolean
   lesson2: Boolean
@@ -1410,6 +1431,8 @@ input PersonWhereInput {
 
 input PersonWhereUniqueInput {
   id: ID
+  teamCode: String
+  teamCode_search: String
 }
 
 type Query {
