@@ -37,7 +37,7 @@ export const contactsQuery = gql`
       data {
         id
         name
-        address
+        teamCode
       }
     }
   }

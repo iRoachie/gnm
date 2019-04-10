@@ -96,7 +96,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
                 title={item.name}
                 titleStyle={{ fontFamily: Theme.fonts.medium }}
                 descriptionStyle={{ fontFamily: Theme.fonts.regular }}
-                description={item.address}
+                description={item.teamCode}
                 onPress={() => viewContact(item)}
               />
             )}
@@ -163,7 +163,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
                     title={item.name}
                     titleStyle={{ fontFamily: Theme.fonts.medium }}
                     descriptionStyle={{ fontFamily: Theme.fonts.regular }}
-                    description={item.address}
+                    description={item.teamCode}
                     onPress={() => viewContact(item)}
                   />
                 )}
