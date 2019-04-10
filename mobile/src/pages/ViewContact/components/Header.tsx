@@ -27,7 +27,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
       zIndex: 2,
     }}
   >
-    {teamCode && (
+    {!!teamCode && (
       <Text
         style={{
           color: Theme.primary,

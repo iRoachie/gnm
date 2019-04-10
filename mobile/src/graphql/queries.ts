@@ -14,7 +14,7 @@ export const dashboardQuery = gql`
       count
     }
 
-    prospects: persons(where: { status: { title: "Propspect" } }) {
+    prospects: persons(where: { status: { title: "Prospect" } }) {
       count
     }
 
@@ -31,6 +31,49 @@ export const contactsQuery = gql`
         id
         name
         address
+      }
+    }
+  }
+`;
+
+export const viewContactQuery = gql`
+  query ViewContactQuery($id: ID!) {
+    person(where: { id: $id }) {
+      id
+      name
+      status {
+        title
+      }
+      contactSite {
+        id
+        name
+        country
+      }
+      age
+      sex
+      address
+      telephone
+      cellphone
+      email
+      lesson1
+      lesson2
+      lesson3
+      lesson4
+      lesson5
+      lesson6
+      lesson7
+      handbill
+      letter
+      invitation
+      guestTag
+      transport
+      teamCode
+      notes {
+        message
+        date
+        user {
+          name
+        }
       }
     }
   }

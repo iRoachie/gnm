@@ -8,7 +8,13 @@ import { StatusBar } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { ApolloProvider } from 'react-apollo';
 
-import { Login, NewContact, AddContactSuccess } from './pages';
+import {
+  Login,
+  NewContact,
+  AddContactSuccess,
+  EditContact,
+  EditContactSuccess,
+} from './pages';
 import Tabs from './containers/Tabs';
 import graphqlClient from './graphql';
 import { Theme, StateProvider, AuthLoading, SyncProvider } from './util';
@@ -17,7 +23,9 @@ const ModalStack = createStackNavigator(
   {
     AppStack: Tabs,
     NewContact,
+    EditContact,
     AddContactSuccess,
+    EditContactSuccess,
   },
   {
     mode: 'modal',

@@ -6,14 +6,21 @@ import gql from 'graphql-tag';
 
 import client from '../graphql';
 import StateContext from './StateContext';
-import { ContactSite, PersonCreateInput } from '../../../core/prisma-client';
+import {
+  ContactSite,
+  PersonCreateInput,
+  PersonStatus,
+} from '../../../core/prisma-client';
 
-const sitesQuery = gql`
+const InfoQuery = gql`
   {
     contactSites {
       id
       name
       country
+    }
+    statuses {
+      title
     }
   }
 `;
@@ -30,17 +37,21 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
       'connectionChange',
       handleConnectivityChange
     );
-    fetchSites();
+
+    fetchInfo();
   }, []);
 
   const updateDeviceWidth = (e: LayoutChangeEvent) => {
     setDeviceWidth(e.nativeEvent.layout.width);
   };
 
-  const fetchSites = async () => {
+  const fetchInfo = async () => {
     try {
-      const { data } = await client.query({ query: sitesQuery });
-      await updateContactSites(data.contactSites);
+      const { data } = await client.query({ query: InfoQuery });
+      await Promise.all([
+        updateContactSites(data.contactSites),
+        updateStatuses(data.statuses),
+      ]);
     } catch (e) {
       console.log(e);
     }
@@ -66,8 +77,17 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
     return info ? JSON.parse(info) : [];
   };
 
-  const updateContactSites = async (sites: ContactSite[]) => {
-    await AsyncStorage.setItem('sites', JSON.stringify(sites));
+  const getStatuses = async () => {
+    const info = await AsyncStorage.getItem('statuses');
+    return info ? JSON.parse(info) : [];
+  };
+
+  const updateContactSites = (sites: ContactSite[]) => {
+    return AsyncStorage.setItem('sites', JSON.stringify(sites));
+  };
+
+  const updateStatuses = (statuses: PersonStatus[]) => {
+    return AsyncStorage.setItem('statuses', JSON.stringify(statuses));
   };
 
   const getOfflineContacts = async () => {
@@ -94,6 +114,7 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
         connected,
         getUser,
         updateUser,
+        getStatuses,
         getSites,
         offlineChanged,
         addOfflineContact,

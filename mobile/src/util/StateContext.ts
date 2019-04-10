@@ -1,5 +1,9 @@
 import React from 'react';
-import { ContactSite, PersonCreateInput } from '../../../core/prisma-client';
+import {
+  ContactSite,
+  PersonCreateInput,
+  PersonStatus,
+} from '../../../core/prisma-client';
 import { UserDetails } from '../types';
 
 type Values = {
@@ -9,6 +13,7 @@ type Values = {
   addOfflineContact: (details: PersonCreateInput) => void;
   getOfflineContacts: () => Promise<Array<PersonCreateInput>> | void;
   getSites: () => Promise<Array<ContactSite>> | void;
+  getStatuses: () => Promise<Array<PersonStatus>> | void;
   getUser: () => Promise<UserDetails> | void;
   updateUser: (details: UserDetails | null) => void;
   removeOfflineContacts: () => Promise<void> | void;
@@ -21,6 +26,7 @@ const StateContext = React.createContext<Values>({
   addOfflineContact: () => {},
   getOfflineContacts: () => {},
   getSites: () => {},
+  getStatuses: () => {},
   getUser: () => {},
   updateUser: () => {},
   removeOfflineContacts: () => {},

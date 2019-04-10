@@ -22,3 +22,14 @@ export const newContactMutation = gql`
     }
   }
 `;
+
+export const updateContactMutation = gql`
+  mutation UpdateContactMutation(
+    $where: PersonWhereUniqueInput!
+    $data: PersonUpdateInput!
+  ) {
+    updatePerson(where: $where, data: $data) {
+      id
+    }
+  }
+`;

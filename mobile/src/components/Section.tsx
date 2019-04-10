@@ -7,10 +7,11 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import { Theme } from '../../../util';
+import { Theme } from '../util';
 
 interface SectionProps extends ViewProperties {
   title?: string;
+  topDivider?: boolean;
   hideDivider?: boolean;
   style?: StyleProp<ViewStyle>;
   padded?: boolean;
@@ -19,6 +20,7 @@ interface SectionProps extends ViewProperties {
 
 const Section: React.FunctionComponent<SectionProps> = ({
   padded = true,
+  topDivider,
   hideDivider,
   children,
   title,
@@ -29,7 +31,8 @@ const Section: React.FunctionComponent<SectionProps> = ({
       {
         paddingVertical: 24,
         borderBottomWidth: hideDivider ? 0 : 1,
-        borderBottomColor: '#DFDFE2',
+        borderTopWidth: topDivider ? 1 : 0,
+        borderColor: '#DFDFE2',
         paddingHorizontal: padded ? 16 : 0,
       },
       style,

@@ -1,6 +1,5 @@
 import ApolloClient from 'apollo-boost';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Platform } from 'react-native';
 
 const client = new ApolloClient({
   uri: 'http://192.168.1.2:4000',

@@ -1,4 +1,11 @@
-import { User, Note, PersonCreateInput } from '../../core/prisma-client';
+import {
+  User,
+  Note,
+  PersonCreateInput,
+  PersonStatus,
+  ContactSite,
+  Person,
+} from '../../core/prisma-client';
 
 export interface MergedNote extends Note {
   user: Partial<User>;
@@ -17,4 +24,11 @@ export interface UserDetails {
 
 export interface OfflinePerson extends PersonCreateInput {
   id: string;
+}
+
+export interface MergedPerson extends Person {
+  __typename: string;
+  notes: MergedNote[];
+  status: Partial<PersonStatus>;
+  contactSite: ContactSite;
 }
