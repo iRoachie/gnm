@@ -26,7 +26,14 @@ export const dashboardQuery = gql`
 
 export const contactsQuery = gql`
   query ContactsQuery($search: String) {
-    persons(where: { name_search_contains: $search }) {
+    persons(
+      where: {
+        OR: [
+          { name_search_contains: $search }
+          { teamCode_search_contains: $search }
+        ]
+      }
+    ) {
       data {
         id
         name
