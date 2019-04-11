@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { FAB } from 'react-native-paper';
+import { View, Text } from 'react-native';
 
 import { Theme } from '../../../util';
 
@@ -8,14 +7,12 @@ interface HeaderProps {
   name: string;
   teamCode?: string;
   status: string;
-  onEdit(): void;
 }
 
 const Header: React.FunctionComponent<HeaderProps> = ({
   name,
   teamCode,
   status,
-  onEdit,
 }) => (
   <View
     style={{
@@ -63,29 +60,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
     >
       {status}
     </Text>
-
-    <FAB
-      color={Theme.primary}
-      theme={{
-        colors: {
-          accent: '#fff',
-        },
-      }}
-      small
-      style={styles.fab}
-      icon="edit"
-      onPress={onEdit}
-    />
   </View>
 );
-
-const styles = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    right: 16,
-    bottom: -16,
-    zIndex: 2,
-  },
-});
 
 export default Header;
