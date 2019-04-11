@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ThemeProvider } from 'react-native-elements';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import { View, StyleSheet, StatusBar, Platform } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Theme } from '../util';
@@ -37,7 +37,7 @@ const AddContactSuccess: React.StatelessComponent<
       }}
     >
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
 
         <View style={styles.content}>
           <Button
