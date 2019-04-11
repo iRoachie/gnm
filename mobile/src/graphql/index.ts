@@ -1,8 +1,10 @@
 import ApolloClient from 'apollo-boost';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import { GRAPH_API } from 'react-native-dotenv';
+
 const client = new ApolloClient({
-  uri: 'http://192.168.1.2:4000',
+  uri: GRAPH_API,
   request: async operation => {
     let state = await AsyncStorage.getItem('userState');
     const info = state ? JSON.parse(state) : null;

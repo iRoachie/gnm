@@ -3,3 +3,7 @@ declare module 'thousands' {
 
   export default thousands;
 }
+
+declare module 'react-native-dotenv' {
+  export const GRAPH_API: string;
+}
