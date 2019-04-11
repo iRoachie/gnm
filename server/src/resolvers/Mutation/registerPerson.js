@@ -33,7 +33,10 @@ const registerPerson = async (parent, { data }, context) => {
   }
 
   data.name_search = data.name.toLowerCase();
-  data.teamCode_search = data.teamCode.toLowerCase();
+
+  if (data.teamCode) {
+    data.teamCode_search = data.teamCode.toLowerCase();
+  }
 
   return context.prisma.createPerson(data);
 };
