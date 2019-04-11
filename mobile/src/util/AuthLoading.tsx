@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
 import SplashScreen from 'react-native-splash-screen';
 
-import Loading from '../components/Loading';
 import StateContext from './StateContext';
 
 const AuthLoading: React.FunctionComponent<NavigationScreenProps> = ({
@@ -23,7 +22,7 @@ const AuthLoading: React.FunctionComponent<NavigationScreenProps> = ({
     }, 500);
   };
 
-  return <Loading visible={true} />;
+  return null;
 };
 
 export default AuthLoading;

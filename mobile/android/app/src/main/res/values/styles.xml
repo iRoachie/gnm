@@ -7,4 +7,9 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
     </style>
 
+     <style name="SplashTheme" parent="SplashScreen_SplashTheme">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+    </style>
+
 </resources>
