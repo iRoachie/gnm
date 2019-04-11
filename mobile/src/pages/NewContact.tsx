@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import { View, StyleSheet, Text, Platform, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   Input,
@@ -64,6 +64,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   }, []);
 
   const submit = async () => {
+    Keyboard.dismiss();
     setNameError('');
     setSexError('');
     setContactSiteError('');

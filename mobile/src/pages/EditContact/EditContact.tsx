@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, StyleSheet, Platform, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Input, ThemeProvider, CheckBox } from 'react-native-elements';
 import { Appbar } from 'react-native-paper';
@@ -53,6 +53,7 @@ const EditContact: React.StatelessComponent<
 
   const submit = async () => {
     setEmailError('');
+    Keyboard.dismiss();
 
     try {
       await validate();
