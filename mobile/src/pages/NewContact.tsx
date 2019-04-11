@@ -37,7 +37,6 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   const [address, setAddress] = useState('');
   const [age, setAge] = useState('');
   const [notes, setNotes] = useState('');
-  const [teamCode, setTeamCode] = useState('');
   const [sites, setSites] = useState<ContactSite[]>([]);
   const [contactSite, setContactSite] = useState<ContactSite | null>(null);
   const [contactSiteError, setContactSiteError] = useState('');
@@ -121,7 +120,6 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
           id: contactSite!.id,
         },
       },
-      ...(teamCode && { teamCode }),
       ...(email && { email }),
       ...(telephone && { telephone }),
       ...(cellphone && { cellphone }),
@@ -255,12 +253,6 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
                 onPress={() => setSex('F')}
               />
             </View>
-
-            <Input
-              label="Team Code"
-              value={teamCode}
-              onChangeText={setTeamCode}
-            />
 
             <Picker<ContactSite>
               label="Contact Site"
