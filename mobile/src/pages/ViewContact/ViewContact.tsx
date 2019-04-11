@@ -92,7 +92,7 @@ const ViewContact: React.FunctionComponent<
                         paddingHorizontal: 16,
                       },
                       titleStyle: {
-                        fontFamily: Theme.fonts.regular,
+                        fontFamily: Theme.fonts.medium,
                         color: '#000',
                         fontSize: 15,
                       },

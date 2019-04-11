@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
     paddingBottom: 8,
-    fontSize: 15,
+    fontSize: 16,
     fontFamily: Theme.fonts.semibold,
     color: Theme.primary,
   },
@@ -193,10 +193,9 @@ const styles = StyleSheet.create({
     fontFamily: Theme.fonts.medium,
   },
   itemStyle: {
-    fontFamily:
-      Platform.OS === 'ios' ? Theme.fonts.regular : Theme.fonts.medium,
+    fontFamily: Theme.fonts.medium,
     color: 'rgba(0,0,0,.87)',
-    fontSize: 16,
+    fontSize: 15,
   },
   itemStyleSelected: {
     backgroundColor: Theme.primary,
