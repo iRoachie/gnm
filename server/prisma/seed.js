@@ -14,6 +14,7 @@ const permissions = [
   'Person:UpdateAssigned',
   'Person:UpdateArea',
   'Person:Delete',
+  'User:Create',
   'User:ListAll',
   'User:Update',
   'User:Delete',
