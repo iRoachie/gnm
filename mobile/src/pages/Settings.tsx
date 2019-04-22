@@ -5,6 +5,7 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { Loading } from '../components';
 import { Theme, StateContext } from '../util';
+import client from '../graphql';
 
 const Settings: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
@@ -15,6 +16,7 @@ const Settings: React.StatelessComponent<NavigationScreenProps> = ({
   const signOut = async () => {
     setLoading(true);
     await updateUser(null);
+    client.clearStore();
 
     setTimeout(() => {
       setLoading(false);
