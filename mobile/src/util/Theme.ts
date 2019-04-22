@@ -27,6 +27,10 @@ const Theme = {
           },
         }),
       },
+      subtitleStyle: {
+        fontFamily: fonts.medium,
+        marginTop: -8,
+      },
     } as AppbarContentProps,
   },
 };

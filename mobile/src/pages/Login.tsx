@@ -16,7 +16,7 @@ import validator from 'validator';
 
 import { Theme, StateContext } from '../util';
 import client, { loginMutation } from '../graphql';
-import { ContactSite } from '../../../core/prisma-client';
+import { ContactSite, UserRole } from '../../../core/prisma-client';
 
 type Response = {
   login: {
@@ -24,6 +24,7 @@ type Response = {
     name: string;
     email: string;
     jwt: string;
+    role: UserRole;
     contactSites: ContactSite[];
   };
 };

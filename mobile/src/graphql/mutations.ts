@@ -7,6 +7,9 @@ export const loginMutation = gql`
       name
       email
       jwt
+      role {
+        title
+      }
       contactSites {
         id
         country
