@@ -36,6 +36,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
   const [errorMessage, setErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loading, updateLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { updateUser, isTablet } = useContext(StateContext);
 
   const emailRef = React.createRef<Input>();
@@ -156,7 +157,10 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
           />
         )}
 
-        <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+        <KeyboardAwareScrollView
+          contentContainerStyle={styles.container}
+          keyboardShouldPersistTaps="handled"
+        >
           {Platform.OS === 'ios' && (
             <StatusBar
               barStyle="dark-content"
@@ -191,7 +195,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
             <Input
               label="Password"
               returnKeyType="done"
-              secureTextEntry
+              secureTextEntry={!showPassword}
               value={password}
               onChangeText={updatePassword}
               onSubmitEditing={submit}
@@ -199,6 +203,11 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
               editable={!loading}
               errorMessage={passwordError}
               textContentType="password"
+              rightIcon={{
+                name: 'visibility',
+                color: showPassword ? Theme.primary : 'rgba(0, 0, 0, 0.28)',
+                onPress: () => setShowPassword(!showPassword),
+              }}
             />
 
             <Text style={styles.errorMessage}>{errorMessage}</Text>
