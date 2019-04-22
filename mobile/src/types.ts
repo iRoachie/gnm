@@ -5,6 +5,7 @@ import {
   PersonStatus,
   ContactSite,
   Person,
+  UserRole,
 } from '../../core/prisma-client';
 
 export interface MergedNote extends Note {
@@ -16,6 +17,7 @@ export interface UserDetails {
   name: string;
   email: string;
   jwt: string;
+  role: UserRole;
   contactSites: Array<{
     id: string;
     country: string;

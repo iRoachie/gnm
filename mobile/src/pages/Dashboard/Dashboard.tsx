@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { ActivityIndicator, Appbar } from 'react-native-paper';
 import thousands from 'thousands';
@@ -8,15 +8,16 @@ import { Query } from 'react-apollo';
 
 import { Theme, StateContext } from '../../util';
 import { dashboardQuery } from '../../graphql';
+import { OfflineBanner } from '../../components';
+import { UserDetails } from '../../types';
 
 import TotalBanner from './TotalBanner';
 import DashboardSquare from './DashboardSquare';
-import { OfflineBanner } from '../../components';
 
 const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
-  const [user, setUser] = useState('...');
+  const [user, setUser] = useState<UserDetails | null>(null);
   const { getUser, connected } = useContext(StateContext);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
   const getUserInfo = async () => {
     const user = await getUser();
     if (user) {
-      setUser(user.name);
+      setUser(user);
     }
   };
 
@@ -41,7 +42,11 @@ const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
           return (
             <React.Fragment>
               <Appbar.Header {...Theme.Appbar.Header}>
-                <Appbar.Content title={user} {...Theme.Appbar.Content} />
+                <Appbar.Content
+                  title={!!user ? user.name : '...'}
+                  subtitle={!!user ? user.role.title : 'Yea'}
+                  {...Theme.Appbar.Content}
+                />
                 {connected && (
                   <Appbar.Action icon="refresh" onPress={() => refetch()} />
                 )}
