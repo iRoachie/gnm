@@ -96,6 +96,10 @@ const contactSites = {
     'Sugar Hill',
     'Berea',
     'Oldbury',
+    'Belair',
+    'Jackmans',
+    'Welchman Hall',
+    'Grazettes',
   ],
   Dominica: [
     'Marigot',
