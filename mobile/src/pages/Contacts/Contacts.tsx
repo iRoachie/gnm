@@ -64,12 +64,12 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
 
   return (
     <View style={{ flex: 1 }}>
-      <Appbar.Header dark {...Theme.Appbar.Header}>
-        <Appbar.Content title="Contacts" {...Theme.Appbar.Content} />
-      </Appbar.Header>
-
       {!connected && (
         <>
+          <Appbar.Header dark {...Theme.Appbar.Header}>
+            <Appbar.Content title="Contacts" {...Theme.Appbar.Content} />
+          </Appbar.Header>
+
           <OfflineBanner />
 
           <View style={{ paddingHorizontal: 16 }}>
@@ -117,71 +117,79 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
       )}
 
       {connected && (
-        <SearchBar
-          platform={Platform.OS === 'ios' ? 'ios' : 'android'}
-          placeholder="Search Contacts"
-          inputStyle={{
-            fontSize: 17,
-            fontFamily: Theme.fonts.medium,
-            marginLeft: 10,
-          }}
-          inputContainerStyle={Platform.select({
-            ios: {
-              backgroundColor: '#fff',
-            },
-          })}
-          containerStyle={Platform.select({
-            ios: {
-              backgroundColor: Theme.background,
-            },
-          })}
-          value={search}
-          onChangeText={updateSearch}
-          cancelButtonProps={{
-            color: Theme.primary,
-            buttonTextStyle: { fontFamily: Theme.fonts.medium },
-          }}
-        />
-      )}
-
-      {connected && (
         <Query
           query={contactsQuery}
           notifyOnNetworkStatusChange
           variables={{ search: dbSearch }}
         >
-          {({ loading, error, data, refetch }) => {
-            return loading ? (
-              <ActivityIndicator style={{ marginTop: 16 }} />
-            ) : error ? null : (
-              <FlatList<Person>
-                data={data.persons.data}
-                keyExtractor={item => item.id}
-                keyboardShouldPersistTaps="always"
-                renderItem={({ item }) => (
-                  <List.Item
-                    title={item.name}
-                    titleStyle={{ fontFamily: Theme.fonts.medium }}
-                    descriptionStyle={{ fontFamily: Theme.fonts.medium }}
-                    description={item.teamCode}
-                    onPress={() => viewContact(item)}
-                  />
+          {({ loading, error, data, refetch }) => (
+            <>
+              <Appbar.Header dark {...Theme.Appbar.Header}>
+                <Appbar.Content title="Contacts" {...Theme.Appbar.Content} />
+
+                {!loading && !error && (
+                  <Appbar.Action icon="refresh" onPress={() => refetch()} />
                 )}
-                ListEmptyComponent={
-                  <Text
-                    style={{
-                      textAlign: 'center',
-                      marginTop: 16,
-                      fontSize: 16,
-                      fontFamily: Theme.fonts.regular,
-                    }}
-                  >
-                    No Contacts
-                  </Text>
-                }
+              </Appbar.Header>
+
+              <SearchBar
+                platform={Platform.OS === 'ios' ? 'ios' : 'android'}
+                placeholder="Search Contacts"
+                inputStyle={{
+                  fontSize: 17,
+                  fontFamily: Theme.fonts.medium,
+                  marginLeft: 10,
+                }}
+                inputContainerStyle={Platform.select({
+                  ios: {
+                    backgroundColor: '#fff',
+                  },
+                })}
+                containerStyle={Platform.select({
+                  ios: {
+                    backgroundColor: Theme.background,
+                  },
+                })}
+                value={search}
+                onChangeText={updateSearch}
+                cancelButtonProps={{
+                  color: Theme.primary,
+                  buttonTextStyle: { fontFamily: Theme.fonts.medium },
+                }}
               />
-            );
-          }}
+
+              {loading && <ActivityIndicator style={{ marginTop: 16 }} />}
+
+              {!loading && !error && (
+                <FlatList<Person>
+                  data={data.persons.data}
+                  keyExtractor={item => item.id}
+                  keyboardShouldPersistTaps="always"
+                  renderItem={({ item }) => (
+                    <List.Item
+                      title={item.name}
+                      titleStyle={{ fontFamily: Theme.fonts.medium }}
+                      descriptionStyle={{ fontFamily: Theme.fonts.medium }}
+                      description={item.teamCode}
+                      onPress={() => viewContact(item)}
+                    />
+                  )}
+                  ListEmptyComponent={
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        marginTop: 16,
+                        fontSize: 16,
+                        fontFamily: Theme.fonts.regular,
+                      }}
+                    >
+                      No Contacts
+                    </Text>
+                  }
+                />
+              )}
+            </>
+          )}
         </Query>
       )}
 
