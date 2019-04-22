@@ -96,7 +96,6 @@ const contactSites = {
     'Sugar Hill',
     'Berea',
     'Oldbury',
-    'Moriah',
   ],
   Dominica: [
     'Marigot',
