@@ -51,11 +51,12 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
       const user = await getUser();
 
       if (sites && user) {
-        setSites(
-          sites
-            .filter(a => a.country === user.contactSites[0].country)
-            .sort((a, b) => (a.name < b.name ? -1 : 1))
-        );
+        const filteredSites =
+          user.contactSites.length > 0
+            ? sites.filter(a => a.country === user.contactSites[0].country)
+            : sites;
+
+        setSites(filteredSites.sort((a, b) => (a.name < b.name ? -1 : 1)));
         setUserInfo(user!);
       }
     };
