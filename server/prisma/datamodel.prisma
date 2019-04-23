@@ -94,6 +94,8 @@ type Person {
   lesson5: Boolean! @default(value: "false")
   lesson6: Boolean! @default(value: "false")
   lesson7: Boolean! @default(value: "false")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Attendance {
