@@ -61,7 +61,7 @@ const roles = [
     ],
   },
   {
-    title: 'Area Leader',
+    title: 'Personal Ministries',
     permissions: [
       'Team:Create',
       'Team:ListArea',
