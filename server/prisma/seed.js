@@ -18,6 +18,10 @@ const permissions = [
   'User:ListAll',
   'User:Update',
   'User:Delete',
+  'Team:Create',
+  'Team:ListAll',
+  'Team:ListArea',
+  'Team:Update',
 ];
 
 const roles = [
@@ -47,6 +51,17 @@ const roles = [
   {
     title: 'Church',
     permissions: [
+      'Person:ListArea',
+      'Person:Create',
+      'Person:ViewArea',
+      'Person:UpdateArea',
+    ],
+  },
+  {
+    title: 'Area Leader',
+    permissions: [
+      'Team:Create',
+      'Team:ListArea',
       'Person:ListArea',
       'Person:Create',
       'Person:ViewArea',
