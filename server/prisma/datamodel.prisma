@@ -54,7 +54,9 @@ type Note {
 
 type Team {
   id: ID! @unique
-  leader: String!
+  name: String!
+  name_search: String
+  contactSite: ContactSite!
 }
 
 type Person {

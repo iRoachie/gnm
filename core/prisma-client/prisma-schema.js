@@ -1484,7 +1484,9 @@ type Subscription {
 
 type Team {
   id: ID!
-  leader: String!
+  name: String!
+  name_search: String
+  contactSite: ContactSite!
 }
 
 type TeamConnection {
@@ -1494,7 +1496,9 @@ type TeamConnection {
 }
 
 input TeamCreateInput {
-  leader: String!
+  name: String!
+  name_search: String
+  contactSite: ContactSiteCreateOneInput!
 }
 
 input TeamCreateOneInput {
@@ -1510,8 +1514,10 @@ type TeamEdge {
 enum TeamOrderByInput {
   id_ASC
   id_DESC
-  leader_ASC
-  leader_DESC
+  name_ASC
+  name_DESC
+  name_search_ASC
+  name_search_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1520,7 +1526,8 @@ enum TeamOrderByInput {
 
 type TeamPreviousValues {
   id: ID!
-  leader: String!
+  name: String!
+  name_search: String
 }
 
 type TeamSubscriptionPayload {
@@ -1542,15 +1549,20 @@ input TeamSubscriptionWhereInput {
 }
 
 input TeamUpdateDataInput {
-  leader: String
+  name: String
+  name_search: String
+  contactSite: ContactSiteUpdateOneRequiredInput
 }
 
 input TeamUpdateInput {
-  leader: String
+  name: String
+  name_search: String
+  contactSite: ContactSiteUpdateOneRequiredInput
 }
 
 input TeamUpdateManyMutationInput {
-  leader: String
+  name: String
+  name_search: String
 }
 
 input TeamUpdateOneInput {
@@ -1582,20 +1594,35 @@ input TeamWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  leader: String
-  leader_not: String
-  leader_in: [String!]
-  leader_not_in: [String!]
-  leader_lt: String
-  leader_lte: String
-  leader_gt: String
-  leader_gte: String
-  leader_contains: String
-  leader_not_contains: String
-  leader_starts_with: String
-  leader_not_starts_with: String
-  leader_ends_with: String
-  leader_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_search: String
+  name_search_not: String
+  name_search_in: [String!]
+  name_search_not_in: [String!]
+  name_search_lt: String
+  name_search_lte: String
+  name_search_gt: String
+  name_search_gte: String
+  name_search_contains: String
+  name_search_not_contains: String
+  name_search_starts_with: String
+  name_search_not_starts_with: String
+  name_search_ends_with: String
+  name_search_not_ends_with: String
+  contactSite: ContactSiteWhereInput
   AND: [TeamWhereInput!]
   OR: [TeamWhereInput!]
   NOT: [TeamWhereInput!]
