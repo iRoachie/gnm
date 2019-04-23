@@ -6,6 +6,7 @@ const registerPerson = require('./registerPerson');
 const assignWorker = require('./assignWorker');
 const updatePerson = require('./updatePerson');
 const createTeam = require('./createTeam');
+const updateTeam = require('./updateTeam');
 
 const Mutation = {
   registerUser,
@@ -15,6 +16,7 @@ const Mutation = {
   assignWorker,
   updatePerson,
   createTeam,
+  updateTeam,
 };
 
 module.exports = Mutation;
