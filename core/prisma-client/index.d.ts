@@ -610,8 +610,10 @@ export type Sex = "M" | "F";
 export type TeamOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "leader_ASC"
-  | "leader_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "name_search_ASC"
+  | "name_search_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -1067,7 +1069,9 @@ export interface PersonCreateInput {
 }
 
 export interface TeamUpdateInput {
-  leader?: String;
+  name?: String;
+  name_search?: String;
+  contactSite?: ContactSiteUpdateOneRequiredInput;
 }
 
 export interface PersonStatusCreateOneInput {
@@ -1297,7 +1301,9 @@ export interface NoteWhereInput {
 }
 
 export interface TeamCreateInput {
-  leader: String;
+  name: String;
+  name_search?: String;
+  contactSite: ContactSiteCreateOneInput;
 }
 
 export interface PersonStatusSubscriptionWhereInput {
@@ -1443,20 +1449,35 @@ export interface TeamWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  leader?: String;
-  leader_not?: String;
-  leader_in?: String[] | String;
-  leader_not_in?: String[] | String;
-  leader_lt?: String;
-  leader_lte?: String;
-  leader_gt?: String;
-  leader_gte?: String;
-  leader_contains?: String;
-  leader_not_contains?: String;
-  leader_starts_with?: String;
-  leader_not_starts_with?: String;
-  leader_ends_with?: String;
-  leader_not_ends_with?: String;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  name_search?: String;
+  name_search_not?: String;
+  name_search_in?: String[] | String;
+  name_search_not_in?: String[] | String;
+  name_search_lt?: String;
+  name_search_lte?: String;
+  name_search_gt?: String;
+  name_search_gte?: String;
+  name_search_contains?: String;
+  name_search_not_contains?: String;
+  name_search_starts_with?: String;
+  name_search_not_starts_with?: String;
+  name_search_ends_with?: String;
+  name_search_not_ends_with?: String;
+  contactSite?: ContactSiteWhereInput;
   AND?: TeamWhereInput[] | TeamWhereInput;
   OR?: TeamWhereInput[] | TeamWhereInput;
   NOT?: TeamWhereInput[] | TeamWhereInput;
@@ -1653,7 +1674,8 @@ export interface PermissionUpdateDataInput {
 }
 
 export interface TeamUpdateManyMutationInput {
-  leader?: String;
+  name?: String;
+  name_search?: String;
 }
 
 export interface PermissionUpsertWithWhereUniqueNestedInput {
@@ -1663,7 +1685,9 @@ export interface PermissionUpsertWithWhereUniqueNestedInput {
 }
 
 export interface TeamUpdateDataInput {
-  leader?: String;
+  name?: String;
+  name_search?: String;
+  contactSite?: ContactSiteUpdateOneRequiredInput;
 }
 
 export interface PermissionScalarWhereInput {
@@ -2201,19 +2225,24 @@ export interface UserEdgeSubscription
 
 export interface Team {
   id: ID_Output;
-  leader: String;
+  name: String;
+  name_search?: String;
 }
 
 export interface TeamPromise extends Promise<Team>, Fragmentable {
   id: () => Promise<ID_Output>;
-  leader: () => Promise<String>;
+  name: () => Promise<String>;
+  name_search: () => Promise<String>;
+  contactSite: <T = ContactSitePromise>() => T;
 }
 
 export interface TeamSubscription
   extends Promise<AsyncIterator<Team>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  leader: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  name_search: () => Promise<AsyncIterator<String>>;
+  contactSite: <T = ContactSiteSubscription>() => T;
 }
 
 export interface Attendance {
@@ -3079,21 +3108,24 @@ export interface PersonEdgeSubscription
 
 export interface TeamPreviousValues {
   id: ID_Output;
-  leader: String;
+  name: String;
+  name_search?: String;
 }
 
 export interface TeamPreviousValuesPromise
   extends Promise<TeamPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  leader: () => Promise<String>;
+  name: () => Promise<String>;
+  name_search: () => Promise<String>;
 }
 
 export interface TeamPreviousValuesSubscription
   extends Promise<AsyncIterator<TeamPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  leader: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  name_search: () => Promise<AsyncIterator<String>>;
 }
 
 export interface TeamSubscriptionPayload {
