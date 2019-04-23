@@ -933,6 +933,22 @@ export interface PersonWhereInput {
   lesson6_not?: Boolean;
   lesson7?: Boolean;
   lesson7_not?: Boolean;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: PersonWhereInput[] | PersonWhereInput;
   OR?: PersonWhereInput[] | PersonWhereInput;
   NOT?: PersonWhereInput[] | PersonWhereInput;
@@ -1976,6 +1992,8 @@ export interface Person {
   lesson5: Boolean;
   lesson6: Boolean;
   lesson7: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface PersonPromise extends Promise<Person>, Fragmentable {
@@ -2023,6 +2041,8 @@ export interface PersonPromise extends Promise<Person>, Fragmentable {
   lesson5: () => Promise<Boolean>;
   lesson6: () => Promise<Boolean>;
   lesson7: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface PersonSubscription
@@ -2072,6 +2092,8 @@ export interface PersonSubscription
   lesson5: () => Promise<AsyncIterator<Boolean>>;
   lesson6: () => Promise<AsyncIterator<Boolean>>;
   lesson7: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface AggregateAttendance {
@@ -2889,6 +2911,8 @@ export interface PersonPreviousValues {
   lesson5: Boolean;
   lesson6: Boolean;
   lesson7: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface PersonPreviousValuesPromise
@@ -2923,6 +2947,8 @@ export interface PersonPreviousValuesPromise
   lesson5: () => Promise<Boolean>;
   lesson6: () => Promise<Boolean>;
   lesson7: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface PersonPreviousValuesSubscription
@@ -2957,6 +2983,8 @@ export interface PersonPreviousValuesSubscription
   lesson5: () => Promise<AsyncIterator<Boolean>>;
   lesson6: () => Promise<AsyncIterator<Boolean>>;
   lesson7: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface NoteEdge {
