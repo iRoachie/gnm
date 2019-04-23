@@ -7,6 +7,8 @@ const statuses = require('./statuses');
 const attendance = require('./attendance');
 const persons = require('./persons');
 const person = require('./person');
+const teams = require('./teams');
+const team = require('./team');
 
 const Query = {
   users,
@@ -18,6 +20,8 @@ const Query = {
   attendance,
   persons,
   person,
+  teams,
+  team,
 };
 
 module.exports = Query;
