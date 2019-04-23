@@ -24,6 +24,7 @@ const permissions = [
   'Team:View',
   'Team:ViewArea',
   'Team:Update',
+  'Team:UpdateArea',
 ];
 
 const roles = [
@@ -65,6 +66,7 @@ const roles = [
       'Team:Create',
       'Team:ListArea',
       'Team:ViewArea',
+      'Team:UpdateArea',
       'Person:ListArea',
       'Person:Create',
       'Person:ViewArea',
