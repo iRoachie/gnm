@@ -308,6 +308,16 @@ type Query {
   ): PersonsResponse!
   personsCount(where: PersonWhereInput): Int
   person(where: PersonWhereUniqueInput): Person
+  teams(
+    where: TeamWhereInput
+    orderBy: TeamOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Team]!
+  team(where: TeamWhereUniqueInput): Team
 }
 
 type PersonsResponse {
