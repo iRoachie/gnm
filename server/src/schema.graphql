@@ -272,6 +272,7 @@ type Mutation {
     where: PersonWhereUniqueInput!
   ): Person!
   createTeam(data: TeamCreateInput): Team!
+  updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team!
 }
 
 type Query {
