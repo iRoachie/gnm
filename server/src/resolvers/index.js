@@ -4,6 +4,7 @@ const ReturnedUser = require('./ReturnedUser');
 const LoggedInUser = require('./LoggedInUser');
 const ReturnedUserRole = require('./ReturnedUserRole');
 const Person = require('./Person');
+const Team = require('./Team');
 
 const resolvers = {
   Query,
@@ -12,6 +13,7 @@ const resolvers = {
   LoggedInUser,
   ReturnedUser,
   ReturnedUserRole,
+  Team,
 };
 
 module.exports = resolvers;
