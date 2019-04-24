@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { FAB, List, ActivityIndicator, Appbar } from 'react-native-paper';
+import { Query } from 'react-apollo';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Theme, StateContext } from '../util';
-import { Query } from 'react-apollo';
 import { teamsQuery } from '../graphql';
 import { UserDetails, ReturnedTeam } from '../types';
+import { OfflineBanner } from '../components';
 
 const Teams: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
@@ -32,7 +33,20 @@ const Teams: React.StatelessComponent<NavigationScreenProps> = ({
 
   return (
     <View style={{ flex: 1 }}>
-      {connected && (
+      {!connected ? (
+        <>
+          <Appbar.Header dark {...Theme.Appbar.Header}>
+            <Appbar.Action
+              icon="arrow-back"
+              onPress={() => navigation.goBack()}
+            />
+
+            <Appbar.Content title="Teams" {...Theme.Appbar.Content} />
+          </Appbar.Header>
+
+          <OfflineBanner />
+        </>
+      ) : (
         <Query query={teamsQuery} notifyOnNetworkStatusChange>
           {({ loading, error, data, refetch }) => (
             <>

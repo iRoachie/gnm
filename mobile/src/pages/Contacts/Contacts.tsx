@@ -193,7 +193,9 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
         </Query>
       )}
 
-      <FAB style={styles.fab} icon="add" onPress={goToNewContact} />
+      {connected && (
+        <FAB style={styles.fab} icon="add" onPress={goToNewContact} />
+      )}
     </View>
   );
 };
