@@ -1497,6 +1497,22 @@ export interface TeamWhereInput {
   name_search_ends_with?: String;
   name_search_not_ends_with?: String;
   contactSite?: ContactSiteWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: TeamWhereInput[] | TeamWhereInput;
   OR?: TeamWhereInput[] | TeamWhereInput;
   NOT?: TeamWhereInput[] | TeamWhereInput;
@@ -2254,6 +2270,8 @@ export interface Team {
   id: ID_Output;
   name: String;
   name_search?: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface TeamPromise extends Promise<Team>, Fragmentable {
@@ -2261,6 +2279,8 @@ export interface TeamPromise extends Promise<Team>, Fragmentable {
   name: () => Promise<String>;
   name_search: () => Promise<String>;
   contactSite: <T = ContactSitePromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface TeamSubscription
@@ -2270,6 +2290,8 @@ export interface TeamSubscription
   name: () => Promise<AsyncIterator<String>>;
   name_search: () => Promise<AsyncIterator<String>>;
   contactSite: <T = ContactSiteSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface Attendance {
@@ -3143,6 +3165,8 @@ export interface TeamPreviousValues {
   id: ID_Output;
   name: String;
   name_search?: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface TeamPreviousValuesPromise
@@ -3151,6 +3175,8 @@ export interface TeamPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   name_search: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface TeamPreviousValuesSubscription
@@ -3159,6 +3185,8 @@ export interface TeamPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   name_search: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface TeamSubscriptionPayload {
