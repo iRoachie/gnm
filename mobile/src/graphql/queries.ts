@@ -91,7 +91,8 @@ export const viewContactQuery = gql`
       guestTag
       transport
       teamCode
-      notes {
+      notes(orderBy: date_DESC) {
+        id
         message
         date
         user {

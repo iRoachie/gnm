@@ -1,5 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+
+TimeAgo.addLocale(en);
+
+const timeAgo = new TimeAgo('en-US');
 
 import { Theme } from '../../../util';
 import { MergedNote } from '../../../types';
@@ -12,7 +18,9 @@ const NoteItem: React.StatelessComponent<NoteProps> = ({ note }) => (
   <View style={styles.container}>
     <Text style={styles.comment}>{note.message}</Text>
 
-    <Text style={styles.meta}>{`${note.user.name} • ${note.date}`}</Text>
+    <Text style={styles.meta}>{`${note.user.name} • ${timeAgo.format(
+      new Date(note.date)
+    )}`}</Text>
   </View>
 );
 

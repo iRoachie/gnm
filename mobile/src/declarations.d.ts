@@ -7,3 +7,6 @@ declare module 'thousands' {
 declare module 'react-native-dotenv' {
   export const GRAPH_API: string;
 }
+
+declare module 'javascript-time-ago';
+declare module 'javascript-time-ago/locale/en' {}
