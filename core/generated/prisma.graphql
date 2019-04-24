@@ -1506,6 +1506,8 @@ type Team {
   name: String!
   name_search: String
   contactSite: ContactSite!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type TeamConnection {
@@ -1547,6 +1549,8 @@ type TeamPreviousValues {
   id: ID!
   name: String!
   name_search: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type TeamSubscriptionPayload {
@@ -1642,6 +1646,22 @@ input TeamWhereInput {
   name_search_ends_with: String
   name_search_not_ends_with: String
   contactSite: ContactSiteWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
   AND: [TeamWhereInput!]
   OR: [TeamWhereInput!]
   NOT: [TeamWhereInput!]
