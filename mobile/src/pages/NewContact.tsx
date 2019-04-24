@@ -18,7 +18,7 @@ import {
   PersonCreateInput,
   Sex,
 } from '../../../core/prisma-client';
-import { UserDetails } from '../types';
+import { UserDetails, ReturnedTeam } from '../types';
 import client, { newContactMutation } from '../graphql';
 
 const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
@@ -40,17 +40,24 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
   const [sites, setSites] = useState<ContactSite[]>([]);
   const [contactSite, setContactSite] = useState<ContactSite | null>(null);
   const [contactSiteError, setContactSiteError] = useState('');
+  const [teams, setTeams] = useState<ReturnedTeam[]>([]);
+  const [team, setTeam] = useState<ReturnedTeam | null>(null);
 
-  const { getSites, getUser, connected, addOfflineContact } = useContext(
-    StateContext
-  );
+  const {
+    getSites,
+    getUser,
+    connected,
+    getTeams,
+    addOfflineContact,
+  } = useContext(StateContext);
 
   useEffect(() => {
     const fetchSites = async () => {
       const sites = await getSites();
       const user = await getUser();
+      const teams = await getTeams();
 
-      if (sites && user) {
+      if (sites && user && teams) {
         const filteredSites =
           user.contactSites.length > 0
             ? sites.filter(a => a.country === user.contactSites[0].country)
@@ -58,6 +65,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
 
         setSites(filteredSites.sort((a, b) => (a.name < b.name ? -1 : 1)));
         setUserInfo(user!);
+        setTeams(teams!);
       }
     };
 
@@ -122,7 +130,8 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
           id: contactSite!.id,
         },
       },
-      addedBy: { connect: { id: userInfo!.id }},
+      addedBy: { connect: { id: userInfo!.id } },
+      ...(team && { team: { connect: { id: team.id } } }),
       ...(email && { email }),
       ...(telephone && { telephone }),
       ...(cellphone && { cellphone }),
@@ -267,6 +276,17 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
               onPress={a => setContactSite(a)}
               containerStyle={{ marginBottom: 30 }}
               error={contactSiteError}
+            />
+
+            <Picker<ReturnedTeam>
+              label="Team"
+              message="Team"
+              displayKey="id"
+              displayValue="name"
+              values={teams}
+              value={team}
+              onPress={a => setTeam(a)}
+              containerStyle={{ marginBottom: 30 }}
             />
 
             <Input

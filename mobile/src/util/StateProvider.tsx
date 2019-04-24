@@ -4,13 +4,14 @@ import NetInfo from '@react-native-community/netinfo';
 import { Dimensions, View, LayoutChangeEvent } from 'react-native';
 import gql from 'graphql-tag';
 
-import client from '../graphql';
+import client, { teamsQuery } from '../graphql';
 import StateContext from './StateContext';
 import {
   ContactSite,
   PersonCreateInput,
   PersonStatus,
 } from '../../../core/prisma-client';
+import { ReturnedTeam } from '../types';
 
 const InfoQuery = gql`
   {
@@ -55,6 +56,28 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const fetchTeams = async () => {
+    try {
+      const user = await getUser();
+
+      if (user && user.role.permissions.includes('Team:ListArea')) {
+        const { data } = await client.query({ query: teamsQuery });
+        await updateTeams(data.teams);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const updateTeams = async (teams: ReturnedTeam[]) => {
+    await AsyncStorage.setItem('teams', JSON.stringify(teams));
+  };
+
+  const getTeams = async () => {
+    const teams = await AsyncStorage.getItem('teams');
+    return teams ? JSON.parse(teams) : [];
   };
 
   const handleConnectivityChange = (
@@ -120,6 +143,8 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
         addOfflineContact,
         getOfflineContacts,
         removeOfflineContacts,
+        fetchTeams,
+        getTeams,
       }}
     >
       <View style={{ flex: 1 }} onLayout={updateDeviceWidth}>
