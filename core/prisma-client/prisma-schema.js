@@ -849,6 +849,7 @@ type Person {
   lesson7: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
+  addedBy: User
 }
 
 type PersonConnection {
@@ -891,6 +892,7 @@ input PersonCreateInput {
   lesson5: Boolean
   lesson6: Boolean
   lesson7: Boolean
+  addedBy: UserCreateOneInput
 }
 
 input PersonCreateOneInput {
@@ -1181,6 +1183,7 @@ input PersonUpdateInput {
   lesson5: Boolean
   lesson6: Boolean
   lesson7: Boolean
+  addedBy: UserUpdateOneInput
 }
 
 input PersonUpdateManyMutationInput {
@@ -1444,6 +1447,7 @@ input PersonWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
+  addedBy: UserWhereInput
   AND: [PersonWhereInput!]
   OR: [PersonWhereInput!]
   NOT: [PersonWhereInput!]
