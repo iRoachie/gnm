@@ -46,7 +46,7 @@ export const contactsQuery = gql`
 
 export const teamsQuery = gql`
   query TeamsQuery {
-    teams {
+    teams(orderBy: createdAt_DESC) {
       id
       name
       contactSite {
