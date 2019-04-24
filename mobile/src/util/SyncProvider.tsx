@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import client, { newContactMutation } from '../graphql';
 import StateContext from './StateContext';
 import { PersonCreateInput } from '../../../core/prisma-client';
-import { Syncing } from '../components';
+import Syncing from '../components/Syncing';
 
 const SyncProvider: React.FunctionComponent = () => {
   const [syncing, setSyncing] = useState(false);

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 
-import { Theme } from '../util';
+import Theme from '../util/Theme';
 
 const Syncing: React.FunctionComponent = () => (
   <View style={styles.content}>
