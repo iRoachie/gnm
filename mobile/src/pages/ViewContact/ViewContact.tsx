@@ -112,6 +112,10 @@ const ViewContact: React.FunctionComponent<
                       subtitle="Contact Site"
                     />
 
+                    {!!person.team && (
+                      <ListItem title={person.team.name} subtitle="Team" />
+                    )}
+
                     {!!person.address && (
                       <ListItem title={person.address} subtitle="Address" />
                     )}
