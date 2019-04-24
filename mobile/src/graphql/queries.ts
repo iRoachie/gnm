@@ -33,6 +33,7 @@ export const contactsQuery = gql`
           { teamCode_search_contains: $search }
         ]
       }
+      orderBy: createdAt_DESC
     ) {
       data {
         id
