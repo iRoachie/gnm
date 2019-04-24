@@ -16,7 +16,8 @@ import validator from 'validator';
 
 import { Theme, StateContext } from '../util';
 import client, { loginMutation } from '../graphql';
-import { ContactSite, UserRole } from '../../../core/prisma-client';
+import { ContactSite } from '../../../core/prisma-client';
+import { ReturnedUserRole } from '../types';
 
 type Response = {
   login: {
@@ -24,7 +25,7 @@ type Response = {
     name: string;
     email: string;
     jwt: string;
-    role: UserRole;
+    role: ReturnedUserRole;
     contactSites: ContactSite[];
   };
 };
@@ -37,7 +38,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
   const [passwordError, setPasswordError] = useState('');
   const [loading, updateLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { updateUser, isTablet } = useContext(StateContext);
+  const { updateUser, isTablet, fetchTeams } = useContext(StateContext);
 
   const emailRef = React.createRef<Input>();
   const passwordRef = React.createRef<Input>();
@@ -77,6 +78,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
       });
 
       await updateUser(data!.login);
+      await fetchTeams();
 
       setTimeout(() => {
         props.navigation.navigate('App');

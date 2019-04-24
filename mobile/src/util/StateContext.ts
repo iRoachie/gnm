@@ -4,7 +4,7 @@ import {
   PersonCreateInput,
   PersonStatus,
 } from '../../../core/prisma-client';
-import { UserDetails } from '../types';
+import { UserDetails, ReturnedTeam } from '../types';
 
 type Values = {
   isTablet: boolean;
@@ -17,6 +17,8 @@ type Values = {
   getUser: () => Promise<UserDetails> | void;
   updateUser: (details: UserDetails | null) => void;
   removeOfflineContacts: () => Promise<void> | void;
+  fetchTeams: () => Promise<void> | void;
+  getTeams: () => Promise<ReturnedTeam[]> | void;
 };
 
 const StateContext = React.createContext<Values>({
@@ -30,6 +32,8 @@ const StateContext = React.createContext<Values>({
   getUser: () => {},
   updateUser: () => {},
   removeOfflineContacts: () => {},
+  fetchTeams: () => {},
+  getTeams: () => {},
 });
 
 export default StateContext;
