@@ -687,6 +687,7 @@ export interface PersonUpdateInput {
   lesson5?: Boolean;
   lesson6?: Boolean;
   lesson7?: Boolean;
+  addedBy?: UserUpdateOneInput;
 }
 
 export interface ContactSiteUpsertWithWhereUniqueNestedInput {
@@ -949,6 +950,7 @@ export interface PersonWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
+  addedBy?: UserWhereInput;
   AND?: PersonWhereInput[] | PersonWhereInput;
   OR?: PersonWhereInput[] | PersonWhereInput;
   NOT?: PersonWhereInput[] | PersonWhereInput;
@@ -1082,6 +1084,7 @@ export interface PersonCreateInput {
   lesson5?: Boolean;
   lesson6?: Boolean;
   lesson7?: Boolean;
+  addedBy?: UserCreateOneInput;
 }
 
 export interface TeamUpdateInput {
@@ -2043,6 +2046,7 @@ export interface PersonPromise extends Promise<Person>, Fragmentable {
   lesson7: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
+  addedBy: <T = UserPromise>() => T;
 }
 
 export interface PersonSubscription
@@ -2094,6 +2098,7 @@ export interface PersonSubscription
   lesson7: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  addedBy: <T = UserSubscription>() => T;
 }
 
 export interface AggregateAttendance {
