@@ -43,6 +43,18 @@ export const contactsQuery = gql`
   }
 `;
 
+export const teamsQuery = gql`
+  query TeamsQuery {
+    teams {
+      id
+      name
+      contactSite {
+        name
+      }
+    }
+  }
+`;
+
 export const viewContactQuery = gql`
   query ViewContactQuery($id: ID!) {
     person(where: { id: $id }) {

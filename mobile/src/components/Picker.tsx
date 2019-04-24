@@ -2,7 +2,6 @@ import React from 'react';
 import {
   FlatList,
   Keyboard,
-  Platform,
   StyleProp,
   StyleSheet,
   Text,
@@ -24,6 +23,7 @@ interface Props<T> {
   value: T | null;
   displayKey: keyof T;
   displayValue: keyof T;
+  disabled?: boolean;
   error?: string;
   containerStyle?: StyleProp<ViewStyle>;
   buttonStyle?: StyleProp<ViewStyle>;
@@ -64,6 +64,7 @@ class Picker<T> extends React.Component<Props<T>, State> {
       buttonStyle,
       showDropdown = true,
       valueStyle,
+      disabled,
     } = this.props;
     const { isVisible } = this.state;
 
@@ -82,7 +83,11 @@ class Picker<T> extends React.Component<Props<T>, State> {
             {label}
           </Text>
 
-          <Touchable style={buttonStyle} onPress={this.togglePicker}>
+          <Touchable
+            style={buttonStyle}
+            onPress={this.togglePicker}
+            disabled={disabled}
+          >
             <View
               style={{
                 minHeight: 40,
@@ -96,6 +101,7 @@ class Picker<T> extends React.Component<Props<T>, State> {
               <Text
                 style={[
                   styles.valueStyle,
+                  disabled && styles.disabledValueStyle,
                   valueStyle,
                   showDropdown && { paddingRight: 36 },
                 ]}
@@ -103,7 +109,9 @@ class Picker<T> extends React.Component<Props<T>, State> {
                 {value && value[displayValue]}
               </Text>
 
-              {showDropdown && <Icon type="ionicon" name="md-arrow-dropdown" />}
+              {showDropdown && !disabled && (
+                <Icon type="ionicon" name="md-arrow-dropdown" />
+              )}
             </View>
           </Touchable>
 
@@ -191,6 +199,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'rgba(0,0,0,.87)',
     fontFamily: Theme.fonts.medium,
+  },
+  disabledValueStyle: {
+    color: 'rgba(0,0,0,.54)',
   },
   itemStyle: {
     fontFamily: Theme.fonts.medium,

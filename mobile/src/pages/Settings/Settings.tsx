@@ -3,16 +3,31 @@ import { View, Linking, Platform, Text } from 'react-native';
 import { Appbar, List } from 'react-native-paper';
 import { NavigationScreenProps } from 'react-navigation';
 
-import { AppVersion } from '../contants';
-import { Loading } from '../components';
-import { Theme, StateContext } from '../util';
-import client from '../graphql';
+import { AppVersion } from '../../contants';
+import { Loading } from '../../components';
+import { Theme, StateContext } from '../../util';
+import client from '../../graphql';
+import { useEffect } from 'react';
+import { UserDetails } from '../../types';
 
 const Settings: React.StatelessComponent<NavigationScreenProps> = ({
   navigation,
 }) => {
+  const [userInfo, setUserInfo] = useState<UserDetails | null>(null);
   const [loading, setLoading] = useState(false);
-  const { updateUser } = useContext(StateContext);
+  const { updateUser, getUser } = useContext(StateContext);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getUser();
+
+      if (user) {
+        setUserInfo(user!);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const signOut = async () => {
     setLoading(true);
@@ -35,6 +50,10 @@ const Settings: React.StatelessComponent<NavigationScreenProps> = ({
     } catch {}
   };
 
+  const viewTeams = () => {
+    navigation.push('Teams');
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <Loading visible={loading} />
@@ -44,6 +63,19 @@ const Settings: React.StatelessComponent<NavigationScreenProps> = ({
       </Appbar.Header>
 
       <List.Section theme={{ fonts: { medium: Theme.fonts.medium } }}>
+        {userInfo &&
+          (userInfo.role.permissions.includes('Team:ListAll') ||
+            userInfo.role.permissions.includes('Team:ListArea')) && (
+            <List.Item
+              title="Teams"
+              description="View and Add Teams for your Contact Area"
+              titleStyle={{ fontFamily: Theme.fonts.medium }}
+              descriptionStyle={{ fontFamily: Theme.fonts.medium }}
+              left={props => <List.Icon {...props} icon="group" />}
+              onPress={viewTeams}
+            />
+          )}
+
         <List.Item
           title="Send feedback"
           description="Contact admin team for feedback/issues"

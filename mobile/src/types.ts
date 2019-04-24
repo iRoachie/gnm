@@ -6,6 +6,7 @@ import {
   ContactSite,
   Person,
   UserRole,
+  Team,
 } from '../../core/prisma-client';
 
 export interface MergedNote extends Note {
@@ -36,5 +37,9 @@ export interface MergedPerson extends Person {
   __typename: string;
   notes: MergedNote[];
   status: Partial<PersonStatus>;
+  contactSite: ContactSite;
+}
+
+export interface ReturnedTeam extends Team {
   contactSite: ContactSite;
 }

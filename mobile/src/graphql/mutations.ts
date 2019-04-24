@@ -27,6 +27,14 @@ export const newContactMutation = gql`
   }
 `;
 
+export const newTeamMutation = gql`
+  mutation NewTeamMutation($data: TeamCreateInput!) {
+    createTeam(data: $data) {
+      id
+    }
+  }
+`;
+
 export const updateContactMutation = gql`
   mutation UpdateContactMutation(
     $where: PersonWhereUniqueInput!
