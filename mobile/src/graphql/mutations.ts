@@ -9,6 +9,7 @@ export const loginMutation = gql`
       jwt
       role {
         title
+        permissions
       }
       contactSites {
         id

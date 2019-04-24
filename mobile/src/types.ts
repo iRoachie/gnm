@@ -12,12 +12,16 @@ export interface MergedNote extends Note {
   user: Partial<User>;
 }
 
+export interface ReturnedUserRole extends UserRole {
+  permissions: String[];
+}
+
 export interface UserDetails {
   id: string;
   name: string;
   email: string;
   jwt: string;
-  role: UserRole;
+  role: ReturnedUserRole;
   contactSites: Array<{
     id: string;
     country: string;
