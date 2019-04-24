@@ -122,6 +122,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
           id: contactSite!.id,
         },
       },
+      addedBy: { connect: { id: userInfo!.id }},
       ...(email && { email }),
       ...(telephone && { telephone }),
       ...(cellphone && { cellphone }),
