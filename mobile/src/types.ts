@@ -38,6 +38,7 @@ export interface MergedPerson extends Person {
   notes: MergedNote[];
   status: Partial<PersonStatus>;
   contactSite: ContactSite;
+  team: Team;
 }
 
 export interface ReturnedTeam extends Team {

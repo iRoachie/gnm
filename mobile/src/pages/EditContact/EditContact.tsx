@@ -13,6 +13,7 @@ import {
   PersonStatus,
   PersonUpdateInput,
   PersonWhereUniqueInput,
+  Team,
 } from '../../../../core/prisma-client';
 import { MergedPerson } from '../../types';
 import client, { updateContactMutation, viewContactQuery } from '../../graphql';
@@ -28,23 +29,26 @@ const EditContact: React.StatelessComponent<
 
   const [emailError, setEmailError] = useState('');
   const [sites, setSites] = useState<ContactSite[]>([]);
+  const [teams, setTeams] = useState<Team[]>([]);
   const [statuses, setStatuses] = useState<PersonStatus[]>([]);
   const [person, setPerson] = useState(navigation.getParam('person')!);
-  const { getSites, getUser, getStatuses } = useContext(StateContext);
+  const { getSites, getUser, getStatuses, getTeams } = useContext(StateContext);
 
   useEffect(() => {
     const fetchSites = async () => {
       const sites = await getSites();
       const user = await getUser();
       const statuses = await getStatuses();
+      const teams = await getTeams();
 
-      if (sites && user && statuses) {
+      if (sites && user && statuses && teams) {
         setSites(
           sites
             .filter(a => a.country === user.contactSites[0].country)
             .sort((a, b) => (a.name < b.name ? -1 : 1))
         );
         setStatuses(statuses);
+        setTeams(teams);
       }
     };
 
@@ -83,6 +87,7 @@ const EditContact: React.StatelessComponent<
     const {
       id,
       contactSite,
+      team,
       status,
       notes,
       name,
@@ -97,6 +102,11 @@ const EditContact: React.StatelessComponent<
       contactSite: {
         connect: {
           id: person.contactSite.id!,
+        },
+      },
+      team: {
+        connect: {
+          id: person.team.id,
         },
       },
       ...rest,
@@ -233,6 +243,17 @@ const EditContact: React.StatelessComponent<
               value={person.contactSite}
               containerStyle={{ marginBottom: 30 }}
               onPress={a => updateValue({ contactSite: a })}
+            />
+
+            <Picker<Team>
+              label="Team"
+              message="Team"
+              displayKey="id"
+              displayValue="name"
+              values={teams}
+              value={person.team}
+              onPress={a => updateValue({ team: a })}
+              containerStyle={{ marginBottom: 30 }}
             />
 
             <Input

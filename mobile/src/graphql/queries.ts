@@ -68,6 +68,10 @@ export const viewContactQuery = gql`
         name
         country
       }
+      team {
+        id
+        name
+      }
       age
       sex
       address
