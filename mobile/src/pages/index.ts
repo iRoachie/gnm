@@ -1,5 +1,6 @@
 import Login from './Login';
 import AddContactSuccess from './AddContactSuccess';
+import AddTeamSuccess from './AddTeamSuccess';
 import EditContactSuccess from './EditContactSuccess';
 import NewContact from './NewContact';
 import Dashboard from './Dashboard';
@@ -7,6 +8,7 @@ import Contacts from './Contacts';
 import Settings from './Settings';
 import ViewContact from './ViewContact';
 import EditContact from './EditContact';
+import NewTeam from './NewTeam';
 
 export {
   Login,
@@ -18,4 +20,6 @@ export {
   Settings,
   ViewContact,
   EditContact,
+  NewTeam,
+  AddTeamSuccess,
 };
