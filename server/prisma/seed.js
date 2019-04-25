@@ -126,7 +126,7 @@ const contactSites = {
     'Marigot',
     'Wesley',
     'Woodford Hill',
-    'Calibishe',
+    'Calibishie',
     'Beryl',
     'Portsmouth',
     'Du Blanc',
