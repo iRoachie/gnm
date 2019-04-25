@@ -129,7 +129,7 @@ const contactSites = {
     'Calibishie',
     'Beryl',
     'Portsmouth',
-    'Du Blanc',
+    'Dublanc',
     'St. Joseph',
     'Salisbury',
     'Layou',
