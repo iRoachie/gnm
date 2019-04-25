@@ -120,6 +120,7 @@ const contactSites = {
     'Jackmans',
     'Welchman Hall',
     'Grazettes',
+    'Grape Hall',
   ],
   Dominica: [
     'Marigot',
