@@ -125,7 +125,7 @@ const contactSites = {
   Dominica: [
     'Marigot',
     'Wesley',
-    'Woodford hill',
+    'Woodford Hill',
     'Calibishe',
     'Beryl',
     'Portsmouth',
