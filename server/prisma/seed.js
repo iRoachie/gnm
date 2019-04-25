@@ -87,7 +87,7 @@ const roles = [
 const contactSites = {
   Barbados: [
     'Rock Dundo',
-    'Holders',
+    'Holders Hill',
     'Victory',
     'Gardens',
     'Ebenezer',
