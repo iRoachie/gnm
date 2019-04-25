@@ -130,7 +130,7 @@ const contactSites = {
     'Beryl',
     'Portsmouth',
     'Dublanc',
-    'St. Joseph',
+    'St Joseph',
     'Salisbury',
     'Layou',
     'Eggleston',
