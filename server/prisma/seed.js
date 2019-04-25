@@ -135,7 +135,7 @@ const contactSites = {
     'Layou',
     'Eggleston',
     'Grand Bay',
-    'Point Mitchel',
+    'Pointe Michel',
     'Bethel',
     'Mahaut',
     'Trafalgar',
