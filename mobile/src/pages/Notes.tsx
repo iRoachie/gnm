@@ -7,6 +7,7 @@ import {
   Text,
   KeyboardAvoidingView,
   Animated,
+  Platform,
 } from 'react-native';
 import { ActivityIndicator, Appbar } from 'react-native-paper';
 import { Icon } from 'react-native-elements';
@@ -163,7 +164,7 @@ const Notes: React.StatelessComponent<NavigationScreenProps<ScreenParams>> = ({
       </View>
 
       <KeyboardAvoidingView
-        behavior="padding"
+        {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
         style={{ borderTopColor: 'rgba(0,0,0,0.12)', borderTopWidth: 1 }}
       >
         <View
