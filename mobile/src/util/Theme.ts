@@ -29,7 +29,7 @@ const Theme = {
       },
       subtitleStyle: {
         fontFamily: fonts.medium,
-        marginTop: -8,
+        marginTop: Platform.OS === 'android' ? -8 : -4,
       },
     } as AppbarContentProps,
   },
