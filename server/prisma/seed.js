@@ -121,6 +121,7 @@ const contactSites = {
     'Welchman Hall',
     'Grazettes',
     'Grape Hall',
+    'Pinelands',
   ],
   Dominica: [
     'Marigot',
