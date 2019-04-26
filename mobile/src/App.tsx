@@ -16,6 +16,7 @@ import {
   EditContactSuccess,
   NewTeam,
   AddTeamSuccess,
+  Notes,
 } from './pages';
 import Tabs from './containers/Tabs';
 import graphqlClient from './graphql';
@@ -30,6 +31,7 @@ const ModalStack = createStackNavigator(
     AddContactSuccess,
     EditContactSuccess,
     AddTeamSuccess,
+    Notes,
   },
   {
     mode: 'modal',

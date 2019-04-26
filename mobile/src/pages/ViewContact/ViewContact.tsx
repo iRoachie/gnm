@@ -1,42 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  FlatList,
-  Linking,
-  Platform,
-  Keyboard,
-} from 'react-native';
+import React from 'react';
+import { View, Text, ScrollView, FlatList, Linking } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
-import {
-  Appbar,
-  ActivityIndicator,
-  Dialog,
-  Portal,
-  Button,
-} from 'react-native-paper';
-import {
-  ListItem,
-  ThemeProvider,
-  CheckBox,
-  Input,
-} from 'react-native-elements';
+import { Appbar, ActivityIndicator } from 'react-native-paper';
+import { ListItem, ThemeProvider, CheckBox } from 'react-native-elements';
 import { Query } from 'react-apollo';
 
-import {
-  Person,
-  PersonWhereUniqueInput,
-  PersonUpdateInput,
-} from '../../../../core/prisma-client/index';
+import { Person } from '../../../../core/prisma-client/index';
 import NoteItem from './components/NoteItem';
 import { Section } from '../../components/';
 import BlockValue from './components/BlockValue';
 import Header from './components/Header';
 
-import { Theme, StateContext } from '../../util';
-import { MergedPerson, UserDetails } from '../../types';
-import client, { viewContactQuery, updateContactMutation } from '../../graphql';
+import { Theme } from '../../util';
+import { MergedPerson } from '../../types';
+import { viewContactQuery } from '../../graphql';
 
 interface ScreenParams {
   id: string;
@@ -45,135 +22,19 @@ interface ScreenParams {
 const ViewContact: React.FunctionComponent<
   NavigationScreenProps<ScreenParams>
 > = ({ navigation }) => {
-  const [userInfo, setUserInfo] = useState<UserDetails | null>(null);
-  const [noteLoading, setNoteLoading] = useState(false);
-  const [note, setNote] = useState('');
-  const [dialogVisible, setDialogVisible] = useState(false);
-  const { getUser } = useContext(StateContext);
-
-  const noteRef = React.createRef<Input>();
-
-  useEffect(() => {
-    const fetchInfo = async () => {
-      const user = await getUser();
-
-      if (user) {
-        setUserInfo(user);
-      }
-    };
-
-    fetchInfo();
-  }, []);
-
   const editContact = (person: Person | null) => {
     if (person) {
       navigation.navigate('EditContact', { person });
     }
   };
 
-  const showNoteModal = () => {
-    setDialogVisible(true);
-  };
-
-  const dismissNoteModal = () => {
-    Keyboard.dismiss();
-    setDialogVisible(false);
-  };
-
-  const addNote = async () => {
+  const goToNotes = () => {
     const id = navigation.getParam('id');
-
-    setNoteLoading(true);
-    Keyboard.dismiss();
-
-    const data: PersonUpdateInput = {
-      notes: {
-        create: [
-          {
-            message: note,
-            date: new Date(),
-            user: { connect: { id: userInfo!.id } },
-          },
-        ],
-      },
-    };
-
-    const where: PersonWhereUniqueInput = {
-      id,
-    };
-
-    try {
-      await client.mutate({
-        mutation: updateContactMutation,
-        variables: { where, data },
-        refetchQueries: [
-          {
-            query: viewContactQuery,
-            variables: { id },
-          },
-        ],
-      });
-
-      setTimeout(() => {
-        setNoteLoading(false);
-        dismissNoteModal();
-      }, 500);
-    } catch (error) {
-      console.log(error);
-    }
+    navigation.navigate('Notes', { personId: id });
   };
 
   return (
     <View style={{ flex: 1 }}>
-      <Portal>
-        <Dialog visible={dialogVisible} onDismiss={dismissNoteModal}>
-          <Dialog.Content>
-            <Input
-              label="Add Note"
-              ref={noteRef}
-              inputStyle={{
-                fontSize: 15,
-                fontFamily: Theme.fonts.medium,
-                backgroundColor: '#E5E6E5',
-                padding: 15,
-                marginTop: 15,
-                height: 150,
-              }}
-              autoFocus
-              labelStyle={{
-                fontFamily: Theme.fonts.semibold,
-                color: 'rgba(0,0,0,.54)',
-                fontSize: 17,
-                fontWeight: Platform.OS === 'ios' ? '600' : '400',
-              }}
-              value={note}
-              onChangeText={setNote}
-              multiline
-              textAlignVertical="top"
-            />
-          </Dialog.Content>
-          <Dialog.Actions>
-            {!noteLoading && (
-              <Button
-                theme={{ fonts: { medium: Theme.fonts.semibold } }}
-                onPress={dismissNoteModal}
-              >
-                Cancel
-              </Button>
-            )}
-
-            <Button
-              theme={{ fonts: { medium: Theme.fonts.semibold } }}
-              onPress={addNote}
-              loading={noteLoading}
-              disabled={noteLoading}
-            >
-              Done
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-
       <Query<{ person: MergedPerson }>
         query={viewContactQuery}
         variables={{ id: navigation.getParam('id') || '' }}
@@ -187,7 +48,7 @@ const ViewContact: React.FunctionComponent<
                   onPress={() => navigation.pop()}
                 />
                 <Appbar.Content {...Theme.Appbar.Content} />
-                <Appbar.Action icon="note-add" onPress={showNoteModal} />
+                <Appbar.Action icon="note-add" onPress={goToNotes} />
                 {!!data && data.person && (
                   <Appbar.Action
                     icon="edit"
@@ -421,7 +282,6 @@ const ViewContact: React.FunctionComponent<
                         <Section title="Notes" hideDivider>
                           <FlatList
                             data={data.person.notes}
-                            extraData={noteLoading}
                             keyExtractor={item => item.id}
                             renderItem={({ item }) => <NoteItem note={item} />}
                             ItemSeparatorComponent={() => (
