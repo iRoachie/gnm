@@ -9,6 +9,7 @@ import Settings from './Settings';
 import ViewContact from './ViewContact';
 import EditContact from './EditContact';
 import NewTeam from './NewTeam';
+import Notes from './Notes';
 
 export {
   Login,
@@ -22,4 +23,5 @@ export {
   EditContact,
   NewTeam,
   AddTeamSuccess,
+  Notes,
 };

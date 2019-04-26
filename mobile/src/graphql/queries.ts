@@ -103,3 +103,19 @@ export const viewContactQuery = gql`
     }
   }
 `;
+
+export const personNotesQuery = gql`
+  query ViewContactNotesQuery($id: ID!) {
+    person(where: { id: $id }) {
+      id
+      notes(orderBy: date_DESC) {
+        id
+        message
+        date
+        user {
+          name
+        }
+      }
+    }
+  }
+`;
