@@ -147,7 +147,6 @@ const Notes: React.StatelessComponent<NavigationScreenProps<ScreenParams>> = ({
                       <Text
                         style={{
                           textAlign: 'center',
-                          marginTop: 16,
                           fontSize: 16,
                           fontFamily: Theme.fonts.medium,
                         }}
