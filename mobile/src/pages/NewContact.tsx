@@ -77,7 +77,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
     };
 
     fetchSites();
-  }, []);
+  }, [getSites, getTeams, getUser]);
 
   const submit = async () => {
     Keyboard.dismiss();
@@ -143,7 +143,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
       ...(telephone && { telephone }),
       ...(cellphone && { cellphone }),
       ...(address && { address }),
-      ...(age && { age: parseInt(age) }),
+      ...(age && { age: parseInt(age, 10) }),
       ...(notes && {
         notes: {
           create: {
@@ -361,28 +361,10 @@ const Label: React.SFC<TextProps & { error?: string }> = ({
   error,
   ...rest
 }) => (
-  <Text
-    {...rest}
-    style={{
-      marginBottom: 10,
-      fontSize: 15,
-      color: 'rgba(0,0,0,.54)',
-      fontFamily: Theme.fonts.semibold,
-    }}
-  >
+  <Text {...rest} style={styles.labelStyle}>
     {children}
 
-    {!!error ? (
-      <Text
-        style={{
-          color: Theme.error,
-          fontSize: 12,
-          fontFamily: Theme.fonts.medium,
-        }}
-      >{`  ${error}`}</Text>
-    ) : (
-      ''
-    )}
+    {error && <Text style={styles.labelError}>{`  ${error}`}</Text>}
   </Text>
 );
 
@@ -397,6 +379,17 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 16,
     paddingHorizontal: 16,
+  },
+  labelStyle: {
+    marginBottom: 10,
+    fontSize: 15,
+    color: 'rgba(0,0,0,.54)',
+    fontFamily: Theme.fonts.semibold,
+  },
+  labelError: {
+    color: Theme.error,
+    fontSize: 12,
+    fontFamily: Theme.fonts.medium,
   },
 });
 

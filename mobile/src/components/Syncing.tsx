@@ -9,15 +9,7 @@ const Syncing: React.FunctionComponent = () => (
     <ActivityIndicator size="large" color="green" />
 
     <View style={styles.loaderContainer}>
-      <Text
-        style={{
-          color: '#fff',
-          fontFamily: Theme.fonts.medium,
-          fontSize: 17,
-        }}
-      >
-        Syncing your changes...
-      </Text>
+      <Text style={styles.message}>Syncing your changes...</Text>
     </View>
   </View>
 );
@@ -34,6 +26,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 30,
+  },
+  message: {
+    color: '#fff',
+    fontFamily: Theme.fonts.medium,
+    fontSize: 17,
   },
 });
 

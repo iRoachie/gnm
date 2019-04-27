@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import {
   View,
-  StyleSheet,
   FlatList,
   TextInput,
   Text,
@@ -55,14 +54,14 @@ const Notes: React.StatelessComponent<NavigationScreenProps<ScreenParams>> = ({
     };
 
     fetchInfo();
-  }, []);
+  }, [getUser]);
 
   useEffect(() => {
     Animated.timing(color, {
       toValue: Number(canSubmit),
       duration: 100,
     }).start();
-  }, [text]);
+  }, [canSubmit, text]);
 
   const addComment = async () => {
     setLoading(true);
@@ -212,14 +211,5 @@ const Notes: React.StatelessComponent<NavigationScreenProps<ScreenParams>> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    bottom: 0,
-  },
-});
 
 export default Notes;

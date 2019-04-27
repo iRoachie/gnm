@@ -13,7 +13,7 @@ import client from '../graphql';
 export const checkVersionFlags = async () => {
   const versionFlags = await AsyncStorage.getItem('version_flags');
 
-  if (!!versionFlags) {
+  if (versionFlags) {
     const flags: string[] = JSON.parse(versionFlags);
 
     if (flags.includes(AppVersion)) {

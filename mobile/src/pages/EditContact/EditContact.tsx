@@ -53,7 +53,7 @@ const EditContact: React.StatelessComponent<
     };
 
     fetchSites();
-  }, []);
+  }, [getSites, getStatuses, getTeams, getUser]);
 
   const submit = async () => {
     setEmailError('');
@@ -289,7 +289,7 @@ const EditContact: React.StatelessComponent<
 
             <Input
               label="Age"
-              value={!!person.age ? String(person.age) : ''}
+              value={person.age ? String(person.age) : ''}
               keyboardType="number-pad"
               maxLength={2}
               onChangeText={a => updateValue({ age: parseInt(a) })}

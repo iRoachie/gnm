@@ -12,6 +12,27 @@ const SyncProvider: React.FunctionComponent = () => {
   );
 
   useEffect(() => {
+    const syncContacts = async (contacts: PersonCreateInput[]) => {
+      try {
+        await Promise.all(
+          contacts.map(data => {
+            return client.mutate({
+              mutation: newContactMutation,
+              variables: { data },
+              refetchQueries: ['DashboardQuery', 'ContactsQuery'],
+            });
+          })
+        );
+        await removeOfflineContacts();
+
+        setTimeout(() => {
+          setSyncing(false);
+        }, 2000);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     const fetchContacts = async () => {
       const contacts = await getOfflineContacts();
 
@@ -26,28 +47,7 @@ const SyncProvider: React.FunctionComponent = () => {
     };
 
     fetchContacts();
-  }, [connected]);
-
-  const syncContacts = async (contacts: PersonCreateInput[]) => {
-    try {
-      await Promise.all(
-        contacts.map(data => {
-          return client.mutate({
-            mutation: newContactMutation,
-            variables: { data },
-            refetchQueries: ['DashboardQuery', 'ContactsQuery'],
-          });
-        })
-      );
-      await removeOfflineContacts();
-
-      setTimeout(() => {
-        setSyncing(false);
-      }, 2000);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  }, [connected, getOfflineContacts, removeOfflineContacts]);
 
   return syncing ? <Syncing /> : null;
 };

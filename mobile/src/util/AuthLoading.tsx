@@ -11,21 +11,21 @@ const AuthLoading: React.FunctionComponent<NavigationScreenProps> = ({
   const { getUser } = useContext(StateContext);
 
   useEffect(() => {
+    const getAuth = async () => {
+      const user = await getUser();
+      const upToDate = await checkVersionFlags();
+
+      const needsLogin = !user || !upToDate;
+
+      navigation.navigate(needsLogin ? 'Auth' : 'App');
+
+      setTimeout(() => {
+        SplashScreen.hide();
+      }, 500);
+    };
+
     getAuth();
-  }, []);
-
-  const getAuth = async () => {
-    const user = await getUser();
-    const upToDate = await checkVersionFlags();
-
-    const needsLogin = !user || !upToDate;
-
-    navigation.navigate(needsLogin ? 'Auth' : 'App');
-
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 500);
-  };
+  }, [getUser, navigation]);
 
   return null;
 };
