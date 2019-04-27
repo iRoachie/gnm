@@ -3,7 +3,7 @@ import { View, Linking, Platform, Text } from 'react-native';
 import { Appbar, List } from 'react-native-paper';
 import { NavigationScreenProps } from 'react-navigation';
 
-import { AppVersion } from '../../contants';
+import { AppVersion } from '../../constants';
 import { Loading } from '../../components';
 import { Theme, StateContext } from '../../util';
 import client from '../../graphql';

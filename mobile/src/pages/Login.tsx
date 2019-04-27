@@ -14,7 +14,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Button, Input, ThemeProvider } from 'react-native-elements';
 import validator from 'validator';
 
-import { Theme, StateContext } from '../util';
+import { Theme, StateContext, setVersionFlags } from '../util';
 import client, { loginMutation } from '../graphql';
 import { ContactSite } from '../../../core/prisma-client';
 import { ReturnedUserRole } from '../types';
@@ -79,6 +79,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
 
       await updateUser(data!.login);
       await fetchTeams();
+      await setVersionFlags();
 
       setTimeout(() => {
         props.navigation.navigate('App');
