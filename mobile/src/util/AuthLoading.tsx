@@ -3,6 +3,7 @@ import { NavigationScreenProps } from 'react-navigation';
 import SplashScreen from 'react-native-splash-screen';
 
 import StateContext from './StateContext';
+import { checkVersionFlags } from './versionFlags';
 
 const AuthLoading: React.FunctionComponent<NavigationScreenProps> = ({
   navigation,
@@ -15,7 +16,11 @@ const AuthLoading: React.FunctionComponent<NavigationScreenProps> = ({
 
   const getAuth = async () => {
     const user = await getUser();
-    navigation.navigate(user ? 'App' : 'Auth');
+    const upToDate = await checkVersionFlags();
+
+    const needsLogin = !user || !upToDate;
+
+    navigation.navigate(needsLogin ? 'Auth' : 'App');
 
     setTimeout(() => {
       SplashScreen.hide();
