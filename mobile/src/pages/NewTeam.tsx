@@ -46,7 +46,7 @@ const NewContact: React.StatelessComponent<NavigationScreenProps> = ({
     };
 
     fetchSites();
-  }, []);
+  }, [getSites, getUser]);
 
   const submit = async () => {
     Keyboard.dismiss();

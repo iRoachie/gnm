@@ -39,23 +39,23 @@ const StateProvider: React.FunctionComponent = ({ children }) => {
       handleConnectivityChange
     );
 
+    const fetchInfo = async () => {
+      try {
+        const { data } = await client.query({ query: InfoQuery });
+        await Promise.all([
+          updateContactSites(data.contactSites),
+          updateStatuses(data.statuses),
+        ]);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
     fetchInfo();
   }, []);
 
   const updateDeviceWidth = (e: LayoutChangeEvent) => {
     setDeviceWidth(e.nativeEvent.layout.width);
-  };
-
-  const fetchInfo = async () => {
-    try {
-      const { data } = await client.query({ query: InfoQuery });
-      await Promise.all([
-        updateContactSites(data.contactSites),
-        updateStatuses(data.statuses),
-      ]);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   const fetchTeams = async () => {

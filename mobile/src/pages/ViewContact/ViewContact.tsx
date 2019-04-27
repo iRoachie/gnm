@@ -59,7 +59,7 @@ const ViewContact: React.FunctionComponent<
 
               {loading ? (
                 <ActivityIndicator style={{ marginTop: 16 }} />
-              ) : !!error ? (
+              ) : error ? (
                 <Text>Error!: {error.message}</Text>
               ) : (
                 data &&

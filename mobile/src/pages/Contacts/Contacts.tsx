@@ -39,7 +39,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
     };
 
     fetchOffline();
-  }, [offlineChanged]);
+  }, [getOfflineContacts, offlineChanged]);
 
   let searchDb = (value: string) => {
     setdbSearch(value);

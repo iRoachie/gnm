@@ -25,7 +25,7 @@ const Teams: React.StatelessComponent<NavigationScreenProps> = ({
     };
 
     fetchUser();
-  }, []);
+  }, [getUser]);
 
   const goToNewTeam = () => {
     navigation.navigate('NewTeam');

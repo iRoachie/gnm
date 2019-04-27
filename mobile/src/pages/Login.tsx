@@ -85,7 +85,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
         props.navigation.navigate('App');
       }, 1000);
     } catch (error) {
-      let message = `Couldn't sign in at this time. Try again later.`;
+      let message = 'Couldn\'t sign in at this time. Try again later.';
 
       if (error.graphQLErrors.length > 0) {
         message = error.graphQLErrors[0].message;

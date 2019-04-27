@@ -21,15 +21,16 @@ const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
   const { getUser, connected } = useContext(StateContext);
 
   useEffect(() => {
-    getUserInfo();
-  }, []);
+    const getUserInfo = async () => {
+      const user = await getUser();
 
-  const getUserInfo = async () => {
-    const user = await getUser();
-    if (user) {
-      setUser(user);
-    }
-  };
+      if (user) {
+        setUser(user);
+      }
+    };
+
+    getUserInfo();
+  }, [getUser]);
 
   const addContact = () => {
     navigation.push('NewContact');
@@ -43,7 +44,7 @@ const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
             <React.Fragment>
               <Appbar.Header {...Theme.Appbar.Header}>
                 <Appbar.Content
-                  title={!!user ? user.name : '...'}
+                  title={user ? user.name : '...'}
                   subtitle={!!user && user.role ? user.role.title : ''}
                   {...Theme.Appbar.Content}
                 />

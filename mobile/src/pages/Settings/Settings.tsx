@@ -27,7 +27,7 @@ const Settings: React.StatelessComponent<NavigationScreenProps> = ({
     };
 
     fetchUser();
-  }, []);
+  }, [getUser]);
 
   const signOut = async () => {
     setLoading(true);
