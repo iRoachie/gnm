@@ -31,8 +31,7 @@ const Settings: React.StatelessComponent<NavigationScreenProps> = ({
 
   const signOut = async () => {
     setLoading(true);
-    await updateUser(null);
-    client.clearStore();
+    await Promise.all([updateUser(null), client.clearStore()]);
 
     setTimeout(() => {
       setLoading(false);
