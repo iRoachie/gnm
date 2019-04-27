@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "lint": "eslint .",
+    "lint": "eslint --ext js,ts,tsx .",
     "ts-check": "tsc"
   },
   "dependencies": {
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/runtime": "^7.4.2",
-    "@react-native-community/eslint-config": "^0.0.3",
+    "@react-native-community/eslint-config": "^0.0.4",
     "@types/color": "^3.0.0",
     "@types/jest": "^24.0.11",
     "@types/lodash.debounce": "^4.0.6",
