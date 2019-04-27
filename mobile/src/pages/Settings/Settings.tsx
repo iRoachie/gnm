@@ -64,6 +64,7 @@ const Settings: React.StatelessComponent<NavigationScreenProps> = ({
 
       <List.Section theme={{ fonts: { medium: Theme.fonts.medium } }}>
         {userInfo &&
+          userInfo.role &&
           (userInfo.role.permissions.includes('Team:ListAll') ||
             userInfo.role.permissions.includes('Team:ListArea')) && (
             <List.Item

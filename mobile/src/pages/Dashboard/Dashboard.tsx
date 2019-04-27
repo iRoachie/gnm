@@ -44,7 +44,7 @@ const Dashboard: React.FunctionComponent<NavigationScreenProps> = ({
               <Appbar.Header {...Theme.Appbar.Header}>
                 <Appbar.Content
                   title={!!user ? user.name : '...'}
-                  subtitle={!!user ? user.role.title : ''}
+                  subtitle={!!user && user.role ? user.role.title : ''}
                   {...Theme.Appbar.Content}
                 />
                 {connected && (
