@@ -1,3 +1,17 @@
 {
-  "extends": "@react-native-community"
+  "extends": "@react-native-community",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint/eslint-plugin"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }
+        ],
+        "no-unused-vars": "off"
+      }
+    }
+  ]
 }
