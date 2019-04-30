@@ -112,7 +112,7 @@ const contactSites = {
     'Belleplaine',
     'Mt. Zion',
     'Ephesus',
-    'Marantha',
+    'Maranatha',
     'Sugar Hill',
     'Berea',
     'Oldbury',
