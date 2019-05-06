@@ -180,7 +180,7 @@ const Contacts: React.StatelessComponent<NavigationScreenProps> = ({
                         textAlign: 'center',
                         marginTop: 16,
                         fontSize: 16,
-                        fontFamily: Theme.fonts.regular,
+                        fontFamily: Theme.fonts.medium,
                       }}
                     >
                       No Contacts
