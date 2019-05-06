@@ -51,7 +51,6 @@ const EditContact: React.StatelessComponent<
         }
 
         setSites(filteredSites.sort((a, b) => (a.name < b.name ? -1 : 1)));
-
         setStatuses(statuses);
         setTeams(teams);
       }
@@ -100,6 +99,7 @@ const EditContact: React.StatelessComponent<
       __typename,
       ...rest
     } = person;
+
     const data: PersonUpdateInput = {
       status: {
         connect: { title: person.status.title! },
@@ -109,11 +109,7 @@ const EditContact: React.StatelessComponent<
           id: person.contactSite.id!,
         },
       },
-      team: {
-        connect: {
-          id: person.team.id,
-        },
-      },
+      ...(team && { team: { connect: { id: person.team.id } } }),
       ...rest,
     };
 
