@@ -42,11 +42,16 @@ const EditContact: React.StatelessComponent<
       const teams = await getTeams();
 
       if (sites && user && statuses && teams) {
-        setSites(
-          sites
-            .filter(a => a.country === user.contactSites[0].country)
-            .sort((a, b) => (a.name < b.name ? -1 : 1))
-        );
+        let filteredSites = sites;
+
+        if (user.contactSites.length > 0) {
+          filteredSites = sites.filter(
+            a => a.country === user.contactSites[0].country
+          );
+        }
+
+        setSites(filteredSites.sort((a, b) => (a.name < b.name ? -1 : 1)));
+
         setStatuses(statuses);
         setTeams(teams);
       }
