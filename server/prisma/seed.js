@@ -58,6 +58,7 @@ const roles = [
       'Person:Create',
       'Person:ViewArea',
       'Person:UpdateArea',
+      'Team:ListArea',
     ],
   },
   {
