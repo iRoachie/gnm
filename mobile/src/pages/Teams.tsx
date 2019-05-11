@@ -100,7 +100,9 @@ const Teams: React.StatelessComponent<NavigationScreenProps> = ({
         </Query>
       )}
 
-      <FAB style={styles.fab} icon="add" onPress={goToNewTeam} />
+      {userInfo && userInfo.role.permissions.includes('Team:Create') && (
+        <FAB style={styles.fab} icon="add" onPress={goToNewTeam} />
+      )}
     </View>
   );
 };
