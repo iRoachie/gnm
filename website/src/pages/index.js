@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import logo from '../images/logo--color.svg';
 
 import '../index.css';
-import '../main.css';
 
 import { Wrapper } from '../components';
 import SEO from '../components/seo';

@@ -6,15 +6,10 @@ import '../main.css';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import { Hero, HomeSquares } from '../components';
 
 const IndexPage = ({ data }) => (
   <Layout data={data}>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-
-    <Hero data={data.allContentfulHomePage.edges[0].node.heroBanner} />
-
-    <HomeSquares />
   </Layout>
 );
 
@@ -31,9 +26,6 @@ export const pageQuery = graphql`
     allContentfulHomePage {
       edges {
         node {
-          address {
-            address
-          }
           heroBanner {
             title
             label

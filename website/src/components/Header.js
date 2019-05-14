@@ -2,30 +2,24 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
-import { Container } from './styles';
 import logo from '../images/logo--color.svg';
 
 const Header = () => (
-  <Content>
-    <Container className="flex items-center">
+  <header className="bg-base-light py-4 text-black">
+    <div className="container flex items-center">
       <Link to="/">
         <Logo src={logo} />
       </Link>
 
-      <Menu>
+      <ul className="ml-16">
         <MenuItem to="/">#GNM2019</MenuItem>
-        <MenuItem to="/lessons">Bible Lessons</MenuItem>
+        <MenuItem to="/watch">Watch</MenuItem>
+        <MenuItem to="/stream-sights">Streaming Sites</MenuItem>
         <MenuItem to="/beliefs">Our Beliefs</MenuItem>
-      </Menu>
-    </Container>
-  </Content>
+      </ul>
+    </div>
+  </header>
 );
-
-const Content = styled.header.attrs({
-  className: 'bg-base-light py-4',
-})`
-  color: #000;
-`;
 
 const Logo = styled.img.attrs({
   className: 'relative',
@@ -33,10 +27,6 @@ const Logo = styled.img.attrs({
   height: 40px;
   top: -4px;
 `;
-
-const Menu = styled.ul.attrs({
-  className: 'list-reset ml-16',
-})``;
 
 const MenuItem = ({ children, ...rest }) => {
   const NavLink = styled(Link).attrs({

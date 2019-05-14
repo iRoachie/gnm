@@ -1,16 +1,14 @@
 :root {
-  --primary: #0c337f;
-  --secondary: #394680;
-  --base: #242424;
-  --base-light: #e4e5e4;
-
   --link-transition: 300ms ease-in;
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 1200px;
+  max-width: calc(100% - 30px);
 }

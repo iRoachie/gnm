@@ -27,9 +27,6 @@ const Layout = ({ children, data: contentful }) => (
           socialMedia={contentful.allContentfulSocialMediaNetwork.edges.map(
             a => a.node
           )}
-          address={JSON.parse(
-            contentful.allContentfulHomePage.edges[0].node.address.address
-          )}
         />
       </Wrapper>
     )}
