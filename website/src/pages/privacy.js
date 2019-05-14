@@ -1,7 +1,4 @@
 import React from 'react';
-
-import '../privacy.css';
-
 import { Wrapper, SEO } from '../components';
 
 const IndexPage = () => (
@@ -336,6 +333,130 @@ const IndexPage = () => (
         </div>
       </div>
     </div>
+
+    <style jsx>{`
+      .live-pages {
+        background: #454954;
+      }
+
+      .container {
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          width: 750px;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .container {
+          width: 970px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .container {
+          width: 1170px;
+        }
+      }
+
+      .live-pages .page-header {
+        margin: 0;
+        padding: 40px 0;
+        border-bottom: 1px solid #eee;
+        background: #fff;
+      }
+      .live-pages .page-header h1 {
+        font-size: 25px;
+        line-height: 35px;
+        margin: 0;
+      }
+      .live-pages .page-agreement {
+        padding: 30px 0;
+        background: #f4f9fd;
+        background: -moz-linear-gradient(top, #f4f9fd 0, #fff 100%);
+        background: -webkit-gradient(
+          linear,
+          left top,
+          left bottom,
+          color-stop(0, #f4f9fd),
+          color-stop(100%, #fff)
+        );
+        background: -webkit-linear-gradient(top, #f4f9fd 0, #fff 100%);
+        background: -o-linear-gradient(top, #f4f9fd 0, #fff 100%);
+        background: -ms-linear-gradient(top, #f4f9fd 0, #fff 100%);
+        background: linear-gradient(to bottom, #f4f9fd 0, #fff 100%);
+      }
+      .live-pages .page-agreement .page-tabs .nav-tabs {
+        border: 0;
+        margin: 10px 0 30px 0;
+      }
+      .live-pages .page-agreement .page-tabs .nav-tabs li a {
+        border: 1px solid #eee;
+        border-radius: 5px;
+        background: #fff;
+      }
+      .live-pages .page-agreement .page-tabs .nav-tabs li.active a {
+        background: #0053a7;
+        color: #fff;
+      }
+      .live-pages .page-agreement .tab-content {
+        font-size: 18px;
+        line-height: 28px;
+        word-wrap: break-word;
+      }
+      .live-pages .page-agreement .tab-content h1 {
+        font-size: 30px;
+        margin: 0 0 30px 0;
+      }
+      .live-pages .page-agreement .tab-content h2 {
+        font-size: 24px;
+        margin: 0 0 30px 0;
+      }
+      .live-pages .page-agreement .tab-content h3 {
+        font-size: 20px;
+        margin: 0 0 30px 0;
+      }
+      .live-pages .page-agreement .tab-content h4 {
+        font-size: 16px;
+        margin: 0 0 30px 0;
+      }
+      .live-pages .page-agreement .tab-content p {
+        margin: 0 0 30px 0;
+        color: #333;
+      }
+      .live-pages .page-agreement .tab-content ul,
+      .live-pages .page-agreement .tab-content ol {
+        margin: 0 0 30px 0;
+      }
+      .live-pages .page-agreement .tab-content a {
+        color: #333;
+      }
+      .live-pages .page-footer {
+        background: #454954;
+        padding: 30px 0;
+        color: #fff;
+        font-size: 16px;
+        line-height: 20px;
+      }
+      .live-pages .page-credits {
+        background: #17191d;
+        padding: 20px 0;
+        color: #fff;
+        font-size: 14px;
+        line-height: 18px;
+      }
+      .live-pages .page-credits p {
+        margin: 0;
+      }
+      .live-pages .page-credits a {
+        color: #eee;
+      }
+    `}</style>
   </Wrapper>
 );
 

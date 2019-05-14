@@ -9,6 +9,7 @@ module.exports = {
     author: `East Caribbean Conference of SDA`,
   },
   plugins: [
+    `gatsby-plugin-styled-jsx`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
