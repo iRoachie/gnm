@@ -13,10 +13,12 @@ const Footer = ({ socialMedia }) => {
       <div className="container flex flex-col md:flex-row justify-between items-center md:items-start">
         <Logo src={logo} />
 
-        <div className="flex items-center my-6 md:m-0 self-center">
-          <p className="text-white font-bold text-md mr-6">Follow Us</p>
+        <div className="flex items-center pl-4 my-6 md:m-0 self-center">
+          <p className="text-white font-bold text-md mr-2 whitespace-no-wrap">
+            Follow Us
+          </p>
 
-          <div>
+          <div className="flex items-center">
             <SocialIcon alt={facebook.name} href={facebook.url}>
               <svg
                 preserveAspectRatio="xMinYMin meet"
