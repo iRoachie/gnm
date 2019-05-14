@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = ({ children, data: contentful }) => (
+const Layout = ({ children, data: contentful, classes }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -21,7 +21,7 @@ const Layout = ({ children, data: contentful }) => (
       <Wrapper>
         <Header siteTitle={data.site.siteMetadata.title} />
 
-        <main className="flex-1">{children}</main>
+        <main className={`flex-1 ${classes}`}>{children}</main>
 
         <Footer
           socialMedia={contentful.allContentfulSocialMediaNetwork.edges.map(
