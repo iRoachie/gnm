@@ -15,7 +15,7 @@ export default ({ data }) => (
       keywords={[`organizers`, `aim`, `mission`, `vision`]}
     />
 
-    <div class="flex-1 flex flex-col justify-between pt-24">
+    <div class="flex-1 flex flex-col justify-between sm:pt-24">
       <section className="container py-12 flex-1">
         <div className="md:max-w-1/2 leading-looser">
           <h1 className="font-bold text-primary text-4xl leading-snug mb-4">
