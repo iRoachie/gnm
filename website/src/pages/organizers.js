@@ -31,7 +31,7 @@ export default ({ data }) => (
       </section>
 
       <section className="bg-primary py-16 text-white">
-        <div className="container xl:flex px-0">
+        <div className="container xl:flex px-0 lg:px-4">
           <div class="flex flex-col sm:flex-row flex-1">
             <p className="leading-snug mb-8 text-2xl mb:mb-0 sm:w-1/2 px-4 xl:pr-2 xl:pl-0">
               Our Aim, mission and vision is very simple
@@ -66,7 +66,7 @@ export default ({ data }) => (
 
               <a
                 href="http://www.eastcarib.org/"
-                className="bg-accent p-2 px-3 font-bold"
+                className="bg-accent p-2 px-3 font-bold inline-block"
                 target="_blank"
                 rel="noopener noreferrer"
               >
