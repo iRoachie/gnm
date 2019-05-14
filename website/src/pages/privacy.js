@@ -2,25 +2,25 @@ import React from 'react';
 import { Wrapper, SEO } from '../components';
 
 const IndexPage = () => (
-  <Wrapper className="live-pages">
+  <Wrapper>
     <SEO title="Privacy Policy" />
 
     <div id="wrap">
-      <div class="page-header">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
+      <div className="page-header">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
               <h1>GNM Fieldwork</h1>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="page-agreement">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="tab-content">
+      <div className="page-agreement">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="tab-content">
                 <h1>Privacy Policy</h1>
 
                 <p>Effective date: April 11, 2019</p>
@@ -325,10 +325,10 @@ const IndexPage = () => (
         </div>
       </div>
 
-      <div class="page-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">Privacy Policy of GNM Fieldwork</div>
+      <div className="page-footer">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">Privacy Policy of GNM Fieldwork</div>
           </div>
         </div>
       </div>
@@ -364,18 +364,18 @@ const IndexPage = () => (
         }
       }
 
-      .live-pages .page-header {
+      .page-header {
         margin: 0;
         padding: 40px 0;
         border-bottom: 1px solid #eee;
         background: #fff;
       }
-      .live-pages .page-header h1 {
+      .page-header h1 {
         font-size: 25px;
         line-height: 35px;
         margin: 0;
       }
-      .live-pages .page-agreement {
+      .page-agreement {
         padding: 30px 0;
         background: #f4f9fd;
         background: -moz-linear-gradient(top, #f4f9fd 0, #fff 100%);
@@ -391,69 +391,69 @@ const IndexPage = () => (
         background: -ms-linear-gradient(top, #f4f9fd 0, #fff 100%);
         background: linear-gradient(to bottom, #f4f9fd 0, #fff 100%);
       }
-      .live-pages .page-agreement .page-tabs .nav-tabs {
+      .page-agreement .page-tabs .nav-tabs {
         border: 0;
         margin: 10px 0 30px 0;
       }
-      .live-pages .page-agreement .page-tabs .nav-tabs li a {
+      .page-agreement .page-tabs .nav-tabs li a {
         border: 1px solid #eee;
         border-radius: 5px;
         background: #fff;
       }
-      .live-pages .page-agreement .page-tabs .nav-tabs li.active a {
+      .page-agreement .page-tabs .nav-tabs li.active a {
         background: #0053a7;
         color: #fff;
       }
-      .live-pages .page-agreement .tab-content {
+      .page-agreement .tab-content {
         font-size: 18px;
         line-height: 28px;
         word-wrap: break-word;
       }
-      .live-pages .page-agreement .tab-content h1 {
+      .page-agreement .tab-content h1 {
         font-size: 30px;
         margin: 0 0 30px 0;
       }
-      .live-pages .page-agreement .tab-content h2 {
+      .page-agreement .tab-content h2 {
         font-size: 24px;
         margin: 0 0 30px 0;
       }
-      .live-pages .page-agreement .tab-content h3 {
+      .page-agreement .tab-content h3 {
         font-size: 20px;
         margin: 0 0 30px 0;
       }
-      .live-pages .page-agreement .tab-content h4 {
+      .page-agreement .tab-content h4 {
         font-size: 16px;
         margin: 0 0 30px 0;
       }
-      .live-pages .page-agreement .tab-content p {
+      .page-agreement .tab-content p {
         margin: 0 0 30px 0;
         color: #333;
       }
-      .live-pages .page-agreement .tab-content ul,
-      .live-pages .page-agreement .tab-content ol {
+      .page-agreement .tab-content ul,
+      .page-agreement .tab-content ol {
         margin: 0 0 30px 0;
       }
-      .live-pages .page-agreement .tab-content a {
+      .page-agreement .tab-content a {
         color: #333;
       }
-      .live-pages .page-footer {
+      .page-footer {
         background: #454954;
         padding: 30px 0;
         color: #fff;
         font-size: 16px;
         line-height: 20px;
       }
-      .live-pages .page-credits {
+      .page-credits {
         background: #17191d;
         padding: 20px 0;
         color: #fff;
         font-size: 14px;
         line-height: 18px;
       }
-      .live-pages .page-credits p {
+      .page-credits p {
         margin: 0;
       }
-      .live-pages .page-credits a {
+      .page-credits a {
         color: #eee;
       }
     `}</style>
