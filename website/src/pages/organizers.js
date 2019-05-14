@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { graphql } from 'gatsby';
 
 import '../index.css';
-import '../main.css';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -66,7 +65,7 @@ export default ({ data }) => (
 
               <a
                 href="http://www.eastcarib.org/"
-                className="bg-accent p-2 px-3 font-bold inline-block"
+                className="bg-accent p-2 font-bold inline-block"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -79,12 +78,6 @@ export default ({ data }) => (
     </div>
   </Layout>
 );
-
-const Columns = styled.div.attrs({
-  className: 'container',
-})`
-  display: flex;
-`;
 
 export const pageQuery = graphql`
   {
