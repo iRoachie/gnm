@@ -82,6 +82,7 @@ const Columns = styled.div.attrs({
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 1rem;
+  row-gap: 3rem;
 `;
 
 export const pageQuery = graphql`
