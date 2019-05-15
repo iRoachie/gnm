@@ -4,41 +4,42 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `GNM 2019`,
-    description: `The #GNM2019 Good News Gospel Explosion is an islands-wide evangelistic event. The intent is to spread the gospel of the Lord Jesus Christ throughout Barbados and Dominica. The scope of this campaign is wide, with every Seventh-day Adventist church in Barbados and Dominica playing an active role.`,
-    author: `East Caribbean Conference of SDA`,
+    title: 'GNM 2019',
+    description:
+      'The #GNM2019 Good News Gospel Explosion is an islands-wide evangelistic event. The intent is to spread the gospel of the Lord Jesus Christ throughout Barbados and Dominica. The scope of this campaign is wide, with every Seventh-day Adventist church in Barbados and Dominica playing an active role.',
+    author: 'East Caribbean Conference of SDA',
   },
   plugins: [
-    `gatsby-plugin-styled-jsx`,
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-styled-jsx',
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `Good News Ministries 2019`,
-        short_name: `GNM 2019`,
-        start_url: `/`,
-        background_color: `#394680`,
-        theme_color: `#394680`,
-        display: `minimal-ui`,
-        icon: `src/images/logo.png`, // This path is relative to the root of the site.
+        name: 'Good News Ministries 2019',
+        short_name: 'GNM 2019',
+        start_url: '/',
+        background_color: '#394680',
+        theme_color: '#394680',
+        display: 'minimal-ui',
+        icon: 'src/imagss/logo.png', // This path is relative to the root of the site.
       },
     },
     {
-      resolve: `gatsby-plugin-styled-components`,
+      resolve: 'gatsby-plugin-styled-components',
     },
     {
-      resolve: `gatsby-source-contentful`,
+      resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: `qkckjj66ew52`,
+        spaceId: 'qkckjj66ew52',
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
@@ -51,7 +52,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-purgecss`,
+      resolve: 'gatsby-plugin-purgecss',
       options: {
         // printRejected: true, // Print removed selectors and processed file names
         develop: false, // Enable while using `gatsby develop`
