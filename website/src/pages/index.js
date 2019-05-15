@@ -67,7 +67,7 @@ export default ({ data }) => (
           </div>
 
           <div className="flex-1 mb-12">
-            <h3 className="text-4xl font-bold text-primary-400 leading-tight w-1/2">
+            <h3 className="text-4xl font-bold text-primary-400 leading-tight lg:w-10/12">
               Join us at a Seventh-day Adventist church near you
             </h3>
           </div>
