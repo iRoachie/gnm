@@ -1,4 +1,4 @@
-const { colors, lineHeight } = require('tailwindcss/defaultTheme');
+const { colors, lineHeight, screens } = require('tailwindcss/defaultTheme');
 
 module.exports = {
   theme: {
@@ -10,10 +10,15 @@ module.exports = {
       base: '#21211f',
       'base-light': '#e4e5df',
     },
+    width: {
+      '55': '55%',
+    },
     maxWidth: {
       '1/4': '25%',
       '1/2': '50%',
       '1/3': '33.33%',
+      '45': '45%',
+      '55': '55%',
     },
     lineHeight: {
       ...lineHeight,
@@ -24,4 +29,5 @@ module.exports = {
     textColor: ['hover', 'focus', 'active'],
   },
   plugins: [],
+  screens,
 };
