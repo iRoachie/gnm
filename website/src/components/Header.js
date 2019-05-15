@@ -14,7 +14,7 @@ const Header = () => (
       <ul className="ml-16">
         <MenuItem to="/">#GNM2019</MenuItem>
         <MenuItem to="/watch">Watch</MenuItem>
-        <MenuItem to="/stream-sights">Streaming Sites</MenuItem>
+        <MenuItem to="/sites">Streaming Sites</MenuItem>
         <MenuItem to="/beliefs">Our Beliefs</MenuItem>
       </ul>
     </div>
@@ -30,15 +30,11 @@ const Logo = styled.img.attrs({
 
 const MenuItem = ({ children, ...rest }) => {
   const NavLink = styled(Link).attrs({
-    className: 'no-underline font-bold text-black',
-    activeClassName: 'active ',
+    className:
+      'no-underline font-bold text-black hover:text-primary active:text-primary',
+    activeClassName: 'text-primary ',
   })`
     transition: var(--link-transition);
-
-    &.active,
-    &:hover {
-      color: var(--primary);
-    }
   `;
 
   return (

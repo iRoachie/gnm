@@ -18,6 +18,8 @@ module.exports = {
       looser: 2.5,
     },
   },
-  variants: {},
+  variants: {
+    textColor: ['hover', 'focus', 'active'],
+  },
   plugins: [],
 };
