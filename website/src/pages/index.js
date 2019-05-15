@@ -1,44 +1,130 @@
 import React from 'react';
-import styled from 'styled-components';
-
-import logo from '../images/logo--color.svg';
+import { graphql, Link } from 'gatsby';
 
 import '../index.css';
 
-import { Wrapper } from '../components';
+import Layout from '../components/layout';
 import SEO from '../components/seo';
-import { Link } from 'gatsby';
 
-const IndexPage = () => (
-  <Wrapper>
-    <SEO title="Coming Soon" />
+export default ({ data }) => (
+  <Layout data={data} classes="flex" light>
+    <SEO title="Home" keywords={['organizers', 'aim', 'mission', 'vision']} />
 
-    <div className="flex flex-1 bg-white items-center justify-center flex-col px-8">
-      <Logo src={logo} className="logo mw-100" />
+    <div className="flex-1">
+      <section className="bg-primary py-16 text-white">
+        <div className="container md:flex">
+          <div className="flex-1">
+            <img
+              src={require('../images/logo-full.png')}
+              alt="#GNM2019 - GoodNews Gospel Explosion"
+              className="md:mt-12 mb-12 pr-8 full-logo"
+            />
+          </div>
 
-      <p className="mt-4 text-xl text-center">ECC Good News Campaign 2019</p>
+          <div className="flex-1">
+            <h1 className="font-bold text-4xl mb-4">About #GNM2019</h1>
 
-      <div className="flex items-center mt-24 ">
-        <a
-          href="mailto:hello.gnm@gmail.com?subject=GNM 2019 Support"
-          className="no-underline inline-block bg-primary text-white rounded p-4 font-bold sm:mx-4"
-        >
-          Contact Us
-        </a>
+            <p className="leading-looser mb-8 text-gray-300">
+              The{' '}
+              <strong className="text-white">
+                #GNM2019 Good News Gospel Explosion
+              </strong>{' '}
+              is an islands-wide evangelistic event. The intent is to spread the
+              gospel of the Lord Jesus Christ throughout Barbados and Dominica.
+              The scope of this campaign is wide, with every Seventh-day
+              Adventist church in Barbados and Dominica playing an active role.
+            </p>
 
-        <Link
-          to="/privacy"
-          className="inline-block sm:mx-4 text-primary no-underline p-4"
-        >
-          Privacy Policy
-        </Link>
-      </div>
+            <Link
+              to="/campaign"
+              className="bg-accent font-bold text-white px-4 py-3"
+            >
+              Read More
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-base-light py-20">
+        <div className="container flex flex-col-reverse md:flex-row">
+          <div className="flex-1">
+            <div className="pr-4 lg:pr-12">
+              <p className="font-bold text-xl mb-4">
+                We want to worship with you!
+              </p>
+              <p className="mb-8 text-xl">
+                Share this experience of fellowship and spiritual growth with
+                friends in your area.
+              </p>
+
+              <Link
+                to="/sites"
+                className="bg-accent px-4 py-2 font-bold text-white"
+              >
+                View the streaming sites
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex-1 mb-12">
+            <h3 className="text-4xl font-bold text-primary-400 leading-tight w-1/2">
+              Join us at a Seventh-day Adventist church near you
+            </h3>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative flex flex-col believe py-20 bg-no-repeat bg-cover bg-center text-white justify-end">
+        <div className="absolute top-0 left-0 w-full h-full gradient" />
+
+        <div className="container z-20">
+          <h3 className="font-bold text-4xl">What we Believe</h3>
+
+          <div className="sm:flex items-end">
+            <p className="leading-loose mb-8 sm:mb-0 sm:mr-12 believe-sub">
+              Learn about the doctrines and lifestyle of Seventh-day Adventists
+            </p>
+
+            <Link
+              to="/beliefs"
+              className="bg-accent font-bold px-4 py-2 text-sm"
+            >
+              Learn More
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
-  </Wrapper>
+
+    <style jsx>{`
+      .full-logo {
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .believe {
+        background-image: url(${require('../images/believe-banner.jpg')});
+        min-height: 600px;
+      }
+
+      .believe-sub {
+        max-width: 290px;
+      }
+
+      .gradient {
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #1a1b23);
+      }
+    `}</style>
+  </Layout>
 );
-
-const Logo = styled.img`
-  width: 400px;
+export const pageQuery = graphql`
+  {
+    allContentfulSocialMediaNetwork {
+      edges {
+        node {
+          name
+        }
+      }
+    }
+  }
 `;
-
-export default IndexPage;

@@ -8,9 +8,10 @@ module.exports = {
       'primary-400': '#0d3380',
       accent: '#ed2087',
       base: '#21211f',
-      'base-light': '#e4e5df',
+      'base-light': '#e4e5e0',
     },
     width: {
+      full: '100%',
       '55': '55%',
       '1/3': '33.33%',
       '2/3': '66.66%',

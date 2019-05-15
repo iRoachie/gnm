@@ -4,16 +4,20 @@ import styled from 'styled-components';
 
 import logo from '../images/logo--color.svg';
 
-const Header = () => (
-  <header className="bg-base-light py-4 text-black">
-    <div className="container flex items-center">
+const Header = ({ light = false }) => (
+  <header
+    className={`${
+      light ? 'bg-white shadow' : 'bg-base-light'
+    } py-4 text-black z-10`}
+  >
+    <div className="container flex items-center justify-between">
       <Link to="/">
         <Logo src={logo} />
       </Link>
 
-      <ul className="ml-16">
+      <ul className="hidden md:block ml-16">
         <MenuItem to="/">#GNM2019</MenuItem>
-        <MenuItem to="/watch">Watch</MenuItem>
+        <MenuItem to="/">Watch</MenuItem>
         <MenuItem to="/sites">Streaming Sites</MenuItem>
         <MenuItem to="/beliefs">Our Beliefs</MenuItem>
       </ul>

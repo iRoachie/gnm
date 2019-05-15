@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = ({ children, data: contentful, classes }) => (
+const Layout = ({ children, data: contentful, classes, light }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -19,7 +19,7 @@ const Layout = ({ children, data: contentful, classes }) => (
     `}
     render={data => (
       <Wrapper>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.site.siteMetadata.title} light={light} />
 
         <main className={`flex-1 ${classes}`}>{children}</main>
 
