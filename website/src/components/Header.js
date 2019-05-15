@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import logo from '../images/logo--color.svg';
 
 const Header = ({ light = false }) => (
-  <header
+  <nav
     className={`${
       light ? 'bg-white shadow' : 'bg-base-light'
     } py-4 text-black z-10`}
@@ -22,7 +22,7 @@ const Header = ({ light = false }) => (
         <MenuItem to="/beliefs">Our Beliefs</MenuItem>
       </ul>
     </div>
-  </header>
+  </nav>
 );
 
 const Logo = styled.img.attrs({
@@ -35,8 +35,8 @@ const Logo = styled.img.attrs({
 const MenuItem = ({ children, ...rest }) => {
   const NavLink = styled(Link).attrs({
     className:
-      'no-underline font-bold text-black hover:text-primary active:text-primary',
-    activeClassName: 'text-primary ',
+      'no-underline font-bold text-black hover:text-primary-400 active:text-primary-400',
+    activeClassName: 'text-primary-400',
   })`
     transition: var(--link-transition);
   `;
