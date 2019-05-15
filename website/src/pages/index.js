@@ -37,10 +37,53 @@ export default ({ data }) => (
 
             <Link
               to="/campaign"
-              className="bg-accent font-bold text-white px-4 py-3"
+              className="bg-accent font-bold text-white px-4 py-2"
             >
               Read More
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20 lg:pb-0">
+        <div className="container flex">
+          <div className="flex-1">
+            <h2 className="text-primary-400 font-bold text-4xl mb-4">
+              Meet Evangelist Claudius Morgan
+            </h2>
+
+            <p className="leading-looser md:w-2/3 lg:w-full">
+              For 5 weeks Evangelist Dr Claudius Morgan will share the good News
+              about Jesus Christ from the bible, carefully showing us how the
+              life, ministry and sacrifice of Jesus affects us even to this day.
+              Evangelist Morgan is currently Evangelism and Communications
+              Director of the Caribbean Union of Seventh-day Adventists.
+            </p>
+
+            <div className="sm:flex items-center mt-12">
+              <a href="" className="flex items-center">
+                <img
+                  className="mr-4 youtube-logo"
+                  src={require('../images/icon-youtube.png')}
+                  alt="Youtube"
+                />
+
+                <span className="text-primary-400 font-bold">
+                  Watch his testimony
+                </span>
+              </a>
+
+              <Link
+                to="/morgan"
+                className="inline-block mt-12 sm:mt-0 sm:ml-12 px-4 py-2 font-bold text-white bg-accent"
+              >
+                Learn More
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex-1 hidden lg:block">
+            <img src={require('../images/morg-2.png')} alt="" />
           </div>
         </div>
       </section>
@@ -52,7 +95,7 @@ export default ({ data }) => (
               <p className="font-bold text-xl mb-4">
                 We want to worship with you!
               </p>
-              <p className="mb-8 text-xl">
+              <p className="mb-12 text-xl">
                 Share this experience of fellowship and spiritual growth with
                 friends in your area.
               </p>
@@ -85,10 +128,7 @@ export default ({ data }) => (
               Learn about the doctrines and lifestyle of Seventh-day Adventists
             </p>
 
-            <Link
-              to="/beliefs"
-              className="bg-accent font-bold px-4 py-2 text-sm"
-            >
+            <Link to="/beliefs" className="bg-accent font-bold px-4 py-2">
               Learn More
             </Link>
           </div>
@@ -113,6 +153,10 @@ export default ({ data }) => (
 
       .gradient {
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #1a1b23);
+      }
+
+      .youtube-logo {
+        height: 40px;
       }
     `}</style>
   </Layout>
