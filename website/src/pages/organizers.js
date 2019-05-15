@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { graphql } from 'gatsby';
 
 import '../index.css';
@@ -11,7 +10,7 @@ export default ({ data }) => (
   <Layout data={data} classes="flex">
     <SEO
       title="Organizers"
-      keywords={[`organizers`, `aim`, `mission`, `vision`]}
+      keywords={['organizers', 'aim', 'mission', 'vision']}
     />
 
     <div class="flex-1 flex flex-col justify-between sm:pt-24">

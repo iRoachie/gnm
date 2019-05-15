@@ -10,7 +10,7 @@ export default ({ data }) => (
   <Layout data={data} classes="flex">
     <SEO
       title="The Campaign"
-      keywords={[`organizers`, `aim`, `mission`, `vision`]}
+      keywords={['organizers', 'aim', 'mission', 'vision']}
     />
 
     <div class="container flex-1 md:flex sm:pt-24">

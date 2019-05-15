@@ -26,6 +26,7 @@
     "styled-jsx": "^3.2.1"
   },
   "devDependencies": {
+    "@react-native-community/eslint-config": "^0.0.5",
     "autoprefixer": "^9.5.1",
     "eslint": "^5.16.0",
     "gatsby-plugin-purgecss": "^3.1.1",
