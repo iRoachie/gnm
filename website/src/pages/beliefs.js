@@ -19,8 +19,8 @@ export default ({ data }) => (
       </header>
 
       <div className="flex">
-        <sidebar class="bg-primary w-1/3 p-4" />
-        <main class="w-2/3" />
+        <aside className="bg-primary w-1/3 p-4" />
+        <main className="w-2/3" />
       </div>
     </div>
   </Layout>
