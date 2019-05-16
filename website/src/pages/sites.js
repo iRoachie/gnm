@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { graphql } from 'gatsby';
 
 import '../index.css';
 
@@ -9,7 +8,7 @@ import SiteCollapsible from '../components/SiteCollapsible';
 import * as sites from '../data/sites';
 import { reduceSites } from '../util';
 
-export default ({ data }) => {
+export default () => {
   const [open, setOpen] = useState('');
 
   const barbados = reduceSites(sites.barbados);
@@ -24,7 +23,7 @@ export default ({ data }) => {
   };
 
   return (
-    <Layout data={data} classes="sm:pt-24">
+    <Layout classes="sm:pt-24">
       <SEO
         title="Streaming Sites"
         keywords={['streaming', 'church', 'site', 'barbados', 'dominica']}
@@ -78,15 +77,3 @@ export default ({ data }) => {
     </Layout>
   );
 };
-
-export const pageQuery = graphql`
-  {
-    allContentfulSocialMediaNetwork {
-      edges {
-        node {
-          name
-        }
-      }
-    }
-  }
-`;

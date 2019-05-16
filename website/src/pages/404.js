@@ -1,13 +1,11 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-
 import '../index.css';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-const NotFoundPage = ({ data }) => (
-  <Layout data={data}>
+const NotFoundPage = () => (
+  <Layout>
     <SEO title="404: Not found" />
 
     <div className="container text-center pt-8">
@@ -16,17 +14,5 @@ const NotFoundPage = ({ data }) => (
     </div>
   </Layout>
 );
-
-export const pageQuery = graphql`
-  {
-    allContentfulSocialMediaNetwork {
-      edges {
-        node {
-          name
-        }
-      }
-    }
-  }
-`;
 
 export default NotFoundPage;

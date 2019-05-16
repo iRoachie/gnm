@@ -1,13 +1,13 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { Link } from 'gatsby';
 
 import '../index.css';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-export default ({ data }) => (
-  <Layout data={data} classes="flex" light>
+export default () => (
+  <Layout classes="flex" light>
     <SEO
       title="Home"
       keywords={[
@@ -199,14 +199,3 @@ export default ({ data }) => (
     `}</style>
   </Layout>
 );
-export const pageQuery = graphql`
-  {
-    allContentfulSocialMediaNetwork {
-      edges {
-        node {
-          name
-        }
-      }
-    }
-  }
-`;

@@ -1,13 +1,12 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 
 import '../index.css';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-export default ({ data }) => (
-  <Layout data={data} classes="flex">
+export default () => (
+  <Layout classes="flex">
     <SEO
       title="Our Beliefs"
       keywords={['sda', 'believe', 'claudius', 'morgan', 'about', 'bio']}
@@ -25,15 +24,3 @@ export default ({ data }) => (
     </div>
   </Layout>
 );
-
-export const pageQuery = graphql`
-  {
-    allContentfulSocialMediaNetwork {
-      edges {
-        node {
-          name
-        }
-      }
-    }
-  }
-`;

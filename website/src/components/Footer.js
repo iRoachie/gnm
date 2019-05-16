@@ -1,9 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import logo from '../images/logo-grey.svg';
 
-const Footer = ({ socialMedia }) => {
+const Footer = () => {
+  const {
+    allContentfulSocialMediaNetwork: { edges },
+  } = useStaticQuery(graphql`
+    {
+      allContentfulSocialMediaNetwork {
+        edges {
+          node {
+            name
+            url
+          }
+        }
+      }
+    }
+  `);
+
+  const socialMedia = edges.map(a => a.node);
+
   const facebook = socialMedia.find(a => a.name === 'Facebook');
   const instagram = socialMedia.find(a => a.name === 'Instagram');
   const youtube = socialMedia.find(a => a.name === 'Youtube');
