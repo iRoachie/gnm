@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import '../index.css';
-
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import SiteCollapsible from '../components/SiteCollapsible';

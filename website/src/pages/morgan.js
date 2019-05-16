@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../index.css';
-
 import { screens } from '../../tailwind.config';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
