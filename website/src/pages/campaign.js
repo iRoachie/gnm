@@ -6,13 +6,13 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 export default () => (
-  <Layout classes="flex">
+  <Layout classes="sm:pt-24">
     <SEO
       title="The Campaign"
       keywords={['organizers', 'aim', 'mission', 'vision']}
     />
 
-    <div class="container flex-1 md:flex sm:pt-24">
+    <div class="container md:flex">
       <section className="py-12 md:pr-12 flex-1 leading-looser">
         <h1 className="font-bold text-primary text-4xl leading-none mb-12">
           The
