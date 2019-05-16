@@ -1,4 +1,5 @@
 import SEO from './seo';
+import VideoTile from './Watch/VideoTile';
 
-export { SEO };
+export { SEO, VideoTile };
 export * from './styles';

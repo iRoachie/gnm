@@ -1,9 +1,4 @@
-const {
-  colors,
-  lineHeight,
-  screens,
-  width,
-} = require('tailwindcss/defaultTheme');
+const { colors, lineHeight, screens } = require('tailwindcss/defaultTheme');
 
 module.exports = {
   theme: {

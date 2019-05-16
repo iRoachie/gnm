@@ -17,7 +17,7 @@ const Header = ({ light = false }) => (
 
       <ul className="hidden md:block ml-16">
         <MenuItem to="/">#GNM2019</MenuItem>
-        <MenuItem to="/">Watch</MenuItem>
+        <MenuItem to="/watch">Watch</MenuItem>
         <MenuItem to="/sites">Streaming Sites</MenuItem>
         <MenuItem to="/beliefs">Our Beliefs</MenuItem>
       </ul>
