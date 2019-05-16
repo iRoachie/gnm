@@ -11,6 +11,27 @@ export default ({ data }) => (
     <SEO title="Home" keywords={['organizers', 'aim', 'mission', 'vision']} />
 
     <div className="flex-1">
+      <section className="main-banner bg-no-repeat bg-cover bg-top flex items-end py-16 text-white">
+        <div className="container">
+          <div className="sm:w-5/12">
+            <p className="text-2xl">#GNM2019</p>
+            <h1 className="text-5xl font-bold leading-tight">
+              “My name is Claudius Morgan”
+            </h1>
+
+            <a href="" className="flex items-center mt-4">
+              <img
+                className="mr-4 youtube-logo"
+                src={require('../images/icon-youtube.png')}
+                alt="Youtube"
+              />
+
+              <span className="text-white font-bold">Play Video</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-primary py-16 text-white">
         <div className="container md:flex">
           <div className="flex-1">
@@ -157,6 +178,11 @@ export default ({ data }) => (
 
       .youtube-logo {
         height: 40px;
+      }
+
+      .main-banner {
+        background-image: url(${require('../images/morg-large.jpg')});
+        min-height: 500px;
       }
     `}</style>
   </Layout>
