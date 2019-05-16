@@ -8,7 +8,19 @@ import SEO from '../components/seo';
 
 export default ({ data }) => (
   <Layout data={data} classes="flex" light>
-    <SEO title="Home" keywords={['organizers', 'aim', 'mission', 'vision']} />
+    <SEO
+      title="Home"
+      keywords={[
+        '#GNM2019',
+        'claudius',
+        'morgan',
+        'Good News',
+        'Gospel Explosion',
+        'barbados',
+        'dominica',
+        'Seventh-day Adventists',
+      ]}
+    />
 
     <div className="flex-1">
       <section className="main-banner bg-no-repeat bg-cover bg-top flex items-end py-16 text-white">
