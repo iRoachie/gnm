@@ -19,7 +19,13 @@ const Header = ({ light = false }) => (
         <MenuItem to="/">#GNM2019</MenuItem>
         <MenuItem to="/watch">Watch</MenuItem>
         <MenuItem to="/sites">Streaming Sites</MenuItem>
-        <MenuItem to="/beliefs">Our Beliefs</MenuItem>
+        <MenuItem
+          href="https://www.adventist.org/en/beliefs/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Our Beliefs
+        </MenuItem>
       </ul>
     </div>
   </nav>
@@ -33,7 +39,9 @@ const Logo = styled.img.attrs({
 `;
 
 const MenuItem = ({ children, ...rest }) => {
-  const NavLink = styled(Link).attrs({
+  const component = rest.to ? styled(Link) : styled.a;
+
+  const NavLink = component.attrs({
     className:
       'no-underline font-bold text-black hover:text-primary-400 active:text-primary-400',
     activeClassName: 'text-primary-400',

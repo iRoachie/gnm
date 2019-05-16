@@ -158,9 +158,14 @@ export default () => (
             Learn about the doctrines and lifestyle of Seventh-day Adventists
           </p>
 
-          <Link to="/beliefs" className="bg-accent font-bold px-4 py-2">
+          <a
+            href="https://www.adventist.org/en/beliefs/"
+            className="bg-accent font-bold px-4 py-2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Learn More
-          </Link>
+          </a>
         </div>
       </div>
     </section>
