@@ -1,21 +1,13 @@
 import React from 'react';
-import { Wrapper, SEO } from '../components';
+import Layout from '../components/layout';
+
+import { SEO } from '../components';
 
 const IndexPage = () => (
-  <Wrapper>
+  <Layout light>
     <SEO title="Privacy Policy" />
 
     <div id="wrap">
-      <div className="page-header">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h1>GNM Fieldwork</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="page-agreement">
         <div className="container">
           <div className="row">
@@ -324,21 +316,9 @@ const IndexPage = () => (
           </div>
         </div>
       </div>
-
-      <div className="page-footer">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">Privacy Policy of GNM Fieldwork</div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <style jsx>{`
-      .live-pages {
-        background: #454954;
-      }
-
       .container {
         margin-right: auto;
         margin-left: auto;
@@ -363,33 +343,9 @@ const IndexPage = () => (
           width: 1170px;
         }
       }
-
-      .page-header {
-        margin: 0;
-        padding: 40px 0;
-        border-bottom: 1px solid #eee;
-        background: #fff;
-      }
-      .page-header h1 {
-        font-size: 25px;
-        line-height: 35px;
-        margin: 0;
-      }
       .page-agreement {
         padding: 30px 0;
         background: #f4f9fd;
-        background: -moz-linear-gradient(top, #f4f9fd 0, #fff 100%);
-        background: -webkit-gradient(
-          linear,
-          left top,
-          left bottom,
-          color-stop(0, #f4f9fd),
-          color-stop(100%, #fff)
-        );
-        background: -webkit-linear-gradient(top, #f4f9fd 0, #fff 100%);
-        background: -o-linear-gradient(top, #f4f9fd 0, #fff 100%);
-        background: -ms-linear-gradient(top, #f4f9fd 0, #fff 100%);
-        background: linear-gradient(to bottom, #f4f9fd 0, #fff 100%);
       }
       .page-agreement .page-tabs .nav-tabs {
         border: 0;
@@ -436,28 +392,8 @@ const IndexPage = () => (
       .page-agreement .tab-content a {
         color: #333;
       }
-      .page-footer {
-        background: #454954;
-        padding: 30px 0;
-        color: #fff;
-        font-size: 16px;
-        line-height: 20px;
-      }
-      .page-credits {
-        background: #17191d;
-        padding: 20px 0;
-        color: #fff;
-        font-size: 14px;
-        line-height: 18px;
-      }
-      .page-credits p {
-        margin: 0;
-      }
-      .page-credits a {
-        color: #eee;
-      }
     `}</style>
-  </Wrapper>
+  </Layout>
 );
 
 export default IndexPage;
