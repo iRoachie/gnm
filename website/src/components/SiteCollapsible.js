@@ -15,12 +15,12 @@ export default function SiteCollapsible({ title, sites, open, onOpen }) {
           <a
             key={a.id}
             href={a.location}
-            className="flex mb-4"
+            className="flex mb-4 items-center"
             target="_blank"
             rel="noreferrer noopener"
           >
             <svg
-              className="icon mr-4"
+              className="icon mr-4 relative"
               width="372"
               height="512"
               viewBox="0 0 372 512"
@@ -33,7 +33,7 @@ export default function SiteCollapsible({ title, sites, open, onOpen }) {
               />
             </svg>
 
-            <span>{a.name}</span>
+            <span className="relative">{a.name}</span>
           </a>
         ))}
       </div>
@@ -47,6 +47,10 @@ export default function SiteCollapsible({ title, sites, open, onOpen }) {
         .icon {
           height: 25px;
           width: auto;
+        }
+
+        span {
+          top: 5px;
         }
       `}</style>
     </article>

@@ -44,14 +44,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
-      options: {
-        google: {
-          families: ['Open Sans:400,600,700'],
-        },
-      },
-    },
-    {
       resolve: 'gatsby-plugin-purgecss',
       options: {
         // printRejected: true, // Print removed selectors and processed file names

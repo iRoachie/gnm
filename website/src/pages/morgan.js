@@ -11,8 +11,8 @@ export default () => (
       keywords={['pastor', 'dr', 'claudius', 'morgan', 'about', 'bio']}
     />
 
-    <section className="container flex items-center py-12 lg:pb-0 faded-bg">
-      <div className="lg:max-w-1/2 leading-looser flex-1 pb-12">
+    <section className="container flex items-end py-12 lg:pb-0 faded-bg bg-no-repeat">
+      <div className="lg:max-w-1/2 leading-looser flex-1 pb-10">
         <h1 className="font-bold text-primary-400 text-4xl leading-snug mb-4">
           Pastor Dr Claudius Morgan
         </h1>
@@ -41,38 +41,37 @@ export default () => (
       />
     </section>
 
-    <section className="text-white flex">
-      <div className="morgan-promo flex-1 hidden sm:block sm:max-w-45" />
+    <section className="text-white bg-primary relative">
+      <div className="morgan-promo hidden absolute top-0 h-full w-full bg-no-repeat bg-cover bg-center sm:block sm:max-w-45" />
 
-      <div className="sm:w-55 bg-primary py-16 px-4 sm:px-12 lg:px-24">
-        <h2 className="font-bold text-4xl mb-4">Ministry</h2>
+      <div className="container flex justify-end">
+        <div className="sm:w-55 py-16 px-4 sm:px-12">
+          <h2 className="font-bold text-4xl mb-4">Ministry</h2>
 
-        <p className="leading-looser mb-12">
-          Pastor Morgan has so far led 20,000+ people to Christ and established
-          15 churches in the Caribbean, and North America. He is the one of the
-          few evangelists in the World Church who effectively combines singing
-          and preaching in his ministry.
-        </p>
+          <p className="leading-looser mb-12">
+            Pastor Morgan has so far led 20,000+ people to Christ and
+            established 15 churches in the Caribbean, and North America. He is
+            the one of the few evangelists in the World Church who effectively
+            combines singing and preaching in his ministry.
+          </p>
 
-        <p className="leading-looser">
-          Presently he also serves as the Assistant to the President of the
-          Caribbean Union with responsibility for Evangelism, Training and
-          Development.
-        </p>
+          <p className="leading-looser">
+            Presently he also serves as the Assistant to the President of the
+            Caribbean Union with responsibility for Evangelism, Training and
+            Development.
+          </p>
+        </div>
       </div>
     </section>
 
     <style jsx>{`
       .morgan-promo {
         background-image: url(${require('../images/morg-1.jpg')});
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        right: 55%;
       }
 
       .faded-bg {
         background-image: url(${require('../images/morg-2-opacity.png')});
-        background-repeat: no-repeat;
         background-position: top center;
         min-height: 400px;
       }

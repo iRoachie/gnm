@@ -96,36 +96,44 @@ const DropDown = () => {
         #GNM2019
       </button>
 
-      <div
+      <ul
         className={`absolute px-2 shadow bg-primary ${
           menuOpen ? 'block' : 'hidden'
         }`}
       >
-        <Link
-          className="block py-2 text-white"
-          to="/campaign"
-          activeClassName="font-bold"
-        >
-          The Campaign
-        </Link>
-        <Link
-          className="block py-2 text-white"
-          to="/morgan"
-          activeClassName="font-bold"
-        >
-          Ps Dr Morgan
-        </Link>
-        <Link
-          className="block py-2 text-white"
-          to="/organisers"
-          activeClassName="font-bold"
-        >
-          The Organisers
-        </Link>
-      </div>
+        <li className="py-2">
+          <Link
+            className="text-white inline-block"
+            to="/campaign"
+            activeClassName="font-bold"
+          >
+            The Campaign
+          </Link>
+        </li>
+
+        <li className="py-2">
+          <Link
+            className="text-white inline-block"
+            to="/morgan"
+            activeClassName="font-bold"
+          >
+            Ps Dr Morgan
+          </Link>
+        </li>
+
+        <li className="py-2">
+          <Link
+            className="text-white inline-block"
+            to="/organisers"
+            activeClassName="font-bold"
+          >
+            The Organisers
+          </Link>
+        </li>
+      </ul>
 
       <style jsx>{`
-        div {
+        ul {
           width: 150px;
         }
       `}</style>
