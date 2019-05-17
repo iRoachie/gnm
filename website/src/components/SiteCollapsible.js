@@ -48,10 +48,6 @@ export default function SiteCollapsible({ title, sites, open, onOpen }) {
           height: 25px;
           width: auto;
         }
-
-        span {
-          top: 5px;
-        }
       `}</style>
     </article>
   );
