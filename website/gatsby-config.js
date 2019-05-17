@@ -13,6 +13,12 @@ module.exports = {
     'gatsby-plugin-styled-jsx',
     'gatsby-plugin-react-helmet',
     {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-140432847-1',
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
