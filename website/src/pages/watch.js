@@ -3,7 +3,7 @@ import { graphql, navigate } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import VideoTile from '../components/Watch/VideoTile';
+import VideoTrack from '../components/Watch/VideoTrack';
 import Player from '../components/Watch/Player';
 
 export default props => {
@@ -13,10 +13,10 @@ export default props => {
     description: a.node.description.content[0].content[0].value,
   }));
 
-  const initialValue =
+  const index =
     typeof props.pageContext.slug !== 'undefined' ? props.pageContext.slug : 0;
 
-  const video = videos[initialValue];
+  const video = videos[index];
 
   const selectVideo = id => {
     navigate(`/watch/${id + 1}`);
@@ -51,16 +51,7 @@ export default props => {
         <div className="container">
           <h1 className="text-xl">Archive</h1>
 
-          <div className="mt-8 relative">
-            {videos.map((a, i) => (
-              <VideoTile
-                key={a.id}
-                video={a}
-                index={i}
-                selectVideo={() => selectVideo(i)}
-              />
-            ))}
-          </div>
+          <VideoTrack videos={videos} selectVideo={selectVideo} />
         </div>
       </section>
     </Layout>
