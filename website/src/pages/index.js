@@ -28,7 +28,7 @@ export default () => (
             “My name is Claudius Morgan”
           </h1>
 
-          <a href="" className="flex items-center mt-4">
+          <Link to="/watch/1" className="flex items-center mt-4">
             <img
               className="mr-4 youtube-logo"
               src={require('../images/icon-youtube.png')}
@@ -36,7 +36,7 @@ export default () => (
             />
 
             <span className="text-white font-bold">Play Video</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
