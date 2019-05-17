@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -23,25 +23,27 @@ function calculateVideoWidth(width) {
   return (width / 16) * 9;
 }
 
-export default ({
-  data: {
-    allContentfulVideo: { edges },
-  },
-}) => {
+export default props => {
+  const edges = props.data.allContentfulVideo.edges;
   const videos = edges.map(a => ({
     ...a.node,
     description: a.node.description.content[0].content[0].value,
   }));
 
   const width = useWindowWidth();
+  const initialValue =
+    typeof props.pageContext.slug !== 'undefined' ? props.pageContext.slug : 0;
 
-  const [index, setIndex] = useState(0);
   const [videoHeight, setVideoHeight] = useState(calculateVideoWidth(width));
-  const video = videos[index];
+  const video = videos[initialValue];
 
   useEffect(() => {
     setVideoHeight(calculateVideoWidth(width > 1108 ? 1108 : width));
   }, [width]);
+
+  const selectVideo = id => {
+    navigate(`/watch/${id + 1}`);
+  };
 
   return (
     <Layout classes="text-white flex flex-col space-between">
@@ -88,8 +90,8 @@ export default ({
               <VideoTile
                 key={a.id}
                 video={a}
-                index={index}
-                selectVideo={() => setIndex(i)}
+                index={i}
+                selectVideo={() => selectVideo(i)}
               />
             ))}
           </div>
