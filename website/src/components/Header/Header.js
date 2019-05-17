@@ -21,7 +21,7 @@ const Header = ({ light = false }) => {
           <img src={logo} alt="GNM2019 Logo" className="relative logo" />
         </Link>
 
-        <button onClick={toggleMenu}>
+        <button onClick={toggleMenu} aria-label="Menu Toggle">
           <svg
             className="menu-icon md:hidden"
             width="385"
