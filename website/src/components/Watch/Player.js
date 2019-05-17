@@ -41,6 +41,7 @@ export default function Player({ youtubeId }) {
           className="absolute top-0 left-0 w-full h-full"
           width="560"
           height="315"
+          name="Video Player"
           src={`https://www.youtube.com/embed/${youtubeId}?showinfo=0&rel=0`}
           frameBorder="0"
           allowFullScreen

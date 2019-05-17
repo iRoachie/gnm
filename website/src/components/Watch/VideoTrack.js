@@ -20,7 +20,11 @@ export default function VideoTrack({ videos, selectVideo }) {
 
   return (
     <article className="mt-8 relative overflow-hidden slider-container">
-      <button className="absolute track p-4 left-0 z-10" onClick={pushLeft}>
+      <button
+        className="absolute track p-4 left-0 z-10"
+        onClick={pushLeft}
+        aria-label="See older videos"
+      >
         <svg width="12" height="23" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M.583 11.108L11.076.704l.911.865-9.949 9.972 9.982 9.97-.949.866L.583 11.973z"
@@ -41,7 +45,11 @@ export default function VideoTrack({ videos, selectVideo }) {
         ))}
       </div>
 
-      <button className="absolute track right-0 z-10 p-4" onClick={pushRight}>
+      <button
+        className="absolute track right-0 z-10 p-4"
+        onClick={pushRight}
+        aria-label="See newer videos"
+      >
         <svg width="12" height="23" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M11.864 11.108L1.37.704l-.911.865 9.949 9.972-9.982 9.97.949.866 10.488-10.404z"
