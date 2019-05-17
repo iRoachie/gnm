@@ -19,9 +19,15 @@ const NavLink = ({ Tag = Link, ...rest }) => {
 };
 
 export default function MobileMenu() {
+  const { menuOpen } = useContext(MenuContext);
+
   return (
     <>
-      <aside className="bg-primary fixed top-0 right-0 h-full z-0 menu flex flex-col items-center justify-center text-white px-4">
+      <aside
+        className={`bg-primary fixed top-0 right-0 h-full z-0 menu flex flex-col items-center justify-center text-white px-4 ${
+          menuOpen ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
         <ul>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/campaign">The Campaign</NavLink>
@@ -60,6 +66,10 @@ export default function MobileMenu() {
 
       <style jsx>
         {`
+          aside {
+            transition: opacity 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+          }
+
           .menu {
             width: ${mobileMenuWidth};
           }
