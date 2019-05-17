@@ -14,7 +14,7 @@ const Header = ({ light = false }) => {
     <nav
       className={`${
         light ? 'bg-white shadow' : 'bg-base-light'
-      } text-black z-10`}
+      } text-black z-20`}
     >
       <div className="container bar flex items-center justify-between">
         <Link to="/">
