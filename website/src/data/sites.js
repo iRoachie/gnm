@@ -96,6 +96,8 @@ export const barbados = [
   {
     name: 'Sugar Hill SDA',
     parish: 'St. Joseph',
+    location:
+      'https://www.google.com/maps/place/Sugar+Hill+SDA+Church/@13.1762252,-59.570102,17z/data=!3m1!4b1!4m11!1m5!8m4!1e4!2s117621670203132359246!3m1!1e1!3m4!1s0x8c43f1771791d2a5:0x3c273c873dec8cb5!8m2!3d13.17622!4d-59.567908',
   },
   {
     name: 'Cave Hill SDA',
