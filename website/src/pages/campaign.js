@@ -3,14 +3,11 @@ import React from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-export default () => (
+const Campaign = () => (
   <Layout classes="sm:pt-24">
-    <SEO
-      title="The Campaign"
-      keywords={['organizers', 'aim', 'mission', 'vision']}
-    />
+    <SEO title="The Campaign" />
 
-    <div class="container md:flex">
+    <div className="container md:flex">
       <section className="py-12 md:pr-12 flex-1 leading-looser">
         <h1 className="font-bold text-primary text-4xl leading-none mb-12">
           The
@@ -40,7 +37,7 @@ export default () => (
       </section>
 
       <section className="bg-primary py-8 sm:py-16 mb-8 md:mb-0 text-white flex-1">
-        <div class="px-4 sm:px-12 lg:px-24">
+        <div className="px-4 sm:px-12 lg:px-24">
           <article className="mb-12">
             <p className="leading-snug text-2xl">Campaign Start</p>
             <p className="font-bold text-4xl">Sunday, May 19</p>
@@ -65,3 +62,5 @@ export default () => (
     </div>
   </Layout>
 );
+
+export default Campaign;

@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import { beliefsURL } from '../constants';
 
 export default () => (
   <Layout light>
@@ -159,7 +160,7 @@ export default () => (
           </p>
 
           <a
-            href="https://www.adventist.org/en/beliefs/"
+            href={beliefsURL}
             className="bg-accent font-bold px-4 py-2"
             target="_blank"
             rel="noopener noreferrer"

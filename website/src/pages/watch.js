@@ -24,10 +24,7 @@ export default props => {
 
   return (
     <Layout classes="text-white flex flex-col space-between">
-      <SEO
-        title="Watch"
-        keywords={['organizers', 'aim', 'mission', 'vision']}
-      />
+      <SEO title="Watch" />
 
       <section className="main-video flex-1 bg-base">
         <Player youtubeId={video.youtubeId} />

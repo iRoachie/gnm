@@ -5,10 +5,13 @@ import styled from 'styled-components';
 
 import '../index.css';
 
+import { mobileMenuWidth } from '../constants';
 import Header from './Header';
 import Footer from './Footer';
+import MobileMenu from './MobileMenu';
+import { MenuProvider, MenuContext } from '../util/MenuContext';
 
-const Layout = ({ children, data, classes, light }) => (
+const Layout = ({ children, classes, light }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -20,13 +23,23 @@ const Layout = ({ children, data, classes, light }) => (
       }
     `}
     render={({ site }) => (
-      <Wrapper>
-        <Header siteTitle={site.siteMetadata.title} light={light} />
+      <MenuProvider>
+        <MenuContext.Consumer>
+          {({ menuOpen }) => (
+            <>
+              <Wrapper className="page-wrapper" menuOpen={menuOpen}>
+                <Header siteTitle={site.siteMetadata.title} light={light} />
 
-        <main className={`flex-1 ${classes}`}>{children}</main>
+                <main className={`flex-1 ${classes}`}>{children}</main>
 
-        <Footer />
-      </Wrapper>
+                <Footer />
+              </Wrapper>
+
+              <MobileMenu />
+            </>
+          )}
+        </MenuContext.Consumer>
+      </MenuProvider>
     )}
   />
 );
@@ -36,7 +49,13 @@ Layout.propTypes = {
 };
 
 const Wrapper = styled.div.attrs({
-  className: 'min-h-screen flex flex-col space-between',
-})``;
+  className:
+    'min-h-screen flex flex-col space-between relative shadow-lg z-10 bg-white',
+})`
+  transform: translateX(
+    ${props => (props.menuOpen ? `-${mobileMenuWidth}` : '0')}
+  );
+  transition: transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+`;
 
 export default Layout;

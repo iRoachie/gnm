@@ -7,7 +7,7 @@ export default () => (
   <Layout classes="flex flex-col justify-between sm:pt-24">
     <SEO
       title="Organizers"
-      keywords={['organizers', 'aim', 'mission', 'vision']}
+      keywords={['organisers', 'aim', 'mission', 'vision']}
     />
 
     <section className="container py-12 flex-1">
