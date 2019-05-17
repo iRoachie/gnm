@@ -1,10 +1,18 @@
+import shortid from 'shortid';
+
 export const reduceSites = sites => {
   return sites.reduce((prev, curr) => {
     if (prev.length === 0) {
       return [
         {
           parish: curr.parish,
-          sites: [curr.name],
+          sites: [
+            {
+              id: shortid.generate(),
+              name: curr.name,
+              location: curr.location,
+            },
+          ],
         },
       ];
     }
@@ -15,7 +23,14 @@ export const reduceSites = sites => {
           if (a.parish === curr.parish) {
             return {
               ...a,
-              sites: [...a.sites, curr.name],
+              sites: [
+                ...a.sites,
+                {
+                  id: shortid.generate(),
+                  name: curr.name,
+                  location: curr.location,
+                },
+              ],
             };
           }
 
@@ -28,7 +43,13 @@ export const reduceSites = sites => {
       ...prev,
       {
         parish: curr.parish,
-        sites: [curr.name],
+        sites: [
+          {
+            id: shortid.generate(),
+            name: curr.name,
+            location: curr.location,
+          },
+        ],
       },
     ];
   }, []);
