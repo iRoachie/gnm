@@ -17,7 +17,9 @@ const Header = ({ light = false }) => (
 
       <ul className="hidden md:block ml-16">
         <MenuItem to="/">#GNM2019</MenuItem>
-        <MenuItem to="/watch">Watch</MenuItem>
+        <MenuItem to="/watch" partiallyActive>
+          Watch
+        </MenuItem>
         <MenuItem to="/sites">Streaming Sites</MenuItem>
         <MenuItem
           href="https://www.adventist.org/en/beliefs/"
