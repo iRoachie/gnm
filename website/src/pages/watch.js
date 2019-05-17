@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { graphql, navigate } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import VideoTile from '../components/Watch/VideoTile';
-
-function useWindowWidth() {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  });
-
-  return width;
-}
-
-function calculateVideoWidth(width) {
-  return (width / 16) * 9;
-}
+import Player from '../components/Watch/Player';
 
 export default props => {
   const edges = props.data.allContentfulVideo.edges;
@@ -30,16 +13,10 @@ export default props => {
     description: a.node.description.content[0].content[0].value,
   }));
 
-  const width = useWindowWidth();
   const initialValue =
     typeof props.pageContext.slug !== 'undefined' ? props.pageContext.slug : 0;
 
-  const [videoHeight, setVideoHeight] = useState(calculateVideoWidth(width));
   const video = videos[initialValue];
-
-  useEffect(() => {
-    setVideoHeight(calculateVideoWidth(width > 1108 ? 1108 : width));
-  }, [width]);
 
   const selectVideo = id => {
     navigate(`/watch/${id + 1}`);
@@ -53,18 +30,7 @@ export default props => {
       />
 
       <section className="main-video flex-1 bg-base">
-        <div className="video-container relative mx-auto">
-          <iframe
-            className="absolute top-0 left-0 w-full h-full"
-            width="560"
-            height="315"
-            src={`https://www.youtube.com/embed/${
-              video.youtubeId
-            }?showinfo=0&rel=0`}
-            frameBorder="0"
-            allowFullScreen
-          />
-        </div>
+        <Player youtubeId={video.youtubeId} />
       </section>
 
       <section className="bg-base pt-12 pb-12">
@@ -97,13 +63,6 @@ export default props => {
           </div>
         </div>
       </section>
-
-      <style jsx>{`
-        .video-container {
-          min-height: ${videoHeight}px;
-          max-width: calc(1140px - 2rem);
-        }
-      `}</style>
     </Layout>
   );
 };
