@@ -37,32 +37,36 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center">
-            <SocialIcon alt={facebook.name} href={facebook.url}>
-              <svg
-                preserveAspectRatio="xMinYMin meet"
-                viewBox="0 0 13 14"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.5.4H1C.7.4.5.6.5.9v11.9c0 .3.2.5.5.5h6.1V8.4H5.5v-2h1.6V4.8c0-1.7 1-2.5 2.5-2.5.7 0 1.3.1 1.5.1v1.8h-1c-.8 0-1 .4-1 1v1.3h2l-.4 2H9.1v4.9h3.4c.3 0 .5-.2.5-.5V1c0-.3-.2-.6-.5-.6"
-                  fill="#696767"
-                  fillRule="nonzero"
-                />
-              </svg>
-            </SocialIcon>
+            {facebook.url && (
+              <SocialIcon alt={facebook.name} href={facebook.url}>
+                <svg
+                  preserveAspectRatio="xMinYMin meet"
+                  viewBox="0 0 13 14"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.5.4H1C.7.4.5.6.5.9v11.9c0 .3.2.5.5.5h6.1V8.4H5.5v-2h1.6V4.8c0-1.7 1-2.5 2.5-2.5.7 0 1.3.1 1.5.1v1.8h-1c-.8 0-1 .4-1 1v1.3h2l-.4 2H9.1v4.9h3.4c.3 0 .5-.2.5-.5V1c0-.3-.2-.6-.5-.6"
+                    fill="#696767"
+                    fillRule="nonzero"
+                  />
+                </svg>
+              </SocialIcon>
+            )}
 
-            <SocialIcon alt={instagram.name} href={instagram.url}>
-              <svg
-                preserveAspectRatio="xMinYMin meet"
-                viewBox="0 0 15 15"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g fill="#696767" fillRule="nonzero">
-                  <path d="M4.9 1.8c-1.7 0-3 1.4-3 3V11c0 1.7 1.4 3 3 3h5.7c1.7 0 3-1.4 3-3V4.9c0-1.7-1.4-3-3-3H4.9v-.1zM10.6 15H4.9C2.7 15 .8 13.2.8 10.9V4.8C.8 2.6 2.6.7 4.9.7h5.7c2.2 0 4.1 1.8 4.1 4.1V11c0 2.2-1.9 4-4.1 4z" />
-                  <path d="M7.6 5.4c-.6 0-1.2.2-1.6.7-.5.5-.8 1.1-.8 1.8 0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5c.1-1.5-.9-2.5-2.6-2.5.1 0 .1 0 0 0m.1 6.3c-2.1 0-3.8-1.7-3.8-3.8 0-1 .4-2 1.2-2.7.7-.7 1.7-1.1 2.6-1 1.2 0 2.2.4 2.8 1.1.6.7 1 1.6.9 2.6 0 1-.4 2-1.1 2.7-.6.7-1.6 1.1-2.6 1.1M12.5 4c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9" />
-                </g>
-              </svg>
-            </SocialIcon>
+            {instagram.url && (
+              <SocialIcon alt={instagram.name} href={instagram.url}>
+                <svg
+                  preserveAspectRatio="xMinYMin meet"
+                  viewBox="0 0 15 15"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g fill="#696767" fillRule="nonzero">
+                    <path d="M4.9 1.8c-1.7 0-3 1.4-3 3V11c0 1.7 1.4 3 3 3h5.7c1.7 0 3-1.4 3-3V4.9c0-1.7-1.4-3-3-3H4.9v-.1zM10.6 15H4.9C2.7 15 .8 13.2.8 10.9V4.8C.8 2.6 2.6.7 4.9.7h5.7c2.2 0 4.1 1.8 4.1 4.1V11c0 2.2-1.9 4-4.1 4z" />
+                    <path d="M7.6 5.4c-.6 0-1.2.2-1.6.7-.5.5-.8 1.1-.8 1.8 0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5c.1-1.5-.9-2.5-2.6-2.5.1 0 .1 0 0 0m.1 6.3c-2.1 0-3.8-1.7-3.8-3.8 0-1 .4-2 1.2-2.7.7-.7 1.7-1.1 2.6-1 1.2 0 2.2.4 2.8 1.1.6.7 1 1.6.9 2.6 0 1-.4 2-1.1 2.7-.6.7-1.6 1.1-2.6 1.1M12.5 4c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9" />
+                  </g>
+                </svg>
+              </SocialIcon>
+            )}
 
             <SocialIcon alt={youtube.name} href={youtube.url}>
               <svg viewBox="0 0 21 15" xmlns="http://www.w3.org/2000/svg">
