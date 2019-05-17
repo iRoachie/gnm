@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
-import logo from '../images/logo.png';
-
 function SEO({ description, lang, meta, keywords, title, ogTitle }) {
   return (
     <StaticQuery
@@ -38,7 +36,8 @@ function SEO({ description, lang, meta, keywords, title, ogTitle }) {
               },
               {
                 propery: 'og:image',
-                content: logo,
+                content:
+                  'https://www.goodnewsbarbados.com/icons/icon-512x512.png',
               },
               {
                 name: 'twitter:card',
