@@ -57,14 +57,14 @@ export default () => (
           <h1 className="font-bold text-4xl mb-4">About #GNM2019</h1>
 
           <p className="leading-looser mb-8 text-gray-300">
-            The{' '}
+            The&nbsp;
             <strong className="text-white">
               #GNM2019 Good News Gospel Explosion
-            </strong>{' '}
-            is an islands-wide evangelistic event. The intent is to spread the
-            gospel of the Lord Jesus Christ throughout Barbados and Dominica.
-            The scope of this campaign is wide, with every Seventh-day Adventist
-            church in Barbados and Dominica playing an active role.
+            </strong>
+            &nbsp; is an islands-wide evangelistic event. The intent is to
+            spread the gospel of the Lord Jesus Christ throughout Barbados and
+            Dominica. The scope of this campaign is wide, with every Seventh-day
+            Adventist church in Barbados and Dominica playing an active role.
           </p>
 
           <Link
