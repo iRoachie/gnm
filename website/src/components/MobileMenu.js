@@ -77,7 +77,6 @@ export default function MobileMenu() {
           .external-link {
             height: 20px;
             width: 20px;
-            top: -8px;
           }
         `}
       </style>
