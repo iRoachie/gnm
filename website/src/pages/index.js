@@ -9,6 +9,7 @@ export default () => (
   <Layout light>
     <SEO
       title="Home"
+      ogTitle="Goodnews Gospel Explosion"
       keywords={[
         '#GNM2019',
         'claudius',
