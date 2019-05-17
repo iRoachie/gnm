@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import logo from '../images/logo-grey.svg';
-
 const Footer = () => {
   const {
     allContentfulSocialMediaNetwork: { edges },
@@ -29,16 +27,26 @@ const Footer = () => {
   return (
     <Content>
       <div className="container flex flex-col md:flex-row justify-between items-center md:items-start">
-        <Logo src={logo} />
+        <Logo
+          width="91"
+          height="21"
+          viewBox="0 0 91 21"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g fill="#5E5C5D" fillRule="nonzero">
+            <path d="M27.4 17.9c1.7 0 3-.7 4-1.5v-4.1h-4.1v1.8h2.1v1.3c-.5.4-1.2.6-1.9.6-1.7 0-2.8-1.3-2.8-3 0-1.6 1.2-2.9 2.7-2.9 1.1 0 1.7.3 2.5 1l1.3-1.6c-1-.8-2-1.3-3.7-1.3-2.8 0-4.9 2.2-4.9 4.9-.1 2.8 1.9 4.8 4.8 4.8M36.5 16.2c-1.1 0-1.9-.9-1.9-2s.7-2 1.9-2c1.1 0 1.9.9 1.9 2s-.7 2-1.9 2m0 1.7c2.2 0 3.9-1.7 3.9-3.7 0-2.1-1.6-3.7-3.9-3.7-2.2 0-3.9 1.7-3.9 3.7 0 2.1 1.7 3.7 3.9 3.7M45.1 16.2c-1.1 0-1.9-.9-1.9-2s.7-2 1.9-2c1.1 0 1.9.9 1.9 2s-.7 2-1.9 2m0 1.7c2.2 0 3.9-1.7 3.9-3.7 0-2.1-1.6-3.7-3.9-3.7-2.2 0-3.9 1.7-3.9 3.7 0 2.1 1.7 3.7 3.9 3.7M53.7 16.2c-1 0-1.8-.8-1.8-2s.8-2 1.8-2 1.7.8 1.7 2-.8 2-1.7 2m-.5 1.7c1.1 0 1.7-.5 2.2-1.2v1h2V8h-2v3.5c-.5-.6-1.2-1.1-2.2-1.1-1.7 0-3.3 1.3-3.3 3.7 0 2.5 1.6 3.8 3.3 3.8M59.2 17.8h1v-4c0-1.3.9-2.2 2.1-2.2 1.2 0 1.9.8 1.9 2.1v4h1v-4.3c0-1.6-1-2.8-2.7-2.8-1.2 0-1.9.6-2.4 1.4v-1.2h-1v7h.1zM67.9 13.9c.1-1.3 1.1-2.3 2.3-2.3 1.4 0 2.1 1.1 2.2 2.3h-4.5zm0 .8h5.5v-.4c0-2-1.2-3.7-3.2-3.7-1.9 0-3.3 1.6-3.3 3.6 0 2.2 1.6 3.6 3.5 3.6 1.3 0 2.2-.5 2.9-1.3l-.6-.6c-.6.6-1.2 1-2.2 1-1.4.1-2.5-.7-2.6-2.2zM76.4 17.8h.9l1.9-5.5 1.9 5.5h.9l2.4-7h-1.1l-1.8 5.6-1.9-5.6h-.8l-1.9 5.6-1.8-5.6H74zM87.9 17.9c1.4 0 2.5-.8 2.5-2.1 0-1.2-1.2-1.7-2.2-2-.9-.3-1.8-.5-1.8-1.2 0-.6.5-1 1.3-1 .7 0 1.4.3 2.1.7l.5-.8c-.7-.5-1.6-.8-2.5-.8-1.4 0-2.4.8-2.4 2 0 1.3 1.2 1.6 2.3 2 .9.3 1.7.5 1.7 1.2S88.8 17 88 17c-.8 0-1.6-.3-2.4-.9l-.5.7c.7.7 1.8 1.1 2.8 1.1M10 10.6c1.2-2.3 2.3-4.6 3.5-6.8.1-.2.1-.3.2-.5.1-.9-.3-1.5-.7-2.4.1.7.1 1.3-.9 3l-3.4 6.8H10v-.1zm5.3-1c.2-.3.3-.5.3-.9.1-.9-.3-1.5-.7-2.4.1.7.2 1.2-.8 2.9l-.7 1.4h1.4l.5-1zm-2.8 1h-1.4l2.2-4.4c1-1.7.9-2.1.8-2.9.4.9.7 1.6.7 2.4 0 .2-.1.4-.1.5-.8 1.5-1.5 2.9-2.2 4.4z" />
+            <path d="M14.7 19.5c-6.3 2.1-14 .7-14-7.4C.7 7.7 4.2 4.2 8.5 4v3.2C7.1 7.3 5.9 8 5.1 9c-1.2 1.7-1.2 4.1-.3 6 1.5 2.9 3.8 2.5 6.5 2.5v-3.7H8.8v-2.7h5.9v8.4z" />
+          </g>
+        </Logo>
 
-        <div className="flex items-center pl-4 my-6 md:m-0 self-center">
+        <div className="flex items-center pl-4 my-6 md:mt-2 md:mb-0 self-center">
           <p className="text-white font-bold text-md mr-2 whitespace-no-wrap">
             Follow Us
           </p>
 
           <div className="flex items-center">
             {facebook.url && (
-              <SocialIcon alt={facebook.name} href={facebook.url}>
+              <SocialIcon aria-label={facebook.name} href={facebook.url}>
                 <svg
                   preserveAspectRatio="xMinYMin meet"
                   viewBox="0 0 13 14"
@@ -54,7 +62,7 @@ const Footer = () => {
             )}
 
             {instagram.url && (
-              <SocialIcon alt={instagram.name} href={instagram.url}>
+              <SocialIcon aria-label={instagram.name} href={instagram.url}>
                 <svg
                   preserveAspectRatio="xMinYMin meet"
                   viewBox="0 0 15 15"
@@ -68,7 +76,7 @@ const Footer = () => {
               </SocialIcon>
             )}
 
-            <SocialIcon alt={youtube.name} href={youtube.url}>
+            <SocialIcon aria-label={youtube.name} href={youtube.url}>
               <svg viewBox="0 0 21 15" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M8.2 10.2V4.5l5.4 2.9-5.4 2.8zM20 3.5s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9-2.8-.2-7-.2-7-.2S6 .4 3.2.6c-.4 0-1.2.1-2 .9-.6.6-.8 2-.8 2S.2 5.1.2 6.8v1.5c0 1.6.2 3.3.2 3.3s.2 1.4.8 2c.8.8 1.8.8 2.2.9 1.6.2 6.8.2 6.8.2s4.2 0 7-.2c.4 0 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.3V6.8c0-1.6-.2-3.3-.2-3.3z"
@@ -125,8 +133,9 @@ const SDALogo = styled.svg`
   }
 `;
 
-const Logo = styled.img`
+const Logo = styled.svg`
   width: 200px;
+  height: 46.14px;
 `;
 
 const SocialIcon = ({ children, ...rest }) => {
