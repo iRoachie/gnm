@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title, image, siteUrl }) {
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
-        const metaDescription =
-          description || data.site.siteMetadata.description;
+      render={({ site: { siteMetadata } }) => {
+        const metaDescription = description || siteMetadata.description;
+
+        const metaImage = `${siteMetadata.siteUrl}${image ||
+          siteMetadata.defaultImage}`;
+
         return (
           <Helmet
             htmlAttributes={{
@@ -17,9 +20,7 @@ function SEO({ description, lang, meta, keywords, title }) {
             }}
             title={title}
             titleTemplate={
-              title === data.site.siteMetadata.title
-                ? '%s'
-                : `%s | ${data.site.siteMetadata.title}`
+              title === siteMetadata.title ? '%s' : `%s | ${siteMetadata.title}`
             }
             meta={[
               {
@@ -29,9 +30,9 @@ function SEO({ description, lang, meta, keywords, title }) {
               {
                 property: 'og:title',
                 content:
-                  title === data.site.siteMetadata.title
+                  title === siteMetadata.title
                     ? title
-                    : `${title} | ${data.site.siteMetadata.title}`,
+                    : `${title} | ${siteMetadata.title}`,
               },
               {
                 property: 'og:description',
@@ -42,9 +43,8 @@ function SEO({ description, lang, meta, keywords, title }) {
                 content: 'website',
               },
               {
-                propery: 'og:image',
-                content:
-                  'https://www.goodnewsbarbados.com/icons/icon-512x512.png',
+                property: 'og:image',
+                content: metaImage,
               },
               {
                 name: 'twitter:card',
@@ -52,7 +52,7 @@ function SEO({ description, lang, meta, keywords, title }) {
               },
               {
                 name: 'twitter:creator',
-                content: data.site.siteMetadata.author,
+                content: siteMetadata.author,
               },
               {
                 name: 'twitter:title',
@@ -102,6 +102,8 @@ const detailsQuery = graphql`
         title
         description
         author
+        defaultImage: image
+        siteUrl: url
       }
     }
   }

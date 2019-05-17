@@ -8,6 +8,8 @@ module.exports = {
     description:
       'The #GNM2019 Goodnews Gospel Explosion is an islands-wide evangelistic event. The intent is to spread the gospel of the Lord Jesus Christ throughout Barbados and Dominica. The scope of this campaign is wide, with every Seventh-day Adventist church in Barbados and Dominica playing an active role.',
     author: 'East Caribbean Conference of SDA',
+    image: '/icons/icon-512x512.png',
+    url: 'https://www.goodnewsbarbados.com',
   },
   plugins: [
     'gatsby-plugin-styled-jsx',
