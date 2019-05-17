@@ -8,8 +8,7 @@ import { beliefsURL } from '../constants';
 export default () => (
   <Layout light>
     <SEO
-      title="Home"
-      ogTitle="Goodnews Gospel Explosion"
+      title="Goodnews Gospel Explosion"
       keywords={[
         '#GNM2019',
         'claudius',
