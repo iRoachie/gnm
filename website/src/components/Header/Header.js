@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
@@ -14,9 +14,9 @@ const Header = ({ light = false }) => {
     <nav
       className={`${
         light ? 'bg-white shadow' : 'bg-base-light'
-      } py-4 text-black z-10`}
+      } text-black z-10`}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container bar flex items-center justify-between">
         <Link to="/">
           <img src={logo} alt="GNM2019 Logo" className="relative logo" />
         </Link>
@@ -35,8 +35,8 @@ const Header = ({ light = false }) => {
           </svg>
         </button>
 
-        <ul className="hidden md:block ml-16">
-          <MenuItem to="/">#GNM2019</MenuItem>
+        <ul className="hidden md:flex ml-16 h-full items-stretch">
+          <DropDown />
           <MenuItem to="/watch" partiallyActive>
             Watch
           </MenuItem>
@@ -53,12 +53,83 @@ const Header = ({ light = false }) => {
           height: 40px;
         }
 
+        .bar {
+          height: 72px;
+        }
+
         .logo {
           top: -4px;
           height: 40px;
         }
       `}</style>
     </nav>
+  );
+};
+
+const DropDown = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.addEventListener('click', () => {
+      setMenuOpen(false);
+    });
+
+    return () => {
+      document.body.removeEventListener('click', () => {}, false);
+    };
+  }, [menuOpen]);
+
+  const onOpen = () => {
+    if (!menuOpen) {
+      setMenuOpen(true);
+    }
+  };
+
+  return (
+    <li className={`inline-block relative ${menuOpen ? 'bg-primary' : ''}`}>
+      <button
+        className={`font-bold p-4 h-full ${
+          menuOpen ? 'text-white' : 'text-black'
+        }`}
+        onClick={onOpen}
+      >
+        #GNM2019
+      </button>
+
+      <div
+        className={`absolute px-2 shadow bg-primary ${
+          menuOpen ? 'block' : 'hidden'
+        }`}
+      >
+        <Link
+          className="block py-2 text-white"
+          to="/campaign"
+          activeClassName="font-bold"
+        >
+          The Campaign
+        </Link>
+        <Link
+          className="block py-2 text-white"
+          to="/morgan"
+          activeClassName="font-bold"
+        >
+          Ps Dr Morgan
+        </Link>
+        <Link
+          className="block py-2 text-white"
+          to="/organisers"
+          activeClassName="font-bold"
+        >
+          The Organisers
+        </Link>
+      </div>
+
+      <style jsx>{`
+        div {
+          width: 150px;
+        }
+      `}</style>
+    </li>
   );
 };
 
@@ -74,7 +145,7 @@ const MenuItem = ({ children, ...rest }) => {
   `;
 
   return (
-    <li className="mr-8 text-white inline-block">
+    <li className="px-4 text-white flex items-center">
       <NavLink {...rest}>{children}</NavLink>
     </li>
   );
