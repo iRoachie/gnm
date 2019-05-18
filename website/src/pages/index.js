@@ -92,7 +92,7 @@ export default () => (
           </p>
 
           <div className="sm:flex items-center mt-12">
-            <a href="" className="flex items-center">
+            <Link to="/watch/1" className="flex items-center">
               <img
                 className="mr-4 youtube-logo"
                 src={require('../images/icon-youtube.png')}
@@ -102,7 +102,7 @@ export default () => (
               <span className="text-primary-400 font-bold">
                 Watch his testimony
               </span>
-            </a>
+            </Link>
 
             <Link
               to="/morgan"
