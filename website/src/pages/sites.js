@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
+import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import SiteCollapsible from '../components/SiteCollapsible';
-import * as sites from '../data/sites';
 import { reduceSites } from '../util';
 
-export default () => {
+export default ({ data }) => {
   const [open, setOpen] = useState('');
+  const sites = data.allContentfulStreamingSite.edges.map(a => a.node);
 
-  const barbados = reduceSites(sites.barbados);
-  const dominica = reduceSites(sites.dominica);
+  const barbados = reduceSites(
+    sites.filter(a => a.country.name === 'Barbados')
+  );
+  const dominica = reduceSites(
+    sites.filter(a => a.country.name === 'Dominica')
+  );
 
   const toggleOpen = key => {
     if (open === key) {
@@ -75,3 +80,20 @@ export default () => {
     </Layout>
   );
 };
+
+export const pageQuery = graphql`
+  {
+    allContentfulStreamingSite {
+      edges {
+        node {
+          name
+          parish
+          country {
+            name
+          }
+          location
+        }
+      }
+    }
+  }
+`;
