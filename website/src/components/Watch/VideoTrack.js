@@ -21,7 +21,7 @@ export default function VideoTrack({ videos, selectVideo }) {
   return (
     <article className="mt-8 relative overflow-hidden slider-container">
       <button
-        className="absolute track p-4 left-0 z-10"
+        className="absolute track p-3 left-0 z-10"
         onClick={pushLeft}
         aria-label="See older videos"
       >
@@ -34,7 +34,10 @@ export default function VideoTrack({ videos, selectVideo }) {
         </svg>
       </button>
 
-      <div className="slider-track absolute top-0 left-0 w-full" ref={slider}>
+      <div
+        className="slider-track absolute top-0 left-0 w-full flex"
+        ref={slider}
+      >
         {videos.map((a, i) => (
           <VideoTile
             key={a.id}
@@ -46,7 +49,7 @@ export default function VideoTrack({ videos, selectVideo }) {
       </div>
 
       <button
-        className="absolute track right-0 z-10 p-4"
+        className="absolute track right-0 z-10 p-3"
         onClick={pushRight}
         aria-label="See newer videos"
       >
@@ -64,6 +67,7 @@ export default function VideoTrack({ videos, selectVideo }) {
           top: 50%;
           transform: translateY(-50%);
           transition: transform 300ms;
+          background: rgba(0, 0, 0, 0.8);
         }
 
         .track:active {
