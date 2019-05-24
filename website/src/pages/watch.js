@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, navigate } from 'gatsby';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -10,7 +11,7 @@ export default props => {
   const edges = props.data.allContentfulVideo.edges;
   const videos = edges.map(a => ({
     ...a.node,
-    description: a.node.description.content[0].content[0].value,
+    description: documentToHtmlString(a.node.description),
   }));
 
   const index =
@@ -65,8 +66,13 @@ export const pageQuery = graphql`
           title
           description {
             content {
+              nodeType
               content {
                 value
+                nodeType
+                marks {
+                  type
+                }
               }
             }
           }

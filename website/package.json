@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "@contentful/rich-text-html-renderer": "^13.0.0",
+    "@contentful/rich-text-html-renderer": "^13.1.0",
     "dotenv": "^6.2.0",
     "gatsby": "^2.5.0",
     "gatsby-image": "^2.0.30",
