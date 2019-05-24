@@ -58,7 +58,7 @@ export default props => {
 
 export const pageQuery = graphql`
   {
-    allContentfulVideo(sort: { fields: [createdAt], order: ASC }) {
+    allContentfulVideo(sort: { fields: [createdAt], order: DESC }) {
       edges {
         node {
           id

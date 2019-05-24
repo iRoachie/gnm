@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { beliefsURL } from '../constants';
 
-export default () => (
+export default ({ data }) => (
   <Layout light>
     <SEO
       title="Goodnews Gospel Explosion"
@@ -29,7 +29,10 @@ export default () => (
             “My name is Claudius Morgan”
           </h1>
 
-          <Link to="/watch/1" className="flex items-center mt-4">
+          <Link
+            to={`/watch/${data.allContentfulVideo.totalCount}`}
+            className="flex items-center mt-4"
+          >
             <img
               className="mr-4 youtube-logo"
               src={require('../images/icon-youtube.png')}
@@ -201,3 +204,11 @@ export default () => (
     `}</style>
   </Layout>
 );
+
+export const pageQuery = graphql`
+  {
+    allContentfulVideo {
+      totalCount
+    }
+  }
+`;
