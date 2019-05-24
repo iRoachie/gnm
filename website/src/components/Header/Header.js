@@ -89,7 +89,7 @@ const DropDown = () => {
     <li className={`inline-block relative ${menuOpen ? 'bg-primary' : ''}`}>
       <button
         className={`font-bold p-4 h-full ${
-          menuOpen ? 'text-white' : 'text-black'
+          menuOpen ? 'text-white' : 'text-black hover:text-primary'
         }`}
         onClick={onOpen}
       >
@@ -103,7 +103,7 @@ const DropDown = () => {
       >
         <li className="py-2">
           <Link
-            className="text-white inline-block"
+            className="text-white inline-block hover:text-accent"
             to="/campaign"
             activeClassName="font-bold"
           >
@@ -113,7 +113,7 @@ const DropDown = () => {
 
         <li className="py-2">
           <Link
-            className="text-white inline-block"
+            className="text-white inline-block hover:text-accent"
             to="/morgan"
             activeClassName="font-bold"
           >
@@ -123,7 +123,7 @@ const DropDown = () => {
 
         <li className="py-2">
           <Link
-            className="text-white inline-block"
+            className="text-white inline-block hover:text-accent"
             to="/organisers"
             activeClassName="font-bold"
           >
