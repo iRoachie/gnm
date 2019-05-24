@@ -4,7 +4,7 @@ export default function VideoTile({ selectVideo, video, index }) {
   return (
     <>
       <button
-        className={`p-12 text-left leading-none ${
+        className={`p-12 pr-8 text-left leading-none ${
           index === 0 || index % 2 === 0 ? 'bg-primary-400' : 'bg-primary'
         }`}
         onClick={selectVideo}
@@ -17,7 +17,7 @@ export default function VideoTile({ selectVideo, video, index }) {
         {`
           button {
             height: 200px;
-            width: 300px;
+            min-width: 300px;
           }
         `}
       </style>
