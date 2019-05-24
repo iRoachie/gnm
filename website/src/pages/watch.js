@@ -8,10 +8,12 @@ import Player from '../components/Watch/Player';
 
 export default props => {
   const edges = props.data.allContentfulVideo.edges;
-  const videos = edges.map(a => ({
-    ...a.node,
-    description: a.node.description.content[0].content[0].value,
-  }));
+  const videos = edges
+    .map(a => ({
+      ...a.node,
+      description: a.node.description.content[0].content[0].value,
+    }))
+    .reverse();
 
   const index =
     typeof props.pageContext.slug !== 'undefined' ? props.pageContext.slug : 0;
