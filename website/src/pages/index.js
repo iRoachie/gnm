@@ -95,7 +95,10 @@ export default ({ data }) => (
           </p>
 
           <div className="sm:flex items-center mt-12">
-            <Link to="/watch/1" className="flex items-center">
+            <Link
+              to={`/watch/${data.allContentfulVideo.totalCount}`}
+              className="flex items-center"
+            >
               <img
                 className="mr-4 youtube-logo"
                 src={require('../images/icon-youtube.png')}
