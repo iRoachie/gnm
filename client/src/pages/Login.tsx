@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { RouteComponentProps, navigate } from '@reach/router';
+import { RouteComponentProps, navigate, Redirect } from '@reach/router';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -35,7 +35,7 @@ const Login: React.FunctionComponent<RouteComponentProps> = () => {
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { setDetails } = useContext(AuthContext);
+  const { user, setDetails } = useContext(AuthContext);
 
   const styles = useStyles();
 
@@ -113,7 +113,9 @@ const Login: React.FunctionComponent<RouteComponentProps> = () => {
     });
   };
 
-  return (
+  return user ? (
+    <Redirect to="/" noThrow />
+  ) : (
     <main className="min-h-screen flex">
       <Banner className="flex-1 hidden md:block" />
 
