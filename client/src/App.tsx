@@ -4,7 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { ApolloProvider } from 'react-apollo';
 
-import { Login, Contacts } from './pages';
+import { Login, Contacts, ViewContact } from './pages';
 import ProtectedRoute from './util/ProtectedRoute';
 import { AuthProvider } from './util/AuthContext';
 import client from './graphql';
@@ -37,6 +37,7 @@ const App: React.FC = () => {
           <Router>
             <Login path="/login" />
             <ProtectedRoute component={Contacts} path="/contacts" />
+            <ProtectedRoute component={ViewContact} path="/contacts/:id" />
             <Redirect from="/" to="/contact" noThrow />
           </Router>
         </ThemeProvider>

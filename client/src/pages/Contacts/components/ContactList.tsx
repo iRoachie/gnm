@@ -6,9 +6,15 @@ import ListItemText from '@material-ui/core/ListItemText';
 import styled from 'styled-components';
 
 import { contactsQuery } from '../../../../../mobile/src/graphql/queries';
+import { navigate } from '@reach/router';
+import { Person } from '../../../../../core/prisma-client';
 
 const ContactList = ({ search }) =>
   useMemo(() => {
+    const viewContact = (id: string) => {
+      navigate(`/contacts/${id}`);
+    };
+
     return (
       <Query query={contactsQuery} variables={{ search: search }}>
         {({ loading, error, data }) => {
@@ -22,8 +28,8 @@ const ContactList = ({ search }) =>
 
           return (
             <Content>
-              {data.persons.data.map(a => (
-                <ListItem key={a.id} button>
+              {data.persons.data.map((a: Person) => (
+                <ListItem key={a.id} button onClick={() => viewContact(a.id)}>
                   <ListItemText primary={a.name} secondary={a.teamCode} />
                 </ListItem>
               ))}
