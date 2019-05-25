@@ -17,7 +17,7 @@ const ContactList = ({ search }) =>
 
     return (
       <Query query={contactsQuery} variables={{ search: search }}>
-        {({ loading, error, data }) => {
+        {({ loading, data, error }) => {
           if (loading) {
             return <p className="text-center my-4">Loading...</p>;
           }
