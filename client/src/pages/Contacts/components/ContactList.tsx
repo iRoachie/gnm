@@ -19,11 +19,15 @@ const ContactList = ({ search }) =>
       <Query query={contactsQuery} variables={{ search: search }}>
         {({ loading, error, data }) => {
           if (loading) {
-            return <p>loading...</p>;
+            return <p className="text-center my-4">Loading...</p>;
           }
 
           if (error) {
-            return <p>Error</p>;
+            return <p className="text-center my-4">Error</p>;
+          }
+
+          if (data.persons.data.length === 0) {
+            return <p className="text-center my-4">No Contacts</p>;
           }
 
           return (
