@@ -8,7 +8,7 @@
     "start:dev": "nodemon -r dotenv/config -e js,graphql,prisma src/index.js dotenv_config_path=.env.dev",
     "start:prod": "node src/index.js",
     "reset:dev": "prisma reset --env-file .env.dev",
-    "reset:prod": "prisma reset --env-file .env.prod",
+    "delete:dev": "prisma delete --env-file .env.dev",
     "deploy:dev": "prisma deploy --env-file .env.dev",
     "deploy:prod": "prisma deploy --env-file .env.prod",
     "seed:dev": "prisma seed --env-file .env.dev",
