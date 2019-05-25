@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { UserDetails } from '../../../mobile/src/types';
+import client from '../graphql';
 
 import { AuthKey } from '../constants';
 
@@ -27,7 +28,8 @@ const AuthProvider: React.FC = props => {
     setUser(details);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await client.clearStore();
     setUser(null);
   };
 
