@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { RouteComponentProps, navigate, Redirect } from '@reach/router';
+import { RouteComponentProps, Redirect } from '@reach/router';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -74,10 +74,6 @@ const Login: React.FunctionComponent<RouteComponentProps> = () => {
       });
 
       setDetails(data!.login);
-
-      setTimeout(() => {
-        navigate('/');
-      }, 1000);
     } catch (error) {
       let message = "Couldn't sign in at this time. Try again later.";
 

@@ -3,6 +3,7 @@ import { UserDetails } from '../../../mobile/src/types';
 import client from '../graphql';
 
 import { AuthKey } from '../constants';
+import { navigate } from '@reach/router';
 
 const AuthContext = React.createContext<{
   user: UserDetails | null;
@@ -26,6 +27,7 @@ const AuthProvider: React.FC = props => {
 
   const setDetails = (details: UserDetails) => {
     setUser(details);
+    navigate('/');
   };
 
   const logout = async () => {

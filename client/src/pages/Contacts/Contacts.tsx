@@ -10,11 +10,9 @@ const Contacts: React.FunctionComponent<RouteComponentProps> = () => {
   const [search, setSearch] = useState('');
   const [dbSearch, setdbSearch] = useState('');
 
-  let searchDb = (value: string) => {
+  const searchDb = debounce((value: string) => {
     setdbSearch(value);
-  };
-
-  searchDb = debounce(searchDb, 500);
+  }, 500);
 
   const updateSearch = (value: string) => {
     setSearch(value);
