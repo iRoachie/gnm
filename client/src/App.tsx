@@ -38,7 +38,7 @@ const App: React.FC = () => {
             <Login path="/login" />
             <ProtectedRoute component={Contacts} path="/contacts" />
             <ProtectedRoute component={ViewContact} path="/contacts/:id" />
-            <Redirect from="/" to="/contact" noThrow />
+            <Redirect from="/" to="/contacts" noThrow />
           </Router>
         </ThemeProvider>
       </AuthProvider>
