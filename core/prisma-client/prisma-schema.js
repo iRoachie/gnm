@@ -40,6 +40,7 @@ type AggregateUserRole {
 }
 
 type Attendance {
+  id: ID!
   date: DateTime!
   event: String
   person: Person!
@@ -63,12 +64,12 @@ type AttendanceEdge {
 }
 
 enum AttendanceOrderByInput {
+  id_ASC
+  id_DESC
   date_ASC
   date_DESC
   event_ASC
   event_DESC
-  id_ASC
-  id_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -76,6 +77,7 @@ enum AttendanceOrderByInput {
 }
 
 type AttendancePreviousValues {
+  id: ID!
   date: DateTime!
   event: String
 }
@@ -98,12 +100,32 @@ input AttendanceSubscriptionWhereInput {
   NOT: [AttendanceSubscriptionWhereInput!]
 }
 
+input AttendanceUpdateInput {
+  date: DateTime
+  event: String
+  person: PersonUpdateOneRequiredInput
+}
+
 input AttendanceUpdateManyMutationInput {
   date: DateTime
   event: String
 }
 
 input AttendanceWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
@@ -130,6 +152,10 @@ input AttendanceWhereInput {
   AND: [AttendanceWhereInput!]
   OR: [AttendanceWhereInput!]
   NOT: [AttendanceWhereInput!]
+}
+
+input AttendanceWhereUniqueInput {
+  id: ID
 }
 
 type BatchPayload {
@@ -363,7 +389,10 @@ enum MaritalStatus {
 
 type Mutation {
   createAttendance(data: AttendanceCreateInput!): Attendance!
+  updateAttendance(data: AttendanceUpdateInput!, where: AttendanceWhereUniqueInput!): Attendance
   updateManyAttendances(data: AttendanceUpdateManyMutationInput!, where: AttendanceWhereInput): BatchPayload!
+  upsertAttendance(where: AttendanceWhereUniqueInput!, create: AttendanceCreateInput!, update: AttendanceUpdateInput!): Attendance!
+  deleteAttendance(where: AttendanceWhereUniqueInput!): Attendance
   deleteManyAttendances(where: AttendanceWhereInput): BatchPayload!
   createContactSite(data: ContactSiteCreateInput!): ContactSite!
   updateContactSite(data: ContactSiteUpdateInput!, where: ContactSiteWhereUniqueInput!): ContactSite
@@ -1149,6 +1178,43 @@ input PersonSubscriptionWhereInput {
   NOT: [PersonSubscriptionWhereInput!]
 }
 
+input PersonUpdateDataInput {
+  name: String
+  name_search: String
+  email: String
+  password: String
+  telephone: String
+  cellphone: String
+  status: PersonStatusUpdateOneRequiredInput
+  address: String
+  sex: Sex
+  religion: String
+  age: Int
+  assignee: UserUpdateOneInput
+  contactSite: ContactSiteUpdateOneRequiredInput
+  notes: NoteUpdateManyInput
+  websiteUser: Boolean
+  maritalStatus: MaritalStatus
+  invitation: Boolean
+  letter: Boolean
+  handbill: Boolean
+  guestTag: Boolean
+  transport: Boolean
+  openingNight: Boolean
+  dob: DateTime
+  team: TeamUpdateOneInput
+  teamCode: String
+  teamCode_search: String
+  lesson1: Boolean
+  lesson2: Boolean
+  lesson3: Boolean
+  lesson4: Boolean
+  lesson5: Boolean
+  lesson6: Boolean
+  lesson7: Boolean
+  addedBy: UserUpdateOneInput
+}
+
 input PersonUpdateInput {
   name: String
   name_search: String
@@ -1215,6 +1281,18 @@ input PersonUpdateManyMutationInput {
   lesson5: Boolean
   lesson6: Boolean
   lesson7: Boolean
+}
+
+input PersonUpdateOneRequiredInput {
+  create: PersonCreateInput
+  update: PersonUpdateDataInput
+  upsert: PersonUpsertNestedInput
+  connect: PersonWhereUniqueInput
+}
+
+input PersonUpsertNestedInput {
+  update: PersonUpdateDataInput!
+  create: PersonCreateInput!
 }
 
 input PersonWhereInput {
@@ -1460,6 +1538,7 @@ input PersonWhereUniqueInput {
 }
 
 type Query {
+  attendance(where: AttendanceWhereUniqueInput!): Attendance
   attendances(where: AttendanceWhereInput, orderBy: AttendanceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Attendance]!
   attendancesConnection(where: AttendanceWhereInput, orderBy: AttendanceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AttendanceConnection!
   contactSite(where: ContactSiteWhereUniqueInput!): ContactSite
