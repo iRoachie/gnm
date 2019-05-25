@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../util/AuthContext";
-import { Button } from "@material-ui/core";
+import React, { useContext } from 'react';
+import { AuthContext } from '../util/AuthContext';
+import { Button } from '@material-ui/core';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
 
   return (
     <header className="border py-4">
-      <div className="max-w-6xl mx-auto px-4 sm:flex justify-between items-center">
+      <div className="max-w-5xl mx-auto px-4 sm:flex justify-between items-center">
         <svg
           width="182px"
           height="40px"

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Router } from '@reach/router';
+import { Redirect, Router } from '@reach/router';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { ApolloProvider } from 'react-apollo';
 
 import { Login, Contacts } from './pages';
 import ProtectedRoute from './util/ProtectedRoute';
 import { AuthProvider } from './util/AuthContext';
+import client from './graphql';
 
 const theme = createMuiTheme({
   typography: {
@@ -29,14 +31,17 @@ const theme = createMuiTheme({
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Login path="/login" />
-          <ProtectedRoute component={Contacts} path="/" />
-        </Router>
-      </ThemeProvider>
-    </AuthProvider>
+    <ApolloProvider client={client}>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Login path="/login" />
+            <ProtectedRoute component={Contacts} path="/contacts" />
+            <Redirect from="/" to="/contact" noThrow />
+          </Router>
+        </ThemeProvider>
+      </AuthProvider>
+    </ApolloProvider>
   );
 };
 
