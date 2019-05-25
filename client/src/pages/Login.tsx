@@ -40,9 +40,12 @@ const Login: React.FunctionComponent<RouteComponentProps> = () => {
 
   const styles = useStyles();
 
-  const submit = async () => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     setPasswordError('');
     setEmailError('');
+    setError('');
 
     try {
       await validate();
@@ -130,38 +133,40 @@ const Login: React.FunctionComponent<RouteComponentProps> = () => {
 
           <h1 className="text-primary text-3xl mb-4">Sign in</h1>
 
-          <TextField
-            label={emailError || 'Email'}
-            value={email}
-            type="email"
-            onChange={e => setEmail(e.currentTarget.value)}
-            className={styles.textField}
-            error={!!emailError}
-            disabled={loading}
-          />
+          <form onSubmit={submit}>
+            <TextField
+              label={emailError || 'Email'}
+              value={email}
+              type="email"
+              onChange={e => setEmail(e.currentTarget.value)}
+              className={styles.textField}
+              error={!!emailError}
+              disabled={loading}
+            />
 
-          <TextField
-            label={passwordError || 'Password'}
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.currentTarget.value)}
-            className={styles.textField}
-            error={!!passwordError}
-            disabled={loading}
-          />
+            <TextField
+              label={passwordError || 'Password'}
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.currentTarget.value)}
+              className={styles.textField}
+              error={!!passwordError}
+              disabled={loading}
+            />
 
-          <p className="text-red-700 my-2">{error}&nbsp;</p>
+            <p className="text-red-700 my-2 text-center">{error}&nbsp;</p>
 
-          <Button
-            variant="contained"
-            color="primary"
-            className={styles.button}
-            onClick={submit}
-            disabled={loading}
-          >
-            Sign in
-            {loading && <CircularProgress className="ml-4" size={20} />}
-          </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={styles.button}
+              disabled={loading}
+            >
+              Sign in
+              {loading && <CircularProgress className="ml-4" size={20} />}
+            </Button>
+          </form>
         </Content>
       </div>
     </main>
