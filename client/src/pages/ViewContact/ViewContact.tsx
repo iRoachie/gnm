@@ -31,7 +31,13 @@ const ViewContact: React.FunctionComponent<
             <>
               <div className="bg-primary py-2 text-white px-4 mb-4">
                 <h1 className="text-4xl font-bold">{person.name}</h1>
-                <p>{person.status.title}</p>
+
+                <div className="flex">
+                  {!!person.teamCode && (
+                    <p className="mr-4">{person.teamCode}</p>
+                  )}
+                  <p>{person.status.title}</p>
+                </div>
               </div>
 
               <ListItem>
@@ -47,9 +53,41 @@ const ViewContact: React.FunctionComponent<
                 />
               </ListItem>
 
-              <ListItem>
-                <ListItemText primary={person.address} secondary="Address" />
-              </ListItem>
+              {!!person.team && (
+                <ListItem>
+                  <ListItemText primary={person.team.name} secondary="Team" />
+                </ListItem>
+              )}
+
+              {!!person.address && (
+                <ListItem>
+                  <ListItemText primary={person.address} secondary="Address" />
+                </ListItem>
+              )}
+
+              {!!person.telephone && (
+                <ListItem>
+                  <ListItemText
+                    primary={person.telephone}
+                    secondary="Telephone"
+                  />
+                </ListItem>
+              )}
+
+              {!!person.cellphone && (
+                <ListItem>
+                  <ListItemText
+                    primary={person.cellphone}
+                    secondary="Cell Phone"
+                  />
+                </ListItem>
+              )}
+
+              {!!person.email && (
+                <ListItem>
+                  <ListItemText primary={person.email} secondary="Email" />
+                </ListItem>
+              )}
 
               <hr className="border" />
             </>
