@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import validator from 'validator';
+import Helmet from 'react-helmet';
 
 import client from '../graphql';
 import { loginMutation } from '../../../mobile/src/graphql/mutations';
@@ -117,6 +118,10 @@ const Login: React.FunctionComponent<RouteComponentProps> = () => {
     <Redirect to="/" noThrow />
   ) : (
     <main className="min-h-screen flex">
+      <Helmet>
+        <title>Login | GNM 2019</title>
+      </Helmet>
+
       <Banner className="flex-1 hidden md:block" />
 
       <div className="flex-1 flex flex-col items-center justify-center">
