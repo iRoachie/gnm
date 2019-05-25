@@ -29,6 +29,17 @@ export interface UserDetails {
   }>;
 }
 
+export interface LoginResponse {
+  login: {
+    id: string;
+    name: string;
+    email: string;
+    jwt: string;
+    role: ReturnedUserRole;
+    contactSites: ContactSite[];
+  };
+}
+
 export interface OfflinePerson extends PersonCreateInput {
   id: string;
 }

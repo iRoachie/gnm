@@ -16,19 +16,7 @@ import validator from 'validator';
 
 import { Theme, StateContext, setVersionFlags } from '../util';
 import client, { loginMutation } from '../graphql';
-import { ContactSite } from '../../../core/prisma-client';
-import { ReturnedUserRole } from '../types';
-
-type Response = {
-  login: {
-    id: string;
-    name: string;
-    email: string;
-    jwt: string;
-    role: ReturnedUserRole;
-    contactSites: ContactSite[];
-  };
-};
+import { LoginResponse } from '../types';
 
 const Login: React.FunctionComponent<NavigationScreenProps> = props => {
   const [email, updateEmail] = useState('');
@@ -69,7 +57,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
 
   const login = async () => {
     try {
-      const { data } = await client.mutate<Response>({
+      const { data } = await client.mutate<LoginResponse>({
         mutation: loginMutation,
         variables: {
           email,
@@ -85,7 +73,7 @@ const Login: React.FunctionComponent<NavigationScreenProps> = props => {
         props.navigation.navigate('App');
       }, 1000);
     } catch (error) {
-      let message = 'Couldn\'t sign in at this time. Try again later.';
+      let message = "Couldn't sign in at this time. Try again later.";
 
       if (error.graphQLErrors.length > 0) {
         message = error.graphQLErrors[0].message;
