@@ -40,10 +40,10 @@ export default function VideoTrack({ videos, selectVideo }) {
       >
         {videos.map((a, i) => (
           <VideoTile
-            key={a.id}
+            key={a.contentful_id}
             video={a}
             index={i}
-            selectVideo={() => selectVideo(i)}
+            selectVideo={() => selectVideo(a.contentful_id)}
           />
         ))}
       </div>

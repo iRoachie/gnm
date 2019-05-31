@@ -8,18 +8,18 @@ exports.createPages = ({ graphql, actions }) => {
       allContentfulVideo {
         edges {
           node {
-            id
+            contentful_id
           }
         }
       }
     }
   `).then(result => {
-    result.data.allContentfulVideo.edges.forEach((_, index) => {
+    result.data.allContentfulVideo.edges.forEach(a => {
       createPage({
-        path: `watch/${index + 1}`,
+        path: `watch/${a.node.contentful_id}`,
         component: path.resolve('./src/pages/watch.js'),
         context: {
-          slug: index,
+          slug: a.node.contentful_id,
         },
       });
     });

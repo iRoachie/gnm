@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { beliefsURL } from '../constants';
 
-export default ({ data }) => (
+export default () => (
   <Layout light>
     <SEO
       title="Goodnews Gospel Explosion"
+      titleOverride
       keywords={[
         '#GNM2019',
         'claudius',
@@ -30,7 +31,7 @@ export default ({ data }) => (
           </h1>
 
           <Link
-            to={`/watch/${data.allContentfulVideo.totalCount}`}
+            to="/watch/38QBZqQjpM3p5kRGKNanba"
             className="flex items-center mt-4"
           >
             <img
@@ -96,7 +97,7 @@ export default ({ data }) => (
 
           <div className="sm:flex items-center mt-12">
             <Link
-              to={`/watch/${data.allContentfulVideo.totalCount}`}
+              to="/watch/38QBZqQjpM3p5kRGKNanba"
               className="flex items-center"
             >
               <img
@@ -207,11 +208,3 @@ export default ({ data }) => (
     `}</style>
   </Layout>
 );
-
-export const pageQuery = graphql`
-  {
-    allContentfulVideo {
-      totalCount
-    }
-  }
-`;

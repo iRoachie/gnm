@@ -14,18 +14,17 @@ export default props => {
     description: documentToHtmlString(a.node.description),
   }));
 
-  const index =
-    typeof props.pageContext.slug !== 'undefined' ? props.pageContext.slug : 0;
+  const index = props.pageContext.slug;
 
-  const video = videos[index];
+  const video = videos.find(a => a.contentful_id === index) || videos[0];
 
   const selectVideo = id => {
-    navigate(`/watch/${id + 1}`);
+    navigate(`/watch/${id}`);
   };
 
   return (
     <Layout classes="text-white flex flex-col space-between">
-      <SEO title="Watch" />
+      <SEO title={video.title} description={video.description} titleOverride />
 
       <section className="main-video flex-1 bg-base">
         <Player youtubeId={video.youtubeId} />
@@ -61,7 +60,7 @@ export const pageQuery = graphql`
     allContentfulVideo(sort: { fields: [createdAt], order: DESC }) {
       edges {
         node {
-          id
+          contentful_id
           label
           title
           description {
