@@ -2,6 +2,8 @@ import React from 'react';
 import { graphql, navigate } from 'gatsby';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
+import { stripHTMLTags } from '../util';
+
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import VideoTrack from '../components/Watch/VideoTrack';
@@ -24,7 +26,11 @@ export default props => {
 
   return (
     <Layout classes="text-white flex flex-col space-between">
-      <SEO title={video.title} description={video.description} titleOverride />
+      <SEO
+        title={video.title}
+        description={stripHTMLTags(video.description)}
+        titleOverride
+      />
 
       <section className="main-video flex-1 bg-base">
         <Player youtubeId={video.youtubeId} />
