@@ -1,11 +1,13 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
+import BackgroundImage from 'gatsby-background-image';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { beliefsURL } from '../constants';
 
-export default () => (
+export default ({ data }) => (
   <Layout light>
     <SEO
       title="Goodnews Gospel Explosion"
@@ -22,7 +24,12 @@ export default () => (
       ]}
     />
 
-    <section className="main-banner bg-no-repeat bg-cover bg-top flex items-end py-16 text-white">
+    <BackgroundImage
+      Tag="section"
+      className="bg-no-repeat bg-cover bg-top flex items-end py-16 text-white"
+      fluid={data.main.childImageSharp.fluid}
+      style={{ height: 500 }}
+    >
       <div className="container">
         <div className="sm:w-5/12">
           <p className="text-2xl">#GNM2019</p>
@@ -44,7 +51,7 @@ export default () => (
           </Link>
         </div>
       </div>
-    </section>
+    </BackgroundImage>
 
     <section className="bg-primary py-16 text-white">
       <div className="container md:flex">
@@ -155,7 +162,12 @@ export default () => (
       </div>
     </section>
 
-    <section className="relative flex flex-col believe py-20 bg-no-repeat bg-cover bg-center text-white justify-end">
+    <BackgroundImage
+      Tag="section"
+      fluid={data.believe.childImageSharp.fluid}
+      style={{ height: 600 }}
+      className="relative flex flex-col believe py-20 bg-no-repeat bg-cover bg-center text-white justify-end"
+    >
       <div className="absolute top-0 left-0 w-full h-full gradient" />
 
       <div className="container z-20">
@@ -176,17 +188,12 @@ export default () => (
           </a>
         </div>
       </div>
-    </section>
+    </BackgroundImage>
 
     <style jsx>{`
       .full-logo {
         max-width: 500px;
         width: 100%;
-      }
-
-      .believe {
-        background-image: url(${require('../images/believe-banner.jpg')});
-        min-height: 600px;
       }
 
       .believe-sub {
@@ -200,11 +207,25 @@ export default () => (
       .youtube-logo {
         height: 40px;
       }
-
-      .main-banner {
-        background-image: url(${require('../images/morg-large.jpg')});
-        min-height: 500px;
-      }
     `}</style>
   </Layout>
 );
+
+export const query = graphql`
+  query {
+    believe: file(relativePath: { eq: "believe-banner.jpg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    main: file(relativePath: { eq: "morg-large.jpg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`;
