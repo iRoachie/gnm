@@ -45,5 +45,9 @@ export const viewContactQuery = gql`
         }
       }
     }
+    attendance(where: { person: { id: $id } }) {
+      date
+      event
+    }
   }
 `;

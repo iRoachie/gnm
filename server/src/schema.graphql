@@ -273,6 +273,7 @@ type Mutation {
   ): Person!
   createTeam(data: TeamCreateInput): Team!
   updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team!
+  markAttendance(data: AttendanceCreateInput): Attendance!
 }
 
 type Query {
