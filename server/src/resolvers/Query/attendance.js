@@ -8,7 +8,12 @@
  * @param {import("@gnm/core/prisma-client").Prisma} context.prisma
  */
 const attendance = async (parent, args, context) => {
-  return context.prisma.attendances(args);
+  const attendances = await context.prisma.attendances(args);
+
+  return {
+    count: attendances.length,
+    data: attendances,
+  };
 };
 
 module.exports = attendance;
