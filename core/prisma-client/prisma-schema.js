@@ -42,7 +42,6 @@ type AggregateUserRole {
 type Attendance {
   id: ID!
   date: DateTime!
-  event: String
   person: Person!
 }
 
@@ -54,7 +53,6 @@ type AttendanceConnection {
 
 input AttendanceCreateInput {
   date: DateTime!
-  event: String
   person: PersonCreateOneInput!
 }
 
@@ -68,8 +66,6 @@ enum AttendanceOrderByInput {
   id_DESC
   date_ASC
   date_DESC
-  event_ASC
-  event_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -79,7 +75,6 @@ enum AttendanceOrderByInput {
 type AttendancePreviousValues {
   id: ID!
   date: DateTime!
-  event: String
 }
 
 type AttendanceSubscriptionPayload {
@@ -102,13 +97,11 @@ input AttendanceSubscriptionWhereInput {
 
 input AttendanceUpdateInput {
   date: DateTime
-  event: String
   person: PersonUpdateOneRequiredInput
 }
 
 input AttendanceUpdateManyMutationInput {
   date: DateTime
-  event: String
 }
 
 input AttendanceWhereInput {
@@ -134,20 +127,6 @@ input AttendanceWhereInput {
   date_lte: DateTime
   date_gt: DateTime
   date_gte: DateTime
-  event: String
-  event_not: String
-  event_in: [String!]
-  event_not_in: [String!]
-  event_lt: String
-  event_lte: String
-  event_gt: String
-  event_gte: String
-  event_contains: String
-  event_not_contains: String
-  event_starts_with: String
-  event_not_starts_with: String
-  event_ends_with: String
-  event_not_ends_with: String
   person: PersonWhereInput
   AND: [AttendanceWhereInput!]
   OR: [AttendanceWhereInput!]

@@ -536,8 +536,6 @@ export type AttendanceOrderByInput =
   | "id_DESC"
   | "date_ASC"
   | "date_DESC"
-  | "event_ASC"
-  | "event_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -805,20 +803,6 @@ export interface AttendanceWhereInput {
   date_lte?: DateTimeInput;
   date_gt?: DateTimeInput;
   date_gte?: DateTimeInput;
-  event?: String;
-  event_not?: String;
-  event_in?: String[] | String;
-  event_not_in?: String[] | String;
-  event_lt?: String;
-  event_lte?: String;
-  event_gt?: String;
-  event_gte?: String;
-  event_contains?: String;
-  event_not_contains?: String;
-  event_starts_with?: String;
-  event_not_starts_with?: String;
-  event_ends_with?: String;
-  event_not_ends_with?: String;
   person?: PersonWhereInput;
   AND?: AttendanceWhereInput[] | AttendanceWhereInput;
   OR?: AttendanceWhereInput[] | AttendanceWhereInput;
@@ -861,7 +845,6 @@ export interface PersonStatusWhereInput {
 
 export interface AttendanceCreateInput {
   date: DateTimeInput;
-  event?: String;
   person: PersonCreateOneInput;
 }
 
@@ -1109,7 +1092,6 @@ export interface ContactSiteCreateOneInput {
 
 export interface AttendanceUpdateManyMutationInput {
   date?: DateTimeInput;
-  event?: String;
 }
 
 export interface NoteCreateManyInput {
@@ -1157,7 +1139,6 @@ export interface NoteUpdateManyWithWhereNestedInput {
 
 export interface AttendanceUpdateInput {
   date?: DateTimeInput;
-  event?: String;
   person?: PersonUpdateOneRequiredInput;
 }
 
@@ -2194,13 +2175,11 @@ export interface UserRoleConnectionSubscription
 export interface Attendance {
   id: ID_Output;
   date: DateTimeOutput;
-  event?: String;
 }
 
 export interface AttendancePromise extends Promise<Attendance>, Fragmentable {
   id: () => Promise<ID_Output>;
   date: () => Promise<DateTimeOutput>;
-  event: () => Promise<String>;
   person: <T = PersonPromise>() => T;
 }
 
@@ -2209,7 +2188,6 @@ export interface AttendanceSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
-  event: () => Promise<AsyncIterator<String>>;
   person: <T = PersonSubscription>() => T;
 }
 
@@ -2278,7 +2256,6 @@ export interface UserConnectionSubscription
 export interface AttendancePreviousValues {
   id: ID_Output;
   date: DateTimeOutput;
-  event?: String;
 }
 
 export interface AttendancePreviousValuesPromise
@@ -2286,7 +2263,6 @@ export interface AttendancePreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   date: () => Promise<DateTimeOutput>;
-  event: () => Promise<String>;
 }
 
 export interface AttendancePreviousValuesSubscription
@@ -2294,7 +2270,6 @@ export interface AttendancePreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
-  event: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateTeam {
@@ -3094,6 +3069,155 @@ export interface UserRoleSubscriptionPayloadSubscription
   previousValues: <T = UserRolePreviousValuesSubscription>() => T;
 }
 
+export interface Note {
+  id: ID_Output;
+  date: DateTimeOutput;
+  message: String;
+}
+
+export interface NotePromise extends Promise<Note>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  date: () => Promise<DateTimeOutput>;
+  user: <T = UserPromise>() => T;
+  message: () => Promise<String>;
+}
+
+export interface NoteSubscription
+  extends Promise<AsyncIterator<Note>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  user: <T = UserSubscription>() => T;
+  message: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TeamPreviousValues {
+  id: ID_Output;
+  name: String;
+  name_search?: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface TeamPreviousValuesPromise
+  extends Promise<TeamPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  name_search: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface TeamPreviousValuesSubscription
+  extends Promise<AsyncIterator<TeamPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  name_search: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface TeamSubscriptionPayload {
+  mutation: MutationType;
+  node: Team;
+  updatedFields: String[];
+  previousValues: TeamPreviousValues;
+}
+
+export interface TeamSubscriptionPayloadPromise
+  extends Promise<TeamSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TeamPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TeamPreviousValuesPromise>() => T;
+}
+
+export interface TeamSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TeamSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TeamSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TeamPreviousValuesSubscription>() => T;
+}
+
+export interface UserRole {
+  title: String;
+}
+
+export interface UserRolePromise extends Promise<UserRole>, Fragmentable {
+  title: () => Promise<String>;
+  permissions: <T = FragmentableArray<Permission>>(
+    args?: {
+      where?: PermissionWhereInput;
+      orderBy?: PermissionOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserRoleSubscription
+  extends Promise<AsyncIterator<UserRole>>,
+    Fragmentable {
+  title: () => Promise<AsyncIterator<String>>;
+  permissions: <T = Promise<AsyncIterator<PermissionSubscription>>>(
+    args?: {
+      where?: PermissionWhereInput;
+      orderBy?: PermissionOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface PersonStatusPreviousValues {
+  title: String;
+  description?: String;
+}
+
+export interface PersonStatusPreviousValuesPromise
+  extends Promise<PersonStatusPreviousValues>,
+    Fragmentable {
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+}
+
+export interface PersonStatusPreviousValuesSubscription
+  extends Promise<AsyncIterator<PersonStatusPreviousValues>>,
+    Fragmentable {
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PersonStatusEdge {
+  node: PersonStatus;
+  cursor: String;
+}
+
+export interface PersonStatusEdgePromise
+  extends Promise<PersonStatusEdge>,
+    Fragmentable {
+  node: <T = PersonStatusPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PersonStatusEdgeSubscription
+  extends Promise<AsyncIterator<PersonStatusEdge>>,
+    Fragmentable {
+  node: <T = PersonStatusSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
 export interface Person {
   id: ID_Output;
   name: String;
@@ -3228,155 +3352,6 @@ export interface PersonSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   addedBy: <T = UserSubscription>() => T;
-}
-
-export interface TeamPreviousValues {
-  id: ID_Output;
-  name: String;
-  name_search?: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface TeamPreviousValuesPromise
-  extends Promise<TeamPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  name_search: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface TeamPreviousValuesSubscription
-  extends Promise<AsyncIterator<TeamPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  name_search: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface TeamSubscriptionPayload {
-  mutation: MutationType;
-  node: Team;
-  updatedFields: String[];
-  previousValues: TeamPreviousValues;
-}
-
-export interface TeamSubscriptionPayloadPromise
-  extends Promise<TeamSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = TeamPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = TeamPreviousValuesPromise>() => T;
-}
-
-export interface TeamSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<TeamSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = TeamSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = TeamPreviousValuesSubscription>() => T;
-}
-
-export interface UserRole {
-  title: String;
-}
-
-export interface UserRolePromise extends Promise<UserRole>, Fragmentable {
-  title: () => Promise<String>;
-  permissions: <T = FragmentableArray<Permission>>(
-    args?: {
-      where?: PermissionWhereInput;
-      orderBy?: PermissionOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface UserRoleSubscription
-  extends Promise<AsyncIterator<UserRole>>,
-    Fragmentable {
-  title: () => Promise<AsyncIterator<String>>;
-  permissions: <T = Promise<AsyncIterator<PermissionSubscription>>>(
-    args?: {
-      where?: PermissionWhereInput;
-      orderBy?: PermissionOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface PersonStatusPreviousValues {
-  title: String;
-  description?: String;
-}
-
-export interface PersonStatusPreviousValuesPromise
-  extends Promise<PersonStatusPreviousValues>,
-    Fragmentable {
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-}
-
-export interface PersonStatusPreviousValuesSubscription
-  extends Promise<AsyncIterator<PersonStatusPreviousValues>>,
-    Fragmentable {
-  title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PersonStatusEdge {
-  node: PersonStatus;
-  cursor: String;
-}
-
-export interface PersonStatusEdgePromise
-  extends Promise<PersonStatusEdge>,
-    Fragmentable {
-  node: <T = PersonStatusPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PersonStatusEdgeSubscription
-  extends Promise<AsyncIterator<PersonStatusEdge>>,
-    Fragmentable {
-  node: <T = PersonStatusSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface Note {
-  id: ID_Output;
-  date: DateTimeOutput;
-  message: String;
-}
-
-export interface NotePromise extends Promise<Note>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  date: () => Promise<DateTimeOutput>;
-  user: <T = UserPromise>() => T;
-  message: () => Promise<String>;
-}
-
-export interface NoteSubscription
-  extends Promise<AsyncIterator<Note>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
-  user: <T = UserSubscription>() => T;
-  message: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PermissionEdge {
