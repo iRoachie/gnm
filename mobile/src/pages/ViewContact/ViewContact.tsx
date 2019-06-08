@@ -33,6 +33,12 @@ const ViewContact: React.FunctionComponent<
     navigation.navigate('Notes', { personId: id });
   };
 
+  const goToAttendance = (person: Person | null) => {
+    if (person) {
+      navigation.navigate('Attendance', { person });
+    }
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <Query<{ person: MergedPerson }>
@@ -48,6 +54,12 @@ const ViewContact: React.FunctionComponent<
                   onPress={() => navigation.pop()}
                 />
                 <Appbar.Content {...Theme.Appbar.Content} />
+                {!!data && data.person && (
+                  <Appbar.Action
+                    icon="event-available"
+                    onPress={() => goToAttendance(data.person)}
+                  />
+                )}
                 <Appbar.Action icon="note-add" onPress={goToNotes} />
                 {!!data && data.person && (
                   <Appbar.Action

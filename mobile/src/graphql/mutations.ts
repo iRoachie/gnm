@@ -45,3 +45,11 @@ export const updateContactMutation = gql`
     }
   }
 `;
+
+export const markAttendanceMutation = gql`
+  mutation MarkAttendanceMutation($id: ID!, $date: DateTime!) {
+    markAttendance(data: { person: { connect: { id: $id } }, date: $date }) {
+      id
+    }
+  }
+`;

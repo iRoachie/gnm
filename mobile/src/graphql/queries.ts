@@ -119,3 +119,15 @@ export const personNotesQuery = gql`
     }
   }
 `;
+
+export const personAttendanceQuery = gql`
+  query PersonAttendanceQuery($id: ID!) {
+    attendance(where: { person: { id: $id } }) {
+      count
+      data {
+        id
+        date
+      }
+    }
+  }
+`;
