@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 
-export const AppVersion = Platform.OS === 'ios' ? '1.1.2' : '1.1.2';
+export const AppVersion = Platform.OS === 'ios' ? '1.2.0' : '1.2.0';
 
 const baseVersions = {
   '1.0.0': {
@@ -18,6 +18,10 @@ const baseVersions = {
   '1.1.2': {
     relog: true,
     reset: true,
+  },
+  '1.2.0': {
+    relog: false,
+    reset: false,
   },
 };
 

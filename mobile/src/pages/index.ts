@@ -10,6 +10,7 @@ import ViewContact from './ViewContact';
 import EditContact from './EditContact';
 import NewTeam from './NewTeam';
 import Notes from './Notes';
+import Attendance from './Attendance';
 
 export {
   Login,
@@ -24,4 +25,5 @@ export {
   NewTeam,
   AddTeamSuccess,
   Notes,
+  Attendance,
 };

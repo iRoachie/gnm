@@ -123,9 +123,6 @@ const Notes: React.StatelessComponent<NavigationScreenProps<ScreenParams>> = ({
           notifyOnNetworkStatusChange
         >
           {({ loading, error, data }) => {
-            console.log({ loading });
-            console.log({ error });
-            console.log({ data });
             return (
               !loading &&
               !error && (

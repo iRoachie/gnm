@@ -273,6 +273,7 @@ type Mutation {
   ): Person!
   createTeam(data: TeamCreateInput): Team!
   updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team!
+  markAttendance(data: AttendanceCreateInput): Attendance!
 }
 
 type Query {
@@ -298,7 +299,7 @@ type Query {
     before: String
     first: Int
     last: Int
-  ): [Attendance]!
+  ): AttendanceResponse!
   persons(
     where: PersonWhereInput
     orderBy: PersonOrderByInput
@@ -320,6 +321,11 @@ type Query {
     last: Int
   ): [Team]!
   team(where: TeamWhereUniqueInput): Team
+}
+
+type AttendanceResponse {
+  count: Int
+  data: [Attendance]!
 }
 
 type PersonsResponse {

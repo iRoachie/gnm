@@ -104,6 +104,5 @@ type Person {
 type Attendance {
   id: ID! @unique
   date: DateTime!
-  event: String
   person: Person!
 }
