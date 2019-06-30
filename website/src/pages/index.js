@@ -27,6 +27,7 @@ export default ({ data }) => (
     <BackgroundImage
       Tag="section"
       className="bg-no-repeat bg-cover bg-top flex items-end py-16 text-white"
+      backgroundColor="#1d1e26"
       fluid={data.main.childImageSharp.fluid}
       style={{ height: 500 }}
     >
@@ -166,6 +167,7 @@ export default ({ data }) => (
       Tag="section"
       fluid={data.believe.childImageSharp.fluid}
       style={{ height: 600 }}
+      backgroundColor="#1d1e26"
       className="relative flex flex-col believe py-20 bg-no-repeat bg-cover bg-center text-white justify-end"
     >
       <div className="absolute top-0 left-0 w-full h-full gradient" />
