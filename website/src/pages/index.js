@@ -216,14 +216,14 @@ export const query = graphql`
     believe: file(relativePath: { eq: "believe-banner.jpg" }) {
       childImageSharp {
         fluid(quality: 100, maxWidth: 4160) {
-          ...GatsbyImageSharpFluid_withWebp
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }
     main: file(relativePath: { eq: "morg-large.jpg" }) {
       childImageSharp {
         fluid(quality: 100, maxWidth: 4160) {
-          ...GatsbyImageSharpFluid_withWebp
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }
