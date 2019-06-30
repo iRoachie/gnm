@@ -26,10 +26,10 @@ export default ({ data }) => (
 
     <BackgroundImage
       Tag="section"
-      className="bg-no-repeat bg-cover bg-top flex items-end py-16 text-white"
+      className="flex items-end py-16 text-white"
       backgroundColor="#1d1e26"
       fluid={data.main.childImageSharp.fluid}
-      style={{ height: 500 }}
+      style={{ height: 500, backgroundPosition: 'center top' }}
     >
       <div className="container">
         <div className="sm:w-5/12">
@@ -168,7 +168,7 @@ export default ({ data }) => (
       fluid={data.believe.childImageSharp.fluid}
       style={{ height: 600 }}
       backgroundColor="#1d1e26"
-      className="relative flex flex-col believe py-20 bg-no-repeat bg-cover bg-center text-white justify-end"
+      className="relative flex flex-col believe py-20 text-white justify-end"
     >
       <div className="absolute top-0 left-0 w-full h-full gradient" />
 
@@ -217,14 +217,14 @@ export const query = graphql`
   query {
     believe: file(relativePath: { eq: "believe-banner.jpg" }) {
       childImageSharp {
-        fluid(quality: 100, maxWidth: 4160) {
+        fluid(quality: 100, maxHeight: 600) {
           ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }
     main: file(relativePath: { eq: "morg-large.jpg" }) {
       childImageSharp {
-        fluid(quality: 100, maxWidth: 4160) {
+        fluid(quality: 100, maxHeight: 500) {
           ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
